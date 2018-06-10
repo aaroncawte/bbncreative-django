@@ -16,3 +16,6 @@ Virtual Environments are stored in `C:\Users\Aaron\Envs` on Windows. This means 
 
 *If you run software without activating the virtual environment, it will fall back to global installations (and subsequently break, probably).*
 
+## Virtual Environments and PyCharm
+In order to run the project from PyCharm and benefit from other integrations, you will need to configure it to "interpret" the project from the virtual environment's perspective. Follow [this guide](https://www.jetbrains.com/help/pycharm-edu/project-interpreter.html) from JetBrains on how to do this.
+
