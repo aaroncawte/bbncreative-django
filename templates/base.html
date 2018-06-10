@@ -1,0 +1,48 @@
+{% with title="bbncreative" color="#e81941" description="Digital experiences through design, media and interaction. Thinking outside the screen, by Aaron Cawte." %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        {% load static %}
+        <!--Metadata-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Aaron Cawte">
+        <meta name="description" content="{{ description }}">
+        <meta name="keywords"
+              content="bbncreative, bbn, creative, bright, night, digital, experiences, ux, design, media, interaction, screen, Aaron, Cawte">
+        <meta name="theme-color" content="{{ color }}">
+
+        <!--Social Connections-->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="@bbncreative"/>
+        <meta name="twitter:title" content="{{ title }}"/>
+        <meta name="twitter:description" content="{{ description }}"/>
+        <meta name="twitter:image" content="{% static "img/logo-144x144.png" %}"/>
+
+        <meta name="application-name" content="{{ title }}"/>
+        <meta name="msapplication-square70x70logo" content="{% static "img/win-tiles/small.jpg" %}"/>
+        <meta name="msapplication-square150x150logo" content="{% static "img/win-tiles/medium.jpg" %}"/>
+        <meta name="msapplication-wide310x150logo" content="{% static "img/win-tiles/wide.jpg" %}"/>
+        <meta name="msapplication-square310x310logo" content="{% static "img/win-tiles/large.jpg" %}"/>
+        <meta name="msapplication-TileColor" content="{{ color }}"/>
+
+        <!--Internal Resources-->
+        <link rel="manifest" href="{% static "manifest.json" %}">
+        <link rel="shortcut icon" href="{% static "img/icon.ico" %}" type="image/x-icon">
+        <link rel="apple-touch-icon" href="{% static "img/appletouchicon.png" %}">
+
+        <!--External Resources-->
+
+        <!--Dynamic Resources-->
+        {% block head-content %}
+        {% endblock %}
+
+        <!--Page Title-->
+        <title>{{ title }}</title>
+    </head>
+    <body>
+    {% block body-content %}
+    {% endblock %}
+    </body>
+    </html>
+{% endwith %}
