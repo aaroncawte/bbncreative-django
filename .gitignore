@@ -6,3 +6,6 @@ __pycache__/
 
 # bbncreative_cms logging
 django_debug.log
+
+# bbncreative_cms secrets
+secrets.py
