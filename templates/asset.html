@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body-content %}
+    <h1>{{ image.title }}</h1>
+    <p>Body: {{ image.body }}</p>
+    <p>Image URL: {{ image.img }}</p>
+    <img src="{% get_media_prefix %}{{ image.img }}" alt="{{ image.alt }}"/>
+{% endblock %}
