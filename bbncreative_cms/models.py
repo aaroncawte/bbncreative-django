@@ -1,5 +1,6 @@
-from django.db import models
 import datetime
+
+from django.db import models
 
 
 class Project(models.Model):
@@ -30,6 +31,9 @@ class Project(models.Model):
         default="New Client"
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Collaborator(models.Model):
     # Collaborator's name e.g. "Aaron Cawte"
@@ -45,6 +49,9 @@ class Collaborator(models.Model):
         default="",
         max_length=15
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Credit(models.Model):
@@ -64,6 +71,9 @@ class Credit(models.Model):
         max_length=255
     )
 
+    def __str__(self):
+        return self.project.name + " - " + self.collaborator.name
+
 
 class Asset(models.Model):
     parent = models.ForeignKey(
@@ -79,11 +89,13 @@ class Asset(models.Model):
 
 
 class ImageAsset(Asset):
+    import uuid
+
     alt=models.TextField(
         max_length=5000
     )
-    img=models.FileField(
-        upload_to='media/%Y/%m/%d',
+    img = models.ImageField(
+        upload_to=str(uuid.uuid4()) + "/",
         max_length=255,
     )
 
