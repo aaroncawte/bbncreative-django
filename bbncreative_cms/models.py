@@ -60,8 +60,18 @@ class Project(models.Model):
     class Meta:
         ordering = ['date_complete', '-is_complete']
 
-    def get_assets(self):
-        return Asset.objects.filter(parent=self)
+    def get_image_assets(self):
+        return ImageAsset.objects.filter(parent=self)
+
+    def get_embedded_assets(self):
+        return EmbeddedAsset.objects.filter(parent=self)
+
+    def get_text_assets(self):
+        return TextAsset.objects.filter(parent=self)
+
+    def count_assets(self):
+        return ImageAsset.objects.filter(parent=self).count() + EmbeddedAsset.objects.filter(parent=self).count() + \
+               TextAsset.objects.filter(parent=self).count()
 
     def __str__(self):
         return self.name + " is a project for " + self.client_name + "."
@@ -178,9 +188,19 @@ class ImageAsset(Asset):
         max_length=255,
     )
 
+    def has_media(self):
+        if self.img:
+            return True
+        return False
+
 
 class EmbeddedAsset(Asset):
     # HTML embed code - will accept any HTML up to 5,000 characters. Be cautious of embed content.
     embed_code = models.TextField(
         max_length=5000
     )
+
+    def has_media(self):
+        if len(self.embed_code) > 0:
+            return True
+        return False
