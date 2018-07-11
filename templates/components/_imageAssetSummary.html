@@ -1,5 +1,9 @@
+{% load static %}
 {% block asset_summary %}
-    <h2>Asset</h2>
+    <h2>Image Asset</h2>
+    <p>Importance: {{ asset.importance }}</p>
     <p>Title: {{ asset.title }}</p>
     <p>Body: {{ asset.body }}</p>
+    <p>URL: {{ asset.img }}</p>
+    <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
 {% endblock %}

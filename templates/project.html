@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block body-content %}
+    <a href="/">bbncreative</a>
+    <a href="/projects">Back to Projects</a>
     <h1>Project</h1>
     <p>Title: {{ project.name }}</p>
     <p>URL Name: {{ project.url_name }}</p>
@@ -7,4 +9,32 @@
     <p>Is complete: {{ project.is_complete }}</p>
     <p>Project URL: {{ project.project_url }}</p>
     <p>Client Name: {{ project.client_name }} </p>
+
+    {% for a in assets %}
+        {% with asset=a.0 %}
+            {% if a.1 == "Text" %}
+                {% include "components/_textAssetSummary.html" %}
+            {% elif a.1 == "Image" %}
+                {% include "components/_imageAssetSummary.html" %}
+            {% else %}
+                {% autoescape off %}
+                    {% include "components/_embeddedAssetSummary.html" %}
+                {% endautoescape %}
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+
+
+
+    {#    {% for asset in text_assets %}#}
+    {#        {% include "components/_textAssetSummary.html" %}#}
+    {#    {% endfor %}#}
+    {#    {% for asset in image_assets %}#}
+    {#        {% include "components/_imageAssetSummary.html" %}#}
+    {#    {% endfor %}#}
+    {#    {% for asset in embedded_assets %}#}
+    {#        {% autoescape off %}#}
+    {#            {% include "components/_embeddedAssetSummary.html" %}#}
+    {#        {% endautoescape %}#}
+    {#    {% endfor %}#}
 {% endblock %}
