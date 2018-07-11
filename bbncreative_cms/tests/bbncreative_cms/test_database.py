@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from bbncreative_cms import models
 
 
@@ -114,3 +115,22 @@ class DatabaseTestCases(TestCase):
         )
 
         self.assertIs(models.Credit.objects.filter(project=proj).count(), 3)
+
+    def test_project_with_3_different_assets(self):
+        proj = models.Project.objects.create(name="Test Project")
+        im = models.ImageAsset.objects.create(parent=proj, title="Test ImageAsset", body="Test Bio", alt="Test Alt")
+        em = models.EmbeddedAsset.objects.create(parent=proj, title="Test EmbeddedAsset", body="Test Bio")
+        tx = models.TextAsset.objects.create(parent=proj, title="Test TextAsset", body="Test Bio")
+
+        self.assertIs(models.ImageAsset.objects.filter(parent=proj).count(), 1)
+        self.assertIs(models.EmbeddedAsset.objects.filter(parent=proj).count(), 1)
+        self.assertIs(models.TextAsset.objects.filter(parent=proj).count(), 1)
+        self.assertIs(proj.count_assets(), 3)
+
+    def test_assets_without_media(self):
+        proj = models.Project.objects.create(name="Irrelevant Project")
+        im = models.ImageAsset.objects.create(parent=proj, title="Test ImageAsset", body="Test Bio", alt="Test Alt")
+        em = models.EmbeddedAsset.objects.create(parent=proj, title="Test EmbeddedAsset", body="Test Bio")
+
+        self.assertIs(im.has_media(), False)
+        self.assertIs(em.has_media(), False)
