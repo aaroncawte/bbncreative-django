@@ -1,7 +1,7 @@
-{% load static %}
 {% block asset_summary %}
     <h2>Text Asset</h2>
     <p>Importance: {{ asset.importance }}</p>
     <p>Title: {{ asset.title }}</p>
     <p>Body: {{ asset.body }}</p>
+    <p>Date created (server time): {{ asset.created_at }}</p>
 {% endblock %}
