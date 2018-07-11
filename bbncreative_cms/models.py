@@ -5,8 +5,8 @@ from django.db import models
 
 def get_file_path(instance, filename):
     import uuid
-    newname = str(uuid.uuid4()) + "/" + filename
-    return newname
+    new_name = str(uuid.uuid4()) + "/" + filename
+    return new_name
 
 
 class Project(models.Model):
@@ -18,6 +18,7 @@ class Project(models.Model):
         max_length=5000,
         default="Project Bio"
     )
+    # Internal URL slug (e.g. /project/slug-field)
     url_name = models.SlugField(
         max_length=255,
         default="new-project",
@@ -28,6 +29,7 @@ class Project(models.Model):
         auto_now_add=False,
         default=datetime.date.today
     )
+    # To override date_complete if the project is not complete, when ordering
     is_complete = models.BooleanField(
         default=False
     )
@@ -63,6 +65,25 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name + " is a project for " + self.client_name + "."
+
+
+class Feed(models.Model):
+    name = models.CharField(
+        default="New Feed",
+        max_length=255
+    )
+    bio = models.TextField(
+        max_length=5000,
+        default="Feed Bio"
+    )
+    url_name = models.SlugField(
+        max_length=255,
+        default="new-feed",
+        allow_unicode=True
+    )
+
+    def __str__(self):
+        return self.name + " (" + self.url_name + ")"
 
 
 class Collaborator(models.Model):
@@ -106,38 +127,52 @@ class Credit(models.Model):
 
 
 class Asset(models.Model):
+    # An asset belongs to one project
     parent = models.ForeignKey(
         Project,
         on_delete=models.CASCADE
     )
+    # Add assets to feeds (e.g. web design)
+    feeds = models.ManyToManyField(Feed)
+    # Creation time for ordering
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+    # Every asset has a text-based title
     title = models.CharField(
         max_length=255,
         default="Asset Title"
     )
+    # Every asset has a text component (the focus in TextAssets, a description in media assets)
     body = models.TextField(
         max_length=5000,
         default="Asset Body Text"
     )
+    # Orders elements on project pages, where 0 is most important and numbers descend
     importance = models.PositiveSmallIntegerField(
         default=0
     )
 
     class Meta:
-        abstract = True,
-        ordering = ['importance']
+        abstract = True,  # TextAsset, ImageAsset and EmbeddedAsset implement this abstraction
+        ordering = ['importance', '-created_at']  # See importance comment above
 
     def __str__(self):
         return self.title + " from project: " + self.parent.name
 
 
 class TextAsset(Asset):
+    # Overridden so the child class isn't empty
     def __str__(self):
         return self.title + " from project " + self.parent.name
 
+
 class ImageAsset(Asset):
+    # Images need alt text
     alt = models.CharField(
         max_length=255
     )
+    # Self-explanatory
     img = models.ImageField(
         upload_to=get_file_path,
         max_length=255,
@@ -145,6 +180,7 @@ class ImageAsset(Asset):
 
 
 class EmbeddedAsset(Asset):
+    # HTML embed code - will accept any HTML up to 5,000 characters. Be cautious of embed content.
     embed_code = models.TextField(
         max_length=5000
     )

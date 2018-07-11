@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block body-content %}
     <a href="/">bbncreative</a>
-    <h1>Projects</h1>
-    {% for project in projects %}
-        {% include "components/_projectSummary.html" %}
+    <h1>Feeds</h1>
+    {% for feed in feeds %}
+        {% include "components/_feedSummary.html" %}
     {% endfor %}
 {% endblock %}

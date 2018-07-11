@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.db import DataError
 from django.shortcuts import render, redirect
 
-from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset
+from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed
 
 
 def index(request):
@@ -20,6 +20,17 @@ def projects(request):
         "projects.html",
         {
             'projects': all_projects
+        }
+    )
+
+
+def feeds(request):
+    all_feeds = Feed.objects.all()
+    return render(
+        request,
+        "feeds.html",
+        {
+            'feeds': all_feeds
         }
     )
 
@@ -49,9 +60,10 @@ def project_from_name(request, url_name):
 
     # Add all assets to list and sort by importance
     my_assets = []
-    for i in image_assets: my_assets.append((i, AssetTypes.IMAGE, i.importance))
-    for e in embedded_assets: my_assets.append((e, AssetTypes.EMBEDDED, e.importance))
-    for t in text_assets: my_assets.append((t, AssetTypes.TEXT, t.importance))
+    for i in image_assets: my_assets.append((i, AssetTypes.IMAGE, i.importance, i.created_at))
+    for e in embedded_assets: my_assets.append((e, AssetTypes.EMBEDDED, e.importance, e.created_at))
+    for t in text_assets: my_assets.append((t, AssetTypes.TEXT, t.importance, t.created_at))
+    my_assets.sort(key=lambda a: a[3], reverse=True)
     my_assets.sort(key=lambda a: a[2], reverse=False)
 
     return render(
@@ -59,12 +71,44 @@ def project_from_name(request, url_name):
         "project.html",
         {
             'project': this_project,
-            'image_assets': image_assets,
-            'embedded_assets': embedded_assets,
-            'text_assets': text_assets,
             'assets': my_assets
         }
     )
+
+
+def feed_from_name(request, url_name):
+    results = Feed.objects.filter(url_name=url_name).prefetch_related("embeddedasset_set", "imageasset_set",
+                                                                      "textasset_set")
+
+    if results.count() == 0:
+        messages.add_message(request, messages.ERROR, "There is no feed called " + url_name + ".")
+        return redirect('feeds')
+
+    if results.count() > 1:
+        raise DataError("Multiple feeds with the same url_name")
+
+    this_feed = results.first()
+
+    image_assets = this_feed.imageasset_set.all()
+    embedded_assets = this_feed.embeddedasset_set.all()
+    text_assets = this_feed.textasset_set.all()
+
+    # Add all assets to list and sort by importance
+    my_assets = []
+    for i in image_assets: my_assets.append((i, AssetTypes.IMAGE, i.created_at))
+    for e in embedded_assets: my_assets.append((e, AssetTypes.EMBEDDED, e.created_at))
+    for t in text_assets: my_assets.append((t, AssetTypes.TEXT, t.created_at))
+    my_assets.sort(key=lambda a: a[2], reverse=True)
+
+    return render(
+        request,
+        "feed.html",
+        {
+            'feed': this_feed,
+            'assets': my_assets
+        }
+    )
+
 
 def image_asset(request, url_uuid, file_name):
     results = ImageAsset.objects.filter(img=url_uuid + "/" + file_name)

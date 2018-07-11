@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% block body-content %}
     <a href="/">bbncreative</a>
-    <a href="/projects">Back to Projects</a>
-    <h1>Project</h1>
-    <p>Title: {{ project.name }}</p>
-    <p>URL Name: {{ project.url_name }}</p>
-    <p>Date completed: {{ project.date_complete }}</p>
-    <p>Is complete: {{ project.is_complete }}</p>
-    <p>Project URL: {{ project.project_url }}</p>
-    <p>Client Name: {{ project.client_name }} </p>
+    <a href="/feeds">Back to Feeds</a>
+    <h1>Feed</h1>
+    <p>Title: {{ feed.name }}</p>
+    <p>URL Name: {{ feed.url_name }}</p>
+    <p>Bio: {{ feed.bio }}</p>
 
     {% for a in assets %}
         {% with asset=a.0 %}
