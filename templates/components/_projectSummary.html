@@ -1,5 +1,5 @@
 {% block project_summary %}
-    <h2>Project</h2>
+    <a href="/projects/{{ project.url_name }}"><h2>Project</h2></a>
     <p>Title: {{ project.name }}</p>
     <p>URL Name: {{ project.url_name }}</p>
     <p>Date completed: {{ project.date_complete }}</p>

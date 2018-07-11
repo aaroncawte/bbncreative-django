@@ -1,5 +1,7 @@
 {% block asset_summary %}
-    <h2>Asset</h2>
+    <h2>Embedded Asset</h2>
+    <p>Importance: {{ asset.importance }}</p>
     <p>Title: {{ asset.title }}</p>
     <p>Body: {{ asset.body }}</p>
+    {{ asset.embed_code }}
 {% endblock %}

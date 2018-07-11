@@ -3,10 +3,20 @@ import datetime
 from django.db import models
 
 
+def get_file_path(instance, filename):
+    import uuid
+    newname = str(uuid.uuid4()) + "/" + filename
+    return newname
+
+
 class Project(models.Model):
     name = models.CharField(
         default="New Project",
         max_length=255
+    )
+    bio = models.TextField(
+        max_length=5000,
+        default="Project Bio"
     )
     url_name = models.SlugField(
         max_length=255,
@@ -21,7 +31,11 @@ class Project(models.Model):
     is_complete = models.BooleanField(
         default=False
     )
-    project_url = models.URLField(
+    cta_title = models.CharField(
+        max_length=50,
+        default="Go to Website"
+    )
+    cta_url = models.URLField(
         max_length=255,
         default="https://bbncreative.co"
 
@@ -30,9 +44,25 @@ class Project(models.Model):
         max_length=200,
         default="New Client"
     )
+    icon = models.ImageField(
+        upload_to=get_file_path,
+        max_length=255,
+        blank=True
+    )
+    hero = models.ImageField(
+        upload_to=get_file_path,
+        max_length=255,
+        blank=True
+    )
+
+    class Meta:
+        ordering = ['date_complete', '-is_complete']
+
+    def get_assets(self):
+        return Asset.objects.filter(parent=self)
 
     def __str__(self):
-        return self.name
+        return self.name + " is a project for " + self.client_name + "."
 
 
 class Collaborator(models.Model):
@@ -80,27 +110,41 @@ class Asset(models.Model):
         Project,
         on_delete=models.CASCADE
     )
-    title = models.TextField(
-        max_length=255
+    title = models.CharField(
+        max_length=255,
+        default="Asset Title"
     )
     body = models.TextField(
-        max_length=5000
+        max_length=5000,
+        default="Asset Body Text"
+    )
+    importance = models.PositiveSmallIntegerField(
+        default=0
     )
 
+    class Meta:
+        abstract = True,
+        ordering = ['importance']
+
+    def __str__(self):
+        return self.title + " from project: " + self.parent.name
+
+
+class TextAsset(Asset):
+    def __str__(self):
+        return self.title + " from project " + self.parent.name
 
 class ImageAsset(Asset):
-    import uuid
-
-    alt=models.TextField(
-        max_length=5000
+    alt = models.CharField(
+        max_length=255
     )
     img = models.ImageField(
-        upload_to=str(uuid.uuid4()) + "/",
+        upload_to=get_file_path,
         max_length=255,
     )
 
 
 class EmbeddedAsset(Asset):
-    embed_code=models.TextField(
+    embed_code = models.TextField(
         max_length=5000
     )
