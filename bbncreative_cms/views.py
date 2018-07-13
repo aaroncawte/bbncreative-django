@@ -13,6 +13,14 @@ def index(request):
     )
 
 
+def test_page(request):
+    return render(
+        request,
+        "test.html",
+        {}
+    )
+
+
 def projects(request):
     all_projects = Project.objects.all().order_by('date_complete').reverse()
     return render(

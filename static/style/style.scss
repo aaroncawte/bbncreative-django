@@ -1,0 +1,21 @@
+/*
+
+bbncreative CSS by Aaron Cawte.
+
+This stylesheet utilises the RDVS structure as specified below.
+
+| Resources       | Definitions              | Visuals                 | Structure         |
+|=================|==========================|=========================|===================|
+| - Font Imports  | - Colour codes           | - Aesthetic styling     | - Shape and size  |
+| - Image URLs    | - CSS Resets & Defaults  | - Borders, backgrounds  | - Positioning     |
+|                 | - SCSS Mixins            |                         | - Visibility      |
+
+The dependency of these elements is M <- R <- D <- V.
+Structure should function independently of the others, and show a legible website without any styling by itself.
+
+ */
+
+@import 'resources';
+@import 'definitions';
+@import 'visuals';
+@import 'structure';

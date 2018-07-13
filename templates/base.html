@@ -30,6 +30,7 @@
         <link rel="manifest" href="{% static "manifest.json" %}">
         <link rel="shortcut icon" href="{% static "img/icon.ico" %}" type="image/x-icon">
         <link rel="apple-touch-icon" href="{% static "img/appletouchicon.png" %}">
+        <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 
         <!--External Resources-->
 
@@ -41,8 +42,8 @@
         <title>{{ title }}</title>
     </head>
     <body>
-    {% block body-content %}
-    {% endblock %}
+    {% include "components/_nav.html" %}
+    {% block body-content %}{% endblock %}
     </body>
     </html>
 {% endwith %}
