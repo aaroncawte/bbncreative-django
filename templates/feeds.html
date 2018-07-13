@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block body-content %}
-    <a href="/">bbncreative</a>
-    <h1>Feeds</h1>
-    {% for feed in feeds %}
-        {% include "components/_feedSummary.html" %}
-    {% endfor %}
+    <div class="window window-first">
+        <div class="wrapper-1200">
+            <h1>Feeds</h1>
+            {% for feed in feeds %}
+                {% include "components/_feedSummary.html" %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

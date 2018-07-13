@@ -1,0 +1,77 @@
+$nav-height: 80px;
+
+$logo-background: black;
+$logo-colour: white;
+
+/* Windows divide the page vertically and each contain a wrapper
+   ======================================================================== */
+.window {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.window-first {
+	padding-top: $nav-height;
+}
+/* Wrapper to centre on wide viewports
+   ======================================================================== */
+@media (max-width: 1239px) {
+  .wrapper-1200 {
+    width: 100%;
+		max-width: 100%;
+		padding: 0 20px;
+  }
+}
+@media (min-width: 1240px) {
+  .wrapper-1200 {
+    width: 1200px;
+    max-width: 1200px;
+		padding: 0 20px;
+  }
+}
+.wrapper-1200 {
+  margin: 0 auto;
+  position: relative;
+	background-color: rgba(orange, 0.2);
+}
+
+/* Navigation Bar
+   ======================================================================== */
+nav {
+	position: fixed;
+	top: 0;
+	z-index: 5;
+	width: 100%;
+	height: $nav-height;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	background-color: rgba(red, 0.5);
+	.wrapper-1200 {
+		height: $nav-height;
+		display: flex;
+	}
+}
+.nav-left, .nav-right {
+	height: $nav-height;
+	display: flex;
+}
+.nav-left {
+	width: 220px;
+}
+.nav-right {
+	flex-grow: 1;
+	background-color: hotpink;
+}
+#bbncreative-logo {
+	width: 200px;
+	height: 60px;
+	margin: 10px 20px 10px 0;
+	background-color: $logo-background;
+	color: $logo-colour;
+	line-height: 60px;
+	font-family: $font_header;
+	font-size: 28px;
+	text-align: center;
+	font-weight: normal;
+}

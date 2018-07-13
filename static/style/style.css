@@ -1,0 +1,270 @@
+/*
+
+bbncreative CSS by Aaron Cawte.
+
+This stylesheet utilises the RDVS structure as specified below.
+
+| Resources       | Definitions              | Visuals                 | Structure         |
+|=================|==========================|=========================|===================|
+| - Font Imports  | - Colour codes           | - Aesthetic styling     | - Shape and size  |
+| - Image URLs    | - CSS Resets & Defaults  | - Borders, backgrounds  | - Positioning     |
+|                 | - SCSS Mixins            |                         | - Visibility      |
+
+The dependency of these elements is M <- R <- D <- V.
+Structure should function independently of the others, and show a legible website without any styling by itself.
+
+ */
+/* Brand Fonts */
+@font-face {
+  font-family: "Carter One";
+  src: url("../fonts/Carter_One/CarterOne.ttf"); }
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Noto_Sans/NotoSans-Regular.ttf"); }
+@font-face {
+  font-family: "Noto Sans";
+  font-style: italic;
+  font-weight: normal;
+  src: url("../fonts/Noto_Sans/NotoSans-Italic.ttf"); }
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/Noto_Sans/NotoSans-Bold.ttf"); }
+@font-face {
+  font-family: "Noto Sans";
+  font-style: italic;
+  font-weight: bold;
+  src: url("../fonts/Noto_Sans/NotoSans-BoldItalic.ttf"); }
+@font-face {
+  font-family: "Noto Serif";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Noto_Serif/NotoSerif-Regular.ttf"); }
+@font-face {
+  font-family: "Noto Serif";
+  font-style: italic;
+  font-weight: normal;
+  src: url("../fonts/Noto_Serif/NotoSerif-Italic.ttf"); }
+@font-face {
+  font-family: "Noto Serif";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/Noto_Serif/NotoSerif-Bold.ttf"); }
+@font-face {
+  font-family: "Noto Serif";
+  font-style: italic;
+  font-weight: bold;
+  src: url("../fonts/Noto_Serif/NotoSerif-BoldItalic.ttf"); }
+/* Colour References
+  ========================================================================= */
+/* Font References
+  ========================================================================= */
+/* UI Component Definitions
+  ========================================================================= */
+/* SCSS Mixins
+  ========================================================================= */
+/* Resets and basic elements
+   ======================================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px; }
+
+h1 {
+  color: #e81841; }
+
+h1, h2 {
+  margin: 0.5em 0 0.25em;
+  font-family: "Carter One", sans-serif; }
+
+h3, h4 {
+  margin: 1em 0 0.75em; }
+
+h5 {
+  font-size: 1em; }
+
+h5, h6 {
+  margin: 1.5em 0 0.75em;
+  font-family: "Noto Serif", serif;
+  color: #455a64;
+  font-style: italic; }
+
+p {
+  margin-top: 0.5em; }
+
+a {
+  color: initial;
+  font-weight: bold; }
+  a:hover {
+    color: #e81841;
+    text-decoration: none; }
+  a:active {
+    color: #ff1a36; }
+
+/* Element selection
+   ======================================================================== */
+html::-moz-selection, body::-moz-selection, p::-moz-selection, span::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+  background-color: #cc2369;
+  color: #fff; }
+html::selection, body::selection, p::selection, span::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+  background-color: #cc2369;
+  color: #fff; }
+
+img {
+  user-select: none; }
+
+/* Form Elements
+   ======================================================================== */
+input[type=text], input[type=email], input[type=tel], input[type=number],
+input[type=search], input[type=password], select {
+  box-sizing: border-box;
+  display: block;
+  height: 36px;
+  min-width: 120px;
+  margin: 8px 0 9px;
+  padding: 8px 14px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Noto Sans", sans-serif;
+  -webkit-appearance: none;
+  box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
+  border: 1px solid #e5e5e5; }
+
+input[type=date], input[type=datetime-local], input[type=week], input[type=month], input[type=time], input[type=range], input[type=color] {
+  box-sizing: border-box;
+  display: block;
+  height: 36px;
+  min-width: 120px;
+  margin: 8px 0 9px;
+  padding: 8px 14px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Noto Sans", sans-serif;
+  -webkit-appearance: none;
+  box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px; }
+
+label {
+  display: block;
+  margin: 10px 0 0;
+  color: #455a64;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+
+input[type=submit], input[type=reset], button {
+  box-sizing: border-box;
+  display: block;
+  height: 36px;
+  min-width: 120px;
+  margin: 8px 0 9px;
+  padding: 8px 14px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  font-family: "Noto Sans", sans-serif;
+  -webkit-appearance: none;
+  background-color: #e81841;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
+  cursor: pointer; }
+  input[type=submit]:active, input[type=reset]:active, button:active {
+    box-shadow: rgba(22, 22, 22, 0.4) 0 0 1px; }
+  input[type=submit]:hover, input[type=reset]:hover, button:hover {
+    background-color: #ff2761; }
+  input[type=submit]:active, input[type=reset]:active, button:active {
+    background-color: #cc2369;
+    margin: 9px 0 8px; }
+  input[type=submit]:disabled, input[type=reset]:disabled, button:disabled {
+    background-color: #e5e5e5;
+    color: #161616; }
+
+input[type=submit]:active {
+  margin: 10px 0 7px; }
+
+input[type=reset] {
+  background-color: transparent;
+  color: #455a64;
+  box-shadow: none; }
+  input[type=reset]:hover, input[type=reset]:active {
+    background-color: transparent;
+    color: #263238;
+    box-shadow: none; }
+
+/* Windows divide the page vertically and each contain a wrapper
+   ======================================================================== */
+.window {
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+
+.window-first {
+  padding-top: 80px; }
+
+/* Wrapper to centre on wide viewports
+   ======================================================================== */
+@media (max-width: 1239px) {
+  .wrapper-1200 {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px; } }
+@media (min-width: 1240px) {
+  .wrapper-1200 {
+    width: 1200px;
+    max-width: 1200px;
+    padding: 0 20px; } }
+.wrapper-1200 {
+  margin: 0 auto;
+  position: relative;
+  background-color: rgba(255, 165, 0, 0.2); }
+
+/* Navigation Bar
+   ======================================================================== */
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: rgba(255, 0, 0, 0.5); }
+  nav .wrapper-1200 {
+    height: 80px;
+    display: flex; }
+
+.nav-left, .nav-right {
+  height: 80px;
+  display: flex; }
+
+.nav-left {
+  width: 220px; }
+
+.nav-right {
+  flex-grow: 1;
+  background-color: hotpink; }
+
+#bbncreative-logo {
+  width: 200px;
+  height: 60px;
+  margin: 10px 20px 10px 0;
+  background-color: black;
+  color: white;
+  line-height: 60px;
+  font-family: "Carter One", sans-serif;
+  font-size: 28px;
+  text-align: center;
+  font-weight: normal; }
+
+/*# sourceMappingURL=style.css.map */

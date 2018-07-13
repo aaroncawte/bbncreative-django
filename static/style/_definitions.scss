@@ -1,0 +1,179 @@
+/* Colour References
+  ========================================================================= */
+$bbn1: #e81841;
+$bbn2: #cc2369;
+$bbn3: #ff2761;
+$bbn4: #e8185f;
+$bbn5: #ff1a36;
+
+$blue-grey1: #455a64;
+$blue-grey2: #263238;
+$off-white: #e5e5e5;
+$off-black: #161616;
+
+/* Font References
+  ========================================================================= */
+$font_header: "Carter One", sans-serif;
+$font_sans: "Noto Sans", sans-serif;
+$font_serif: "Noto Serif", serif;
+
+/* UI Component Definitions
+  ========================================================================= */
+$form-el-radius: 5px;
+
+$colour-drop-shadow: $off-black;
+$opacity-drop-shadow: 0.4;
+
+/* SCSS Mixins
+  ========================================================================= */
+@mixin transition($args) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin drop-shadow($clickable: false) {
+	$shadow: rgba($colour-drop-shadow, $opacity-drop-shadow);
+	box-shadow: $shadow 0 2px 1px;
+	@if $clickable {
+		&:active {
+			box-shadow: $shadow 0 0 1px;
+		}
+	}
+}
+
+@mixin wide-text {
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Resets and basic elements
+   ======================================================================== */
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: $font_sans;
+	font-size: 18px;
+}
+h1 {
+	color: $bbn1;
+}
+h1, h2 {
+	margin: 0.5em 0 0.25em;
+	font-family: $font_header;
+}
+h3, h4 {
+	margin: 1em 0 0.75em;
+}
+h5 {
+	font-size: 1em;
+}
+h5, h6 {
+	margin: 1.5em 0 0.75em;
+	font-family: $font_serif;
+	color: $blue-grey1;
+	font-style: italic;
+}
+p {
+	margin-top: 0.5em;
+}
+a {
+	color: initial;
+	font-weight: bold;
+	&:hover {
+		color: $bbn1;
+		text-decoration: none;
+	}
+	&:active {
+		color: $bbn5;
+	}
+}
+/* Element selection
+   ======================================================================== */
+html, body, p, span, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
+  &::-moz-selection {
+    background-color: $bbn2;
+    color: #fff;
+  }
+  &::selection {
+    background-color: $bbn2;
+    color: #fff;
+  }
+}
+img {
+  user-select: none;
+}
+
+/* Form Elements
+   ======================================================================== */
+@mixin standard-input {
+	box-sizing: border-box; // Height includes padding (input quirk requires this)
+	display: block;
+	height: 36px;
+	min-width: 120px;
+	margin: 8px 0 9px; // Buffer for active state
+	padding: 8px 14px;
+	border: 0;
+	outline: none;
+	border-radius: $form-el-radius;
+	font-family: $font-sans;
+	-webkit-appearance: none;
+}
+
+input[type=text], input[type=email], input[type=tel], input[type=number],
+input[type=search], input[type=password], select  {
+	@include standard-input;
+	@include drop-shadow($clickable: false);
+	border: 1px solid $off-white;
+}
+
+// Inputs likely to have a non-standard style on other browsers
+input[type=date], input[type=datetime-local], input[type=week], input[type=month], input[type=time], input[type=range], input[type=color]  {
+	@include standard-input;
+	@include drop-shadow($clickable: false);
+}
+
+label {
+	display: block;
+	margin: 10px 0 0;
+	color: $blue-grey1;
+	@include wide-text;
+}
+
+input[type=submit], input[type=reset], button {
+	@include standard-input;
+	background-color: $bbn1;
+	color: #fff;
+	@include wide-text;
+	@include drop-shadow($clickable: true);
+	cursor: pointer;
+	&:hover {
+		background-color: $bbn3;
+	}
+	&:active {
+		background-color: $bbn2;
+		margin: 9px 0 8px;
+	}
+	&:disabled {
+		background-color: $off-white;
+		color: $off-black;
+	}
+}
+input[type=submit] {
+	&:active {
+		margin: 10px 0 7px; // It's another pixel off for inputs
+	}
+}
+input[type=reset] {
+	background-color: transparent;
+	color: $blue-grey1;
+	box-shadow: none;
+	&:hover, &:active {
+		background-color: transparent;
+		color: $blue-grey2;
+		box-shadow: none;
+	}
+}
