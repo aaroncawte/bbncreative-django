@@ -122,30 +122,32 @@ img {
 input[type=text], input[type=email], input[type=tel], input[type=number],
 input[type=search], input[type=password], select {
   box-sizing: border-box;
-  display: block;
   height: 36px;
   min-width: 120px;
-  margin: 8px 0 9px;
   padding: 8px 14px;
   border: 0;
   outline: none;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
+ user-select: none;
+ display: block;
+ margin: 8px 0 9px;
   -webkit-appearance: none;
   box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
   border: 1px solid #e5e5e5; }
 
 input[type=date], input[type=datetime-local], input[type=week], input[type=month], input[type=time], input[type=range], input[type=color] {
   box-sizing: border-box;
-  display: block;
   height: 36px;
   min-width: 120px;
-  margin: 8px 0 9px;
   padding: 8px 14px;
   border: 0;
   outline: none;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
+ user-select: none;
+ display: block;
+ margin: 8px 0 9px;
   -webkit-appearance: none;
   box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px; }
 
@@ -160,15 +162,16 @@ label {
 
 input[type=submit], input[type=reset], button {
   box-sizing: border-box;
-  display: block;
   height: 36px;
   min-width: 120px;
-  margin: 8px 0 9px;
   padding: 8px 14px;
   border: 0;
   outline: none;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
+ user-select: none;
+ display: block;
+ margin: 8px 0 9px;
   -webkit-appearance: none;
   background-color: #e81841;
   color: #fff;
@@ -225,8 +228,8 @@ input[type=reset] {
     padding: 0 20px; } }
 .wrapper-1200 {
   margin: 0 auto;
-  position: relative;
-  background-color: rgba(255, 165, 0, 0.2); }
+ position: relative;
+}
 
 /* Navigation Bar
    ======================================================================== */
@@ -238,8 +241,8 @@ nav {
   height: 80px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  background-color: rgba(255, 0, 0, 0.5); }
+ flex-wrap: wrap;
+}
   nav .wrapper-1200 {
     height: 80px;
     display: flex; }
@@ -253,18 +256,61 @@ nav {
 
 .nav-right {
   flex-grow: 1;
-  background-color: hotpink; }
+ justify-content: flex-end;
+}
+
+.nav-right a {
+ text-decoration: none;
+}
 
 #bbncreative-logo {
   width: 200px;
   height: 60px;
+ line-height: 60px;
   margin: 10px 20px 10px 0;
   background-color: black;
   color: white;
-  line-height: 60px;
+ text-align: center;
   font-family: "Carter One", sans-serif;
   font-size: 28px;
+ font-weight: normal;
+}
+
+/* Menu Buttons
+   ======================================================================== */
+.menu-button {
+ box-sizing: border-box;
+ height: 36px;
+ min-width: 120px;
+ padding: 8px 14px;
+ border: 0;
+ outline: none;
+ border-radius: 5px;
+ font-family: "Noto Sans", sans-serif;
+ user-select: none;
+ font-size: 14px;
+ font-weight: bold;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
+ margin: 22px 0 22px 10px;
+ background-color: #fff;
+ color: #e81841;
   text-align: center;
-  font-weight: normal; }
+ cursor: pointer;
+}
+
+.menu-button:active {
+ box-shadow: rgba(22, 22, 22, 0.4) 0 0 1px;
+}
+
+.menu-button:hover {
+ color: #ff1a36;
+}
+
+.menu-button:active {
+ margin: 23px 0 21px 10px;
+ background-color: #e5e5e5;
+}
 
 /*# sourceMappingURL=style.css.map */
