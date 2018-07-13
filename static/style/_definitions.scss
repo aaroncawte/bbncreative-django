@@ -27,10 +27,10 @@ $opacity-drop-shadow: 0.4;
 /* SCSS Mixins
   ========================================================================= */
 @mixin transition($args) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  -o-transition: $args;
-  transition: $args;
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-o-transition: $args;
+	transition: $args;
 }
 
 @mixin drop-shadow($clickable: false) {
@@ -58,28 +58,35 @@ html, body {
 	font-family: $font_sans;
 	font-size: 18px;
 }
+
 h1 {
 	color: $bbn1;
 }
+
 h1, h2 {
 	margin: 0.5em 0 0.25em;
 	font-family: $font_header;
 }
+
 h3, h4 {
 	margin: 1em 0 0.75em;
 }
+
 h5 {
 	font-size: 1em;
 }
+
 h5, h6 {
 	margin: 1.5em 0 0.75em;
 	font-family: $font_serif;
 	color: $blue-grey1;
 	font-style: italic;
 }
+
 p {
 	margin-top: 0.5em;
 }
+
 a {
 	color: initial;
 	font-weight: bold;
@@ -91,47 +98,54 @@ a {
 		color: $bbn5;
 	}
 }
+
 /* Element selection
    ======================================================================== */
 html, body, p, span, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
-  &::-moz-selection {
-    background-color: $bbn2;
-    color: #fff;
-  }
-  &::selection {
-    background-color: $bbn2;
-    color: #fff;
-  }
+	&::-moz-selection {
+		background-color: $bbn2;
+		color: #fff;
+	}
+	&::selection {
+		background-color: $bbn2;
+		color: #fff;
+	}
 }
+
 img {
-  user-select: none;
+	user-select: none;
 }
 
 /* Form Elements
    ======================================================================== */
-@mixin standard-input {
+@mixin menu-input-base {
 	box-sizing: border-box; // Height includes padding (input quirk requires this)
-	display: block;
 	height: 36px;
 	min-width: 120px;
-	margin: 8px 0 9px; // Buffer for active state
 	padding: 8px 14px;
 	border: 0;
 	outline: none;
 	border-radius: $form-el-radius;
 	font-family: $font-sans;
+	user-select: none;
+}
+
+@mixin standard-input {
+	@include menu-input-base;
+	display: block;
+	margin: 8px 0 9px; // Buffer for active state
 	-webkit-appearance: none;
 }
 
 input[type=text], input[type=email], input[type=tel], input[type=number],
-input[type=search], input[type=password], select  {
+input[type=search], input[type=password], select {
 	@include standard-input;
 	@include drop-shadow($clickable: false);
 	border: 1px solid $off-white;
 }
 
 // Inputs likely to have a non-standard style on other browsers
-input[type=date], input[type=datetime-local], input[type=week], input[type=month], input[type=time], input[type=range], input[type=color]  {
+input[type=date], input[type=datetime-local], input[type=week], input[type=month], input[type=time], input[type=range], input[type=color] {
 	@include standard-input;
 	@include drop-shadow($clickable: false);
 }
@@ -162,11 +176,13 @@ input[type=submit], input[type=reset], button {
 		color: $off-black;
 	}
 }
+
 input[type=submit] {
 	&:active {
 		margin: 10px 0 7px; // It's another pixel off for inputs
 	}
 }
+
 input[type=reset] {
 	background-color: transparent;
 	color: $blue-grey1;
