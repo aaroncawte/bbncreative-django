@@ -115,6 +115,9 @@ html::selection, body::selection, p::selection, span::selection, a::selection, i
   color: #fff; }
 
 img {
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
   user-select: none; }
 
 /* Form Elements
@@ -129,6 +132,9 @@ input[type=search], input[type=password], select {
   outline: none;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
  user-select: none;
  display: block;
  margin: 8px 0 9px;
@@ -145,6 +151,9 @@ input[type=date], input[type=datetime-local], input[type=week], input[type=month
   outline: none;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
  user-select: none;
  display: block;
  margin: 8px 0 9px;
@@ -169,6 +178,9 @@ input[type=submit], input[type=reset], button {
   outline: none;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
  user-select: none;
  display: block;
  margin: 8px 0 9px;
@@ -274,6 +286,10 @@ nav {
   font-family: "Carter One", sans-serif;
   font-size: 28px;
  font-weight: normal;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
 }
 
 /* Menu Buttons
@@ -287,6 +303,9 @@ nav {
  outline: none;
  border-radius: 5px;
  font-family: "Noto Sans", sans-serif;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
  user-select: none;
  font-size: 14px;
  font-weight: bold;

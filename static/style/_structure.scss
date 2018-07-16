@@ -75,6 +75,7 @@ nav {
 	font-family: $font_header;
 	font-size: 28px;
 	font-weight: normal;
+	@include no-user-select;
 }
 
 /* Menu Buttons
