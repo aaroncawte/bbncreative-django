@@ -50,6 +50,13 @@ $opacity-drop-shadow: 0.4;
 	letter-spacing: 1px;
 }
 
+@mixin no-user-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 /* Resets and basic elements
    ======================================================================== */
 html, body {
@@ -113,7 +120,7 @@ html, body, p, span, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
 }
 
 img {
-	user-select: none;
+	@include no-user-select;
 }
 
 /* Form Elements
@@ -127,7 +134,7 @@ img {
 	outline: none;
 	border-radius: $form-el-radius;
 	font-family: $font-sans;
-	user-select: none;
+	@include no-user-select;
 }
 
 @mixin standard-input {
