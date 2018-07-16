@@ -26,13 +26,17 @@
         <meta name="msapplication-square310x310logo" content="{% static "img/win-tiles/large.jpg" %}"/>
         <meta name="msapplication-TileColor" content="{{ color }}"/>
 
+        <!--External Resources-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+
         <!--Internal Resources-->
         <link rel="manifest" href="{% static "manifest.json" %}">
         <link rel="shortcut icon" href="{% static "img/icon.ico" %}" type="image/x-icon">
         <link rel="apple-touch-icon" href="{% static "img/appletouchicon.png" %}">
         <link rel="stylesheet" href="/static/style/style.css" type="text/css">
-
-        <!--External Resources-->
+        <script src="/static/js/ui.js"></script>
 
         <!--Dynamic Resources-->
         {% block head-content %}
