@@ -10,13 +10,17 @@ $logo-colour: white;
 	display: flex;
 	flex-direction: column;
 }
-.window-first {
+
+.window-first, .window-hero {
 	padding-top: $nav-height;
+	background-color: $blue-grey1;
 }
+
 /* Wrapper to centre on wide viewports
    ======================================================================== */
 @media (max-width: 1239px) {
   .wrapper-1200 {
+		box-sizing: border-box;
     width: 100%;
 		max-width: 100%;
 		padding: 0 20px;
