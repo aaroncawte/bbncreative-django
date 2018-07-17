@@ -7,8 +7,11 @@
             <p>Title: {{ feed.name }}</p>
             <p>URL Name: {{ feed.url_name }}</p>
             <p>Bio: {{ feed.bio }}</p>
-
-            {% for a in assets %}
+        </div>
+    </div>
+    {% for a in assets %}
+        <div class="window">
+            <div class="wrapper-1200">
                 {% with asset=a.0 %}
                     {% if a.1 == "Text" %}
                         {% include "components/_textAssetSummary.html" %}
@@ -20,8 +23,8 @@
                         {% endautoescape %}
                     {% endif %}
                 {% endwith %}
-            {% endfor %}
+            </div>
         </div>
-    </div>
+    {% endfor %}
 
 {% endblock %}
