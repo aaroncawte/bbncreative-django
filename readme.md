@@ -4,6 +4,9 @@ A Django-powered server and custom CMS for the bbncreative website, launching su
 ## Setup
 Creation of this system involves a set of new technologies, which can be complicated at times. The initial setup has been documented for future reference, debugging and testing.
 
-1. [Python Virtual Environment & Django Installation](/setup/virtualenv.md)
+1. [Python virtual environment & Django installation](/setup/virtualenv.md)
 2. [Switching to PostgreSQL](/setup/postgresql.md)
 3. ???
+
+## Appendices
+1. [Removing a file from git commit history](/appendices/githistory.md)
