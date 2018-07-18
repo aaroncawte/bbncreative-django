@@ -23,11 +23,15 @@ def test_page(request):
 
 def projects(request):
     all_projects = Project.objects.all().order_by('date_complete').reverse()
+
+    menu_projects = all_projects
+
     return render(
         request,
         "projects.html",
         {
-            'projects': all_projects
+            'projects': all_projects,
+            'globalmenu': menu_projects
         }
     )
 
