@@ -1,4 +1,10 @@
 # 2. Switching to PostgreSQL
+
+**Series:** Setup
+
+**Last Edited:** 10/06/2018
+
+---
 I switched from the Django default SQLite database to a PostgreSQL installation for more comfortable development further down the road. Here's  how it was set up on my Windows machine:
 
 ## Windows Installation
