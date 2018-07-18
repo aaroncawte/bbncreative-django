@@ -130,6 +130,7 @@ input[type=search], input[type=password], select {
   padding: 8px 14px;
   border: 0;
   outline: none;
+ background-color: #fff;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
  -webkit-user-select: none;
@@ -149,6 +150,7 @@ input[type=date], input[type=datetime-local], input[type=week], input[type=month
   padding: 8px 14px;
   border: 0;
   outline: none;
+ background-color: #fff;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
  -webkit-user-select: none;
@@ -176,6 +178,7 @@ input[type=submit], input[type=reset], button {
   padding: 8px 14px;
   border: 0;
   outline: none;
+ background-color: #fff;
   border-radius: 5px;
   font-family: "Noto Sans", sans-serif;
  -webkit-user-select: none;
@@ -224,11 +227,6 @@ input[type=reset] {
   flex-direction: column; }
 
 .window-first, .window-hero {
- padding-top: 80px;
- background-color: #455a64;
-}
-
-.window-hero {
  padding-top: 80px;
  background-color: #455a64;
 }
@@ -309,6 +307,7 @@ nav {
  padding: 8px 14px;
  border: 0;
  outline: none;
+ background-color: #fff;
  border-radius: 5px;
  font-family: "Noto Sans", sans-serif;
  -webkit-user-select: none;
@@ -321,7 +320,6 @@ nav {
  letter-spacing: 1px;
  box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
  margin: 22px 0 22px 10px;
- background-color: #fff;
  color: #e81841;
   text-align: center;
  cursor: pointer;
@@ -338,6 +336,91 @@ nav {
 .menu-button:active {
  margin: 23px 0 21px 10px;
  background-color: #e5e5e5;
+}
+
+/* Menus
+   ======================================================================== */
+.menu {
+ box-sizing: border-box;
+ height: 36px;
+ min-width: 120px;
+ padding: 8px 14px;
+ border: 0;
+ outline: none;
+ background-color: #fff;
+ border-radius: 5px;
+ font-family: "Noto Sans", sans-serif;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+ font-size: 14px;
+ font-weight: bold;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
+ position: absolute;
+ top: 80px;
+ right: 0;
+ z-index: 10;
+ height: auto;
+ padding: 0;
+ width: 188px;
+}
+
+.menu-listing {
+ box-sizing: border-box;
+ overflow: hidden;
+ display: flex;
+ height: 36px;
+ line-height: 36px;
+ padding: 0 14px;
+ cursor: pointer;
+}
+
+.menu-listing:hover .menu-label {
+ color: #e81841;
+}
+
+.menu-listing:active .menu-label {
+ color: #ff1a36;
+}
+
+.menu-icon, .menu-label {
+ display: block;
+ height: 36px;
+}
+
+.menu-icon {
+ width: 18px;
+ height: 18px;
+ padding: 9px 14px 9px 0;
+ display: flex;
+}
+
+.menu-icon img {
+ width: 18px;
+ height: 18px;
+}
+
+.menu-label {
+ overflow: hidden;
+ width: calc(100% - 36px);
+ white-space: nowrap;
+ -ms-text-overflow: ellipsis;
+ text-overflow: ellipsis;
+}
+
+#menuGlobal {
+ right: 20px;
+}
+
+#menuFeeds {
+ right: calc(120px + 30px);
+}
+
+#menuProjects {
+ right: calc(240px + 40px);
 }
 
 /*# sourceMappingURL=style.css.map */

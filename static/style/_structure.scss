@@ -89,7 +89,6 @@ nav {
 	@include wide-text;
 	@include drop-shadow($clickable: true);
 	margin: 22px 0 22px 10px;
-	background-color: #fff;
 	color: $bbn1;
 	text-align: center;
 	cursor: pointer;
@@ -100,4 +99,77 @@ nav {
 		margin: 23px 0 21px 10px;
 		background-color: $off-white;
 	}
+}
+
+/* Menus
+   ======================================================================== */
+.menu {
+	@include menu-input-base;
+	@include wide-text;
+	@include drop-shadow($clickable: false);
+
+	position: absolute;
+	top: 80px;
+	right: 0;
+	z-index: 10;
+
+	height: auto;
+	padding: 0;
+	width: 188px;
+}
+
+.menu-listing {
+	box-sizing: border-box;
+	overflow: hidden;
+	display: flex;
+	height: 36px;
+	line-height: 36px;
+	padding: 0 14px;
+	cursor: pointer;
+	&:hover {
+		.menu-label {
+			color: $bbn1;
+		}
+	}
+	&:active {
+		.menu-label {
+			color: $bbn5;
+		}
+	}
+}
+
+.menu-icon, .menu-label {
+	display: block;
+	height: 36px;
+}
+
+.menu-icon {
+	width: 18px;
+	height: 18px;
+	padding: 9px 14px 9px 0;
+	display: flex;
+	img {
+		width: 18px;
+		height: 18px;
+	}
+}
+
+.menu-label {
+	overflow: hidden;
+	width: calc(100% - 36px);
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
+#menuGlobal {
+	right: 20px;
+}
+
+#menuFeeds {
+	right: calc(120px + 30px);
+}
+
+#menuProjects {
+	right: calc(240px + 40px);
 }
