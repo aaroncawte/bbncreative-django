@@ -18,24 +18,26 @@ $logo-colour: white;
 
 /* Wrapper to centre on wide viewports
    ======================================================================== */
-@media (max-width: 1239px) {
-  .wrapper-1200 {
+@media (max-width: $break-window-width-1) {
+	.wrapper-1200 {
 		box-sizing: border-box;
-    width: 100%;
+		width: 100%;
 		max-width: 100%;
 		padding: 0 20px;
-  }
+	}
 }
-@media (min-width: 1240px) {
-  .wrapper-1200 {
-    width: 1200px;
-    max-width: 1200px;
+
+@media (min-width: $break-window-width) {
+	.wrapper-1200 {
+		width: 1200px;
+		max-width: 1200px;
 		padding: 0 20px;
-  }
+	}
 }
+
 .wrapper-1200 {
-  margin: 0 auto;
-  position: relative;
+	margin: 0 auto;
+	position: relative;
 }
 
 /* Navigation Bar
@@ -43,7 +45,7 @@ $logo-colour: white;
 nav {
 	position: fixed;
 	top: 0;
-	z-index: 5;
+	z-index: 10;
 	width: 100%;
 	height: $nav-height;
 	display: flex;
@@ -54,20 +56,24 @@ nav {
 		display: flex;
 	}
 }
+
 .nav-left, .nav-right {
 	height: $nav-height;
 	display: flex;
 }
+
 .nav-left {
 	width: 220px;
 }
+
 .nav-right {
-	flex-grow: 1;
+	margin-left: auto;
 	justify-content: flex-end;
 	a {
 		text-decoration: none;
 	}
 }
+
 #bbncreative-logo {
 	width: 200px;
 	height: 60px;
@@ -101,24 +107,35 @@ nav {
 	}
 }
 
-/* Menus
+/* Menu Display Mechanics
    ======================================================================== */
+.menu-hidden {
+	max-height: 0;
+	opacity: 0;
+}
+
+/* Menu Design
+   ======================================================================== */
+#menuHolder {
+	position: fixed;
+	top: 0;
+	z-index: 9;
+	width: 100%;
+}
+
 .menu {
 	@include menu-input-base;
 	@include wide-text;
 	@include drop-shadow($clickable: false);
-
 	position: absolute;
 	top: 80px;
-	right: 0;
 	z-index: 10;
-
+	overflow: hidden;
 	height: auto;
 	padding: 0;
-	width: 188px;
 }
 
-.menu-listing {
+.menu-listing, .menu-close {
 	box-sizing: border-box;
 	overflow: hidden;
 	display: flex;
@@ -135,6 +152,19 @@ nav {
 		.menu-label {
 			color: $bbn5;
 		}
+	}
+}
+
+.menu a {
+	text-decoration: none;
+}
+
+.menu-close {
+	color: $blue-grey1;
+	justify-content: center;
+	border-top: 1px solid $off-white;
+	&:hover, &:active {
+		color: $blue-grey2;
 	}
 }
 
@@ -173,3 +203,27 @@ nav {
 #menuProjects {
 	right: calc(240px + 40px);
 }
+
+@media (max-width: $break-mobile) {
+	.menu {
+		width: calc(100% - 40px);
+		left: 20px;
+	}
+	#desktopMenuButtons {
+		display: none;
+	}
+}
+
+@media (min-width: $break-mobile) {
+	.menu {
+		right: 0;
+		width: 188px;
+	}
+	#desktopMenuButtons {
+		display: flex;
+	}
+	.menu-close {
+		display: none;
+	}
+}
+

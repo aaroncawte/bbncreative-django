@@ -24,6 +24,14 @@ $form-el-radius: 5px;
 $colour-drop-shadow: $off-black;
 $opacity-drop-shadow: 0.4;
 
+/* UI Viewport Definitions
+  ========================================================================= */
+$break-window-width: 1280px;
+$break-window-width-1: 1279px;
+
+$break-mobile: 690px;
+$break-mobile-1: 689px;
+
 /* SCSS Mixins
   ========================================================================= */
 @mixin transition($args) {

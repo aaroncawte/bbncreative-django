@@ -64,6 +64,8 @@ Structure should function independently of the others, and show a legible websit
   ========================================================================= */
 /* UI Component Definitions
   ========================================================================= */
+/* UI Viewport Definitions
+  ========================================================================= */
 /* SCSS Mixins
   ========================================================================= */
 /* Resets and basic elements
@@ -233,13 +235,14 @@ input[type=reset] {
 
 /* Wrapper to centre on wide viewports
    ======================================================================== */
-@media (max-width: 1239px) {
+@media (max-width: 1279px) {
   .wrapper-1200 {
 	 box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     padding: 0 20px; } }
-@media (min-width: 1240px) {
+
+@media (min-width: 1280px) {
   .wrapper-1200 {
     width: 1200px;
     max-width: 1200px;
@@ -254,7 +257,7 @@ input[type=reset] {
 nav {
   position: fixed;
   top: 0;
-  z-index: 5;
+ z-index: 10;
   width: 100%;
   height: 80px;
   display: flex;
@@ -273,7 +276,7 @@ nav {
   width: 220px; }
 
 .nav-right {
-  flex-grow: 1;
+ margin-left: auto;
  justify-content: flex-end;
 }
 
@@ -338,8 +341,22 @@ nav {
  background-color: #e5e5e5;
 }
 
-/* Menus
+/* Menu Display Mechanics
    ======================================================================== */
+.menu-hidden {
+ max-height: 0;
+ opacity: 0;
+}
+
+/* Menu Design
+   ======================================================================== */
+#menuHolder {
+ position: fixed;
+ top: 0;
+ z-index: 9;
+ width: 100%;
+}
+
 .menu {
  box-sizing: border-box;
  height: 36px;
@@ -361,14 +378,13 @@ nav {
  box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
  position: absolute;
  top: 80px;
- right: 0;
  z-index: 10;
+ overflow: hidden;
  height: auto;
  padding: 0;
- width: 188px;
 }
 
-.menu-listing {
+.menu-listing, .menu-close {
  box-sizing: border-box;
  overflow: hidden;
  display: flex;
@@ -378,12 +394,26 @@ nav {
  cursor: pointer;
 }
 
-.menu-listing:hover .menu-label {
+.menu-listing:hover .menu-label, .menu-close:hover .menu-label {
  color: #e81841;
 }
 
-.menu-listing:active .menu-label {
+.menu-listing:active .menu-label, .menu-close:active .menu-label {
  color: #ff1a36;
+}
+
+.menu a {
+ text-decoration: none;
+}
+
+.menu-close {
+ color: #455a64;
+ justify-content: center;
+ border-top: 1px solid #e5e5e5;
+}
+
+.menu-close:hover, .menu-close:active {
+ color: #263238;
 }
 
 .menu-icon, .menu-label {
@@ -421,6 +451,32 @@ nav {
 
 #menuProjects {
  right: calc(240px + 40px);
+}
+
+@media (max-width: 690px) {
+ .menu {
+	width: calc(100% - 40px);
+	left: 20px;
+ }
+
+ #desktopMenuButtons {
+	display: none;
+ }
+}
+
+@media (min-width: 690px) {
+ .menu {
+	right: 0;
+	width: 188px;
+ }
+
+ #desktopMenuButtons {
+	display: flex;
+ }
+
+ .menu-close {
+	display: none;
+ }
 }
 
 /*# sourceMappingURL=style.css.map */
