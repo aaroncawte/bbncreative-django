@@ -26,26 +26,33 @@ $(function () {
     const $closeMenuButton = $('.menu-close');
 
     const $mbGlobal = $("#menuGlobalButton");
-    const $mbProjects = $("#menuProjectsButton, #inMenuProjectsButton");
-    const $mbFeeds = $("#menuFeedsButton, #inMenuFeedsButton");
+    const $mbProjects = $("#menuProjectsButton");
+    const $mbFeeds = $("#menuFeedsButton");
+    const $allButtons = $("#menuGlobalButton, #menuProjectsButton, #menuFeedsButton");
 
-    function showOrHide(menu) {
+    const $mbProjectsGroup = $("#menuProjectsButton, #inMenuProjectsButton");
+    const $mbFeedsGroup = $("#menuFeedsButton, #inMenuFeedsButton");
+
+    function showOrHide(menu, menuButton) {
         if (menu.hasClass("menu-hidden")) {
             $allMenus.addClass("menu-hidden");
+            $allButtons.removeClass("active-button");
             menu.removeClass("menu-hidden");
+            menuButton.addClass("active-button");
         } else {
             menu.addClass("menu-hidden");
+            menuButton.removeClass("active-button");
         }
     }
 
     $mbGlobal.on("click", function () {
-        showOrHide($menuGlobal);
+        showOrHide($menuGlobal, $mbGlobal);
     });
-    $mbProjects.on("click", function () {
-        showOrHide($menuProjects);
+    $mbProjectsGroup.on("click", function () {
+        showOrHide($menuProjects, $mbProjects);
     });
-    $mbFeeds.on("click", function () {
-        showOrHide($menuFeeds);
+    $mbFeedsGroup.on("click", function () {
+        showOrHide($menuFeeds, $mbFeeds);
     });
 
     $closeMenuButton.on('click', function () {

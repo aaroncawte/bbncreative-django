@@ -107,6 +107,16 @@ nav {
 	}
 }
 
+.active-button {
+	padding: 6px 12px;
+	border: 2px solid #fff;
+	background-color: $blue-grey2;
+	color: #fff;
+	&:hover {
+		color: #fff;
+	}
+}
+
 /* Menu Display Mechanics
    ======================================================================== */
 .menu-hidden {
@@ -209,6 +219,12 @@ nav {
 		width: calc(100% - 40px);
 		left: 20px;
 	}
+	.menu-button {
+		min-width: 36px;
+		width: 36px;
+		padding: 8px 2px;
+		overflow: hidden;
+	}
 	#desktopMenuButtons {
 		display: none;
 	}
@@ -221,6 +237,9 @@ nav {
 	}
 	#desktopMenuButtons {
 		display: flex;
+	}
+	#mobileMenuButtons {
+		display: none;
 	}
 	.menu-close {
 		display: none;

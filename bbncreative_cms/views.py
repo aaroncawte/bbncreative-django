@@ -13,6 +13,22 @@ def index(request):
     )
 
 
+def aaron(request):
+    return render(
+        request,
+        "aaron.html",
+        {}
+    )
+
+
+def contact(request):
+    return render(
+        request,
+        "contact.html",
+        {}
+    )
+
+
 def test_page(request):
     return render(
         request,
