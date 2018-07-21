@@ -6,10 +6,6 @@
         </div>
     </div>
     {% for project in projects %}
-        <div class="window">
-            <div class="wrapper-1200">
-                {% include "components/_projectSummary.html" %}
-            </div>
-        </div>
+        {% include "components/_projectSummary.html" %}
     {% endfor %}
 {% endblock %}

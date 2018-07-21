@@ -230,7 +230,9 @@ input[type=reset] {
 
 .window-first, .window-hero {
   padding-top: 80px;
-  background-color: #455a64; }
+ background-color: #455a64;
+ color: #fff;
+}
 
 /* Wrapper to centre on wide viewports
    ======================================================================== */
@@ -482,5 +484,8 @@ nav {
 
   .menu-close {
     display: none; } }
+
+/* Ass
+   ======================================================================== */
 
 /*# sourceMappingURL=style.css.map */
