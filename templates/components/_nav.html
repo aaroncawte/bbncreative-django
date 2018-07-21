@@ -20,6 +20,16 @@
         <div id="menuHolder">
             <div class="wrapper-1200">
                 <div class="menu menu-hidden" id="menuProjects">
+                    {% for p in top_projects %}
+                        <a href="/projects/{{ p.url_name }}">
+                            <div class="menu-listing">
+                                <div class="menu-icon">
+                                    <img src="" alt="{{ p.name }} icon">
+                                </div>
+                                <div class="menu-label">{{ p.name }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
                     <a href="/projects">
                         <div class="menu-listing">
                             <div class="menu-icon">
@@ -31,6 +41,16 @@
                     <div class="menu-close">{{ closebutton }}</div>
                 </div>
                 <div class="menu menu-hidden" id="menuFeeds">
+                    {% for f in top_feeds %}
+                        <a href="/feeds/{{ f.url_name }}">
+                            <div class="menu-listing">
+                                <div class="menu-icon">
+                                    <img src="" alt="{{ f.name }} icon">
+                                </div>
+                                <div class="menu-label">{{ f.name }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
                     <a href="/feeds">
                         <div class="menu-listing">
                             <div class="menu-icon">

@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bbncreative_cms.context_processors.top_projects',
+                'bbncreative_cms.context_processors.top_feeds'
             ],
         },
     },
