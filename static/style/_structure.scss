@@ -14,6 +14,7 @@ $logo-colour: white;
 .window-first, .window-hero {
 	padding-top: $nav-height;
 	background-color: $blue-grey1;
+	color: #fff;
 }
 
 /* Wrapper to centre on wide viewports
@@ -267,4 +268,7 @@ nav {
 		display: none;
 	}
 }
+
+/* Asset Styles
+   ======================================================================== */
 

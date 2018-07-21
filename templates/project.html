@@ -13,20 +13,16 @@
         </div>
     </div>
     {% for a in assets %}
-        <div class="window">
-            <div class="wrapper-1200">
-                {% with asset=a.0 %}
-                    {% if a.1 == "Text" %}
-                        {% include "components/_textAssetSummary.html" %}
-                    {% elif a.1 == "Image" %}
-                        {% include "components/_imageAssetSummary.html" %}
-                    {% else %}
-                        {% autoescape off %}
-                            {% include "components/_embeddedAssetSummary.html" %}
-                        {% endautoescape %}
-                    {% endif %}
-                {% endwith %}
-            </div>
-        </div>
+        {% with asset=a.0 %}
+            {% if a.1 == "Text" %}
+                {% include "components/_textAssetSummary.html" %}
+            {% elif a.1 == "Image" %}
+                {% include "components/_imageAssetSummary.html" %}
+            {% else %}
+                {% autoescape off %}
+                    {% include "components/_embeddedAssetSummary.html" %}
+                {% endautoescape %}
+            {% endif %}
+        {% endwith %}
     {% endfor %}
 {% endblock %}

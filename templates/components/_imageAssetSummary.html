@@ -1,10 +1,14 @@
 {% load static %}
 {% block asset_summary %}
-    <h2>Image Asset</h2>
-    <p>Importance: {{ asset.importance }}</p>
-    <p>Title: {{ asset.title }}</p>
-    <p>Body: {{ asset.body }}</p>
-    <p>URL: {{ asset.img }}</p>
-    <p>Date created (server time): {{ asset.created_at }}</p>
-    <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
+    <div class="window">
+        <div class="wrapper-1200">
+            <h2>Image Asset</h2>
+            <p>Importance: {{ asset.importance }}</p>
+            <p>Title: {{ asset.title }}</p>
+            <p>Body: {{ asset.body }}</p>
+            <p>URL: {{ asset.img }}</p>
+            <p>Date created (server time): {{ asset.created_at }}</p>
+            <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
+        </div>
+    </div>
 {% endblock %}
