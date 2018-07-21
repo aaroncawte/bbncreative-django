@@ -32,6 +32,13 @@ $break-window-width-1: 1279px;
 $break-mobile: 690px;
 $break-mobile-1: 689px;
 
+$gl-button-width: 100px;
+$fe-button-width: 100px;
+$edge-gap: 20px;
+$gap-between: 10px;
+$feeds-menu-offset: $edge-gap + $gl-button-width + $gap-between;
+$projects-menu-offset: $edge-gap + $gl-button-width + $gap-between + $fe-button-width + $gap-between;
+
 /* SCSS Mixins
   ========================================================================= */
 @mixin transition($args) {

@@ -57,6 +57,7 @@ $(function () {
 
     $closeMenuButton.on('click', function () {
         $allMenus.addClass("menu-hidden");
+        $allButtons.removeClass("active-button");
     });
 
     $('.window').on('click', function () {

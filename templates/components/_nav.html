@@ -8,73 +8,73 @@
             </div>
             <div class="nav-right">
                 <div id="desktopMenuButtons">
-                    <div class="menu-button" id="menuProjectsButton">Projects</div>
-                    <div class="menu-button" id="menuFeedsButton">Feeds</div>
+                    <div class="menu-button" id="menuProjectsButton"><i class="fas fa-project-diagram"></i>Projects
+                    </div>
+                    <div class="menu-button" id="menuFeedsButton"><i class="fas fa-newspaper"></i>Feeds</div>
                 </div>
-                <div class="menu-button" id="menuGlobalButton">Menu</div>
+                <div class="menu-button" id="menuGlobalButton"><i class="fas fa-bars"></i><span>Menu</span></div>
             </div>
         </div>
     </nav>
-    <div id="menuHolder">
-        <div class="wrapper-1200">
-            <div class="menu menu-hidden" id="menuProjects">
-                <a href="/projects">
-                    <div class="menu-listing">
-                        <div class="menu-icon">
-                            <img src="/static/img/logo-placeholder_24.png" alt="All Projects icon" width="18"
-                                 height="18"/>
+    {% with closebutton='<i class="far fa-window-close"></i>' %}
+        <div id="menuHolder">
+            <div class="wrapper-1200">
+                <div class="menu menu-hidden" id="menuProjects">
+                    <a href="/projects">
+                        <div class="menu-listing">
+                            <div class="menu-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="menu-label">All Projects</div>
                         </div>
-                        <div class="menu-label">All Projects</div>
-                    </div>
-                </a>
-                <div class="menu-close">X</div>
-            </div>
-            <div class="menu menu-hidden" id="menuFeeds">
-                <a href="/feeds">
-                    <div class="menu-listing">
-                        <div class="menu-icon">
-                            <img src="/static/img/logo-placeholder_24.png" alt="All Feeds icon" width="18" height="18"/>
-                        </div>
-                        <div class="menu-label">All Feeds</div>
-                    </div>
-                </a>
-                <div class="menu-close">X</div>
-            </div>
-            <div class="menu menu-hidden" id="menuGlobal">
-                <div id="mobileMenuButtons">
-                    <div class="menu-listing" id="inMenuProjectsButton">
-                        <div class="menu-icon">
-                            <img src="/static/img/logo-placeholder_24.png" alt="Projects icon" width="18" height="18"/>
-                        </div>
-                        <div class="menu-label">Projects</div>
-                    </div>
-                    <div class="menu-listing" id="inMenuFeedsButton">
-                        <div class="menu-icon">
-                            <img src="/static/img/logo-placeholder_24.png" alt="Feeds icon" width="18" height="18"/>
-                        </div>
-                        <div class="menu-label">Feeds</div>
-                    </div>
+                    </a>
+                    <div class="menu-close">{{ closebutton }}</div>
                 </div>
-                <a href="aaron">
-                    <div class="menu-listing">
-                        <div class="menu-icon">
-                            <img src="/static/img/logo-placeholder_24.png" alt="About Aaron icon" width="18"
-                                 height="18"/>
+                <div class="menu menu-hidden" id="menuFeeds">
+                    <a href="/feeds">
+                        <div class="menu-listing">
+                            <div class="menu-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="menu-label">All Feeds</div>
                         </div>
-                        <div class="menu-label">About Aaron</div>
-                    </div>
-                </a>
-                <a href="contact">
-                    <div class="menu-listing">
-                        <div class="menu-icon">
-                            <img src="/static/img/logo-placeholder_24.png" alt="Get In Touch icon" width="18"
-                                 height="18"/>
+                    </a>
+                    <div class="menu-close">{{ closebutton }}</div>
+                </div>
+                <div class="menu menu-hidden" id="menuGlobal">
+                    <div id="mobileMenuButtons">
+                        <div class="menu-listing" id="inMenuProjectsButton">
+                            <div class="menu-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="menu-label">Projects</div>
                         </div>
-                        <div class="menu-label">Get In Touch</div>
+                        <div class="menu-listing" id="inMenuFeedsButton">
+                            <div class="menu-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="menu-label">Feeds</div>
+                        </div>
                     </div>
-                </a>
-                <div class="menu-close">X</div>
+                    <a href="aaron">
+                        <div class="menu-listing">
+                            <div class="menu-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="menu-label">About Aaron</div>
+                        </div>
+                    </a>
+                    <a href="contact">
+                        <div class="menu-listing">
+                            <div class="menu-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="menu-label">Get In Touch</div>
+                        </div>
+                    </a>
+                    <div class="menu-close">{{ closebutton }}</div>
+                </div>
             </div>
         </div>
-    </div>
+    {% endwith %}
 {% endblock %}
