@@ -109,10 +109,11 @@ a {
 
 /* Element selection
    ======================================================================== */
-html::-moz-selection, body::-moz-selection, p::-moz-selection, span::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+html::-moz-selection, body::-moz-selection, p::-moz-selection, em::-moz-selection, span::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
-html::selection, body::selection, p::selection, span::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+
+html::selection, body::selection, p::selection, em::selection, span::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
   background-color: #cc2369;
   color: #fff; }
 
@@ -332,11 +333,12 @@ nav {
  padding-right: 5px;
 }
 
-.menu-button#menuGlobalButton, .menu-button#menuFeedsButton {
- min-width: 100px;
- width: 100px;
+@media (min-width: 690px) {
+ #menuGlobalButton, #menuFeedsButton {
+	min-width: 100px;
+	width: 100px;
+ }
 }
-
 .active-button {
   padding: 6px 12px;
   border: 2px solid #fff;
@@ -485,7 +487,128 @@ nav {
   .menu-close {
     display: none; } }
 
-/* Ass
+/* Asset Styles
    ======================================================================== */
+.window[data-asset-type=image] {
+ flex-direction: row;
+}
+
+.window[data-asset-type=embedded] .content {
+ min-width: 540px;
+}
+
+/* Content Cards
+   ======================================================================== */
+.card-center, .card-left, .card-right {
+ display: flex;
+ flex-direction: column;
+ box-sizing: border-box;
+ background-color: #e5e5e5;
+ overflow-x: hidden;
+}
+
+.card-center h2, .card-left h2, .card-right h2 {
+ font-family: "Noto Sans", sans-serif;
+ font-weight: bold;
+}
+
+.content {
+ overflow: hidden;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: darkslategrey;
+}
+
+.content img, .content iframe {
+ border: 0;
+ outline: none;
+ max-width: 100%;
+ max-height: 100%;
+}
+
+@media (max-width: 1280px) {
+ .window[data-asset-type=image] .wrapper-1200, .window[data-asset-type=embedded] .wrapper-1200 {
+	display: flex;
+	flex-direction: column;
+ }
+
+ .content {
+	width: 100%;
+	max-width: 700px;
+	margin: 20px auto 0;
+	padding: 0;
+ }
+
+ .card-center, .card-left, .card-right {
+	width: 100%;
+	max-width: 700px;
+	margin: 0 auto 20px;
+	padding: 10px 20px;
+ }
+
+ .content img, .content iframe {
+	width: 100%;
+ }
+}
+
+@media (min-width: 1280px) {
+ .window[data-asset-type=image] .wrapper-1200, .window[data-asset-type=embedded] .wrapper-1200 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 20px auto;
+ }
+
+ .window[data-asset-type=image] .content {
+	position: relative;
+ }
+
+ .window[data-asset-type=image] .background-blur {
+	position: absolute;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	background-position: center;
+	background-size: auto 200%;
+	background-repeat: no-repeat;
+	filter: blur(10px);
+ }
+
+ .window[data-asset-type=image] img {
+	position: relative;
+	z-index: 1;
+ }
+
+ .window[data-asset-type=embedded] .card-left, .window[data-asset-type=embedded] .card-right {
+	background-color: #263238;
+	color: #fff;
+ }
+
+ .content {
+	width: auto;
+	max-width: 75%;
+	min-height: 500px;
+	max-height: 650px;
+	padding: 0;
+ }
+
+ .card-center {
+	width: 1000px;
+	max-width: 100%;
+	margin: 20px auto;
+	padding: 10px 40px;
+ }
+
+ .card-left, .card-right {
+	width: 25%;
+	min-width: 250px;
+	padding: 10px 40px;
+	margin: 0;
+	flex-grow: 1;
+	overflow-wrap: break-word;
+ }
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -1,14 +1,19 @@
 {% load static %}
 {% block asset_summary %}
-    <div class="window">
+    <div class="window" data-asset-type="image" data-asset-importance="{{ asset.importance }}">
         <div class="wrapper-1200">
-            <h2>Image Asset</h2>
-            <p>Importance: {{ asset.importance }}</p>
-            <p>Title: {{ asset.title }}</p>
-            <p>Body: {{ asset.body }}</p>
-            <p>URL: {{ asset.img }}</p>
-            <p>Date created (server time): {{ asset.created_at }}</p>
-            <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
+            <div class="content">
+                <div class="background-blur"
+                     style="background-image: url('{% get_media_prefix %}{{ asset.img }}');"></div>
+                <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
+            </div>
+            <div class="card-right">
+                <h2>{{ asset.title }}</h2>
+                <p>{{ asset.body }}</p>
+
+                <p><em>Date created (server time): {{ asset.created_at }}</em></p>
+            </div>
+
         </div>
     </div>
 {% endblock %}

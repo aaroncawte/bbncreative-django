@@ -1,12 +1,12 @@
 {% block asset_summary %}
-    <div class="window">
+    <div class="window" data-asset-type="embedded" data-asset-importance="{{ asset.importance }}">
         <div class="wrapper-1200">
-            <h2>Embedded Asset</h2>
-            <p>Importance: {{ asset.importance }}</p>
-            <p>Title: {{ asset.title }}</p>
-            <p>Body: {{ asset.body }}</p>
-            <p>Date created (server time): {{ asset.created_at }}</p>
-            {{ asset.embed_code }}
+            <div class="content">{{ asset.embed_code }}</div>
+            <div class="card-left">
+                <h2>{{ asset.title }}</h2>
+                <p>{{ asset.body }}</p>
+                <p><em>Date created (server time): {{ asset.created_at }}</em></p>
+            </div>
         </div>
     </div>
 {% endblock %}
