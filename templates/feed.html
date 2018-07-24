@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block body-content %}
     <div class="window window-first">
+        <div class="first-hero-image"></div>
         <div class="wrapper-1200">
             <a href="/feeds">Back to Feeds</a>
-            <h1>Feed</h1>
-            <p>Title: {{ feed.name }}</p>
-            <p>URL Name: {{ feed.url_name }}</p>
+            <h1>{{ feed.name }}</h1>
+            <p><i class="fas fa-newspaper"></i>Feed Details</p>
             <p>Bio: {{ feed.bio }}</p>
         </div>
     </div>

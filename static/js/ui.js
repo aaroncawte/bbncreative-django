@@ -6,7 +6,7 @@ $(function () {
 
     /* Automatic first/hero window height
    ======================================================================== */
-    const absoluteMinimum = 250;
+    const absoluteMinimum = 400;
     const offset = 100 + 80;
     let windowHeight = window.innerHeight;
 
@@ -15,6 +15,22 @@ $(function () {
 
     let heroWindowHeight = Math.max(windowHeight - offset, absoluteMinimum);
     $(".window-hero").css("min-height", stringifyPixel(heroWindowHeight));
+
+    /* Automatic first/hero window colour box dimensions
+   ======================================================================== */
+    let windowWidth = window.innerWidth;
+    let limit = 1280;
+    let wrapper = 1200;
+    let logoSpace = 240;
+
+    if (windowWidth > limit) {
+        let boxWidth = (windowWidth - wrapper) / 2 + (wrapper - logoSpace);
+        $(".first-hero-image").css("width", stringifyPixel(boxWidth));
+    } else {
+        $(".first-hero-image").css("width", "100%");
+    }
+
+
 
     /* Menu Display Mechanics
    ======================================================================== */

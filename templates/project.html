@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block body-content %}
     <div class="window window-first">
+        <div class="first-hero-image"></div>
         <div class="wrapper-1200">
             <a href="/projects">Back to Projects</a>
-            <h1>Project</h1>
-            <p>Title: {{ project.name }}</p>
-            <p>URL Name: {{ project.url_name }}</p>
-            <p>Date completed: {{ project.date_complete }}</p>
-            <p>Is complete: {{ project.is_complete }}</p>
-            <p>Project URL: {{ project.project_url }}</p>
-            <p>Client Name: {{ project.client_name }} </p>
+            <h1>{{ project.name }}</h1>
+            <div class="details-box">
+                <p class="heading"><i class="fas fa-project-diagram"></i>Project Details</p>
+                {% if project.is_complete %}
+                    <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete }}</p>
+                {% else %}
+                    <p><i class="fas fa-clock"></i>Ongoing project</p>
+                {% endif %}
+                <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
+                <p><i class="fas fa-users"></i>Collaborators</p>
+            </div>
+            <a href="{{ project.project_url }}">
+                <button class="hero-cta"><i class="fas fa-external-link-alt"></i>Check It Out</button>
+            </a>
         </div>
     </div>
     {% for a in assets %}
