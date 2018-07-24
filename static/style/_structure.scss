@@ -96,22 +96,10 @@ nav {
 /* Menu Buttons
    ======================================================================== */
 .menu-button {
-	@include menu-input-base;
-	@include wide-text;
-	@include drop-shadow($clickable: true);
+	@include layered-button;
 	margin: 22px 0 22px 10px;
-	color: $bbn1;
-	text-align: center;
-	cursor: pointer;
-	&:hover {
-		color: $bbn5;
-	}
 	&:active {
 		margin: 23px 0 21px 10px;
-		background-color: $off-white;
-	}
-	.fas, .far {
-		padding-right: 5px;
 	}
 }
 
@@ -347,8 +335,17 @@ nav {
 }
 
 .hero-cta {
-	background-color: #fff;
+	@include layered-button;
+	width: 200px;
+	margin: 22px 0 22px 0;
+	text-decoration: none;
+	&:active {
+		margin: 23px 0 21px 0;
+	}
+}
 
+.hero-cta-anchor {
+	text-decoration: none;
 }
 
 /* Asset Styles
