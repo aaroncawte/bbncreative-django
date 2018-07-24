@@ -269,13 +269,21 @@ nav {
 .window-first {
 	background-color: $bbn1;
 	position: relative;
+	.wrapper-1200 {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
 	h1 {
 		color: white;
-		font-size: 72px;
+		text-shadow: 0 2px 2px rgba($off-black, 0.6);
 	}
 	.wrapper-1200 {
 		z-index: 2;
 		position: relative;
+	}
+	button.secondary {
+		color: white;
 	}
 }
 
@@ -284,18 +292,41 @@ nav {
 	z-index: 1;
 	top: 0;
 	right: 0;
-	height: 80%;
+	height: calc(100% - 70px);
 	background-color: $blue-grey2;
 }
 
 @media (max-width: $break-window-width) {
+	.window-first {
+		.wrapper-1200 {
+			padding-bottom: 30px;
+		}
+		h1 {
+			text-align: center;
+			font-size: 60px;
+		}
+	}
 	.first-hero-image {
 		height: 100%;
 		width: 100%;
 	}
+	.details-box, .hero-cta {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 }
 
 @media (min-width: $break-window-width) {
+	.window-first {
+		.wrapper-1200 {
+			padding-bottom: 50px;
+		}
+		h1 {
+			text-align: left;
+			font-size: 72px;
+		}
+	}
 	.first-hero-image {
 		height: 80%;
 		width: 0; // Set by JS
@@ -337,15 +368,14 @@ nav {
 .hero-cta {
 	@include layered-button;
 	width: 200px;
-	margin: 22px 0 22px 0;
+	margin-top: 22px;
+	margin-bottom: 22px;
 	text-decoration: none;
 	&:active {
-		margin: 23px 0 21px 0;
-	}
-}
+		margin-top: 23px;
+		margin-bottom: 21px;
 
-.hero-cta-anchor {
-	text-decoration: none;
+	}
 }
 
 /* Asset Styles
@@ -434,10 +464,8 @@ nav {
 			z-index: 0;
 			width: 100%;
 			height: 100%;
-			background-color: transparent;
-			background-position: center;
 			background-size: auto 200%;
-			background-repeat: no-repeat;
+			background: transparent no-repeat center;
 			filter: blur(10px);
 		}
 		img {
@@ -472,5 +500,23 @@ nav {
 		margin: 0;
 		flex-grow: 1;
 		overflow-wrap: break-word;
+	}
+}
+
+/* Semi-Static Components
+   ======================================================================== */
+.centre-bio {
+	box-sizing: border-box;
+	width: calc(100% - 100px);
+	margin: 30px 50px;
+	padding: 10px 5px;
+	color: $blue-grey2;
+	text-align: center;
+	border-top: 1px solid $off-white;
+	border-bottom: 1px solid $off-white;
+	p {
+		font-family: $font_serif;
+		font-size: 20px;
+		line-height: 22px;
 	}
 }
