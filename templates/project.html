@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body-content %}
     <div class="window window-first">
-        <div class="first-hero-image"></div>
+        <div class="first-hero-image" style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
         <div class="wrapper-1200">
             <a href="/projects" class="no-text-decoration">
                 <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Projects</button>
@@ -15,7 +16,13 @@
                     <p><i class="fas fa-clock"></i>Ongoing project</p>
                 {% endif %}
                 <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
-                <p><i class="fas fa-users"></i>Collaborators</p>
+                {% if credits|length > 1 %}
+                    <p><i class="fas fa-users"></i> {{ credits|length }} collaborators</p>
+                {% elif credits|length == 1 %}
+                    <p><i class="fas fa-users"></i>1 Collaborator</p>
+                {% else %}
+                    <p><i class="fas fa-users"></i>Independent Work</p>
+                {% endif %}
             </div>
             <a href="{{ project.project_url }}" class="no-text-decoration">
                 <div class="hero-cta"><i class="fas fa-external-link-alt"></i>Check It Out</div>

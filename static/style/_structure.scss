@@ -293,7 +293,9 @@ nav {
 	top: 0;
 	right: 0;
 	height: calc(100% - 70px);
-	background-color: $blue-grey2;
+	background: $blue-grey2 center;
+	background-size: cover;
+	filter: brightness(0.8);
 }
 
 @media (max-width: $break-window-width) {

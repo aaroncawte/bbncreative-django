@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.db import DataError
 from django.shortcuts import render, redirect
 
-from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed
+from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed, Credit
 
 
 def index(request):
@@ -94,12 +94,15 @@ def project_from_name(request, url_name):
     my_assets.sort(key=lambda a: a[3], reverse=True)
     my_assets.sort(key=lambda a: a[2], reverse=False)
 
+    credits = Credit.objects.filter(project=this_project)
+
     return render(
         request,
         "project.html",
         {
             'project': this_project,
-            'assets': my_assets
+            'assets': my_assets,
+            'credits': credits
         }
     )
 
