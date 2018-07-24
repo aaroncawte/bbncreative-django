@@ -162,6 +162,24 @@ img {
 	-webkit-appearance: none;
 }
 
+@mixin layered-button {
+	@include menu-input-base;
+	@include wide-text;
+	@include drop-shadow($clickable: true);
+	text-align: center;
+	cursor: pointer;
+	color: $bbn1;
+	&:hover {
+		color: $bbn5;
+	}
+	&:active {
+		background-color: $off-white;
+	}
+	.fas, .far {
+		padding-right: 5px;
+	}
+}
+
 input[type=text], input[type=email], input[type=tel], input[type=number],
 input[type=search], input[type=password], select {
 	@include standard-input;
