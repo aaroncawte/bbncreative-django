@@ -3,10 +3,16 @@
     <div class="window window-first">
         <div class="first-hero-image"></div>
         <div class="wrapper-1200">
-            <a href="/feeds">Back to Feeds</a>
+            <a href="/feeds" class="no-text-decoration">
+                <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Feeds</button>
+            </a>
             <h1>{{ feed.name }}</h1>
-            <p><i class="fas fa-newspaper"></i>Feed Details</p>
-            <p>Bio: {{ feed.bio }}</p>
+        </div>
+    </div>
+    <div class="wrapper-1200">
+        <div class="centre-bio">
+            <h3><i class="fas fa-newspaper"></i>Feed Details</h3>
+            <p>{{ feed.bio }}</p>
         </div>
     </div>
     {% for a in assets %}

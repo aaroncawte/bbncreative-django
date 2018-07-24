@@ -107,6 +107,10 @@ a {
   a:active {
     color: #ff1a36; }
 
+a.no-text-decoration {
+  text-decoration: none;
+}
+
 /* Element selection
    ======================================================================== */
 html::-moz-selection, body::-moz-selection, p::-moz-selection, em::-moz-selection, span::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
@@ -116,6 +120,10 @@ html::selection, body::selection, p::selection, em::selection, span::selection, 
   background-color: #cc2369;
   color: #fff; }
 
+p .fas, p .far, span .fas, span .far, h1 .fas, h1 .far, h2 .fas, h2 .far, h3 .fas, h3 .far, h4 .fas, h4 .far, h5 .fas, h5 .far, h6 .fas, h6 .far {
+  margin-right: 0.4em;
+}
+
 img {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -123,7 +131,7 @@ img {
   user-select: none; }
 
 /* Form Elements
-   ======================================================================== */
+	 ======================================================================== */
 input[type=text], input[type=email], input[type=tel], input[type=number],
 input[type=search], input[type=password], select {
   box-sizing: border-box;
@@ -209,14 +217,19 @@ input[type=submit], input[type=reset], button {
     background-color: #e5e5e5;
     color: #161616; }
 
+input[type=submit] .fas, input[type=submit] .far, input[type=reset] .fas, input[type=reset] .far, button .fas, button .far {
+  padding-right: 5px;
+}
+
 input[type=submit]:active {
   margin: 10px 0 7px; }
 
-input[type=reset] {
+input[type=reset], button.secondary {
   background-color: transparent;
   color: #455a64;
   box-shadow: none; }
-  input[type=reset]:hover, input[type=reset]:active {
+
+input[type=reset]:hover, input[type=reset]:active, button.secondary:hover, button.secondary:active {
     background-color: transparent;
     color: #263238;
     box-shadow: none; }
@@ -500,9 +513,15 @@ nav {
   position: relative;
 }
 
+.window-first .wrapper-1200 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .window-first h1 {
   color: white;
-  font-size: 72px;
+  text-shadow: 0 2px 2px rgba(22, 22, 22, 0.6);
 }
 
 .window-first .wrapper-1200 {
@@ -510,22 +529,49 @@ nav {
   position: relative;
 }
 
+.window-first button.secondary {
+  color: white;
+}
+
 .first-hero-image {
   position: absolute;
   z-index: 1;
   top: 0;
   right: 0;
-  height: 80%;
+  height: calc(100% - 70px);
   background-color: #263238;
 }
 
 @media (max-width: 1280px) {
+  .window-first .wrapper-1200 {
+    padding-bottom: 30px;
+  }
+
+  .window-first h1 {
+    text-align: center;
+    font-size: 60px;
+  }
+
   .first-hero-image {
     height: 100%;
     width: 100%;
   }
+
+  .details-box, .hero-cta {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (min-width: 1280px) {
+  .window-first .wrapper-1200 {
+    padding-bottom: 50px;
+  }
+
+  .window-first h1 {
+    text-align: left;
+    font-size: 72px;
+  }
+
   .first-hero-image {
     height: 80%;
     width: 0;
@@ -590,7 +636,8 @@ nav {
   cursor: pointer;
   color: #e81841;
   width: 200px;
-  margin: 22px 0 22px 0;
+  margin-top: 22px;
+  margin-bottom: 22px;
   text-decoration: none;
 }
 
@@ -611,11 +658,8 @@ nav {
 }
 
 .hero-cta:active {
-  margin: 23px 0 21px 0;
-}
-
-.hero-cta-anchor {
-  text-decoration: none;
+  margin-top: 23px;
+  margin-bottom: 21px;
 }
 
 /* Asset Styles
@@ -697,10 +741,8 @@ nav {
     z-index: 0;
     width: 100%;
     height: 100%;
-    background-color: transparent;
-    background-position: center;
     background-size: auto 200%;
-    background-repeat: no-repeat;
+    background: transparent no-repeat center;
     filter: blur(10px);
   }
   .window[data-asset-type=image] img {
@@ -735,6 +777,25 @@ nav {
     flex-grow: 1;
     overflow-wrap: break-word;
   }
+}
+
+/* Semi-Static Components
+   ======================================================================== */
+.centre-bio {
+  box-sizing: border-box;
+  width: calc(100% - 100px);
+  margin: 30px 50px;
+  padding: 10px 5px;
+  color: #263238;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.centre-bio p {
+  font-family: "Noto Serif", serif;
+  font-size: 20px;
+  line-height: 22px;
 }
 
 /*# sourceMappingURL=style.css.map */

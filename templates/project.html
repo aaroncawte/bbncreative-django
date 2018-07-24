@@ -3,7 +3,9 @@
     <div class="window window-first">
         <div class="first-hero-image"></div>
         <div class="wrapper-1200">
-            <a href="/projects">Back to Projects</a>
+            <a href="/projects" class="no-text-decoration">
+                <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Projects</button>
+            </a>
             <h1>{{ project.name }}</h1>
             <div class="details-box">
                 <p class="heading"><i class="fas fa-project-diagram"></i>Project Details</p>
@@ -15,7 +17,7 @@
                 <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
                 <p><i class="fas fa-users"></i>Collaborators</p>
             </div>
-            <a href="{{ project.project_url }}" class="hero-cta-anchor">
+            <a href="{{ project.project_url }}" class="no-text-decoration">
                 <div class="hero-cta"><i class="fas fa-external-link-alt"></i>Check It Out</div>
             </a>
         </div>
