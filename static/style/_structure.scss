@@ -17,6 +17,10 @@ $logo-colour: white;
 	color: #fff;
 }
 
+.window-first {
+	min-height: 525px;
+}
+
 /* Wrapper to centre on wide viewports
    ======================================================================== */
 @media (max-width: $break-window-width-1) {
@@ -274,7 +278,78 @@ nav {
 
 /* Header Styles
    ======================================================================== */
+.window-first {
+	background-color: $bbn1;
+	position: relative;
+	h1 {
+		color: white;
+		font-size: 72px;
+	}
+	.wrapper-1200 {
+		z-index: 2;
+		position: relative;
+	}
+}
 
+.first-hero-image {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	height: 80%;
+	background-color: $blue-grey2;
+}
+
+@media (max-width: $break-window-width) {
+	.first-hero-image {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+@media (min-width: $break-window-width) {
+	.first-hero-image {
+		height: 80%;
+		width: 0; // Set by JS
+	}
+}
+
+.details-box {
+	box-sizing: border-box;
+	width: 200px;
+	min-height: 80px;
+	padding: 15px 20px;
+	background-color: rgba(white, 0.9);
+	border-radius: $form-el-radius;
+	@include drop-shadow();
+	p {
+		margin: 0.5em 0;
+		font-size: 14px;
+		line-height: 16px;
+		font-weight: bold;
+		padding: 0 3px;
+		color: $blue-grey2;
+		.fas, .far {
+			width: 18px;
+			padding-right: 5px;
+			text-align: center;
+		}
+	}
+	p.heading {
+		margin: 0.5em 0 1em;
+		padding: 0;
+		font-size: 16px;
+		color: $off-black;
+		.far, .fas {
+			padding-right: 8px;
+		}
+	}
+}
+
+.hero-cta {
+	background-color: #fff;
+
+}
 
 /* Asset Styles
    ======================================================================== */

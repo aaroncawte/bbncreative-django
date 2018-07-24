@@ -1,9 +1,7 @@
 {% block feed_summary %}
     <div class="window">
         <div class="wrapper-1200">
-            <a href="/feeds/{{ feed.url_name }}"><h2>Feed</h2></a>
-            <p>Title: {{ feed.name }}</p>
-            <p>URL Name: {{ feed.url_name }}</p>
+            <a href="/feeds/{{ feed.url_name }}"><h2>{{ feed.name }}</h2></a>
             <p>Bio: {{ feed.bio }}</p>
         </div>
     </div>
