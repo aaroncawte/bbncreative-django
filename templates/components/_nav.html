@@ -1,3 +1,4 @@
+{% load static %}
 {% block nav %}
     <nav>
         <div class="wrapper-1200">
@@ -24,7 +25,7 @@
                         <a href="/projects/{{ p.url_name }}">
                             <div class="menu-listing">
                                 <div class="menu-icon">
-                                    <img src="" alt="{{ p.name }} icon">
+                                    <img src="{% get_media_prefix %}{{ p.icon }}" alt="{{ p.name }} icon"/>
                                 </div>
                                 <div class="menu-label">{{ p.name }}</div>
                             </div>
