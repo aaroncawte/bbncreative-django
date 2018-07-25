@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body-content %}
-    <div class="window window-first">
+    {% if project.brand_color_2|length > 0 %}
+        <div class="window window-first"
+             style="background-image: linear-gradient(135deg, #{{ project.brand_color_1 }}, #{{ project.brand_color_2 }});">
+    {% else %}
+        <div class="window window-first" style="background-color: #{{ project.brand_color_1 }};">
+    {% endif %}
         <div class="first-hero-image" style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
         <div class="wrapper-1200">
             <a href="/projects" class="no-text-decoration">

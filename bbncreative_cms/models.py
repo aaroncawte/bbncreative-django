@@ -56,6 +56,14 @@ class Project(models.Model):
         max_length=255,
         blank=True
     )
+    brand_color_1 = models.CharField(
+        max_length=6,
+        default="ffffff"
+    )
+    brand_color_2 = models.CharField(
+        max_length=6,
+        blank=True
+    )
 
     class Meta:
         ordering = ['date_complete', '-is_complete']
