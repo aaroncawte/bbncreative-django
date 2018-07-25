@@ -18,6 +18,8 @@ $(function () {
 
     /* Automatic first/hero window colour box dimensions
    ======================================================================== */
+    const $heroImage = $(".first-hero-image");
+
     let windowWidth = window.innerWidth;
     let limit = 1280;
     let wrapper = 1200;
@@ -25,12 +27,10 @@ $(function () {
 
     if (windowWidth > limit) {
         let boxWidth = (windowWidth - wrapper) / 2 + (wrapper - logoSpace);
-        $(".first-hero-image").css("width", stringifyPixel(boxWidth));
+        $heroImage.css("width", stringifyPixel(boxWidth));
     } else {
-        $(".first-hero-image").css("width", "100%");
+        $heroImage.css("width", "100%");
     }
-
-
 
     /* Menu Display Mechanics
    ======================================================================== */

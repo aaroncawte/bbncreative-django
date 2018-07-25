@@ -540,7 +540,6 @@ nav {
   z-index: 1;
   top: 0;
   right: 0;
-  height: calc(100% - 70px);
  background: #263238 center;
  background-size: cover;
  filter: brightness(0.7);
@@ -575,7 +574,7 @@ nav {
 	}
 
   .first-hero-image {
-    height: 80%;
+	 height: calc(100% - 70px);
 	 width: 0;
 	}
 }
