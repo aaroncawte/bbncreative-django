@@ -99,6 +99,10 @@ class Feed(models.Model):
         default="new-feed",
         allow_unicode=True
     )
+    menu_icon_name = models.CharField(
+        max_length=50,
+        blank=True
+    )
 
     def __str__(self):
         return self.name + " (" + self.url_name + ")"

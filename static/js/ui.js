@@ -1,11 +1,19 @@
+/* bbncreative UI Variables
+   ======================================================================== */
+const wideBreakpoint = 1280;
+const mobileBreakpoint = 690;
+
+
+/* Operational Functions
+   ======================================================================== */
 function stringifyPixel(val) {
     return val.toString() + "px";
 }
 
-$(function () {
 
-    /* Automatic first/hero window height
+/* Automatic first/hero window height
    ======================================================================== */
+function sizeHeroWindow() {
     const absoluteMinimum = 400;
     const offset = 100 + 80;
     let windowHeight = window.innerHeight;
@@ -15,22 +23,44 @@ $(function () {
 
     let heroWindowHeight = Math.max(windowHeight - offset, absoluteMinimum);
     $(".window-hero").css("min-height", stringifyPixel(heroWindowHeight));
+}
 
-    /* Automatic first/hero window colour box dimensions
+
+/* Automatic first/hero window colour box dimensions
    ======================================================================== */
+function sizeHeroImage() {
     const $heroImage = $(".first-hero-image");
 
     let windowWidth = window.innerWidth;
-    let limit = 1280;
-    let wrapper = 1200;
+    let wrapper = windowWidth;
+    if (windowWidth > wideBreakpoint) {
+        wrapper = 1200;
+    }
     let logoSpace = 240;
 
-    if (windowWidth > limit) {
+    if (windowWidth > mobileBreakpoint) {
         let boxWidth = (windowWidth - wrapper) / 2 + (wrapper - logoSpace);
         $heroImage.css("width", stringifyPixel(boxWidth));
     } else {
         $heroImage.css("width", "100%");
     }
+}
+
+/* UI Functions for window resize
+   ======================================================================== */
+$(window).on('resize', function () {
+    sizeHeroWindow();
+    sizeHeroImage();
+
+});
+
+$(function () {
+
+    /* UI Functions on page load
+   ======================================================================== */
+    sizeHeroWindow();
+    sizeHeroImage();
+
 
     /* Menu Display Mechanics
    ======================================================================== */
