@@ -146,6 +146,7 @@ nav {
 	overflow: hidden;
 	height: auto;
 	padding: 0;
+	letter-spacing: 0;
 }
 
 .menu-listing, .menu-close {
@@ -295,7 +296,7 @@ nav {
 	height: calc(100% - 70px);
 	background: $blue-grey2 center;
 	background-size: cover;
-	filter: brightness(0.8);
+	filter: brightness(0.7);
 }
 
 @media (max-width: $break-window-width) {
@@ -339,7 +340,7 @@ nav {
 	box-sizing: border-box;
 	width: 200px;
 	min-height: 80px;
-	padding: 15px 20px;
+	padding: 15px;
 	background-color: rgba(white, 0.9);
 	border-radius: $form-el-radius;
 	@include drop-shadow();

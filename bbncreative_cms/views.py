@@ -94,7 +94,7 @@ def project_from_name(request, url_name):
     my_assets.sort(key=lambda a: a[3], reverse=True)
     my_assets.sort(key=lambda a: a[2], reverse=False)
 
-    credits = Credit.objects.filter(project=this_project)
+    creds = Credit.objects.filter(project=this_project)
 
     return render(
         request,
@@ -102,7 +102,7 @@ def project_from_name(request, url_name):
         {
             'project': this_project,
             'assets': my_assets,
-            'credits': credits
+            'credits': creds
         }
     )
 
