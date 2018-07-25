@@ -108,5 +108,6 @@ $(function () {
 
     $('.window').on('click', function () {
         $allMenus.addClass("menu-hidden");
+        $allButtons.removeClass("active-button");
     });
 });

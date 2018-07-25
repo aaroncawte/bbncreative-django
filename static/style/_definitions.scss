@@ -124,7 +124,9 @@ a {
 }
 
 a.no-text-decoration {
-	text-decoration: none;
+	&:link, &:hover, &:active, &:visited {
+		text-decoration: none;
+	}
 }
 
 /* Element selection

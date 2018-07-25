@@ -41,6 +41,9 @@ def projects(request):
     all_projects = Project.objects.all().order_by('date_complete').reverse()
 
     menu_projects = all_projects
+    for p in menu_projects:
+        credit_count = Credit.objects.filter(project=p).count()
+        p.credit_count = credit_count
 
     return render(
         request,
