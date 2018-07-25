@@ -1,15 +1,31 @@
+{% load static %}
 {% block project_summary %}
-    <div class="window">
-        <div class="wrapper-1200">
-            <a href="/projects/{{ project.url_name }}"><h2>{{ project.name }}</h2></a>
-            {% if project.is_complete %}
-                <p>Completed: {{ project.date_complete }}</p>
-            {% else %}
-                <p>Ongoing project</p>
-            {% endif %}
-            <p>Client Name: {{ project.client_name }} </p>
-            <p>Collaborator Status</p>
-            <p>Project URL: {{ project.project_url }}</p>
+    <div class="card"
+         style="background-color: #{{ project.brand_color_1 }}; background: linear-gradient(135deg, #{{ project.brand_color_1 }}, #{{ project.brand_color_2 }});">
+        <div class="card-hero-image"
+             style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
+        <div class="card-logo" style="background-image: url({% get_media_prefix %}{{ project.icon }});"></div>
+        <div class="card-content">
+            <a href="/projects/{{ project.url_name }}" class="no-text-decoration"><h2>{{ project.name }}</h2></a>
+            <p class="card-bio">{{ project.bio }}</p>
+            <div class="meta-stats">
+                <div class="meta-stat">
+                    {% if project.is_complete %}
+                        <i class="fas fa-flag-checkered"></i>{{ project.date_complete }}
+                    {% else %}
+                        <i class="fas fa-clock"></i>Ongoing project
+                    {% endif %}
+                </div>
+                <div class="meta-stat"><i class="fas fa-user-tie"></i>{{ project.client_name }}</div>
+                {% if project.credit_count > 1 %}
+                    <div class="meta-stat"><i class="fas fa-users"></i> {{ project.credit_count }} credits</div>
+                {% elif project.credit_count == 1 %}
+                    <div class="meta-stat"><i class="fas fa-users"></i>1 Credit</div>
+                {% else %}
+                    <div class="meta-stat"><i class="fas fa-users"></i>Independent Work</div>
+                {% endif %}
+                <div class="meta-stat"><i class="fas fa-globe"></i>Another stat?</div>
+            </div>
         </div>
     </div>
 {% endblock %}
