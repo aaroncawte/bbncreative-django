@@ -103,6 +103,9 @@ class Feed(models.Model):
         max_length=50,
         blank=True
     )
+    protected = models.BooleanField(
+        default=True
+    )
 
     def __str__(self):
         return self.name + " (" + self.url_name + ")"
