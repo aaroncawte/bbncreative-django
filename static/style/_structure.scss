@@ -3,48 +3,6 @@ $nav-height: 80px;
 $logo-background: black;
 $logo-colour: white;
 
-/* Windows divide the page vertically and each contain a wrapper
-   ======================================================================== */
-.window {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.window-first, .window-hero {
-	padding-top: $nav-height;
-	background-color: $blue-grey1;
-	color: #fff;
-}
-
-.window-first {
-	min-height: 525px;
-}
-
-/* Wrapper to centre on wide viewports
-   ======================================================================== */
-@media (max-width: $break-window-width-1) {
-	.wrapper-1200 {
-		box-sizing: border-box;
-		width: 100%;
-		max-width: 100%;
-		padding: 0 20px;
-	}
-}
-
-@media (min-width: $break-window-width) {
-	.wrapper-1200 {
-		width: 1200px;
-		max-width: 1200px;
-		padding: 0 20px;
-	}
-}
-
-.wrapper-1200 {
-	margin: 0 auto;
-	position: relative;
-}
-
 /* Navigation Bar
    ======================================================================== */
 nav {
@@ -265,26 +223,47 @@ nav {
 	}
 }
 
-/* Header Styles
+/* Windows divide the page vertically and each contain a wrapper
    ======================================================================== */
-.window-first {
-	background-color: $bbn1;
-	position: relative;
+.window {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.window-title, .window-first, .window-hero {
+	padding-top: $nav-height;
+	background-color: $blue-grey1;
+	color: #fff;
 	.wrapper-1200 {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 	}
 	h1 {
-		color: white;
+		color: #fff;
 		text-shadow: 0 2px 2px rgba($off-black, 0.6);
-	}
-	.wrapper-1200 {
-		z-index: 2;
-		position: relative;
 	}
 	button.secondary {
 		color: white;
+	}
+}
+
+.window-title {
+	min-height: 220px;
+	background-color: $bbn1;
+	h1 {
+		margin-top: 0.3em;
+		text-align: center;
+	}
+}
+
+.window-first {
+	min-height: 525px;
+	position: relative;
+	.wrapper-1200 {
+		justify-content: center;
+		z-index: 2;
+		position: relative;
 	}
 }
 
@@ -298,13 +277,15 @@ nav {
 }
 
 @media (max-width: $break-mobile) {
-	.window-first {
-		.wrapper-1200 {
-			padding-bottom: 30px;
-		}
+	.window-title, .window-first {
 		h1 {
 			text-align: center;
 			font-size: 48px;
+		}
+	}
+	.window-first {
+		.wrapper-1200 {
+			padding-bottom: 30px;
 		}
 	}
 	.first-hero-image {
@@ -320,13 +301,14 @@ nav {
 }
 
 @media (min-width: $break-mobile) {
+	.window-title, .window-first {
+		h1 {
+			font-size: 60px;
+		}
+	}
 	.window-first {
 		.wrapper-1200 {
 			padding-bottom: 50px;
-		}
-		h1 {
-			text-align: left;
-			font-size: 60px;
 		}
 	}
 	.first-hero-image {
@@ -342,6 +324,32 @@ nav {
 	}
 }
 
+/* Wrapper to centre on wide viewports
+   ======================================================================== */
+@media (max-width: $break-window-width-1) {
+	.wrapper-1200 {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 20px;
+	}
+}
+
+@media (min-width: $break-window-width) {
+	.wrapper-1200 {
+		width: 1200px;
+		max-width: 1200px;
+		padding: 0 20px;
+	}
+}
+
+.wrapper-1200 {
+	margin: 0 auto;
+	position: relative;
+}
+
+/* Header Content Styles
+   ======================================================================== */
 .details-box {
 	box-sizing: border-box;
 	width: 200px;
@@ -531,17 +539,53 @@ nav {
 	position: relative;
 	overflow: hidden;
 	width: 360px;
-	height: 420px;
+	max-width: 100%;
 	margin: 20px;
 	padding: 0;
 	font-weight: normal;
 	box-shadow: 0 2px 6px rgba($off-black, 0.4);
 }
 
+@media (max-width: 460px) {
+	.card {
+		height: 470px;
+	}
+	.feed-card .card-content {
+		height: 330px;
+	}
+	.project-card .card-content {
+
+	}
+	.meta-stats {
+		height: 100px;
+		.meta-stat {
+			width: 100%;
+		}
+	}
+}
+
+@media (min-width: 460px) {
+	.card {
+		height: 420px;
+	}
+	.feed-card .card-content {
+		height: 280px;
+	}
+	.project-card .card-content {
+
+	}
+	.meta-stats {
+		height: 50px;
+		.meta-stat {
+			width: 50%;
+		}
+	}
+}
+
 .card-logo, .card-icon {
 	box-sizing: border-box;
 	position: absolute;
-	left: 120px;
+	left: calc(50% - 60px);
 	z-index: 2;
 	width: 120px;
 	height: 120px;
@@ -563,7 +607,6 @@ nav {
 .feed-card {
 	@extend .card;
 	.card-content {
-		height: 280px;
 		padding: 10px 20px;
 	}
 	.card-icon {
@@ -593,12 +636,10 @@ nav {
 	}
 	.meta-stats {
 		width: 100%;
-		height: 50px;
 		display: flex;
 		flex-wrap: wrap;
 	}
 	.meta-stat {
-		width: 160px;
 		height: 25px;
 		line-height: 25px;
 		font-size: 14px;
@@ -610,7 +651,7 @@ nav {
 		}
 	}
 	.card-bio {
-		box-sizing: padding-box;
+		box-sizing: border-box;
 		width: 100%;
 		line-height: 24px;
 		height: 120px;

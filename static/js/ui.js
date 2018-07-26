@@ -16,7 +16,7 @@ function stringifyPixel(val) {
 function sizeHeroWindow() {
     const absoluteMinimum = 400;
     const offset = 100 + 80;
-    let windowHeight = window.innerHeight;
+    let windowHeight = document.body.clientHeight;
 
     let firstWindowHeight = absoluteMinimum;
     $(".window-first").css("min-height", stringifyPixel(firstWindowHeight));
@@ -31,18 +31,20 @@ function sizeHeroWindow() {
 function sizeHeroImage() {
     const $heroImage = $(".first-hero-image");
 
-    let windowWidth = window.innerWidth;
-    let wrapper = windowWidth;
-    if (windowWidth > wideBreakpoint) {
-        wrapper = 1200;
-    }
+    let windowWidth = document.body.clientWidth; // Excluding scroll bar
     let logoSpace = 240;
+    let wrapper = windowWidth;
 
-    if (windowWidth > mobileBreakpoint) {
+    if (windowWidth >= wideBreakpoint)
+        wrapper = 1240;
+
+    if (windowWidth >= mobileBreakpoint) {
         let boxWidth = (windowWidth - wrapper) / 2 + (wrapper - logoSpace);
         $heroImage.css("width", stringifyPixel(boxWidth));
+        $heroImage.css("height", "calc(100% - 70px)");
     } else {
         $heroImage.css("width", "100%");
+        $heroImage.css("height", "100%");
     }
 }
 
