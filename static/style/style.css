@@ -388,6 +388,10 @@ nav {
   .menu-listing:active .menu-label, .menu-close:active .menu-label {
     color: #ff1a36; }
 
+.menu-listing-offset {
+ border-top: 1px solid #e5e5e5;
+}
+
 .menu a {
   text-decoration: none; }
 
@@ -474,7 +478,6 @@ nav {
 
   .menu-close {
     display: none; } }
-
 /* Windows divide the page vertically and each contain a wrapper
    ======================================================================== */
 .window {
@@ -574,7 +577,6 @@ nav {
 	 font-size: 72px;
 	}
 }
-
 /* Wrapper to centre on wide viewports
    ======================================================================== */
 @media (max-width: 1279px) {
@@ -585,7 +587,6 @@ nav {
 	padding: 0 20px;
  }
 }
-
 @media (min-width: 1280px) {
  .wrapper-1200 {
 	width: 1200px;
@@ -593,7 +594,6 @@ nav {
 	padding: 0 20px;
  }
 }
-
 .wrapper-1200 {
  margin: 0 auto;
  position: relative;
@@ -858,7 +858,6 @@ nav {
 	width: 100%;
  }
 }
-
 @media (min-width: 460px) {
  .card, .project-card, .feed-card {
 	height: 420px;
