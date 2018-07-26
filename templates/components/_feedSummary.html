@@ -1,8 +1,10 @@
 {% block feed_summary %}
-    <div class="window">
-        <div class="wrapper-1200">
-            <a href="/feeds/{{ feed.url_name }}"><h2>{{ feed.name }}</h2></a>
-            <p>Bio: {{ feed.bio }}</p>
+    <div class="feed-card">
+        <div class="card-hero-image"></div>
+        <div class="card-icon"><i class="{{ feed.menu_icon_name }}"></i></div>
+        <div class="card-content">
+            <a href="/feeds/{{ feed.url_name }}" class="no-text-decoration"><h2>{{ feed.name }}</h2></a>
+            <p class="card-bio">{{ feed.bio }}</p>
         </div>
     </div>
 {% endblock %}

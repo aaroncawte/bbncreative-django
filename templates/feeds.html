@@ -5,7 +5,11 @@
             <h1>Feeds</h1>
         </div>
     </div>
-    {% for feed in feeds %}
-        {% include "components/_feedSummary.html" %}
-    {% endfor %}
+    <div class="window">
+        <div class="wrapper-1200">
+            {% for feed in feeds %}
+                {% include "components/_feedSummary.html" %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
