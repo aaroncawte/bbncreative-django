@@ -11,6 +11,10 @@
     </div>
     <div class="wrapper-1200">
         <div class="centre-bio">
+            {% if feed.protected %}
+                <p class="protected-warning"><strong>This feed is protected and only visible to visitors with its
+                    URL.</strong></p>
+            {% endif %}
             <h3><i class="fas fa-newspaper"></i>Feed Details</h3>
             <p>{{ feed.bio }}</p>
         </div>

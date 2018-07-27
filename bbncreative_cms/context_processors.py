@@ -10,5 +10,5 @@ def top_projects(context):
 
 
 def top_feeds(context):
-    feeds = Feed.objects.all()[:NUM_TOP_FEEDS]
+    feeds = Feed.objects.filter(protected=False)[:NUM_TOP_FEEDS]
     return {'top_feeds': feeds}
