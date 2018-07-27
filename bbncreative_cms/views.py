@@ -56,7 +56,7 @@ def projects(request):
 
 
 def feeds(request):
-    all_feeds = Feed.objects.all()
+    all_feeds = Feed.objects.filter(protected=False)
     return render(
         request,
         "feeds.html",
