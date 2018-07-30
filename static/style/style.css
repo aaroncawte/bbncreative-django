@@ -120,7 +120,7 @@ html::selection, body::selection, p::selection, em::selection, span::selection, 
   background-color: #cc2369;
   color: #fff; }
 
-p .fas, p .far, span .fas, span .far, h1 .fas, h1 .far, h2 .fas, h2 .far, h3 .fas, h3 .far, h4 .fas, h4 .far, h5 .fas, h5 .far, h6 .fas, h6 .far {
+p .fas, p .far, p .fab, span .fas, span .far, span .fab, h1 .fas, h1 .far, h1 .fab, h2 .fas, h2 .far, h2 .fab, h3 .fas, h3 .far, h3 .fab, h4 .fas, h4 .far, h4 .fab, h5 .fas, h5 .far, h5 .fab, h6 .fas, h6 .far, h6 .fab {
  margin-right: 0.4em;
 }
 
@@ -217,7 +217,7 @@ input[type=submit], input[type=reset], button {
     background-color: #e5e5e5;
     color: #161616; }
 
-input[type=submit] .fas, input[type=submit] .far, input[type=reset] .fas, input[type=reset] .far, button .fas, button .far {
+input[type=submit] .fas, input[type=submit] .far, input[type=submit] .fab, input[type=reset] .fas, input[type=reset] .far, input[type=reset] .fab, button .fas, button .far, button .fab {
  padding-right: 5px;
 }
 
@@ -311,7 +311,7 @@ nav {
   .menu-button:active {
     background-color: #e5e5e5; }
 
-.menu-button .fas, .menu-button .far {
+.menu-button .fas, .menu-button .far, .menu-button .fab {
  padding-right: 5px;
 }
 
@@ -400,7 +400,7 @@ nav {
   justify-content: center;
   border-top: 1px solid #e5e5e5; }
 
-.menu-close .far, .menu-close .fas {
+.menu-close .far, .menu-close .fas, .menu-close .fab {
  line-height: 36px;
  font-size: 20px;
 }
@@ -455,7 +455,7 @@ nav {
     padding: 8px 2px;
     overflow: hidden; }
 
- .menu-button .fas, .menu-button .far {
+ .menu-button .fas, .menu-button .far, .menu-button .fab {
 	padding-right: 0;
  }
 
@@ -508,7 +508,7 @@ nav {
 
 .window-title {
  min-height: 220px;
- background-color: #e81841;
+ background: #e81841 url("/static/img/subtle/inspiration-geometry.png");
 }
 
 .window-title h1 {
@@ -620,7 +620,7 @@ nav {
  color: #263238;
 }
 
-.details-box p .fas, .details-box p .far {
+.details-box p .fas, .details-box p .far, .details-box p .fab {
  width: 18px;
  padding-right: 5px;
  text-align: center;
@@ -633,7 +633,7 @@ nav {
  color: #161616;
 }
 
-.details-box p.heading .far, .details-box p.heading .fas {
+.details-box p.heading .far, .details-box p.heading .fas, .details-box p.heading .fab {
  padding-right: 8px;
 }
 
@@ -677,7 +677,7 @@ nav {
  background-color: #e5e5e5;
 }
 
-.hero-cta .fas, .hero-cta .far {
+.hero-cta .fas, .hero-cta .far, .hero-cta .fab {
  padding-right: 5px;
 }
 
@@ -938,7 +938,7 @@ nav {
  overflow: hidden;
 }
 
-.card-content .meta-stat .far, .card-content .meta-stat .fas {
+.card-content .meta-stat .far, .card-content .meta-stat .fas, .card-content .meta-stat .fab {
  width: 30px;
  text-align: center;
 }
@@ -981,6 +981,102 @@ nav {
 .protected-warning {
  color: red;
  font-family: "Noto Sans", sans-serif;
+}
+
+/* Footer and components
+	 ======================================================================== */
+footer {
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+ margin: 25px 0 15px;
+}
+
+.footer-description, .footer-buttons {
+ font-size: small;
+ color: #aaa;
+ line-height: 18px;
+}
+
+.footer-description {
+ box-sizing: border-box;
+ width: 100%;
+ text-align: center;
+ margin: 8px 0;
+ padding: 10px 20px;
+ font-style: italic;
+}
+
+.footer-buttons {
+ display: flex;
+ justify-content: center;
+ width: 100%;
+}
+
+.footer-buttons a {
+ color: #aaa;
+}
+
+.footer-buttons a:hover, .footer-buttons a:active {
+ color: #e81841;
+}
+
+.footer-buttons .button {
+ height: 18px;
+ line-height: 18px;
+ font-size: small;
+ text-align: center;
+}
+
+.footer-buttons .button .fab, .footer-buttons .button .fas, .footer-buttons .button .far {
+ padding-right: 6px;
+}
+
+.footer-logo {
+ height: 33px;
+ font-family: "Carter One", sans-serif;
+ font-size: 14px;
+ line-height: 33px;
+ text-align: center;
+ padding-top: 1px;
+}
+
+@media (min-width: 690px) {
+ .footer-buttons {
+	height: 34px;
+ }
+
+ .footer-buttons .button {
+	width: 100px;
+	padding: 8px;
+ }
+
+ .footer-logo {
+	width: 100px;
+ }
+
+ .fl-tall {
+	display: none;
+ }
+}
+
+@media (max-width: 690px) {
+ .footer-buttons {
+	flex-direction: column;
+ }
+
+ .footer-buttons .button {
+	width: 100%;
+	padding: 8px 0;
+ }
+
+ .footer-logo {
+	width: 100%;
+ }
+
+ .fl-wide {
+	display: none;
+ }
 }
 
 /*# sourceMappingURL=style.css.map */
