@@ -11,6 +11,8 @@ $blue-grey2: #263238;
 $off-white: #e5e5e5;
 $off-black: #161616;
 
+$footer-text: #aaa;
+
 /* Font References
   ========================================================================= */
 $font_header: "Carter One", sans-serif;
@@ -143,7 +145,7 @@ html, body, p, em, span, a, img, div, button, input, label, h1, h2, h3, h4, h5, 
 }
 
 p, span, h1, h2, h3, h4, h5, h6 {
-	.fas, .far {
+	.fas, .far, .fab {
 		margin-right: 0.4em;
 	}
 }
@@ -187,7 +189,7 @@ img {
 	&:active {
 		background-color: $off-white;
 	}
-	.fas, .far {
+	.fas, .far, .fab {
 		padding-right: 5px;
 	}
 }
@@ -230,7 +232,7 @@ input[type=submit], input[type=reset], button {
 		background-color: $off-white;
 		color: $off-black;
 	}
-	.fas, .far {
+	.fas, .far, .fab {
 		padding-right: 5px;
 	}
 }
