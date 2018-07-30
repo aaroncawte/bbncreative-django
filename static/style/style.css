@@ -1059,7 +1059,6 @@ footer {
 	display: none;
  }
 }
-
 @media (max-width: 690px) {
  .footer-buttons {
 	flex-direction: column;
@@ -1077,6 +1076,18 @@ footer {
  .fl-wide {
 	display: none;
  }
+}
+
+#twitterLink:hover {
+ color: #1da1f2;
+}
+
+#instagramLink:hover {
+ color: #833ab4;
+}
+
+#linkedinLink:hover {
+ color: #0077b5;
 }
 
 /*# sourceMappingURL=style.css.map */
