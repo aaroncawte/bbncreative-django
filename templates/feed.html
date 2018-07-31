@@ -2,7 +2,7 @@
 {% load static %}
 {% block body-content %}
     {% if feed.brand_color_2|length > 0 %}
-        <div class="window window-title"
+        <div class="window window-first"
              style="background-image: linear-gradient(135deg, #{{ feed.brand_color_1 }}, #{{ feed.brand_color_2 }});">
     {% else %}
         <div class="window window-first" style="background-color: #{{ project.brand_color_1 }};">
