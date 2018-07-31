@@ -116,12 +116,12 @@ nav {
 	padding: 0 14px;
 	cursor: pointer;
 	&:hover {
-		.menu-label {
+		.menu-icon, .menu-label {
 			color: $bbn1;
 		}
 	}
 	&:active {
-		.menu-label {
+		.menu-icon, .menu-label {
 			color: $bbn5;
 		}
 	}
@@ -137,14 +137,11 @@ nav {
 
 .menu-close {
 	color: $blue-grey1;
-	justify-content: center;
 	border-top: 1px solid $off-white;
-	.far, .fas, .fab {
-		line-height: 36px;
-		font-size: 20px;
-	}
 	&:hover, &:active {
-		color: $blue-grey2;
+		.menu-icon, .menu-label {
+			color: $blue-grey2;
+		}
 	}
 }
 

@@ -118,7 +118,6 @@ a.no-text-decoration:link, a.no-text-decoration:hover, a.no-text-decoration:acti
 html::-moz-selection, body::-moz-selection, p::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
-
 html::selection, body::selection, p::selection, strong::selection, em::selection, span::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
   background-color: #cc2369;
   color: #fff; }
@@ -386,9 +385,11 @@ nav {
   line-height: 36px;
   padding: 0 14px;
   cursor: pointer; }
-  .menu-listing:hover .menu-label, .menu-close:hover .menu-label {
+
+.menu-listing:hover .menu-icon, .menu-listing:hover .menu-label, .menu-close:hover .menu-icon, .menu-close:hover .menu-label {
     color: #e81841; }
-  .menu-listing:active .menu-label, .menu-close:active .menu-label {
+
+.menu-listing:active .menu-icon, .menu-listing:active .menu-label, .menu-close:active .menu-icon, .menu-close:active .menu-label {
     color: #ff1a36; }
 
 .menu-listing-offset {
@@ -400,14 +401,9 @@ nav {
 
 .menu-close {
   color: #455a64;
-  justify-content: center;
   border-top: 1px solid #e5e5e5; }
 
-.menu-close .far, .menu-close .fas, .menu-close .fab {
- line-height: 36px;
- font-size: 20px;
-}
-  .menu-close:hover, .menu-close:active {
+.menu-close:hover .menu-icon, .menu-close:hover .menu-label, .menu-close:active .menu-icon, .menu-close:active .menu-label {
     color: #263238; }
 
 .menu-icon, .menu-label {
