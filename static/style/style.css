@@ -2,16 +2,18 @@
 
 bbncreative CSS by Aaron Cawte.
 
-This stylesheet utilises the RDVS structure as specified below.
+This stylesheet utilises the RDS structure as specified below.
 
-| Resources       | Definitions              | Visuals                 | Structure         |
-|=================|==========================|=========================|===================|
-| - Font Imports  | - Colour codes           | - Aesthetic styling     | - Shape and size  |
-| - Image URLs    | - CSS Resets & Defaults  | - Borders, backgrounds  | - Positioning     |
-|                 | - SCSS Mixins            |                         | - Visibility      |
+| Resources       | Definitions              | Structure         |
+|=================|==========================|===================|
+| - Font Imports  | - Colour codes           | - Shape and size  |
+| - Image URLs    | - CSS Resets & Defaults  | - Positioning     |
+|                 | - SCSS Mixins            | - Visibility      |
 
-The dependency of these elements is M <- R <- D <- V.
-Structure should function independently of the others, and show a legible website without any styling by itself.
+The dependency of these elements is R <- D <- S.
+- Resources defines external references to fonts, static images etc.
+- Definitions styles standard elements (e.g. input fields).
+- Structure defines custom elements for the page and structures is visually.
 
  */
 /* Brand Fonts */
@@ -1077,7 +1079,6 @@ footer {
 	display: none;
  }
 }
-
 #twitterLink:hover {
  color: #1da1f2;
 }
