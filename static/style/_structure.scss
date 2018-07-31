@@ -528,9 +528,13 @@ nav {
 	background-color: $off-white;
 	.wrapper-1200 {
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-evenly;
+		flex-direction: column;
+		.project-cards, .feed-cards {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
 	}
 }
 

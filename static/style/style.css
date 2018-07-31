@@ -810,6 +810,11 @@ nav {
 
 .window-cards .wrapper-1200 {
  display: flex;
+ flex-direction: column;
+}
+
+.window-cards .wrapper-1200 .project-cards, .window-cards .wrapper-1200 .feed-cards {
+ display: flex;
  flex-direction: row;
  flex-wrap: wrap;
  justify-content: space-evenly;
