@@ -171,7 +171,7 @@ class Asset(models.Model):
         on_delete=models.CASCADE
     )
     # Add assets to feeds (e.g. web design)
-    feeds = models.ManyToManyField(Feed)
+    feeds = models.ManyToManyField(Feed, blank=True)
     # Creation time for ordering
     created_at = models.DateTimeField(
         auto_now_add=True
