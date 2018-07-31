@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.db import DataError
 from django.shortcuts import render, redirect
@@ -6,10 +7,15 @@ from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset
 
 
 def index(request):
+    top_projects = Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS]
+    top_feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
     return render(
         request,
         "index.html",
-        {}
+        {
+            "front_page_projects": top_projects,
+            "front_page_feeds": top_feeds,
+        }
     )
 
 

@@ -1,14 +1,13 @@
-from .models import Project, Feed
+from django.conf import settings
 
-NUM_TOP_PROJECTS = 3
-NUM_TOP_FEEDS = 3
+from .models import Project, Feed
 
 
 def top_projects(context):
-    projects = Project.objects.order_by('-date_complete')[:NUM_TOP_PROJECTS]
+    projects = Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS]
     return {'top_projects': projects}
 
 
 def top_feeds(context):
-    feeds = Feed.objects.filter(protected=False)[:NUM_TOP_FEEDS]
+    feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
     return {'top_feeds': feeds}
