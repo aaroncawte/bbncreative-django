@@ -58,7 +58,7 @@ class Project(models.Model):
     )
     brand_color_1 = models.CharField(
         max_length=6,
-        default="ffffff"
+        default="455a64"  # blue-grey1
     )
     brand_color_2 = models.CharField(
         max_length=6,
@@ -105,6 +105,19 @@ class Feed(models.Model):
     )
     protected = models.BooleanField(
         default=True
+    )
+    hero = models.ImageField(
+        upload_to=get_file_path,
+        max_length=255,
+        blank=True
+    )
+    brand_color_1 = models.CharField(
+        max_length=6,
+        default="455a64"  # blue-grey1
+    )
+    brand_color_2 = models.CharField(
+        max_length=6,
+        blank=True
     )
 
     def __str__(self):
