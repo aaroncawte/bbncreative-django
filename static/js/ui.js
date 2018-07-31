@@ -14,14 +14,13 @@ function stringifyPixel(val) {
 /* Automatic first/hero window height
    ======================================================================== */
 function sizeHeroWindow() {
-    const absoluteMinimum = 400;
+    const firstWindowHeight = 400;
     const offset = 100 + 80;
-    let windowHeight = document.body.clientHeight;
+    let windowHeight = window.innerHeight;
 
-    let firstWindowHeight = absoluteMinimum;
     $(".window-first").css("min-height", stringifyPixel(firstWindowHeight));
 
-    let heroWindowHeight = Math.max(windowHeight - offset, absoluteMinimum);
+    let heroWindowHeight = Math.max(windowHeight - offset, firstWindowHeight);
     $(".window-hero").css("min-height", stringifyPixel(heroWindowHeight));
 }
 
