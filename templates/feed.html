@@ -1,7 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body-content %}
-    <div class="window window-first">
-        <div class="first-hero-image"></div>
+    {% if feed.brand_color_2|length > 0 %}
+        <div class="window window-title"
+             style="background-image: linear-gradient(135deg, #{{ feed.brand_color_1 }}, #{{ feed.brand_color_2 }});">
+    {% else %}
+        <div class="window window-first" style="background-color: #{{ project.brand_color_1 }};">
+    {% endif %}
+<div class="first-hero-image" style="background-image: url('{% get_media_prefix %}{{ feed.hero }}');"></div>
         <div class="wrapper-1200">
             <a href="/feeds" class="no-text-decoration">
                 <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Feeds</button>
