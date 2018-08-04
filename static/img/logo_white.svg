@@ -1,0 +1,13 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  xml:space="preserve" width="600" height="600">
+
+  <polyline
+    points="209,435 470,300 160,125 180,440 180,150 420,300 209,435"
+    stroke="#fff"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    stroke-width="10"
+    fill="#fff"
+  />
+
+</svg>
