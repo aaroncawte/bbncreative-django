@@ -230,11 +230,12 @@ nav {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	background-color: white;
 }
 
 .window-title, .window-first, .window-hero {
 	padding-top: $nav-height;
-	background-color: $blue-grey1;
+	background-color: transparent;
 	color: #fff;
 	.wrapper-1200 {
 		display: flex;
@@ -251,7 +252,7 @@ nav {
 
 .window-title {
 	min-height: 220px;
-	background: $bbn1 url('/static/img/subtle/inspiration-geometry.png');
+	background: $bbn1 url($texture-geometry);
 	h1 {
 		margin-top: 0.3em;
 		text-align: center;
@@ -706,13 +707,60 @@ nav {
 	font-family: $font_sans;
 }
 
+/* Hero Video
+	 ======================================================================== */
+#videoLayerBox {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background: $off-black url($texture-geometry);
+}
+
+.videoLayer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#videoLayerMedia {
+	z-index: 1;
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: brightness(80%);
+	}
+}
+
+#videoLayerTint {
+	z-index: 2;
+	background-color: $bbn4;
+	opacity: 0.5;
+}
+
+#videoLayerFrame {
+	z-index: 3;
+	background: transparent center no-repeat url($asset-play-device);
+	-webkit-background-size: 350%;
+	background-size: 350%;
+	opacity: 0.4;
+}
+
 /* Footer and components
 	 ======================================================================== */
 footer {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	margin: 25px 0 15px;
+	padding: 25px 0 15px;
+	background-color: white;
 }
 
 .footer-description, .footer-buttons {
