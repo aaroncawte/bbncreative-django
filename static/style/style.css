@@ -1021,7 +1021,7 @@ nav {
  width: 100%;
  height: 100%;
  z-index: -1;
- background: #161616 url("/static/img/subtle/inspiration-geometry.png");
+ background: #e8185f url("/static/img/subtle/inspiration-geometry.png");
 }
 
 .videoLayer {
@@ -1046,7 +1046,7 @@ nav {
 #videoLayerTint {
  z-index: 2;
  background-color: #e8185f;
- opacity: 0.5;
+ opacity: 0.75;
 }
 
 #videoLayerFrame {
@@ -1068,14 +1068,14 @@ nav {
 
 .heroHeadline {
  position: relative;
- padding: 25px 0;
+ padding: 25px 0 10px;
 }
 
 .heroTagline {
  box-sizing: border-box;
- padding: 20px 5%;
+ padding: 20px 2%;
  line-height: 30px;
- font-size: 20px;
+ font-size: 18px;
  text-shadow: 0 2px 2px rgba(22, 22, 22, 0.4);
  border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
@@ -1094,13 +1094,13 @@ nav {
 }
 
 #textPress {
- bottom: 50%;
+ bottom: 45%;
  left: 0;
  text-align: right;
 }
 
 #textPlay {
- top: 50%;
+ top: 45%;
  right: 0;
  text-align: left;
 }
@@ -1116,7 +1116,6 @@ nav {
 	font-size: 96px;
  }
 }
-
 @media (max-width: 690px) {
  .heroHeadline {
 	height: 200px;
