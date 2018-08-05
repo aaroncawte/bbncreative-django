@@ -23,7 +23,10 @@ def aaron(request):
     return render(
         request,
         "aaron.html",
-        {}
+        {
+            "page_title": "About Aaron",
+            "show_back_to_home": True,
+        }
     )
 
 
@@ -31,7 +34,10 @@ def contact(request):
     return render(
         request,
         "contact.html",
-        {}
+        {
+            "page_title": "Get In Touch",
+            "show_back_to_home": True,
+        }
     )
 
 
@@ -39,7 +45,10 @@ def test_page(request):
     return render(
         request,
         "test.html",
-        {}
+        {
+            "page_title": "Test Page",
+            "show_back_to_home": True,
+        }
     )
 
 
