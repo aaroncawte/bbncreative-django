@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block body-content %}
+    <div class="window window-title">
+        <div class="wrapper-1200">
+            {% if show_back_to_home %}
+                <a href="/" class="no-text-decoration">
+                    <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Home</button>
+                </a>
+            {% endif %}
+            <h1>{{ page_title }}</h1>
+        </div>
+    </div>
+    {% block window-content %}{% endblock %}
+{% endblock %}
