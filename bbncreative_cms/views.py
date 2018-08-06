@@ -10,7 +10,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
 
-from bbncreative import secrets
 from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed, Credit
 from .forms import ContactForm
 
@@ -49,7 +48,7 @@ def contact(request):
             recaptcha_response = request.POST.get('g-recaptcha-response')
             url = 'https://www.google.com/recaptcha/api/siteverify'
             values = {
-                'secret': secrets.RECAPTCHA_SECRET,
+                'secret': os.environ.get("RECAPTCHA_SECRET"),
                 'response': recaptcha_response
             }
             data = parse.urlencode(values).encode("utf-8")
@@ -94,7 +93,7 @@ def contact(request):
             "page_title": "Get In Touch",
             "show_back_to_home": True,
             "form": form,
-            "recaptcha_site_key": secrets.RECAPTCHA_SITE_KEY,
+            "recaptcha_site_key": os.environ.get("RECAPTCHA_SITE_KEY"),
         }
     )
 
