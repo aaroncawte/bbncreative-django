@@ -528,6 +528,7 @@ nav {
 }
 
 .window-hero {
+ position: relative;
  justify-content: center;
 }
 
@@ -1059,7 +1060,7 @@ nav {
 
 /* Press Play Hero
    ======================================================================== */
-.heroHeadline, .heroTagline, .heroScroll {
+.heroHeadline, .heroTagline {
  width: 600px;
  max-width: 100%;
  margin: 0 auto;
@@ -1081,9 +1082,27 @@ nav {
 }
 
 .heroScroll {
- min-height: 30px;
- margin-top: 20px;
+ position: absolute;
+ bottom: 20px;
+ width: 100%;
+ height: 50px;
+ line-height: 50px;
+ margin: 0;
+ text-align: center;
  color: rgba(255, 255, 255, 0.6);
+}
+
+.heroScroll p {
+ margin: 0;
+ cursor: pointer;
+}
+
+.heroScroll p:hover {
+ color: #fff;
+}
+
+.heroScroll p i {
+ margin: 0 8px;
 }
 
 #textPress, #textPlay {
