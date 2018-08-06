@@ -81,8 +81,8 @@ def contact(request):
 
     #       else:
     #         # return false with reCaptcha error
-    # else:
-    #     # nothing
+        # else:
+        #     # nothing
 
     else:
         form = ContactForm()
