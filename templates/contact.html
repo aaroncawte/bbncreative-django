@@ -4,6 +4,11 @@
         <div class="wrapper-1200">
             <p>Paragraph inlcuding a <a href="/">hyperlink</a>, <strong>strong phrase</strong>, and <em>emphasised
                 phrase</em>!</p>
+            <form action="/contact" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Send Message"/>
+            </form>
         </div>
     </div>
 {% endblock %}
