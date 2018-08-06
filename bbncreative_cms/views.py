@@ -1,9 +1,13 @@
+import json
+from urllib import request as urlrequest, parse
+
 from django.conf import settings
 from django.contrib import messages
 from django.db import DataError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
+from bbncreative import secrets
 from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed, Credit
 from .forms import ContactForm
 
@@ -37,8 +41,27 @@ def contact(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            return HttpResponseRedirect("/contact-thanks")
 
+            ''' reCaptcha Validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': secrets.RECAPTCHA_SECRET,
+                'response': recaptcha_response
+            }
+            data = parse.urlencode(values).encode("utf-8")
+            req = urlrequest.Request(url)
+            response = urlrequest.urlopen(req, data)
+            result = json.load(response)
+            ''' End reCaptcha validation'''
+
+            if result["success"]:
+                # proceed with form submission
+                return HttpResponseRedirect("/contact-thanks")
+        #     else:
+        #         # return false with reCaptcha error
+        # else:
+        #     # nothing
     else:
         form = ContactForm()
 
@@ -46,9 +69,10 @@ def contact(request):
         request,
         "contact.html",
         {
-            "form": form,
             "page_title": "Get In Touch",
             "show_back_to_home": True,
+            "form": form,
+            "recaptcha_site_key": secrets.RECAPTCHA_SITE_KEY,
         }
     )
 
