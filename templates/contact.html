@@ -2,11 +2,15 @@
 {% block window-content %}
     <div class="window">
         <div class="wrapper-1200">
-            <p>Paragraph inlcuding a <a href="/">hyperlink</a>, <strong>strong phrase</strong>, and <em>emphasised
-                phrase</em>!</p>
+            <p>Interested in working together, or just want to get in touch? Fill in this form and I'll be back in touch
+                as quick as possible!</p>
             <form action="/contact" method="POST">
                 {% csrf_token %}
                 {{ form }}
+
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+
                 <input type="submit" value="Send Message"/>
             </form>
         </div>
