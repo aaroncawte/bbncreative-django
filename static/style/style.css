@@ -1156,7 +1156,7 @@ footer {
  background-color: white;
 }
 
-.footer-description, .footer-buttons {
+.footer-description, .footer-description a, .footer-buttons {
   font-size: small;
   color: #aaa;
  line-height: 18px;

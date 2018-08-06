@@ -41,6 +41,17 @@ def contact(request):
     )
 
 
+def privacy(request):
+    return render(
+        request,
+        "privacy.html",
+        {
+            "page_title": "Privacy Policy",
+            "show_back_to_home": True,
+        }
+    )
+
+
 def test_page(request):
     return render(
         request,
