@@ -35,6 +35,7 @@ jobs:
             . venv/bin/activate
             pip install -r requirements.txt
             nodeenv -p --node=8.11.3
+            npx create-ava --next
 
       - save_cache:
           paths:

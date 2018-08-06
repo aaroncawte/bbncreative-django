@@ -1,8 +1,11 @@
 # Python
 __pycache__/
 
+# Node.js
+node_modules/
+
 # PyCharm
-.idea/
+*.idea/
 
 # bbncreative_cms logging
 django_debug.log
