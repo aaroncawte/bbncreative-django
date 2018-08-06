@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.contrib import messages
 from django.db import DataError
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed, Credit
+from .forms import ContactForm
 
 
 def index(request):
@@ -31,12 +33,33 @@ def aaron(request):
 
 
 def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            return HttpResponseRedirect("/contact-thanks")
+
+    else:
+        form = ContactForm()
+
     return render(
         request,
         "contact.html",
         {
+            "form": form,
             "page_title": "Get In Touch",
             "show_back_to_home": True,
+        }
+    )
+
+
+def contact_thanks(request):
+    return render(
+        request,
+        "contactThanks.html",
+        {
+            "page_title": "Thank you!",
+            "show_back_to_home": True
         }
     )
 
