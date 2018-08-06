@@ -13,15 +13,17 @@ function stringifyPixel(val) {
 
 /* Automatic first/hero window height
    ======================================================================== */
-function sizeHeroWindow() {
-    const firstWindowHeight = 400;
-    const offset = 100 + 80;
+const firstWindowHeight = 400;
+const heroPeekOffset = 100 + 80;
+
+function heroWindowHeight() {
     let windowHeight = window.innerHeight;
+    return Math.max(windowHeight - heroPeekOffset, firstWindowHeight);
+}
 
+function sizeFirstWindows() {
     $(".window-first").css("min-height", stringifyPixel(firstWindowHeight));
-
-    let heroWindowHeight = Math.max(windowHeight - offset, firstWindowHeight);
-    $(".window-hero").css("min-height", stringifyPixel(heroWindowHeight));
+    $(".window-hero").css("min-height", stringifyPixel(heroWindowHeight()));
 }
 
 
@@ -50,7 +52,7 @@ function sizeHeroImage() {
 /* UI Functions for window resize
    ======================================================================== */
 $(window).on('resize', function () {
-    sizeHeroWindow();
+    sizeFirstWindows();
     sizeHeroImage();
 
 });
@@ -59,7 +61,7 @@ $(function () {
 
     /* UI Functions on page load
    ======================================================================== */
-    sizeHeroWindow();
+    sizeFirstWindows();
     sizeHeroImage();
 
 
@@ -110,5 +112,14 @@ $(function () {
     $('.window').on('click', function () {
         $allMenus.addClass("menu-hidden");
         $allButtons.removeClass("active-button");
+    });
+
+    /* Scroll Down Button
+   ======================================================================== */
+    $('#heroScrollTrigger').on('click', function () {
+        $("html, body").animate({
+            scrollTop: stringifyPixel(heroWindowHeight())
+        }, 200);
+        console.log("420 scroll it");
     });
 });
