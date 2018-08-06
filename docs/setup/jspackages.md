@@ -4,6 +4,7 @@ In order to manage the project's Javascript packages and testing in the same iso
 
 1. Install nodeenv-1.3.2 to manage Node.js: `pip install nodeenv`
 2. Enter `nodeenv -p --node={version}` to bind to existing Python environment
+3. Enter `npx create-ava --next` to set up Ava
 
 ## References
 - [nodeenv on GitHub](https://github.com/ekalinin/nodeenv)
