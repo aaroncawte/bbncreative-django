@@ -6,20 +6,21 @@ A Django-powered server and custom CMS for the bbncreative website, built in sum
 ## Stack
 Primary tools and requirements used for this project.
 
-| Function | Tool | Version |
-|:--|:--|:--|
-| Database | PostgreSQL | 10.4 |
-| Language | Python | 3.7.0 |
+| Function | Tool | Version | Updated |
+|:--|:--|:--|:--|
+| Database | PostgreSQL | 10.4 | 06.08.2018 |
+| Language | Python | 3.7.0 | 06.08.2018 |
 
 ### Python Packages
 This table replicates the contents of [requirements.txt](requirements.txt).
 
-| Package | Version |
-|:--|:--|
-| nodeenv | 1.3.2 |
-| Pillow | 5.2.0 |
-| psycopg2 | 2.7.5 |
-| pytz | 2018.5 |
+| Package | Version | Purpose | Updated |
+|:--|:--|:--|:--|
+| Django | 2.1 | Web Server | 06.08.2018 |
+| pytz | 2018.5 | World timezone definitions | 06.08.2018 |
+| Pillow | 5.2.0 | Fork of PIL, the Python Imaging Library | 06.08.2018 |
+| psycopg2 | 2.7.5 | PostgreSQL Adapter | 06.08.2018 |
+| nodeenv | 1.3.2 | Syncs node environment with virtualenv | 06.08.2018 |
 
 
 ## Setup

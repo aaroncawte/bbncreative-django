@@ -15,9 +15,13 @@ Getting set up with `python`, `pip` and `virtualenv` is trivial and can be follo
 ## Using Virtual Environments
 Virtual Environments are stored in `C:\Users\Aaron\Envs` on Windows. This means dependencies are stored in these folders (so they can get pretty big), as well as management files such as the `activate.bat` script.
 
-- Type `workon bbn-env` to enter the `bbn-env` virtual environment from anywhere
-- Use `pip freeze > requirements.txt` to update requirements file
-- Use `pip install requirements.txt` to install requirements
+| Task | Command | Description |
+|:--|:--|:--|
+| Create | `mkvirtualenv {name} -p {pythonpath} -r requirements.txt` | Type from the project directory to create a virtualenv |
+| Remove | `rmvirtualenv {name}` | Type to remove the virtualenv (but not the project files) |
+| Use | `workon bbn-env` |  Type to enter the virtualenv from anywhere |
+| Save requirements | `pip freeze > requirements.txt` | Use to update requirements file |
+| Load requirements | `pip install requirements.txt` | Use to install requirements |
 
 *If you run software without activating the virtual environment, it will fall back to global installations (and subsequently break, probably).*
 
