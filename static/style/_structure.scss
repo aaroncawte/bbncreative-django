@@ -562,9 +562,14 @@ nav {
 	}
 	h2 {
 		width: fit-content;
+		max-width: 100%;
 		margin: 0 auto 4px;
 		border-bottom: 4px solid $off-white;
 		height: 34px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		display: block;
 	}
 }
 
