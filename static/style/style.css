@@ -862,9 +862,14 @@ nav {
 
 .card h2, .project-card h2, .feed-card h2 {
  width: fit-content;
+ max-width: 100%;
  margin: 0 auto 4px;
  border-bottom: 4px solid #e5e5e5;
  height: 34px;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+ overflow: hidden;
+ display: block;
 }
 
 @media (max-width: 460px) {
