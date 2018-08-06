@@ -1,9 +1,16 @@
+import json
+from urllib import request as urlrequest, parse
+
 from django.conf import settings
 from django.contrib import messages
+# For the contact form
+from django.core.mail import EmailMessage
 from django.db import DataError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.template.loader import get_template
 
+from bbncreative import secrets
 from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed, Credit
 from .forms import ContactForm
 
@@ -37,7 +44,45 @@ def contact(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            return HttpResponseRedirect("/contact-thanks")
+
+            # reCaptcha Validation
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': secrets.RECAPTCHA_SECRET,
+                'response': recaptcha_response
+            }
+            data = parse.urlencode(values).encode("utf-8")
+            req = urlrequest.Request(url)
+            response = urlrequest.urlopen(req, data)
+            result = json.load(response)
+
+            # On successful validation
+            if result["success"]:
+                template = get_template('contact_template.txt')
+                context = {
+                    'contact_name': form.cleaned_data['name'],
+                    'contact_email': form.cleaned_data['email'],
+                    'form_content': form.cleaned_data['body'],
+                }
+                content = template.render(context)
+
+                email = EmailMessage(
+                    subject=form.cleaned_data['subject'],
+                    body=content,
+                    from_email='aaron@bbncreative.co',
+                    to=['aaron@bbncreative.co'],
+                    reply_to=[form.cleaned_data['email']],
+                    headers={'Content-Type': 'text/plain'},
+                )
+                email.send()
+
+                return HttpResponseRedirect("/contact-thanks")
+
+    #       else:
+    #         # return false with reCaptcha error
+    # else:
+    #     # nothing
 
     else:
         form = ContactForm()
@@ -46,9 +91,10 @@ def contact(request):
         request,
         "contact.html",
         {
-            "form": form,
             "page_title": "Get In Touch",
             "show_back_to_home": True,
+            "form": form,
+            "recaptcha_site_key": secrets.RECAPTCHA_SITE_KEY,
         }
     )
 
