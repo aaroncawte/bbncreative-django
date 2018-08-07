@@ -31,7 +31,7 @@ def index(request):
 def aaron(request):
     return render(
         request,
-        "aaron.html",
+        "static_pages/aaron.html",
         {
             "page_title": "About Aaron",
             "show_back_to_home": True,
@@ -89,7 +89,7 @@ def contact(request):
 
     return render(
         request,
-        "contact.html",
+        "static_pages/contact.html",
         {
             "page_title": "Get In Touch",
             "show_back_to_home": True,
@@ -102,7 +102,7 @@ def contact(request):
 def contact_thanks(request):
     return render(
         request,
-        "contactThanks.html",
+        "static_pages/contactThanks.html",
         {
             "page_title": "Thank you!",
             "show_back_to_home": True
@@ -113,7 +113,7 @@ def contact_thanks(request):
 def privacy(request):
     return render(
         request,
-        "privacy.html",
+        "static_pages/privacy.html",
         {
             "page_title": "Privacy Policy",
             "show_back_to_home": True,
@@ -124,7 +124,7 @@ def privacy(request):
 def test_page(request):
     return render(
         request,
-        "test.html",
+        "static_pages/test.html",
         {
             "page_title": "Test Page",
             "show_back_to_home": True,
