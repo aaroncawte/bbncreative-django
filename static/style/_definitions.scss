@@ -16,6 +16,7 @@ $footer-text: #aaa;
 $instagram-color: #833ab4;
 $twitter-color: #1da1f2;
 $linkedin-color: #0077b5;
+$github-color: #333;
 
 $logo-background: black;
 $logo-colour: white;
@@ -142,7 +143,7 @@ a.no-text-decoration {
 
 /* Element selection
    ======================================================================== */
-html, body, p, strong, em, span, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
+html, body, p, i, strong, em, span, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
 	&::-moz-selection {
 		background-color: $bbn2;
 		color: #fff;
