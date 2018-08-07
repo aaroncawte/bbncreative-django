@@ -119,6 +119,7 @@ h5, h6 {
 
 p {
 	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 a {
@@ -141,7 +142,7 @@ a.no-text-decoration {
 
 /* Element selection
    ======================================================================== */
-html, body, p, strong, em, span, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
+html, body, p, strong, em, span, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
 	&::-moz-selection {
 		background-color: $bbn2;
 		color: #fff;
@@ -203,7 +204,7 @@ img {
 }
 
 input[type=text], input[type=email], input[type=tel], input[type=number],
-input[type=search], input[type=password], select {
+input[type=search], input[type=password], select, textarea {
 	@include standard-input;
 	@include drop-shadow($clickable: false);
 	border: 1px solid $off-white;
@@ -215,6 +216,9 @@ input[type=date], input[type=datetime-local], input[type=week], input[type=month
 	@include drop-shadow($clickable: false);
 }
 
+textarea {
+	height: auto;
+}
 label {
 	display: block;
 	margin: 10px 0 0;

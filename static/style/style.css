@@ -98,7 +98,9 @@ h5, h6 {
   font-style: italic; }
 
 p {
-  margin-top: 0.5em; }
+ margin-top: 0.5em;
+ margin-bottom: 0.5em;
+}
 
 a {
   color: initial;
@@ -115,10 +117,11 @@ a.no-text-decoration:link, a.no-text-decoration:hover, a.no-text-decoration:acti
 
 /* Element selection
    ======================================================================== */
-html::-moz-selection, body::-moz-selection, p::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+html::-moz-selection, body::-moz-selection, p::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
-html::selection, body::selection, p::selection, strong::selection, em::selection, span::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+
+html::selection, body::selection, p::selection, strong::selection, em::selection, span::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
   background-color: #cc2369;
   color: #fff; }
 
@@ -135,7 +138,7 @@ img {
 /* Form Elements
 	 ======================================================================== */
 input[type=text], input[type=email], input[type=tel], input[type=number],
-input[type=search], input[type=password], select {
+input[type=search], input[type=password], select, textarea {
   box-sizing: border-box;
   height: 36px;
   min-width: 120px;
@@ -173,6 +176,10 @@ input[type=date], input[type=datetime-local], input[type=week], input[type=month
   margin: 8px 0 9px;
   -webkit-appearance: none;
   box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px; }
+
+textarea {
+ height: auto;
+}
 
 label {
   display: block;
@@ -997,7 +1004,8 @@ nav {
 .centre-bio {
   box-sizing: border-box;
   width: calc(100% - 100px);
-  margin: 30px 50px;
+ max-width: 800px;
+ margin: 30px auto;
   padding: 10px 5px;
   color: #263238;
   text-align: center;
@@ -1006,9 +1014,9 @@ nav {
 }
 
 .centre-bio p {
- font-family: "Noto Serif", serif;
+ font-family: "Noto Sans", sans-serif;
  font-size: 20px;
- line-height: 22px;
+ line-height: 28px;
 }
 
 .protected-warning {
@@ -1151,6 +1159,25 @@ nav {
 	font-size: 64px;
  }
 }
+
+/* Contact Page
+	 ======================================================================== */
+#contactForm {
+ width: 800px;
+ max-width: 100%;
+ margin: 0 auto;
+}
+
+#contactForm input, #contactForm textarea {
+ width: 100%;
+ margin-bottom: 30px;
+}
+
+#contactForm .g-recaptcha, #contactForm input[type="submit"] {
+ width: 304px;
+ margin: 10px 0 10px auto;
+}
+
 /* Footer and components
 	 ======================================================================== */
 footer {
