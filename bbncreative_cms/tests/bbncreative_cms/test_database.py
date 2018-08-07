@@ -114,7 +114,34 @@ class DatabaseTestCases(TestCase):
             action="Product Tester"
         )
 
-        self.assertIs(models.Credit.objects.filter(project=proj).count(), 3)
+        self.assertIs(models.Credit.objects.filter(project=proj).count(),
+                      3)  # 3 credits are associated with this project
+        self.assertIs(proj.count_collaborators(), 3)  # 3 collaborators are found from all credits
+
+    def test_2_credits_1_collaborator(self):
+        proj = models.Project.objects.create(name="Test Project")
+
+        collab1 = models.Collaborator.objects.create(
+            name="Alice",
+            url="https://bbncreative.co/alice",
+            twitter="bbn_alice"
+        )
+
+        credit1 = models.Credit.objects.create(
+            collaborator=collab1,
+            project=proj,
+            action="Lead Developer"
+        )
+
+        credit2 = models.Credit.objects.create(
+            collaborator=collab1,
+            project=proj,
+            action="Product Design"
+        )
+
+        self.assertIs(models.Credit.objects.filter(project=proj).count(), 2)
+        self.assertIs(proj.count_collaborators(), 1)
+
 
     def test_project_with_3_different_assets(self):
         proj = models.Project.objects.create(name="Test Project")
