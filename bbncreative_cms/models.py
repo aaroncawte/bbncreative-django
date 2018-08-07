@@ -81,6 +81,13 @@ class Project(models.Model):
         return ImageAsset.objects.filter(parent=self).count() + EmbeddedAsset.objects.filter(parent=self).count() + \
                TextAsset.objects.filter(parent=self).count()
 
+    def count_collaborators(self):
+        credits_list = Credit.objects.filter(project=self)
+        found_collaborators = set()
+        for c in credits_list:
+            found_collaborators.add(c.collaborator)
+        return len(found_collaborators)
+
     def __str__(self):
         return self.name + " is a project for " + self.client_name + "."
 
