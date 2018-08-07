@@ -699,12 +699,20 @@ nav {
 	padding: 10px 5px;
 	color: $blue-grey2;
 	text-align: center;
-	border-top: 1px solid $off-white;
-	border-bottom: 1px solid $off-white;
+	border-top: 2px solid $off-white;
+	border-bottom: 2px solid $off-white;
 	p {
 		font-family: $font_sans;
-		font-size: 20px;
-		line-height: 28px;
+		font-size: 18px;
+		line-height: 30px;
+		a {
+			display: inline-block;
+			word-break: keep-all;
+		}
+		i {
+			font-size: 16px;
+			margin: 0 5px;
+		}
 	}
 }
 
@@ -854,9 +862,13 @@ nav {
 		width: 100%;
 		margin-bottom: 30px;
 	}
-	.g-recaptcha, input[type="submit"] {
+	.g-recaptcha {
 		width: 304px;
 		margin: 10px 0 10px auto;
+	}
+	input[type="submit"] {
+		width: 304px;
+		margin-left: auto;
 	}
 }
 /* Footer and components
@@ -956,4 +968,8 @@ footer {
 
 #linkedinLink:hover {
 	color: $linkedin-color;
+}
+
+#githubLink:hover {
+	color: $github-color;
 }

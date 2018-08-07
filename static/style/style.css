@@ -117,11 +117,11 @@ a.no-text-decoration:link, a.no-text-decoration:hover, a.no-text-decoration:acti
 
 /* Element selection
    ======================================================================== */
-html::-moz-selection, body::-moz-selection, p::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+html::-moz-selection, body::-moz-selection, p::-moz-selection, i::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
 
-html::selection, body::selection, p::selection, strong::selection, em::selection, span::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+html::selection, body::selection, p::selection, i::selection, strong::selection, em::selection, span::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
   background-color: #cc2369;
   color: #fff; }
 
@@ -1009,14 +1009,24 @@ nav {
   padding: 10px 5px;
   color: #263238;
   text-align: center;
-  border-top: 1px solid #e5e5e5;
- border-bottom: 1px solid #e5e5e5;
+ border-top: 2px solid #e5e5e5;
+ border-bottom: 2px solid #e5e5e5;
 }
 
 .centre-bio p {
  font-family: "Noto Sans", sans-serif;
- font-size: 20px;
- line-height: 28px;
+ font-size: 18px;
+ line-height: 30px;
+}
+
+.centre-bio p a {
+ display: inline-block;
+ word-break: keep-all;
+}
+
+.centre-bio p i {
+ font-size: 16px;
+ margin: 0 5px;
 }
 
 .protected-warning {
@@ -1159,7 +1169,6 @@ nav {
 	font-size: 64px;
  }
 }
-
 /* Contact Page
 	 ======================================================================== */
 #contactForm {
@@ -1173,9 +1182,14 @@ nav {
  margin-bottom: 30px;
 }
 
-#contactForm .g-recaptcha, #contactForm input[type="submit"] {
+#contactForm .g-recaptcha {
  width: 304px;
  margin: 10px 0 10px auto;
+}
+
+#contactForm input[type="submit"] {
+ width: 304px;
+ margin-left: auto;
 }
 
 /* Footer and components
@@ -1283,6 +1297,10 @@ footer {
 
 #linkedinLink:hover {
  color: #0077b5;
+}
+
+#githubLink:hover {
+ color: #333;
 }
 
 /*# sourceMappingURL=style.css.map */
