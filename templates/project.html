@@ -32,17 +32,17 @@
                     <p><i class="fas fa-clock"></i>Ongoing project</p>
                 {% endif %}
                 <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
-                {% if credits|length > 1 %}
-                    <p><i class="fas fa-users"></i> {{ credits|length }} collaborators</p>
-                {% elif credits|length == 1 %}
+                {% if collaborator_count > 1 %}
+                    <p><i class="fas fa-users"></i> {{ collaborator_count }} collaborators</p>
+                {% elif collaborator_count == 1 %}
                     <p><i class="fas fa-users"></i>1 Collaborator</p>
                 {% else %}
                     <p><i class="fas fa-users"></i>Independent Work</p>
                 {% endif %}
             </div>
-            <a href="{{ project.project_url }}" class="no-text-decoration" target="_blank" rel="noopener noreferrer">
+            <a href="{{ project.cta_url }}" class="no-text-decoration" target="_blank" rel="noopener noreferrer">
                 <div class="hero-cta" style="background-color: #{{ project.brand_color_1 }}; color: #fff;"><i
-                        class="fas fa-external-link-alt"></i>Check It Out
+                        class="fas fa-external-link-alt"></i>{{ project.cta_title }}
                 </div>
             </a>
         </div>

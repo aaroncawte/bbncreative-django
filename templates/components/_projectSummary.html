@@ -17,10 +17,11 @@
                     {% endif %}
                 </div>
                 <div class="meta-stat"><i class="fas fa-user-tie"></i>{{ project.client_name }}</div>
-                {% if project.credit_count > 1 %}
-                    <div class="meta-stat"><i class="fas fa-users"></i> {{ project.credit_count }} credits</div>
-                {% elif project.credit_count == 1 %}
-                    <div class="meta-stat"><i class="fas fa-users"></i>1 Credit</div>
+                {% if project.collaborator_count > 1 %}
+                    <div class="meta-stat"><i class="fas fa-users"></i> {{ project.collaborator_count }} Collaborators
+                    </div>
+                {% elif project.collaborator_count == 1 %}
+                    <div class="meta-stat"><i class="fas fa-users"></i>1 Collaborator</div>
                 {% else %}
                     <div class="meta-stat"><i class="fas fa-users"></i>Independent Work</div>
                 {% endif %}
