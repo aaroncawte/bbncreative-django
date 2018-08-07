@@ -26,6 +26,7 @@ class ContactForm(forms.Form):
     )
 
     body = forms.CharField(
+        label="Tell me all about it!",
         widget=forms.Textarea(attrs={
             "placeholder": "Ideas go here..."
         })
