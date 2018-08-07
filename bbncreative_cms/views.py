@@ -137,8 +137,8 @@ def projects(request):
 
     menu_projects = all_projects
     for p in menu_projects:
-        credit_count = Credit.objects.filter(project=p).count()
-        p.credit_count = credit_count
+        p.collaborator_count = p.count_collaborators()
+        p.credit_count = Credit.objects.filter(project=p).count()
 
     return render(
         request,
@@ -192,6 +192,7 @@ def project_from_name(request, url_name):
     my_assets.sort(key=lambda a: a[3], reverse=True)
     my_assets.sort(key=lambda a: a[2], reverse=False)
 
+    collaborator_count = this_project.count_collaborators()
     creds = Credit.objects.filter(project=this_project)
 
     return render(
@@ -200,7 +201,8 @@ def project_from_name(request, url_name):
         {
             'project': this_project,
             'assets': my_assets,
-            'credits': creds
+            'credits': creds,
+            'collaborator_count': collaborator_count
         }
     )
 
