@@ -523,7 +523,7 @@ nav {
 
 .window-title {
   min-height: 220px;
- background: #e81841 url("/static/img/subtle/inspiration-geometry.png");
+ background: #e8185f url("/static/img/subtle/inspiration-geometry.png");
 }
 
 .window-title h1 {
@@ -825,13 +825,16 @@ nav {
 /* Asset Styles
    ======================================================================== */
 .window-cards {
-  padding: 40px 0;
- background-color: #e5e5e5;
+ padding: 40px 0;
 }
 
 .window-cards .wrapper-1200 {
  display: flex;
  flex-direction: column;
+}
+
+.window-cards .wrapper-1200 h2 {
+ text-align: center;
 }
 
 .window-cards .wrapper-1200 .contain-cards {
@@ -872,19 +875,22 @@ nav {
 
 .card a:hover h2, .project-card a:hover h2, .feed-card a:hover h2 {
  color: #000;
- border-color: #ff1a36;
 }
 
 .card h2, .project-card h2, .feed-card h2 {
  width: fit-content;
  max-width: 100%;
- margin: 0 auto 4px;
- border-bottom: 4px solid #e5e5e5;
- height: 34px;
+ margin: 0 auto;
+ height: 38px;
+ line-height: 38px;
  text-overflow: ellipsis;
  white-space: nowrap;
  overflow: hidden;
  display: block;
+}
+
+.card p, .project-card p, .feed-card p {
+ margin: 17px 0;
 }
 
 @media (max-width: 460px) {
@@ -892,9 +898,9 @@ nav {
 	 height: 470px;
 	}
 
-  .feed-card .card-content {
-	 height: 330px;
-	}
+ .feed-card .card-content, .project-card .card-content {
+	height: 330px;
+ }
 
   .meta-stats {
 	 height: 100px;
@@ -909,9 +915,9 @@ nav {
 	 height: 420px;
 	}
 
-  .feed-card .card-content {
-	 height: 280px;
-	}
+ .feed-card .card-content, .project-card .card-content {
+	height: 280px;
+ }
 
   .meta-stats {
 	 height: 50px;
@@ -964,7 +970,7 @@ nav {
 .card-content {
   display: flex;
   flex-direction: column;
- background-color: #fff;
+ background-color: #f3f3f3;
 }
 
 .card-content h2 {
