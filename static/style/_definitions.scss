@@ -141,6 +141,14 @@ a.no-text-decoration {
 	}
 }
 
+.align-center {
+	text-align: center;
+	button, button:hover, button:active {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
 /* Element selection
    ======================================================================== */
 html, body, p, i, strong, em, span, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {

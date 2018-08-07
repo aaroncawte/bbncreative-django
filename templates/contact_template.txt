@@ -1,8 +1,6 @@
-Contact Name:
-{{ contact_name }}
+The following message was sent using the contact form on bbncreative.co.
 
-Email:
-{{ contact_email }}
+Contact Name: {{ contact_name }}
+Email: {{ contact_email }}
 
-Content:
 {{ form_content|safe|striptags }}

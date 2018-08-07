@@ -68,7 +68,7 @@ def contact(request):
                 content = template.render(context)
 
                 email = EmailMessage(
-                    subject=form.cleaned_data['subject'],
+                    subject="[Website] " + form.cleaned_data['subject'],
                     body=content,
                     from_email='aaron@bbncreative.co',
                     to=['aaron@bbncreative.co'],
