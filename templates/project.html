@@ -1,5 +1,16 @@
 {% extends "_base.html" %}
 {% load static %}
+
+{% block head-content %}
+    <meta property="og:url" content="https://bbncreative.co/projects/{{ project.url_name }}"/>
+    <meta property="og:title" content="{{ project.name }}"/>
+    <meta property="og:description" content="{{ project.bio }}"/>
+    <meta property="og:image" content="{% get_media_prefix %}{{ project.hero }}"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="bbncreative"/>
+{% endblock %}
+
 {% block body-content %}
     {% if project.brand_color_2|length > 0 %}
         <div class="window window-first"

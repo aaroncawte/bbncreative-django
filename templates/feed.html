@@ -1,20 +1,29 @@
 {% extends "_base.html" %}
 {% load static %}
+{% block head-content %}
+    <meta property="og:url" content="https://bbncreative.co/feeds/{{ feed.url_name }}"/>
+    <meta property="og:title" content="{{ feed.name }}"/>
+    <meta property="og:description" content="{{ feed.bio }}"/>
+    <meta property="og:image" content="{% get_media_prefix %}{{ feed.hero }}"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="bbncreative"/>
+{% endblock %}
 {% block body-content %}
     {% if feed.brand_color_2|length > 0 %}
         <div class="window window-first"
              style="background-image: linear-gradient(135deg, #{{ feed.brand_color_1 }}, #{{ feed.brand_color_2 }});">
     {% else %}
-        <div class="window window-first" style="background-color: #{{ project.brand_color_1 }};">
+        <div class="window window-first" style="background-color: #{{ feed.brand_color_1 }};">
     {% endif %}
 <div class="first-hero-image" style="background-image: url('{% get_media_prefix %}{{ feed.hero }}');"></div>
-        <div class="wrapper-1200">
-            <a href="/feeds" class="no-text-decoration">
-                <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Feeds</button>
-            </a>
-            <h1>{{ feed.name }}</h1>
-        </div>
-    </div>
+<div class="wrapper-1200">
+    <a href="/feeds" class="no-text-decoration">
+        <button class="secondary"><i class="fas fa-arrow-left"></i>Back to Feeds</button>
+    </a>
+    <h1>{{ feed.name }}</h1>
+</div>
+</div>
     <div class="wrapper-1200">
         <div class="centre-bio">
             {% if feed.protected %}
