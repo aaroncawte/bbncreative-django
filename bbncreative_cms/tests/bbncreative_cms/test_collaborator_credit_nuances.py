@@ -3,28 +3,7 @@ from django.test import TestCase
 from bbncreative_cms import models
 
 
-class DatabaseTestCases(TestCase):
-
-    # Define a singular project, collaborator and credit, and query all details.
-    def test_get_collaborator_details_from_project(self):
-        proj = models.Project(name="Test Project")
-        collab = models.Collaborator(
-            name="Alice",
-            url="https://bbncreative.co",
-            twitter="bbn_alice"
-        )
-        credit = models.Credit(
-            collaborator=collab,
-            project=proj,
-            action="Test Action Line"
-        )
-        self.assertIs(proj.name, "Test Project")
-        self.assertIs(collab.name, "Alice")
-        self.assertIs(collab.url, "https://bbncreative.co")
-        self.assertIs(collab.twitter, "bbn_alice")
-        self.assertIs(credit.action, "Test Action Line"),
-        self.assertIs(credit.project.name, "Test Project"),
-        self.assertIs(credit.collaborator.twitter, "bbn_alice")
+class CollaboratorCreditNuanceTests(TestCase):
 
     # Two projects that share a collaborator and each have an independent second
     def test_shared_and_independent_collaborators(self):
@@ -80,7 +59,7 @@ class DatabaseTestCases(TestCase):
         self.assertEqual(models.Credit.objects.filter(project=proj2).count(), 2)
 
     # Ensure that 3 credits are associated with this project
-    def test_create_project_with_three_collaborators(self):
+    def test_3_credits_3_collaborators(self):
         proj = models.Project.objects.create(name="Test Project")
         collab1 = models.Collaborator.objects.create(
             name="Alice",
@@ -139,25 +118,7 @@ class DatabaseTestCases(TestCase):
             action="Product Design"
         )
 
+        # One collaborator is credited with 2 things - are the counts right?
         self.assertIs(models.Credit.objects.filter(project=proj).count(), 2)
         self.assertIs(proj.count_collaborators(), 1)
 
-
-    def test_project_with_3_different_assets(self):
-        proj = models.Project.objects.create(name="Test Project")
-        im = models.ImageAsset.objects.create(parent=proj, title="Test ImageAsset", body="Test Bio", alt="Test Alt")
-        em = models.EmbeddedAsset.objects.create(parent=proj, title="Test EmbeddedAsset", body="Test Bio")
-        tx = models.TextAsset.objects.create(parent=proj, title="Test TextAsset", body="Test Bio")
-
-        self.assertIs(models.ImageAsset.objects.filter(parent=proj).count(), 1)
-        self.assertIs(models.EmbeddedAsset.objects.filter(parent=proj).count(), 1)
-        self.assertIs(models.TextAsset.objects.filter(parent=proj).count(), 1)
-        self.assertIs(proj.count_assets(), 3)
-
-    def test_assets_without_media(self):
-        proj = models.Project.objects.create(name="Irrelevant Project")
-        im = models.ImageAsset.objects.create(parent=proj, title="Test ImageAsset", body="Test Bio", alt="Test Alt")
-        em = models.EmbeddedAsset.objects.create(parent=proj, title="Test EmbeddedAsset", body="Test Bio")
-
-        self.assertIs(im.has_media(), False)
-        self.assertIs(em.has_media(), False)
