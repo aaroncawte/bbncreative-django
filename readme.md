@@ -14,13 +14,13 @@ Primary tools and requirements used for this project.
 ### Python Packages
 This table replicates the contents of [requirements.txt](requirements.txt).
 
-| Package | Version | Purpose | Updated |
-|:--|:--|:--|:--|
-| Django | 2.1 | Web Server | 06.08.2018 |
-| pytz | 2018.5 | World timezone definitions | 06.08.2018 |
-| Pillow | 5.2.0 | Fork of PIL, the Python Imaging Library | 06.08.2018 |
-| psycopg2 | 2.7.5 | PostgreSQL Adapter | 06.08.2018 |
-| nodeenv | 1.3.2 | Syncs node environment with virtualenv | 06.08.2018 |
+| Package | Purpose | Version | Updated | Latest |
+|:--|:--|:--|:--|:--|
+| Django | Web Server | 2.1 | 06.08.2018 | [![PyPI version](https://badge.fury.io/py/Django.svg)](https://badge.fury.io/py/Django) |
+| pytz | World timezone definitions | 2018.5 | 06.08.2018 | [![PyPI version](https://badge.fury.io/py/pytz.svg)](https://badge.fury.io/py/pytz) |
+| Pillow | Fork of PIL, the Python Imaging Library | 5.2.0 | 06.08.2018 | [![PyPI version](https://badge.fury.io/py/Pillow.svg)](https://badge.fury.io/py/Pillow) |
+| psycopg2 | PostgreSQL Adapter | 2.7.5 | 06.08.2018 | [![PyPI version](https://badge.fury.io/py/psycopg2.svg)](https://badge.fury.io/py/psycopg2) |
+| nodeenv | Syncs node environment with virtualenv | 1.3.2 | 06.08.2018 | [![PyPI version](https://badge.fury.io/py/nodeenv.svg)](https://badge.fury.io/py/nodeenv) |
 
 
 ## Setup
