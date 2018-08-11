@@ -3,7 +3,7 @@ import datetime
 from django.db import models
 
 
-def get_file_path(instance, filename):
+def generate_file_path(instance, filename):
     import uuid
     new_name = str(uuid.uuid4()) + "/" + filename
     return new_name
@@ -47,12 +47,12 @@ class Project(models.Model):
         default="New Client"
     )
     icon = models.ImageField(
-        upload_to=get_file_path,
+        upload_to=generate_file_path,
         max_length=255,
         blank=True
     )
     hero = models.ImageField(
-        upload_to=get_file_path,
+        upload_to=generate_file_path,
         max_length=255,
         blank=True
     )
@@ -114,7 +114,7 @@ class Feed(models.Model):
         default=True
     )
     hero = models.ImageField(
-        upload_to=get_file_path,
+        upload_to=generate_file_path,
         max_length=255,
         blank=True
     )
@@ -219,7 +219,7 @@ class ImageAsset(Asset):
     )
     # Self-explanatory
     img = models.ImageField(
-        upload_to=get_file_path,
+        upload_to=generate_file_path,
         max_length=255,
     )
 
