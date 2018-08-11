@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='feed',
             name='hero',
-            field=models.ImageField(blank=True, max_length=255, upload_to=bbncreative_cms.models.get_file_path),
+            field=models.ImageField(blank=True, max_length=255, upload_to=bbncreative_cms.models.generate_file_path),
         ),
         migrations.AlterField(
             model_name='project',
