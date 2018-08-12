@@ -2,7 +2,7 @@
 {% block asset_summary %}
     <div class="window" data-asset-type="image" data-asset-importance="{{ asset.importance }}">
         <div class="wrapper-1200">
-            <div class="content">
+            <div class="content ar-{{ asset.aspect_ratio }}">
                 <div class="background-blur"
                      style="background-image: url('{% get_media_prefix %}{{ asset.img }}');"></div>
                 <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
