@@ -12,6 +12,11 @@ class AssetTypes:
     TEXT = "Text"
 
 
+def generate_logo_rgba(color):
+    alpha_value = 0.5
+    return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
+
+
 def index(request):
     top_projects = Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS]
     top_feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
@@ -81,6 +86,7 @@ def project_from_name(request, url_name):
 
     collaborator_count = this_project.count_collaborators()
     creds = Credit.objects.filter(project=this_project)
+    color_in_rgba = generate_logo_rgba(this_project.brand_color_1)
 
     return render(
         request,
@@ -89,7 +95,8 @@ def project_from_name(request, url_name):
             'project': this_project,
             'assets': my_assets,
             'credits': creds,
-            'collaborator_count': collaborator_count
+            'collaborator_count': collaborator_count,
+            'logo_custom_color': color_in_rgba
         }
     )
 
@@ -139,7 +146,7 @@ def image_asset(request, url_uuid, file_name):
         raise DataError("Multiple assets with the same filename")
 
     image = results.first()
-    
+
     return render(
         request,
         "asset.html",
