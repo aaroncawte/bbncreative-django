@@ -139,7 +139,7 @@ def image_asset(request, url_uuid, file_name):
         raise DataError("Multiple assets with the same filename")
 
     image = results.first()
-
+    
     return render(
         request,
         "asset.html",

@@ -27,11 +27,13 @@ Two bases are used for asset display, either side of the width breakpoint `1280p
 |:--:|:--|:--|:--|
 | SQ | 792 x 792 | 700 x 700 | 792 x 792 |
 | W1 | 792 x 594 | 700 x 525 | 792 x 594 |
-| W2 | 792 x 528 | 700 x 467 | 792 x 528 |
-| W3 | 792 x 446 | 700 x 394 | 792 x 446 |
-| T1 | 594 x 792 | 700 x 933 | 700 x 933 |
+| W2 | 792 x 528 | 700 x 467<sup>1</sup> | 792 x 528 |
+| W3 | 792 x 446<sup>2</sup> | 700 x 394<sup>3</sup> | 792 x 446 |
+| T1 | 594 x 792 | 700 x 933 | 700 x 933<sup>4</sup> |
 | T2 | 528 x 792 | 700 x 1050 | 700 x 1050 |
-| T3 | 446 x 792 | 700 x 1244 | 700 x 1244 |
+| T3 | 446<sup>2</sup> x 792 | 700 x 1244 | 700 x 1244 |
+
+*1) 466.6..., 2) 445.5, 3) 393.75, 4) 933.3...*
 
 **Recommendations:**
 - Images at correct aspect ratios only
