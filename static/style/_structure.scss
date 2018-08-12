@@ -37,13 +37,18 @@ nav {
 	height: 60px;
 	line-height: 60px;
 	margin: 10px 20px 10px 0;
-	background-color: $logo-background;
+	background-color: rgba($logo-background, 0.5);
+	text-shadow: 0 0 2px rgba($off-white, 0.4);
 	color: $logo-colour;
 	text-align: center;
 	font-family: $font_header;
 	font-size: 28px;
 	font-weight: normal;
+	border-radius: $form-el-radius;
 	@include no-user-select;
+	&:hover {
+		background-color: rgba($logo-background, 1);
+	}
 }
 
 /* Menu Buttons

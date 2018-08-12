@@ -4,7 +4,12 @@
         <div class="wrapper-1200">
             <div class="nav-left">
                 <a href="/" class="no-text-decoration">
-                    <div id="bbncreative-logo">bbncreative</div>
+                    {% if logo_custom_color %}
+                        <div id="bbncreative-logo" style="background-color: rgba{{ logo_custom_color }};">bbncreative
+                        </div>
+                    {% else %}
+                        <div id="bbncreative-logo">bbncreative</div>
+                    {% endif %}
                 </a>
             </div>
             <div class="nav-right">
