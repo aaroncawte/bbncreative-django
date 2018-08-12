@@ -212,6 +212,17 @@ class TextAsset(Asset):
         return self.title + " from project " + self.parent.name
 
 
+IMAGE_ASPECT_RATIOS = (
+    ("SQ", "Square"),
+    ("W1", "4:3 wide"),
+    ("W2", "3:2 wide"),
+    ("W3", "16:9 wide"),
+    ("T1", "3:4 tall"),
+    ("T2", "2:3 tall"),
+    ("T3", "9:16 tall")
+)
+
+
 class ImageAsset(Asset):
     # Images need alt text
     alt = models.CharField(
@@ -221,6 +232,12 @@ class ImageAsset(Asset):
     img = models.ImageField(
         upload_to=generate_file_path,
         max_length=255,
+    )
+
+    aspect_ratio = models.CharField(
+        choices=IMAGE_ASPECT_RATIOS,
+        max_length=2,
+        default="W1"
     )
 
     def has_media(self):
@@ -239,3 +256,4 @@ class EmbeddedAsset(Asset):
         if len(self.embed_code) > 0:
             return True
         return False
+
