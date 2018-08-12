@@ -209,7 +209,7 @@ class Asset(models.Model):
 class TextAsset(Asset):
     # Overridden so the child class isn't empty
     def __str__(self):
-        return self.title + " from project " + self.parent.name
+        return "Text: \"" + self.title + "\" from " + self.parent.name
 
 
 IMAGE_ASPECT_RATIOS = (
@@ -240,6 +240,10 @@ class ImageAsset(Asset):
         default="W1"
     )
 
+    # Overridden so the child class isn't empty
+    def __str__(self):
+        return "Image: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
+
     def has_media(self):
         if self.img:
             return True
@@ -251,6 +255,9 @@ class EmbeddedAsset(Asset):
     embed_code = models.TextField(
         max_length=5000
     )
+
+    def __str__(self):
+        return "Embedded: \"" + self.title + "\" from " + self.parent.name
 
     def has_media(self):
         if len(self.embed_code) > 0:
