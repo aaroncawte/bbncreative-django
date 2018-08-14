@@ -214,12 +214,12 @@ class TextAsset(Asset):
 
 IMAGE_ASPECT_RATIOS = (
     ("SQ", "Square"),
-    ("W1", "4:3 wide"),
-    ("W2", "3:2 wide"),
-    ("W3", "16:9 wide"),
-    ("T1", "3:4 tall"),
-    ("T2", "2:3 tall"),
-    ("T3", "9:16 tall")
+    ("W1", "4:3 Wide"),
+    ("W2", "3:2 Wide"),
+    ("W3", "16:9 Wide"),
+    ("T1", "3:4 Tall"),
+    ("T2", "2:3 Tall"),
+    ("T3", "9:16 Tall")
 )
 
 
@@ -250,14 +250,27 @@ class ImageAsset(Asset):
         return False
 
 
+EMBEDDED_ASPECT_RATIOS = (
+    ("VL", "16:9 Wide"),
+    ("VP", "9:16 Tall"),
+    ("IG", "Instagram Post")
+)
+
+
 class EmbeddedAsset(Asset):
     # HTML embed code - will accept any HTML up to 5,000 characters. Be cautious of embed content.
     embed_code = models.TextField(
         max_length=5000
     )
 
+    aspect_ratio = models.CharField(
+        choices=EMBEDDED_ASPECT_RATIOS,
+        max_length=2,
+        default="VL"
+    )
+
     def __str__(self):
-        return "Embedded: \"" + self.title + "\" from " + self.parent.name
+        return "Embedded: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
 
     def has_media(self):
         if len(self.embed_code) > 0:
