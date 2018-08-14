@@ -477,27 +477,39 @@ nav {
 	.content img, .content iframe {
 		width: 100%;
 	}
-
-	.ar-SQ {
-		height: 700px;
+	.window[data-asset-type=image] {
+		.ar-SQ {
+			height: 700px;
+		}
+		.ar-W1 {
+			height: 525px;
+		}
+		.ar-W2 {
+			height: 467px;
+		}
+		.ar-W3 {
+			height: 394px;
+		}
+		.ar-T1 {
+			height: 933px;
+		}
+		.ar-T2 {
+			height: 1050px;
+		}
+		.ar-T3 {
+			height: 1244px;
+		}
 	}
-	.ar-W1 {
-		height: 525px;
-	}
-	.ar-W2 {
-		height: 467px;
-	}
-	.ar-W3 {
-		height: 394px;
-	}
-	.ar-T1 {
-		height: 933px;
-	}
-	.ar-T2 {
-		height: 1050px;
-	}
-	.ar-T3 {
-		height: 1244px;
+	.window[data-asset-type=embedded] {
+		.ar-VL {
+			height: 394px;
+		}
+		.ar-VP {
+			height: 1244px;
+		}
+		.ar-IG {
+			height: 804px;
+		}
 	}
 }
 
@@ -528,11 +540,6 @@ nav {
 			z-index: 1;
 		}
 	}
-	.window[data-asset-type=embedded] {
-		.content {
-			min-width: 540px;
-		}
-	}
 	.content {
 		padding: 0;
 	}
@@ -552,33 +559,49 @@ nav {
 		overflow-wrap: break-word;
 	}
 
-	.ar-SQ {
-		width: 792px;
-		height: 792px;
+	.window[data-asset-type=image] {
+		.ar-SQ {
+			width: 792px;
+			height: 792px;
+		}
+		.ar-W1 {
+			width: 792px;
+			height: 594px;
+		}
+		.ar-W2 {
+			width: 792px;
+			height: 528px;
+		}
+		.ar-W3 {
+			width: 792px;
+			height: 446px;
+		}
+		.ar-T1 {
+			width: 594px;
+			height: 792px;
+		}
+		.ar-T2 {
+			width: 528px;
+			height: 792px;
+		}
+		.ar-T3 {
+			width: 446px;
+			height: 792px;
+		}
 	}
-	.ar-W1 {
-		width: 792px;
-		height: 594px;
-	}
-	.ar-W2 {
-		width: 792px;
-		height: 528px;
-	}
-	.ar-W3 {
-		width: 792px;
-		height: 446px;
-	}
-	.ar-T1 {
-		width: 594px;
-		height: 792px;
-	}
-	.ar-T2 {
-		width: 528px;
-		height: 792px;
-	}
-	.ar-T3 {
-		width: 446px;
-		height: 792px;
+	.window[data-asset-type=embedded] {
+		.ar-VL {
+			width: 792px;
+			height: 446px;
+		}
+		.ar-VP {
+			width: 446px;
+			height: 792px;
+		}
+		.ar-IG {
+			width: 540px;
+			height: 620px;
+		}
 	}
 }
 
