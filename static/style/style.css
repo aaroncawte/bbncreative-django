@@ -104,7 +104,12 @@ p {
 
 a {
   color: initial;
-  font-weight: bold; }
+ font-weight: bold;
+ -webkit-transition: 0.25s color;
+ -moz-transition: 0.25s color;
+ -o-transition: 0.25s color;
+ transition: 0.25s color;
+}
   a:hover {
     color: #e81841;
     text-decoration: none; }
@@ -222,6 +227,10 @@ input[type=submit], input[type=reset], button {
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
+ -webkit-transition: 0.1s;
+ -moz-transition: 0.1s;
+ -o-transition: 0.1s;
+ transition: 0.1s;
   cursor: pointer; }
   input[type=submit]:active, input[type=reset]:active, button:active {
     box-shadow: rgba(22, 22, 22, 0.4) 0 0 1px; }
@@ -295,10 +304,19 @@ nav {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+ user-select: none;
+ -webkit-transition: 0.25s background-color;
+ -moz-transition: 0.25s background-color;
+ -o-transition: 0.25s background-color;
+ transition: 0.25s background-color;
+}
 
 #bbncreative-logo:hover {
  background-color: #e8185f;
+}
+
+#bbncreative-logo:active {
+ transform: scale(0.95);
 }
 
 /* Menu Buttons
@@ -730,7 +748,7 @@ nav {
 }
 
 .window[data-asset-type=embedded] .panel-left, .window[data-asset-type=embedded] .panel-right {
-  background-color: #263238;
+ background-color: #455a64;
  color: #fff;
 }
 
@@ -920,6 +938,12 @@ nav {
 	height: 620px;
  }
 }
+
+.ar-VL iframe {
+ width: 100%;
+ height: 100%;
+}
+
 /* Asset Styles
 	 ======================================================================== */
 .window-cards {

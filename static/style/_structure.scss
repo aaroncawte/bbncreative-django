@@ -46,8 +46,12 @@ nav {
 	font-weight: normal;
 	border-radius: $form-el-radius;
 	@include no-user-select;
+	@include transition(0.25s background-color);
 	&:hover {
 		background-color: rgba($logo-background, 1);
+	}
+	&:active {
+		transform: scale(0.95);
 	}
 }
 

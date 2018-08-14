@@ -127,6 +127,7 @@ p {
 a {
 	color: initial;
 	font-weight: bold;
+	@include transition(0.25s color);
 	&:hover {
 		color: $bbn1;
 		text-decoration: none;
@@ -242,6 +243,7 @@ input[type=submit], input[type=reset], button {
 	color: #fff;
 	@include wide-text;
 	@include drop-shadow($clickable: true);
+	@include transition(0.1s);
 	cursor: pointer;
 	&:hover {
 		background-color: $bbn3;
