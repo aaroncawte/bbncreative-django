@@ -30,7 +30,11 @@
                         <a href="/projects/{{ p.url_name }}">
                             <div class="menu-listing">
                                 <div class="menu-icon">
-                                    <img src="{% get_media_prefix %}{{ p.icon }}" alt="{{ p.name }} icon"/>
+                                    {% if p.icon %}
+                                        <img src="{% get_media_prefix %}{{ p.icon }}" alt="{{ p.name }} icon"/>
+                                    {% else %}
+                                        <i class="fas fa-project-diagram"></i>
+                                    {% endif %}
                                 </div>
                                 <div class="menu-label">{{ p.name }}</div>
                             </div>
