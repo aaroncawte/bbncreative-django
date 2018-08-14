@@ -333,12 +333,21 @@ nav {
 
 /* Wrapper to centre on wide viewports
    ======================================================================== */
+.wrapper-1200, .wrapper-800 {
+	padding: 0 20px;
+	margin: 0 auto;
+	position: relative;
+}
+
 @media (max-width: $break-window-width-1) {
 	.wrapper-1200 {
 		box-sizing: border-box;
 		width: 100%;
 		max-width: 100%;
-		padding: 0 20px;
+	}
+	.wrapper-800 {
+		width: 100%;
+		max-width: 800px;
 	}
 }
 
@@ -346,17 +355,15 @@ nav {
 	.wrapper-1200 {
 		width: 1200px;
 		max-width: 1200px;
-		padding: 0 20px;
+	}
+	.wrapper-800 {
+		width: 800px;
+		max-width: 800px;
 	}
 }
 
-.wrapper-1200 {
-	margin: 0 auto;
-	position: relative;
-}
-
 /* Header Content Styles
-   ======================================================================== */
+	 ======================================================================== */
 .details-box {
 	box-sizing: border-box;
 	width: 200px;
@@ -405,7 +412,7 @@ nav {
 }
 
 /* Asset Styles
-   ======================================================================== */
+	 ======================================================================== */
 .window[data-asset-type=image] {
 	flex-direction: row;
 }
@@ -576,7 +583,7 @@ nav {
 }
 
 /* Asset Styles
-   ======================================================================== */
+	 ======================================================================== */
 .window-cards {
 	padding: 40px 0;
 	.wrapper-1200 {
@@ -825,7 +832,7 @@ nav {
 }
 
 /* Press Play Hero
-   ======================================================================== */
+	 ======================================================================== */
 .heroHeadline, .heroTagline {
 	width: 600px;
 	max-width: 100%;
