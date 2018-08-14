@@ -2,9 +2,18 @@
 {% block project_summary %}
     <div class="project-card"
          style="background-color: #{{ project.brand_color_1 }}; background: linear-gradient(135deg, #{{ project.brand_color_1 }}, #{{ project.brand_color_2 }});">
-        <div class="card-hero-image"
-             style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
-        <div class="card-logo" style="background-image: url({% get_media_prefix %}{{ project.icon }});"></div>
+        {% if project.hero %}
+            <div class="card-hero-image"
+                 style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
+        {% else %}
+            <div class="card-hero-image"
+                 style="background: linear-gradient(135deg, #{{ project.brand_color_1 }}, #{{ project.brand_color_2 }});"></div>
+        {% endif %}
+        {% if project.icon %}
+            <a href="/projects/{{ project.url_name }}" class="no-text-decoration">
+                <div class="card-logo" style="background-image: url({% get_media_prefix %}{{ project.icon }});"></div>
+            </a>
+        {% endif %}
         <div class="card-content">
             <a href="/projects/{{ project.url_name }}" class="no-text-decoration"><h2>{{ project.name }}</h2></a>
             <p class="card-bio">{{ project.bio }}</p>
