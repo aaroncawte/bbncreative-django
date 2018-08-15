@@ -59,6 +59,10 @@ $(window).on('resize', function () {
 
 $(function () {
 
+    const $windowHero = $(".window-hero");
+    const $backToButton = $("#backTo");
+    const $heroScrollTrigger = $("#heroScrollTrigger");
+
     /* UI Functions on page load
    ======================================================================== */
     sizeFirstWindows();
@@ -116,10 +120,33 @@ $(function () {
 
     /* Scroll Down Button
    ======================================================================== */
-    $('#heroScrollTrigger').on('click', function () {
+    $heroScrollTrigger.on('click', function () {
         $("html, body").animate({
             scrollTop: stringifyPixel(heroWindowHeight())
         }, 200);
-        console.log("420 scroll it");
+    });
+
+    /* Auto-hide elements on scroll
+======================================================================= */
+    function scrollMultiplier(hideValue) {
+        let scroll = $(window).scrollTop();
+        return Math.max(0, (hideValue - scroll) / hideValue);
+    }
+
+    $(window).scroll(function () {
+
+        // Scroll down hint
+        if ($windowHero.length) {
+            let heroHeight = $windowHero.height();
+            let multiplier = scrollMultiplier(heroHeight);
+            $heroScrollTrigger.css({'opacity': multiplier});
+        }
+
+        // Back-to buttons
+        if ($backToButton.length) {
+            const hideValue = 60;
+            let multiplier = scrollMultiplier(hideValue);
+            $backToButton.css({'opacity': multiplier});
+        }
     });
 });
