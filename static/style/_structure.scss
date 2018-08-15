@@ -37,7 +37,7 @@ nav {
 	height: 60px;
 	line-height: 60px;
 	margin: 10px 20px 10px 0;
-	background-color: rgba($logo-background, 0.5);
+	background-color: rgba($logo-background, 0.6);
 	text-shadow: 0 0 2px rgba($off-white, 0.4);
 	color: $logo-colour;
 	text-align: center;
@@ -47,6 +47,9 @@ nav {
 	border-radius: $form-el-radius;
 	@include no-user-select;
 	@include transition(0.25s background-color);
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
+
 	&:hover {
 		background-color: rgba($logo-background, 1);
 	}
