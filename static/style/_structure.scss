@@ -45,10 +45,9 @@ nav {
 	font-size: 28px;
 	font-weight: normal;
 	border-radius: $form-el-radius;
-	@include no-user-select;
-	@include transition(0.25s background-color);
-	-webkit-backdrop-filter: blur(5px);
-	backdrop-filter: blur(5px);
+	@include cross-user-select(none);
+	@include cross-transition(0.25s background-color);
+	@include cross-backdrop-filter(blur(5px));
 
 	&:hover {
 		background-color: rgba($logo-background, 1);
@@ -649,10 +648,7 @@ nav {
 	padding: 0;
 	font-weight: normal;
 	box-shadow: 0 2px 6px rgba($off-black, 0.4);
-	-webkit-user-select: unset;
-	-moz-user-select: unset;
-	-ms-user-select: unset;
-	user-select: unset;
+	@include cross-user-select(unset);
 	a:hover {
 		h2 {
 			color: #000;
@@ -863,7 +859,6 @@ nav {
 #videoLayerFrame {
 	z-index: 3;
 	background: transparent center no-repeat url($asset-play-device);
-	-webkit-background-size: 350%;
 	background-size: 350%;
 	opacity: 0.4;
 }
