@@ -12,8 +12,8 @@ class AssetTypes:
     TEXT = "Text"
 
 
-def generate_logo_rgba(color):
-    alpha_value = 0.5
+def generate_logo_rgba(color: str, hover: bool):
+    alpha_value = 0.9
     return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
 
 
@@ -86,7 +86,8 @@ def project_from_name(request, url_name):
 
     collaborator_count = this_project.count_collaborators()
     creds = Credit.objects.filter(project=this_project)
-    color_in_rgba = generate_logo_rgba(this_project.brand_color_1)
+    color_in_rgba = generate_logo_rgba(this_project.brand_color_1, False)
+    hover_in_rgba = generate_logo_rgba(this_project.brand_color_1, True)
 
     return render(
         request,
@@ -96,7 +97,8 @@ def project_from_name(request, url_name):
             'assets': my_assets,
             'credits': creds,
             'collaborator_count': collaborator_count,
-            'logo_custom_color': color_in_rgba
+            'logo_custom_color': color_in_rgba,
+            'logo_hover_color': hover_in_rgba
         }
     )
 
