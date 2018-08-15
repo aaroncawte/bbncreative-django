@@ -55,11 +55,23 @@ $projects-menu-offset: $edge-gap + $gl-button-width + $gap-between + $fe-button-
 
 /* SCSS Mixins
   ========================================================================= */
-@mixin transition($args) {
+@mixin cross-transition($args) {
 	-webkit-transition: $args;
 	-moz-transition: $args;
 	-o-transition: $args;
 	transition: $args;
+}
+
+@mixin cross-backdrop-filter($args) {
+	-webkit-backdrop-filter: $args;
+	backdrop-filter: $args;
+}
+
+@mixin cross-user-select($args: "none") {
+	-webkit-user-select: $args;
+	-moz-user-select: $args;
+	-ms-user-select: $args;
+	user-select: $args;
 }
 
 @mixin drop-shadow($clickable: false) {
@@ -77,13 +89,6 @@ $projects-menu-offset: $edge-gap + $gl-button-width + $gap-between + $fe-button-
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-}
-
-@mixin no-user-select {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 /* Resets and basic elements
@@ -127,7 +132,7 @@ p {
 a {
 	color: initial;
 	font-weight: bold;
-	@include transition(0.25s color);
+	@include cross-transition(0.25s color);
 	&:hover {
 		color: $bbn1;
 		text-decoration: none;
@@ -171,7 +176,7 @@ p, span, h1, h2, h3, h4, h5, h6 {
 }
 
 img {
-	@include no-user-select;
+	@include cross-user-select(none);
 }
 
 /* Form Elements
@@ -186,7 +191,7 @@ img {
 	background-color: #fff;
 	border-radius: $form-el-radius;
 	font-family: $font-sans;
-	@include no-user-select;
+	@include cross-user-select(none);
 }
 
 @mixin standard-input {
@@ -243,7 +248,7 @@ input[type=submit], input[type=reset], button {
 	color: #fff;
 	@include wide-text;
 	@include drop-shadow($clickable: true);
-	@include transition(0.1s);
+	@include cross-transition(0.1s);
 	cursor: pointer;
 	&:hover {
 		background-color: $bbn3;
