@@ -171,7 +171,7 @@ a.no-text-decoration {
 
 /* Element selection
 	 ======================================================================== */
-html, body, p, i, strong, em, span, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
+html, body, p, i, strong, em, span, li, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
 	&::-moz-selection {
 		background-color: $bbn2;
 		color: #fff;

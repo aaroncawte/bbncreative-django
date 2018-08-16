@@ -136,10 +136,11 @@ a.no-text-decoration:link, a.no-text-decoration:hover, a.no-text-decoration:acti
 
 /* Element selection
 	 ======================================================================== */
-html::-moz-selection, body::-moz-selection, p::-moz-selection, i::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+html::-moz-selection, body::-moz-selection, p::-moz-selection, i::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, li::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
-html::selection, body::selection, p::selection, i::selection, strong::selection, em::selection, span::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+
+html::selection, body::selection, p::selection, i::selection, strong::selection, em::selection, span::selection, li::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
   background-color: #cc2369;
   color: #fff; }
 
@@ -672,7 +673,7 @@ nav {
 
 .details-box p {
  margin: 0.5em 0;
- font: bold 14px/16px initial;
+ font: bold 14px/16px "Noto Sans", sans-serif;
  padding: 0 3px;
  color: #263238;
 }
@@ -1137,6 +1138,64 @@ nav {
 .card-content p {
  font-size: 16px;
  display: block;
+}
+
+/* Collbaorator Boxes
+	 ======================================================================== */
+.collaborator-tray {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+}
+
+.collaborator-card {
+ width: 200px;
+ min-height: 188px;
+ display: flex;
+ flex-direction: column;
+ margin: 10px;
+ padding: 6px 0;
+ background-color: #f3f3f3;
+ border-radius: 5px;
+ box-shadow: rgba(22, 22, 22, 0.4) 0 2px 1px;
+}
+
+.collaborator-image {
+ width: 80px;
+ height: 80px;
+ margin: 6px 60px 2px;
+ background-color: #263238;
+ border-radius: 50%;
+ line-height: 80px;
+ text-align: center;
+ color: #fff;
+ font-size: 8px;
+}
+
+.collaborator-text {
+ width: 100%;
+ text-align: center;
+}
+
+.collaborator-text .name {
+ width: 100%;
+ height: 40px;
+ line-height: 40px;
+ display: block;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+ font-size: 20px;
+ font-weight: bold;
+}
+
+.collaborator-text .credits {
+ height: 60px;
+ line-height: 20px;
+ font-size: 14px;
+ color: #aaa;
+ padding: 0 5px;
 }
 
 /* Semi-Static Components
