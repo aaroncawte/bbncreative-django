@@ -19,8 +19,16 @@ def generate_logo_rgba(color: str, hover: bool):
     return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
 
 
+def count_children_projects(projects):
+    for p in projects:
+        p.collaborator_count = p.count_collaborators()
+        p.credit_count = Credit.objects.filter(project=p).count()
+        p.asset_count = p.count_assets()
+    return projects
+
+
 def index(request):
-    top_projects = Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS]
+    top_projects = count_children_projects(Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS])
     top_feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
     return render(
         request,
@@ -33,19 +41,13 @@ def index(request):
 
 
 def projects(request):
-    all_projects = Project.objects.all().order_by('date_complete').reverse()
-
-    menu_projects = all_projects
-    for p in menu_projects:
-        p.collaborator_count = p.count_collaborators()
-        p.credit_count = Credit.objects.filter(project=p).count()
+    all_projects = count_children_projects(Project.objects.all().order_by('date_complete').reverse())
 
     return render(
         request,
         "projects.html",
         {
-            'projects': all_projects,
-            'globalmenu': menu_projects
+            'projects': all_projects
         }
     )
 
@@ -86,8 +88,8 @@ def project_from_name(request, url_name):
     my_assets.sort(key=lambda a: a[3], reverse=True)
     my_assets.sort(key=lambda a: a[2], reverse=False)
 
-    collaborator_count = this_project.count_collaborators()
-    creds = Credit.objects.filter(project=this_project)
+    credits = Credit.objects.filter(project=this_project)
+
     color_in_rgba = generate_logo_rgba(this_project.brand_color_1, False)
     hover_in_rgba = generate_logo_rgba(this_project.brand_color_1, True)
 
@@ -97,8 +99,9 @@ def project_from_name(request, url_name):
         {
             'project': this_project,
             'assets': my_assets,
-            'credits': creds,
-            'collaborator_count': collaborator_count,
+            'credits': credits,
+            'collaborator_count': this_project.count_collaborators(),
+            'asset_count': this_project.count_assets(),
             'logo_custom_color': color_in_rgba,
             'logo_hover_color': hover_in_rgba
         }

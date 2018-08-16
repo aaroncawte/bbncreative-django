@@ -18,35 +18,57 @@
     {% else %}
         <div class="window window-first" style="background-color: #{{ project.brand_color_1 }};">
     {% endif %}
-        <div class="first-hero-image" style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
-        <div class="wrapper-1200">
-            <a href="/projects" class="no-text-decoration">
-                <button class="secondary" id="backTo"><i class="fas fa-arrow-left"></i>Back to Projects</button>
-            </a>
-            <h1>{{ project.name }}</h1>
-            <div class="details-box">
-                <p class="heading"><i class="fas fa-project-diagram"></i>Project Details</p>
-                {% if project.is_complete %}
-                    <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete }}</p>
-                {% else %}
-                    <p><i class="fas fa-clock"></i>Ongoing project</p>
-                {% endif %}
-                <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
-                {% if collaborator_count > 1 %}
-                    <p><i class="fas fa-users"></i> {{ collaborator_count }} collaborators</p>
-                {% elif collaborator_count == 1 %}
-                    <p><i class="fas fa-users"></i>1 Collaborator</p>
-                {% else %}
-                    <p><i class="fas fa-users"></i>Independent Work</p>
-                {% endif %}
-            </div>
-            <a href="{{ project.cta_url }}" class="no-text-decoration" target="_blank" rel="noopener noreferrer">
-                <div class="hero-cta" style="background-color: #{{ project.brand_color_1 }}; color: #fff;"><i
-                        class="fas fa-external-link-alt"></i>{{ project.cta_title }}
-                </div>
-            </a>
-        </div>
+<div class="first-hero-image" style="background-image: url('{% get_media_prefix %}{{ project.hero }}');"></div>
+<div class="wrapper-1200">
+    <a href="/projects" class="no-text-decoration">
+        <button class="secondary" id="backTo"><i class="fas fa-arrow-left"></i>Back to Projects</button>
+    </a>
+    <h1>{{ project.name }}</h1>
+    <div class="details-box">
+        <p class="heading"><i class="fas fa-project-diagram"></i>Project Details</p>
+        {% if project.is_complete %}
+            <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete }}</p>
+        {% else %}
+            <p><i class="fas fa-clock"></i>Ongoing project</p>
+        {% endif %}
+        <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
+
+        {% if asset_count == 1 %}
+            <p><i class="far fa-images"></i>{{ asset_count }} Asset</p>
+        {% else %}
+            <p><i class="far fa-images"></i>{{ asset_count }} Assets</p>
+        {% endif %}
     </div>
+    <a href="{{ project.cta_url }}" class="no-text-decoration" target="_blank" rel="noopener noreferrer">
+        <div class="hero-cta" style="background-color: #{{ project.brand_color_1 }}; color: #fff;"><i
+                class="fas fa-external-link-alt"></i>{{ project.cta_title }}
+        </div>
+    </a>
+</div>
+</div>
+    {% if collaborator_count > 0 %}
+        <div class="window">
+            <div class="wrapper-1200">
+                {% if collaborator_count > 1 %}
+                    <h2 class="align-center">Collaborative work for {{ project.client_name }}</h2>
+                {% else %}
+                    <h2 class="align-center">Individual Work for {{ project.client_name }}</h2>
+                {% endif %}
+                <div class="collaborator-tray">
+                    {% for c in credits %}
+                        <div class="collaborator-card">
+                            <div class="collaborator-image">@{{ c.collaborator.twitter }}</div>
+                            <div class="collaborator-text">
+                                <div class="name"><a href="{{ c.collaborator.url }}" target="_blank"
+                                                     rel="noopener noreferrer">{{ c.collaborator.name }}</a></div>
+                                <div class="credits">{{ c.action }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
     {% for a in assets %}
         {% with asset=a.0 %}
             {% if a.1 == "Text" %}
