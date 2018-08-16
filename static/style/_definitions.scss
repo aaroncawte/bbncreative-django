@@ -22,14 +22,19 @@ $github-colour: #333;
 $logo-background: $bbn4;
 $logo-colour: white;
 
+:root {
+	--logo-custom: rgba($logo-background, 0.6);
+	--logo-custom-hover: rgba($logo-background, 1);
+}
+
 /* Font References
-  ========================================================================= */
+	========================================================================= */
 $font_header: "Carter One", sans-serif;
 $font_sans: "Noto Sans", sans-serif;
 $font_serif: "Noto Serif", serif;
 
 /* UI Component Definitions
-  ========================================================================= */
+	========================================================================= */
 $form-el-radius: 5px;
 $nav-height: 80px;
 
@@ -39,7 +44,7 @@ $opacity-drop-shadow: 0.4;
 $card-colour: $off-white;
 
 /* UI Viewport Definitions
-  ========================================================================= */
+	========================================================================= */
 $break-window-width: 1280px;
 $break-window-width-1: 1279px;
 
@@ -54,7 +59,7 @@ $feeds-menu-offset: $edge-gap + $gl-button-width + $gap-between;
 $projects-menu-offset: $edge-gap + $gl-button-width + $gap-between + $fe-button-width + $gap-between;
 
 /* SCSS Mixins
-  ========================================================================= */
+	========================================================================= */
 @mixin cross-transition($args) {
 	-webkit-transition: $args;
 	-moz-transition: $args;
@@ -100,7 +105,7 @@ $projects-menu-offset: $edge-gap + $gl-button-width + $gap-between + $fe-button-
 }
 
 /* Resets and basic elements
-   ======================================================================== */
+	 ======================================================================== */
 html, body {
 	margin: 0;
 	padding: 0;
@@ -165,7 +170,7 @@ a.no-text-decoration {
 }
 
 /* Element selection
-   ======================================================================== */
+	 ======================================================================== */
 html, body, p, i, strong, em, span, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
 	&::-moz-selection {
 		background-color: $bbn2;
@@ -243,6 +248,7 @@ input[type=date], input[type=datetime-local], input[type=week], input[type=month
 textarea {
 	height: auto;
 }
+
 label {
 	display: block;
 	margin: 10px 0 0;

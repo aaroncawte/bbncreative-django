@@ -62,16 +62,21 @@ The dependency of these elements is R <- D <- S.
   src: url("../fonts/Noto_Serif/NotoSerif-BoldItalic.ttf"); }
 /* Colour References
   ========================================================================= */
+:root {
+ --logo-custom: rgba(232, 24, 95, 0.6);
+ --logo-custom-hover: #e8185f;
+}
+
 /* Font References
-  ========================================================================= */
+	========================================================================= */
 /* UI Component Definitions
-  ========================================================================= */
+	========================================================================= */
 /* UI Viewport Definitions
-  ========================================================================= */
+	========================================================================= */
 /* SCSS Mixins
-  ========================================================================= */
+	========================================================================= */
 /* Resets and basic elements
-   ======================================================================== */
+	 ======================================================================== */
 html, body {
   margin: 0;
   padding: 0;
@@ -130,7 +135,7 @@ a.no-text-decoration:link, a.no-text-decoration:hover, a.no-text-decoration:acti
 }
 
 /* Element selection
-   ======================================================================== */
+	 ======================================================================== */
 html::-moz-selection, body::-moz-selection, p::-moz-selection, i::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
@@ -291,16 +296,13 @@ nav {
 #bbncreative-logo {
   width: 200px;
   height: 60px;
-  line-height: 60px;
   margin: 10px 20px 10px 0;
- background-color: rgba(232, 24, 95, 0.6);
- text-shadow: 0 2px 2px rgba(229, 229, 229, 0.4);
+ background-color: var(--logo-custom);
   color: white;
-  text-align: center;
-  font-family: "Carter One", sans-serif;
-  font-size: 28px;
-  font-weight: normal;
  border-radius: 5px;
+ font: normal 28px/60px "Carter One", sans-serif;
+ text-align: center;
+ text-shadow: 0 2px 2px rgba(22, 22, 22, 0.4);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -314,7 +316,7 @@ nav {
 }
 
 #bbncreative-logo:hover {
- background-color: #e8185f;
+ background-color: var(--logo-custom-hover);
 }
 
 #bbncreative-logo:active {
@@ -670,9 +672,7 @@ nav {
 
 .details-box p {
  margin: 0.5em 0;
- font-size: 14px;
- line-height: 16px;
- font-weight: bold;
+ font: bold 14px/16px initial;
  padding: 0 3px;
  color: #263238;
 }
@@ -765,8 +765,7 @@ nav {
 }
 
 .panel-full h2, .panel-left h2, .panel-right h2 {
- font-family: "Noto Sans", sans-serif;
- font-weight: bold;
+ font: bold initial "Noto Sans", sans-serif;
 }
 
 .content {
@@ -1155,9 +1154,7 @@ nav {
 }
 
 .centre-bio p {
- font-family: "Noto Sans", sans-serif;
- font-size: 18px;
- line-height: 30px;
+ font: 18px/30px "Noto Sans", sans-serif;
 }
 
 .centre-bio p a {
@@ -1397,9 +1394,7 @@ footer {
 
 .footer-logo {
   height: 33px;
-  font-family: "Carter One", sans-serif;
-  font-size: 14px;
-  line-height: 33px;
+ font: 14px/33px "Carter One", sans-serif;
   text-align: center;
  padding-top: 1px;
 }
