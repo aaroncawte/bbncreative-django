@@ -294,7 +294,7 @@ nav {
   line-height: 60px;
   margin: 10px 20px 10px 0;
  background-color: rgba(232, 24, 95, 0.6);
- text-shadow: 0 0 2px rgba(229, 229, 229, 0.4);
+ text-shadow: 0 2px 2px rgba(229, 229, 229, 0.4);
   color: white;
   text-align: center;
   font-family: "Carter One", sans-serif;
@@ -560,6 +560,7 @@ nav {
 .window-first {
   min-height: 525px;
  position: relative;
+ background: #e8185f url("/static/img/subtle/inspiration-geometry.png");
 }
 
 .window-first .wrapper-1200 {
@@ -615,7 +616,8 @@ nav {
   .first-hero-image {
     height: calc(100% - 70px);
     width: 0;
-	 filter: brightness(0.7);
+	 opacity: 0.65;
+	 filter: brightness(0.9);
 	}
 }
 @media (min-width: 1280px) {
@@ -1077,6 +1079,8 @@ nav {
   text-align: center;
   line-height: 120px;
  font-size: 72px;
+ color: white;
+ text-shadow: 0 2px 2px rgba(22, 22, 22, 0.6);
 }
 
 .card-hero-image, .card-logo {
