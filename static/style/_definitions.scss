@@ -84,6 +84,14 @@ $projects-menu-offset: $edge-gap + $gl-button-width + $gap-between + $fe-button-
 	}
 }
 
+@mixin text-shadow($opacity: 0.6, $inverted: false) {
+	@if $inverted {
+		text-shadow: 0 2px 2px rgba($off-white, $opacity);
+	} @else {
+		text-shadow: 0 2px 2px rgba($off-black, $opacity);
+	}
+}
+
 @mixin wide-text {
 	font-size: 14px;
 	font-weight: bold;
