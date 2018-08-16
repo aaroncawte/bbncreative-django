@@ -14,6 +14,8 @@ class AssetTypes:
 
 def generate_logo_rgba(color: str, hover: bool):
     alpha_value = 0.9
+    if hover:
+        alpha_value = 1
     return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
 
 
@@ -127,12 +129,17 @@ def feed_from_name(request, url_name):
     for t in text_assets: my_assets.append((t, AssetTypes.TEXT, t.created_at))
     my_assets.sort(key=lambda a: a[2], reverse=True)
 
+    color_in_rgba = generate_logo_rgba(this_feed.brand_color_1, False)
+    hover_in_rgba = generate_logo_rgba(this_feed.brand_color_1, True)
+
     return render(
         request,
         "feed.html",
         {
             'feed': this_feed,
-            'assets': my_assets
+            'assets': my_assets,
+            'logo_custom_color': color_in_rgba,
+            'logo_hover_color': hover_in_rgba
         }
     )
 

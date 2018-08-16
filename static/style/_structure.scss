@@ -35,22 +35,19 @@ nav {
 #bbncreative-logo {
 	width: 200px;
 	height: 60px;
-	line-height: 60px;
 	margin: 10px 20px 10px 0;
-	background-color: rgba($logo-background, 0.6);
-	@include text-shadow(0.4, true);
+	background-color: var(--logo-custom);
 	color: $logo-colour;
-	text-align: center;
-	font-family: $font_header;
-	font-size: 28px;
-	font-weight: normal;
 	border-radius: $form-el-radius;
+	font: normal 28px/60px $font_header;
+	text-align: center;
+	@include text-shadow(0.4, false);
 	@include cross-user-select(none);
 	@include cross-transition(0.25s background-color);
 	@include cross-backdrop-filter(blur(5px));
 
 	&:hover {
-		background-color: rgba($logo-background, 1);
+		background-color: var(--logo-custom-hover);
 	}
 	&:active {
 		transform: scale(0.95);
@@ -382,9 +379,7 @@ nav {
 	@include drop-shadow();
 	p {
 		margin: 0.5em 0;
-		font-size: 14px;
-		line-height: 16px;
-		font-weight: bold;
+		font: bold 14px/16px initial;
 		padding: 0 3px;
 		color: $blue-grey2;
 		.fas, .far, .fab {
@@ -439,8 +434,7 @@ nav {
 	background-color: $card-colour;
 	overflow-x: hidden;
 	h2 {
-		font-family: $font_sans;
-		font-weight: bold;
+		font: bold initial $font-sans;
 	}
 }
 
@@ -803,9 +797,7 @@ nav {
 	border-top: 2px solid $off-white;
 	border-bottom: 2px solid $off-white;
 	p {
-		font-family: $font_sans;
-		font-size: 18px;
-		line-height: 30px;
+		font: 18px/30px $font_sans;
 		a {
 			display: inline-block;
 			word-break: keep-all;
@@ -1034,9 +1026,7 @@ footer {
 
 .footer-logo {
 	height: 33px;
-	font-family: $font_header;
-	font-size: 14px;
-	line-height: 33px;
+	font: 14px/33px $font_header;
 	text-align: center;
 	padding-top: 1px;
 }
