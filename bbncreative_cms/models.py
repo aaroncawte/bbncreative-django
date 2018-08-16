@@ -120,10 +120,11 @@ class Feed(models.Model):
     )
     brand_color_1 = models.CharField(
         max_length=6,
-        default="455a64"  # blue-grey1
+        default="e8185f"  # bbn colour 4
     )
     brand_color_2 = models.CharField(
         max_length=6,
+        default="ff1a36",  # bbn colour 5
         blank=True
     )
 
