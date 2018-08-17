@@ -18,6 +18,5 @@ urlpatterns = [
 
     #  Static pages
     path('aaron', views_static.aaron, name="aaron"),
-    path('privacy', views_static.privacy, name="privacy"),
-    path('testpage', views_static.test_page, name="test_page")
+    path('privacy', views_static.privacy, name="privacy")
 ]
