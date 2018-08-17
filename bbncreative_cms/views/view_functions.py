@@ -1,8 +1,23 @@
+import json
 import os
+from urllib import request as urlrequest, parse
 
 from twython import Twython, TwythonAuthError
 
 from bbncreative_cms.models import Credit
+
+
+def get_recaptcha(response_data):
+    url = 'https://www.google.com/recaptcha/api/siteverify'
+    values = {
+        'secret': os.environ.get("RECAPTCHA_SECRET"),
+        'response': response_data
+    }
+    data = parse.urlencode(values).encode("utf-8")
+    req = urlrequest.Request(url)
+    response = urlrequest.urlopen(req, data)
+    result = json.load(response)
+    return result
 
 
 def generate_logo_rgba(color: str, hover: bool):
