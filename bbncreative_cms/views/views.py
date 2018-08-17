@@ -4,6 +4,7 @@ from django.db import DataError
 from django.shortcuts import render, redirect
 
 from bbncreative_cms.models import Project, ImageAsset, EmbeddedAsset, TextAsset, Feed, Credit
+from . import view_functions
 
 
 class AssetTypes:
@@ -12,23 +13,9 @@ class AssetTypes:
     TEXT = "Text"
 
 
-def generate_logo_rgba(color: str, hover: bool):
-    alpha_value = 0.9
-    if hover:
-        alpha_value = 1
-    return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
-
-
-def count_children_projects(projects):
-    for p in projects:
-        p.collaborator_count = p.count_collaborators()
-        p.credit_count = Credit.objects.filter(project=p).count()
-        p.asset_count = p.count_assets()
-    return projects
-
-
 def index(request):
-    top_projects = count_children_projects(Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS])
+    top_projects = view_functions.count_children_projects(
+        Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS])
     top_feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
     return render(
         request,
@@ -41,7 +28,7 @@ def index(request):
 
 
 def projects(request):
-    all_projects = count_children_projects(Project.objects.all().order_by('date_complete').reverse())
+    all_projects = view_functions.count_children_projects(Project.objects.all().order_by('date_complete').reverse())
 
     return render(
         request,
@@ -90,8 +77,24 @@ def project_from_name(request, url_name):
 
     credits = Credit.objects.filter(project=this_project)
 
-    color_in_rgba = generate_logo_rgba(this_project.brand_color_1, False)
-    hover_in_rgba = generate_logo_rgba(this_project.brand_color_1, True)
+    color_in_rgba = view_functions.generate_logo_rgba(this_project.brand_color_1, False)
+    hover_in_rgba = view_functions.generate_logo_rgba(this_project.brand_color_1, True)
+
+    collaborator_twitters = []
+
+    for c in credits:
+        collaborator_twitters.append(c.collaborator.twitter)
+
+    twitter_pictures = view_functions.get_twitter_pictures(collaborator_twitters)
+    print(twitter_pictures)
+
+    for c in credits:
+        username = c.collaborator.twitter
+        print("Looking up user " + username.lower())
+        if twitter_pictures.get(username):
+            print("Success")
+            c.collaborator.profile_picture = twitter_pictures.get(username.lower()).get("profile")
+            c.collaborator.cover_picture = twitter_pictures.get(username.lower()).get("cover")
 
     return render(
         request,
@@ -132,8 +135,8 @@ def feed_from_name(request, url_name):
     for t in text_assets: my_assets.append((t, AssetTypes.TEXT, t.created_at))
     my_assets.sort(key=lambda a: a[2], reverse=True)
 
-    color_in_rgba = generate_logo_rgba(this_feed.brand_color_1, False)
-    hover_in_rgba = generate_logo_rgba(this_feed.brand_color_1, True)
+    color_in_rgba = view_functions.generate_logo_rgba(this_feed.brand_color_1, False)
+    hover_in_rgba = view_functions.generate_logo_rgba(this_feed.brand_color_1, True)
 
     return render(
         request,
