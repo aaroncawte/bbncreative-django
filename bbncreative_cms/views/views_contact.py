@@ -1,33 +1,23 @@
 # For the contact form
-import json
 import os
-from urllib import request as urlrequest, parse
 
+from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import get_template
 
 from bbncreative_cms.forms import ContactForm
+from bbncreative_cms.views import view_functions
 
 
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
-
         if form.is_valid():
-
             # reCaptcha Validation
             recaptcha_response = request.POST.get('g-recaptcha-response')
-            url = 'https://www.google.com/recaptcha/api/siteverify'
-            values = {
-                'secret': os.environ.get("RECAPTCHA_SECRET"),
-                'response': recaptcha_response
-            }
-            data = parse.urlencode(values).encode("utf-8")
-            req = urlrequest.Request(url)
-            response = urlrequest.urlopen(req, data)
-            result = json.load(response)
+            result = view_functions.get_recaptcha(recaptcha_response)
 
             # On successful validation
             if result["success"]:
@@ -38,7 +28,6 @@ def contact(request):
                     'form_content': form.cleaned_data['body'],
                 }
                 content = template.render(context)
-
                 email = EmailMessage(
                     subject="[Website] " + form.cleaned_data['subject'],
                     body=content,
@@ -48,16 +37,11 @@ def contact(request):
                     headers={'Content-Type': 'text/plain'},
                 )
                 email.send()
-
                 return HttpResponseRedirect("/contact-thanks")
+            else:
+                messages.add_message(request, messages.ERROR, "Your reCAPTCHA attempt failed. Please try again!")
 
-    #       else:
-    #         # return false with reCaptcha error
-    # else:
-    #     # nothing
-
-    else:
-        form = ContactForm()
+    form = ContactForm()
 
     return render(
         request,
