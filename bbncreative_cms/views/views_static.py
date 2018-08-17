@@ -21,14 +21,3 @@ def privacy(request):
             "show_back_to_home": True,
         }
     )
-
-
-def test_page(request):
-    return render(
-        request,
-        "static_pages/test.html",
-        {
-            "page_title": "Test Page",
-            "show_back_to_home": True,
-        }
-    )
