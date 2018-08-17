@@ -56,8 +56,10 @@
                 {% endif %}
                 <div class="collaborator-tray">
                     {% for c in credits %}
-                        <div class="collaborator-card">
-                            <div class="collaborator-image">@{{ c.collaborator.twitter }}</div>
+                        <div class="collaborator-card"
+                             style="background-image: url({{ c.collaborator.cover_picture }})">
+                            <img src="{{ c.collaborator.profile_picture }}" class="collaborator-image"
+                                 alt="@{{ c.collaborator.twitter }}'s Twitter profile picture" width="70" height="70"/>
                             <div class="collaborator-text">
                                 <div class="name"><a href="{{ c.collaborator.url }}" target="_blank"
                                                      rel="noopener noreferrer">{{ c.collaborator.name }}</a></div>
