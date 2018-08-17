@@ -7,7 +7,8 @@ from twython import Twython, TwythonAuthError
 from bbncreative_cms.models import Credit
 
 
-def get_recaptcha(response_data):
+def get_recaptcha(response_data: str) -> dict:
+    print("IN: " + str(type(response_data)))
     url = 'https://www.google.com/recaptcha/api/siteverify'
     values = {
         'secret': os.environ.get("RECAPTCHA_SECRET"),
@@ -17,17 +18,18 @@ def get_recaptcha(response_data):
     req = urlrequest.Request(url)
     response = urlrequest.urlopen(req, data)
     result = json.load(response)
+    print("OUT: " + str(type(result)))
     return result
 
 
-def generate_logo_rgba(color: str, hover: bool):
+def generate_logo_rgba(color: str, hover: bool) -> tuple:
     alpha_value = 0.9
     if hover:
         alpha_value = 1
     return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
 
 
-def count_children_projects(projects):
+def count_children_projects(projects: list) -> list:
     for p in projects:
         p.collaborator_count = p.count_collaborators()
         p.credit_count = Credit.objects.filter(project=p).count()
@@ -35,7 +37,7 @@ def count_children_projects(projects):
     return projects
 
 
-def get_twitter_pictures(users):
+def get_twitter_pictures(users: list) -> dict:
     user_dict = {}
     try:
         APP_KEY = os.environ.get("TWITTER_APP_KEY")

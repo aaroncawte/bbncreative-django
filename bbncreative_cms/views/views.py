@@ -86,13 +86,10 @@ def project_from_name(request, url_name):
         collaborator_twitters.append(c.collaborator.twitter)
 
     twitter_pictures = view_functions.get_twitter_pictures(collaborator_twitters)
-    print(twitter_pictures)
 
     for c in credits:
         username = c.collaborator.twitter
-        print("Looking up user " + username.lower())
         if twitter_pictures.get(username):
-            print("Success")
             c.collaborator.profile_picture = twitter_pictures.get(username.lower()).get("profile")
             c.collaborator.cover_picture = twitter_pictures.get(username.lower()).get("cover")
 
