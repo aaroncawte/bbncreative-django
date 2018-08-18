@@ -9,5 +9,10 @@ def top_projects(context):
 
 
 def top_feeds(context):
-    feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
+    feeds = Feed.objects.filter(protected=False, permanent=False)[:settings.NUM_TOP_FEEDS]
     return {'top_feeds': feeds}
+
+
+def permanent_feeds(context):
+    feeds = Feed.objects.filter(protected=False, permanent=True)[:settings.NUM_TOP_FEEDS]
+    return {'permanent_feeds': feeds}
