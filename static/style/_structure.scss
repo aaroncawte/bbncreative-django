@@ -797,6 +797,7 @@ nav {
 }
 
 .collaborator-card {
+	position: relative;
 	width: 400px;
 	max-width: 100%;
 	min-height: 120px;
@@ -814,13 +815,18 @@ nav {
 	border-top-left-radius: $form-el-radius;
 	border-bottom-left-radius: $form-el-radius;
 	background-size: auto 120px;
+	background-position: center;
+	opacity: 0.7;
 }
 .collaborator-image {
+	position: absolute;
+	top: 20px;
+	left: 20px;
 	width: 70px;
 	height: 70px;
-	margin: 20px;
 	border: 5px solid white;
 	border-radius: 50%;
+	z-index: 2;
 	@include drop-shadow;
 }
 
