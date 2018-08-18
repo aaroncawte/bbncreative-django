@@ -17,6 +17,5 @@ urlpatterns = [
     path('contact-thanks', views_contact.contact_thanks, name="contact-thanks"),
 
     #  Static pages
-    path('aaron', views_static.aaron, name="aaron"),
     path('privacy', views_static.privacy, name="privacy")
 ]
