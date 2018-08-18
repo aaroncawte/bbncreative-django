@@ -14,6 +14,10 @@ class Project(models.Model):
         default="New Project",
         max_length=255
     )
+    menu_name = models.CharField(
+        default="New Project",
+        max_length=15
+    )
     bio = models.TextField(
         max_length=5000,
         default="Project Bio"
