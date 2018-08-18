@@ -56,24 +56,7 @@
                 {% endif %}
                 <div class="collaborator-tray">
                     {% for c in credits %}
-                        <div class="collaborator-card">
-                            <div class="collaborator-wallpaper"
-                                 style="background-image: url({{ c.collaborator.cover_picture }})">
-                                <img src="{{ c.collaborator.profile_picture }}" class="collaborator-image"
-                                     alt="@{{ c.collaborator.twitter }}'s Twitter profile picture" width="70"
-                                     height="70"/>
-                            </div>
-                            <div class="collaborator-text">
-                                <div class="name"><a class="no-text-decoration" href="{{ c.collaborator.url }}"
-                                                     target="_blank"
-                                                     rel="noopener noreferrer">{{ c.collaborator.name }}</a></div>
-                                <div class="credits">{{ c.action }}</div>
-                                <div class="links">
-                                    <a href=""><i class="fas fa-globe-africa"></i>Website</a>
-                                    <a href=""><i class="fab fa-twitter"></i>Twitter</a>
-                                </div>
-                            </div>
-                        </div>
+                        {% include "components/_collaboratorSummary.html" %}
                     {% endfor %}
                 </div>
             </div>

@@ -1,0 +1,22 @@
+{% load static %}
+{% block collaborator_summary %}
+    <div class="collaborator-card">
+        <img src="{{ c.collaborator.profile_picture }}" class="collaborator-image"
+             alt="@{{ c.collaborator.twitter }}'s Twitter profile picture" width="70" height="70"/>
+        <div class="collaborator-wallpaper"
+             style="background-image: url({{ c.collaborator.cover_picture }})">
+        </div>
+        <div class="collaborator-text">
+            <div class="name">{{ c.collaborator.name }}</div>
+            <div class="credits">{{ c.action }}</div>
+            <div class="links">
+                <a href="{{ c.collaborator.url }}" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-globe-africa"></i>Website
+                </a>
+                <a href="https://twitter.com/{{ c.collaborator.twitter }}" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-twitter"></i>Twitter
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
