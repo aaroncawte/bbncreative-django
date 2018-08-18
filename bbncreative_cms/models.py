@@ -97,6 +97,10 @@ class Feed(models.Model):
         default="New Feed",
         max_length=255
     )
+    menu_name = models.CharField(
+        default="New Feed",
+        max_length=15
+    )
     bio = models.TextField(
         max_length=5000,
         default="Feed Bio"
@@ -112,6 +116,9 @@ class Feed(models.Model):
     )
     protected = models.BooleanField(
         default=True
+    )
+    permanent = models.BooleanField(
+        default=False
     )
     hero = models.ImageField(
         upload_to=generate_file_path,
