@@ -29,12 +29,15 @@
                 {% if project.collaborator_count > 1 %}
                     <div class="meta-stat"><i class="fas fa-users"></i> {{ project.collaborator_count }} Collaborators
                     </div>
-                {% elif project.collaborator_count == 1 %}
-                    <div class="meta-stat"><i class="fas fa-users"></i>1 Collaborator</div>
                 {% else %}
-                    <div class="meta-stat"><i class="fas fa-users"></i>Independent Work</div>
+                    <div class="meta-stat"><i class="fas fa-user"></i>Individual Work</div>
                 {% endif %}
-                <div class="meta-stat"><i class="far fa-images"></i>{{ project.asset_count }} Assets</div>
+
+                {% if project.asset_count == 1 %}
+                    <div class="meta-stat"><i class="far fa-image"></i>1 Asset</div>
+                {% else %}
+                    <div class="meta-stat"><i class="far fa-images"></i>{{ project.asset_count }} Assets</div>
+                {% endif %}
             </div>
         </div>
     </div>

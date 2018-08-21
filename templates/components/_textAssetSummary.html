@@ -2,9 +2,11 @@
     <div class="window" data-asset-type="text" data-asset-importance="{{ asset.importance }}">
         <div class="wrapper-1200">
             <div class="panel-full">
+                <div class="top-left-corner"></div>
                 <h2>{{ asset.title }}</h2>
                 <p>{{ asset.body }}</p>
-                <p><em>Date created (server time): {{ asset.created_at }}</em></p>
+                <p class="meta-text">Created (server time): {{ asset.created_at }}.</p>
+                <div class="bottom-right-corner"></div>
             </div>
         </div>
     </div>
