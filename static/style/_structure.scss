@@ -793,12 +793,12 @@ nav {
 	flex-wrap: wrap;
 	padding-bottom: 20px;
 	margin-bottom: 10px;
-	border-bottom: 1px solid $footer-text;
+	border-bottom: 2px solid $off-white;
 }
 
 .collaborator-card {
 	position: relative;
-	width: 400px;
+	width: 380px;
 	max-width: 100%;
 	min-height: 120px;
 	display: flex;

@@ -65,7 +65,9 @@
     {% for a in assets %}
         {% with asset=a.0 %}
             {% if a.1 == "Text" %}
-                {% include "components/_textAssetSummary.html" %}
+                {% autoescape off %}
+                    {% include "components/_textAssetSummary.html" %}
+                {% endautoescape %}
             {% elif a.1 == "Image" %}
                 {% include "components/_imageAssetSummary.html" %}
             {% else %}
