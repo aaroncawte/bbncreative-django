@@ -93,7 +93,7 @@ class Project(models.Model):
         return len(found_collaborators)
 
     def __str__(self):
-        return self.name + " is a project for " + self.client_name + "."
+        return self.menu_name + " (" + self.name + ") is a project for " + self.client_name + " at /" + self.url_name
 
 
 class Feed(models.Model):
@@ -140,7 +140,11 @@ class Feed(models.Model):
     )
 
     def __str__(self):
-        return self.name + " (" + self.url_name + ")"
+        if self.protected:
+            prot = "protected "
+        else:
+            prot = ""
+        return self.menu_name + " (" + self.name + ") is a " + prot + "feed at url /" + self.url_name
 
 
 class Collaborator(models.Model):
