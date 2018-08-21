@@ -431,8 +431,6 @@ nav {
 	display: flex;
 	flex-direction: column;
 	box-sizing: border-box;
-	background-color: $card-colour;
-	overflow-x: hidden;
 	h2 {
 		font: bold initial $font-sans;
 	}
@@ -440,6 +438,10 @@ nav {
 
 .panel-full, .panel-left, .panel-right {
 	@include content-card;
+	position: relative;
+	h2 {
+		margin-top: 0;
+	}
 }
 
 .content {
@@ -466,15 +468,15 @@ nav {
 	}
 	.content {
 		width: 100%;
-		max-width: 700px;
+		max-width: 800px;
 		margin: 20px auto 0;
 		padding: 0;
 	}
 	.panel-full, .panel-left, .panel-right {
 		width: 100%;
-		max-width: 700px;
-		margin: 0 auto 20px;
-		padding: 10px 20px;
+		max-width: 800px;
+		margin: $vertical-space auto;
+		padding: 20px;
 	}
 	.content img, .content iframe {
 		width: 100%;
@@ -515,6 +517,34 @@ nav {
 	}
 }
 
+.top-left-corner, .bottom-right-corner {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	z-index: 2;
+}
+
+.top-left-corner {
+	top: -2px;
+	left: -2px;
+
+	border-top: 2px solid $off-white;
+	border-left: 2px solid $off-white;
+}
+
+.bottom-right-corner {
+	bottom: -2px;
+	right: -2px;
+	border-bottom: 2px solid $off-white;
+	border-right: 2px solid $off-white;
+}
+
+.meta-text {
+	font-size: 10px;
+	color: $footer-text;
+	text-transform: uppercase;
+}
+
 @media(min-width: $break-window-width) {
 	.window[data-asset-type=image], .window[data-asset-type=embedded] {
 		.wrapper-1200 {
@@ -549,13 +579,13 @@ nav {
 	.panel-full {
 		width: 1000px;
 		max-width: 100%;
-		margin: 20px auto;
-		padding: 10px 40px;
+		margin: $vertical-space auto;
+		padding: 40px;
 	}
 
 	.panel-left, .panel-right {
 		width: 25%;
-		padding: 10px 40px;
+		padding: 40px;
 		margin: 0;
 		flex-grow: 1;
 		overflow-wrap: break-word;
@@ -791,6 +821,7 @@ nav {
 	margin-bottom: 10px;
 	border-bottom: 2px solid $off-white;
 }
+
 .collaborator-tray {
 	width: 100%;
 	display: flex;
@@ -820,6 +851,7 @@ nav {
 	background-position: center;
 	opacity: 0.7;
 }
+
 .collaborator-image {
 	position: absolute;
 	top: 20px;
