@@ -949,7 +949,7 @@ nav {
 /* Asset Styles
 	 ======================================================================== */
 .window-cards {
- padding: 40px 0;
+ padding: 20px 0;
 }
 
 .window-cards .wrapper-1200 {
@@ -1141,14 +1141,17 @@ nav {
 
 /* Collbaorator Boxes
 	 ======================================================================== */
+#collaboratorWrapper {
+ padding: 20px 0;
+ margin-bottom: 10px;
+ border-bottom: 2px solid #e5e5e5;
+}
+
 .collaborator-tray {
  width: 100%;
  display: flex;
  justify-content: center;
  flex-wrap: wrap;
- padding-bottom: 20px;
- margin-bottom: 10px;
- border-bottom: 2px solid #e5e5e5;
 }
 
 .collaborator-card {
@@ -1187,7 +1190,7 @@ nav {
 }
 
 .collaborator-text {
- flex-grow: 1;
+ width: 240px;
  padding: 0 10px;
  background-color: #f3f3f3;
 }
