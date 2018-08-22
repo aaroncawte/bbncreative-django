@@ -240,14 +240,17 @@
 	.card {
 		height: 470px;
 	}
-	.feed-card .card-content, .project-card .card-content {
+	.feed-card .card-content {
 		height: 330px;
+	}
+	.project-card .card-content {
+		height: 310px;
 	}
 	.meta-stats {
 		height: 100px;
-		.meta-stat {
-			width: 100%;
-		}
+	}
+	.meta-stat {
+		width: 100%;
 	}
 }
 
@@ -255,14 +258,32 @@
 	.card {
 		height: 420px;
 	}
-	.feed-card .card-content, .project-card .card-content {
-		height: 280px;
-	}
-	.meta-stats {
-		height: 50px;
-		.meta-stat {
-			width: 50%;
+	.feed-card {
+		.card-content {
+			height: 270px;
 		}
+		.meta-stats {
+			height: 25px;
+		}
+		.card-bio {
+			height: 168px;
+			margin: 22px 0 18px;
+		}
+	}
+	.project-card {
+		.card-content {
+			height: 250px;
+		}
+		.card-bio {
+			height: 120px;
+			margin: 21px 0 17px;
+		}
+		.meta-stats {
+			height: 50px;
+		}
+	}
+	.meta-stat {
+		width: 50%;
 	}
 }
 
@@ -291,7 +312,7 @@
 .feed-card {
 	@extend .card;
 	.card-content {
-		padding: 10px 20px;
+		padding: 20px 20px 10px;
 	}
 	.card-icon {
 		top: 0;
@@ -342,8 +363,6 @@
 		box-sizing: border-box;
 		width: 100%;
 		line-height: 24px;
-		height: 120px;
-		margin: 21px 0 17px;
 		overflow: hidden;
 		text-align: left;
 		padding: 0 8px;

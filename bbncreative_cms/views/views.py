@@ -17,6 +17,13 @@ def index(request):
     top_projects = view_functions.count_children_projects(
         Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS])
     top_feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
+
+    for f in top_feeds:
+        feed = Feed.objects.filter(url_name=f.url_name).prefetch_related("embeddedasset_set", "imageasset_set",
+                                                                         "textasset_set").first()
+        asset_count = feed.embeddedasset_set.count() + feed.imageasset_set.count() + feed.textasset_set.count()
+        f.asset_count = asset_count
+
     return render(
         request,
         "index.html",
@@ -41,6 +48,13 @@ def projects(request):
 
 def feeds(request):
     all_feeds = Feed.objects.filter(protected=False)
+
+    for f in all_feeds:
+        feed = Feed.objects.filter(url_name=f.url_name).prefetch_related("embeddedasset_set", "imageasset_set",
+                                                                         "textasset_set").first()
+        asset_count = feed.embeddedasset_set.count() + feed.imageasset_set.count() + feed.textasset_set.count()
+        f.asset_count = asset_count
+
     return render(
         request,
         "feeds.html",

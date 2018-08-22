@@ -11,6 +11,14 @@
         <div class="card-content">
             <a href="/feeds/{{ feed.url_name }}" class="no-text-decoration"><h2>{{ feed.name }}</h2></a>
             <p class="card-bio">{{ feed.bio }}</p>
+            <div class="meta-stats">
+                <div class="meta-stat"><i class="fas fa-clock"></i>{{ feed.date_updated }}</div>
+                {% if feeds.asset_count == 1 %}
+                    <div class="meta-stat"><i class="far fa-images"></i>{{ feed.asset_count }} Asset</div>
+                {% else %}
+                    <div class="meta-stat"><i class="far fa-images"></i>{{ feed.asset_count }} Assets</div>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
