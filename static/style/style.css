@@ -16,8 +16,13 @@ Base Styles
 Organised Styles
 ================
 
-| Structure | HeroWindow |
-|===========|============|
+| Miscellaneous | HeroWindow   | NavMenu      | Assets        |
+|===============|==============|==============|===============|
+| - Windows     | - Homepage   | - Nav bar    | - Asset types |
+| - Wrappers    | - Press Play | - Menus      | - Decoration  |
+| - Card Styles | - Video loop | - Menu mech. | - L/R Config  |
+| - Contact     |              |              |               |
+| - Footer      |              |              |               |
 
 
 - Definitions may be dependent on Resources
@@ -919,7 +924,6 @@ footer {
 	display: none;
  }
 }
-
 @media (max-width: 690px) {
  .footer-buttons {
 	flex-direction: column;
@@ -938,7 +942,6 @@ footer {
 	display: none;
  }
 }
-
 #twitterLink:hover {
  color: #1da1f2;
 }
@@ -1102,7 +1105,6 @@ footer {
 	 font-size: 64px;
 	}
 }
-
 /* Navigation Bar
    ======================================================================== */
 nav {
@@ -1222,7 +1224,6 @@ nav .wrapper-1200 {
 	width: 100px;
  }
 }
-
 .active-button {
  padding: 6px 12px;
  border: 2px solid #fff;
@@ -1381,7 +1382,6 @@ nav .wrapper-1200 {
 	display: none;
  }
 }
-
 @media (min-width: 690px) {
  .menu {
 	right: 0;
@@ -1400,7 +1400,6 @@ nav .wrapper-1200 {
 	display: none;
  }
 }
-
 /* Asset Styles
 	 ======================================================================== */
 .panel-full, .panel-left, .panel-right {
@@ -1514,7 +1513,6 @@ nav .wrapper-1200 {
 	height: 804px;
  }
 }
-
 @media (min-width: 1280px) {
  .content {
 	padding: 0;
@@ -1621,7 +1619,6 @@ nav .wrapper-1200 {
 	height: 620px;
  }
 }
-
 .ar-VL iframe {
  width: 100%;
  height: 100%;

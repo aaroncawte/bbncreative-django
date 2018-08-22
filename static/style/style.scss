@@ -16,18 +16,24 @@ Base Styles
 Organised Styles
 ================
 
-| Structure | HeroWindow |
-|===========|============|
+| Miscellaneous | HeroWindow   | NavMenu      | Assets        |
+|===============|==============|==============|===============|
+| - Windows     | - Homepage   | - Nav bar    | - Asset types |
+| - Wrappers    | - Press Play | - Menus      | - Decoration  |
+| - Card Styles | - Video loop | - Menu mech. | - L/R Config  |
+| - Contact     |              |              |               |
+| - Footer      |              |              |               |
 
 
 - Definitions may be dependent on Resources
 - Any "Organised Style" may be dependent on Definitions and Resources
 
  */
-
+// Base Styles
 @import 'resources';
 @import 'definitions';
-@import 'structure';
+// Organised Styles
+@import 'miscellaneous';
 @import 'heroWindow';
 @import 'navMenu';
 @import 'assets';
