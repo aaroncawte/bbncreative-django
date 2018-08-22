@@ -10,7 +10,10 @@
         <div class="card-icon"><i class="{{ feed.menu_icon_name }}"></i></div>
         <div class="card-content">
             <a href="/feeds/{{ feed.url_name }}" class="no-text-decoration"><h2>{{ feed.name }}</h2></a>
-            <p class="card-bio">{{ feed.bio }}</p>
+            <div class="card-bio">
+                <div class="bio-shader"></div>
+                {{ feed.bio }}
+            </div>
             <div class="meta-stats">
                 <div class="meta-stat"><i class="fas fa-clock"></i>{{ feed.date_updated }}</div>
                 {% if feeds.asset_count == 1 %}
