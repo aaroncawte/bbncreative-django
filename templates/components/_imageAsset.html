@@ -21,7 +21,9 @@
                     <div class="bottom-right-corner"></div>
                 </div>
                 <h2>{{ asset.title }}</h2>
-                <p>{{ asset.body }}</p>
+                {% autoescape off %}
+                    <p>{{ asset.body }}</p>
+                {% endautoescape %}
 
                 <p class="meta-text">Created (server time): {{ asset.created_at }}. Aspect
                     ratio: {{ asset.aspect_ratio }}.</p>

@@ -4,7 +4,9 @@
             <div class="panel-full">
                 <div class="top-left-corner"></div>
                 <h2>{{ asset.title }}</h2>
-                <p>{{ asset.body }}</p>
+                {% autoescape off %}
+                    <p>{{ asset.body }}</p>
+                {% endautoescape %}
                 <p class="meta-text">Created (server time): {{ asset.created_at }}.</p>
                 <div class="bottom-right-corner"></div>
             </div>

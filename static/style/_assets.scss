@@ -67,7 +67,7 @@
 	}
 	.window[data-asset-type=image], .window[data-asset-type=embedded] {
 		.wrapper-1200 {
-			flex-direction: row;
+			flex-direction: column;
 		}
 	}
 	.window[data-asset-type=image] {
@@ -114,7 +114,7 @@
 		display: none;
 	}
 	.panel-full {
-		width: 1000px;
+		width: 800px;
 		max-width: 100%;
 		margin: $vertical-space auto;
 		padding: 40px;
