@@ -61,7 +61,7 @@
 	background-size: cover;
 }
 
-@media (max-width: $break-mobile) {
+@media (max-width: $break-mobile-max) {
 	.window-title, .window-first {
 		h1 {
 			text-align: center;
@@ -85,7 +85,7 @@
 
 }
 
-@media (min-width: $break-mobile) {
+@media (min-width: $break-mobile-min) {
 	.window-title, .window-first {
 		h1 {
 			font-size: 60px;
@@ -104,7 +104,7 @@
 	}
 }
 
-@media (min-width: $break-window-width) {
+@media (min-width: $break-window-width-min) {
 	.window-first h1 {
 		font-size: 72px;
 	}
@@ -118,19 +118,20 @@
 	position: relative;
 }
 
-@media (max-width: $break-window-width-1) {
+@media (max-width: $break-window-width-max) {
 	.wrapper-1200 {
 		box-sizing: border-box;
 		width: 100%;
 		max-width: 100%;
 	}
 	.wrapper-800 {
+		box-sizing: border-box;
 		width: 100%;
 		max-width: 800px;
 	}
 }
 
-@media (min-width: $break-window-width) {
+@media (min-width: $break-window-width-min) {
 	.wrapper-1200 {
 		width: 1200px;
 		max-width: 1200px;
@@ -605,7 +606,7 @@ footer {
 	padding-top: 1px;
 }
 
-@media (min-width: $break-mobile) {
+@media (min-width: $break-mobile-min) {
 	.footer-buttons {
 		height: 34px;
 		.button {
@@ -621,7 +622,7 @@ footer {
 	}
 }
 
-@media (max-width: $break-mobile-1) {
+@media (max-width: $break-mobile-max) {
 	.footer-buttons {
 		flex-direction: column;
 		height: auto;
