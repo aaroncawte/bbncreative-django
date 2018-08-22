@@ -8,6 +8,18 @@
                 <img src="{% get_media_prefix %}{{ asset.img }}" alt="{{ asset.alt }}"/>
             </div>
             <div class="panel-right">
+                <div class="mobile-corners">
+                    <div class="bottom-left-corner"></div>
+                    <div class="bottom-right-corner"></div>
+                </div>
+                <div class="l-corners">
+                    <div class="top-left-corner"></div>
+                    <div class="bottom-left-corner"></div>
+                </div>
+                <div class="r-corners">
+                    <div class="top-right-corner"></div>
+                    <div class="bottom-right-corner"></div>
+                </div>
                 <h2>{{ asset.title }}</h2>
                 <p>{{ asset.body }}</p>
 

@@ -2,21 +2,32 @@
 
 bbncreative CSS by Aaron Cawte.
 
-This stylesheet utilises the RDS structure as specified below.
+This stylesheet utilises the structure as specified as follows:
 
-| Resources       | Definitions              | Structure         |
-|=================|==========================|===================|
-| - Font Imports  | - Colour codes           | - Shape and size  |
-| - Image URLs    | - CSS Resets & Defaults  | - Positioning     |
-|                 | - SCSS Mixins            | - Visibility      |
+Base Styles
+===========
 
-The dependency of these elements is R <- D <- S.
-- Resources defines external references to fonts, static images etc.
-- Definitions styles standard elements (e.g. input fields).
-- Structure defines custom elements for the page and structures is visually.
+| Resources       | Definitions              |
+|=================|==========================|
+| - Font Imports  | - Colour codes           |
+| - Image URLs    | - CSS Resets & Defaults  |
+|                 | - SCSS Mixins            |
+
+Organised Styles
+================
+
+| Structure | HeroWindow |
+|===========|============|
+
+
+- Definitions may be dependent on Resources
+- Any "Organised Style" may be dependent on Definitions and Resources
 
  */
 
 @import 'resources';
 @import 'definitions';
 @import 'structure';
+@import 'heroWindow';
+@import 'navMenu';
+@import 'assets';
