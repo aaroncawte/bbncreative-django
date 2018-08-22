@@ -1,0 +1,255 @@
+/* Asset Styles
+	 ======================================================================== */
+.panel-full, .panel-left, .panel-right {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	position: relative;
+	h2 {
+		font: bold initial $font-sans;
+		margin-top: 0;
+	}
+}
+
+.content {
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $blue-grey2;
+	img, iframe {
+		border: 0;
+		outline: none;
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
+
+.window[data-asset-type=text], .window[data-asset-type=image], .window[data-asset-type=embedded] {
+	margin: $vertical-space 0;
+}
+
+.window[data-asset-type=image], .window[data-asset-type=embedded] {
+	.wrapper-1200 {
+		display: flex;
+	}
+}
+
+.window[data-asset-type=image] {
+	flex-direction: row;
+}
+
+.window[data-asset-type=embedded] {
+	.panel-left, .panel-right {
+		background-color: $blue-grey1;
+		color: #fff;
+	}
+}
+
+@media(max-width: $break-window-width) {
+	.content {
+		width: 100%;
+		max-width: 800px;
+		margin: 20px auto 0;
+		padding: 0;
+		img, iframe {
+			width: 100%;
+		}
+	}
+	.l-corners, .r-corners {
+		display: none;
+	}
+	.panel-full, .panel-left, .panel-right {
+		width: 100%;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	.window[data-asset-type=image], .window[data-asset-type=embedded] {
+		.wrapper-1200 {
+			flex-direction: row;
+		}
+	}
+	.window[data-asset-type=image] {
+		.ar-SQ {
+			height: 700px;
+		}
+		.ar-W1 {
+			height: 525px;
+		}
+		.ar-W2 {
+			height: 467px;
+		}
+		.ar-W3 {
+			height: 394px;
+		}
+		.ar-T1 {
+			height: 933px;
+		}
+		.ar-T2 {
+			height: 1050px;
+		}
+		.ar-T3 {
+			height: 1244px;
+		}
+	}
+	.window[data-asset-type=embedded] {
+		.ar-VL {
+			height: 394px;
+		}
+		.ar-VP {
+			height: 1244px;
+		}
+		.ar-IG {
+			height: 804px;
+		}
+	}
+}
+
+@media(min-width: $break-window-width) {
+	.content {
+		padding: 0;
+	}
+	.mobile-corners {
+		display: none;
+	}
+	.panel-full {
+		width: 1000px;
+		max-width: 100%;
+		margin: $vertical-space auto;
+		padding: 40px;
+	}
+	.panel-left, .panel-right {
+		width: 25%;
+		padding: 40px;
+		margin: 0;
+		flex-grow: 1;
+		overflow-wrap: break-word;
+	}
+	.panel-left {
+		.r-corners {
+			display: none;
+		}
+	}
+	.panel-right {
+		.l-corners {
+			display: none;
+		}
+	}
+	.window[data-asset-type=image], .window[data-asset-type=embedded] {
+		.wrapper-1200 {
+			justify-content: center;
+			margin: 20px auto;
+		}
+	}
+	.window[data-asset-type=image] {
+		.content {
+			position: relative;
+		}
+		.background-blur {
+			position: absolute;
+			z-index: 0;
+			width: 100%;
+			height: 100%;
+			background-size: auto 200%;
+			background: transparent no-repeat center;
+			filter: blur(10px);
+		}
+		img {
+			position: relative;
+			z-index: 1;
+		}
+		.ar-SQ {
+			width: 792px;
+			height: 792px;
+		}
+		.ar-W1 {
+			width: 792px;
+			height: 594px;
+		}
+		.ar-W2 {
+			width: 792px;
+			height: 528px;
+		}
+		.ar-W3 {
+			width: 792px;
+			height: 446px;
+		}
+		.ar-T1 {
+			width: 594px;
+			height: 792px;
+		}
+		.ar-T2 {
+			width: 528px;
+			height: 792px;
+		}
+		.ar-T3 {
+			width: 446px;
+			height: 792px;
+		}
+	}
+	.window[data-asset-type=embedded] {
+		.ar-VL {
+			width: 792px;
+			height: 446px;
+		}
+		.ar-VP {
+			width: 446px;
+			height: 792px;
+		}
+		.ar-IG {
+			width: 540px;
+			height: 620px;
+		}
+	}
+}
+
+.ar-VL {
+	iframe {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+/* Corner Borders
+	 ======================================================================== */
+.top-left-corner, .top-right-corner, .bottom-left-corner, .bottom-right-corner {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	z-index: 2;
+}
+
+.top-left-corner {
+	top: -2px;
+	left: -2px;
+	border-top: 2px solid $off-white;
+	border-left: 2px solid $off-white;
+}
+
+.top-right-corner {
+	top: -2px;
+	right: -2px;
+	border-top: 2px solid $off-white;
+	border-right: 2px solid $off-white;
+}
+
+.bottom-left-corner {
+	bottom: -2px;
+	left: -2px;
+	border-bottom: 2px solid $off-white;
+	border-left: 2px solid $off-white;
+}
+
+.bottom-right-corner {
+	bottom: -2px;
+	right: -2px;
+	border-bottom: 2px solid $off-white;
+	border-right: 2px solid $off-white;
+}
+
+.meta-text {
+	font-size: 10px;
+	color: $footer-text;
+	text-transform: uppercase;
+}
