@@ -19,8 +19,8 @@ class Project(models.Model):
         max_length=15
     )
     bio = models.TextField(
-        max_length=5000,
-        default="Project Bio"
+        max_length=200,
+        default="[Project Bio]"
     )
     # Internal URL slug (e.g. /project/slug-field)
     url_name = models.SlugField(
