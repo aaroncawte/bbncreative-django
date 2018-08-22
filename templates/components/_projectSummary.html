@@ -10,7 +10,7 @@
                  style="background: linear-gradient(135deg, #{{ project.brand_color_1 }}, #{{ project.brand_color_2 }});"></div>
         {% endif %}
         {% if project.icon %}
-            <a href="/projects/{{ project.url_name }}" class="no-text-decoration">
+            <a href="/projects/{{ project.url_name }}" class="no-text-decoration" title="{{ project.name }}">
                 <div class="card-logo" style="background-image: url({% get_media_prefix %}{{ project.icon }});"></div>
             </a>
         {% endif %}
