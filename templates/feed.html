@@ -24,6 +24,21 @@
         </a>
     {% endif %}
     <h1>{{ feed.name }}</h1>
+    <div class="details-box">
+        <p class="heading"><i class="fas fa-newspaper"></i>Feed Details</p>
+        <p><i class="fas fa-edit"></i>{{ feed.date_updated }}</p>
+        {% if assets|length == 1 %}
+            <p><i class="far fa-images"></i>{{ assets|length }} Asset</p>
+        {% else %}
+            <p><i class="far fa-images"></i>{{ assets|length }} Assets</p>
+        {% endif %}
+
+        {% if feed.protected %}
+            <p><i class="fas fa-lock"></i>Protected Feed</p>
+        {% elif feed.permanent %}
+            <p><i class="fas fa-sticky-note"></i>Permanent Feed</p>
+        {% endif %}
+    </div>
 </div>
 </div>
     <div class="wrapper-1200">
