@@ -43,7 +43,7 @@
 	flex-direction: row;
 }
 
-@media(max-width: $break-window-width) {
+@media(max-width: $break-window-width-max) {
 	.content {
 		width: 100%;
 		max-width: 800px;
@@ -103,7 +103,7 @@
 	}
 }
 
-@media(min-width: $break-window-width) {
+@media(min-width: $break-window-width-min) {
 	.content {
 		padding: 0;
 	}

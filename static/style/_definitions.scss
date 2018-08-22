@@ -43,11 +43,11 @@ $opacity-drop-shadow: 0.4;
 
 /* UI Viewport Definitions
 	========================================================================= */
-$break-window-width: 1280px;
-$break-window-width-1: 1279px;
+$break-window-width-min: 1280px;
+$break-window-width-max: 1279px;
 
-$break-mobile: 690px;
-$break-mobile-1: 689px;
+$break-mobile-min: 690px;
+$break-mobile-max: 689px;
 
 $vertical-space: 20px;
 

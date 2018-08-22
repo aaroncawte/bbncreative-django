@@ -120,7 +120,7 @@
 	text-align: left;
 }
 
-@media (min-width: $break-mobile) {
+@media (min-width: $break-mobile-min) {
 	.heroHeadline {
 		height: 250px;
 	}
@@ -131,7 +131,7 @@
 	}
 }
 
-@media (max-width: $break-mobile) {
+@media (max-width: $break-mobile-max) {
 	.heroHeadline {
 		height: 200px;
 	}

@@ -323,7 +323,7 @@ input[type=reset], button.secondary {
   background: #263238 center;
   background-size: cover; }
 
-@media (max-width: 690px) {
+@media (max-width: 689px) {
   .window-title h1, .window-first h1 {
     text-align: center;
     font-size: 48px; }
@@ -368,6 +368,7 @@ input[type=reset], button.secondary {
     max-width: 100%; }
 
   .wrapper-800 {
+    box-sizing: border-box;
     width: 100%;
     max-width: 800px; } }
 @media (min-width: 1280px) {
@@ -579,11 +580,9 @@ input[type=reset], button.secondary {
   .feed-card .meta-stats {
     height: 50px;
   }
-
   .feed-card .card-content {
     height: 320px;
   }
-
   .feed-card .card-bio {
     height: 193px;
     margin: 22px 0 18px;
@@ -592,11 +591,9 @@ input[type=reset], button.secondary {
   .project-card .meta-stats {
     height: 100px;
   }
-
   .project-card .card-content {
     height: 300px;
   }
-
   .project-card .card-bio {
     height: 120px;
     margin: 21px 0 17px;
@@ -614,11 +611,9 @@ input[type=reset], button.secondary {
   .feed-card .card-content {
     height: 270px;
   }
-
   .feed-card .meta-stats {
     height: 25px;
   }
-
   .feed-card .card-bio {
     height: 168px;
     margin: 22px 0 18px;
@@ -627,12 +622,10 @@ input[type=reset], button.secondary {
   .project-card .card-content {
     height: 250px;
   }
-
   .project-card .card-bio {
     height: 120px;
     margin: 21px 0 17px;
   }
-
   .project-card .meta-stats {
     height: 50px;
   }
@@ -849,7 +842,6 @@ footer {
 
   .fl-wide {
     display: none; } }
-
 .twitterLink:hover {
   color: #1da1f2; }
 
@@ -971,7 +963,8 @@ footer {
     height: 125px;
     line-height: 125px;
     font-size: 96px; } }
-@media (max-width: 690px) {
+
+@media (max-width: 689px) {
   .heroHeadline {
     height: 200px; }
 
@@ -1069,9 +1062,11 @@ nav {
     margin: 23px 0 21px 10px; }
 
 @media (min-width: 690px) {
-  #menuGlobalButton, #menuFeedsButton {
+  #menuGlobalButton, #menuFeedsButton, #menuProjectsButton {
     min-width: 100px;
-    width: 100px; } }
+    width: auto;
+  }
+}
 .active-button {
   padding: 6px 12px;
   border: 2px solid #fff;
@@ -1179,7 +1174,7 @@ nav {
 #menuProjects {
   right: 240px; }
 
-@media (max-width: 690px) {
+@media (max-width: 689px) {
   .menu {
     width: calc(100% - 40px);
     left: 20px; }
@@ -1245,7 +1240,7 @@ nav {
 .window[data-asset-type=image] {
   flex-direction: row; }
 
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
   .content {
     width: 100%;
     max-width: 800px;

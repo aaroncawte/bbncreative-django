@@ -64,10 +64,10 @@ nav {
 	}
 }
 
-@media (min-width: $break-mobile) {
-	#menuGlobalButton, #menuFeedsButton {
+@media (min-width: $break-mobile-min) {
+	#menuGlobalButton, #menuFeedsButton, #menuProjectsButton {
 		min-width: $gl-button-width;
-		width: $gl-button-width;
+		width: auto;
 	}
 }
 
@@ -189,7 +189,7 @@ nav {
 	right: $projects-menu-offset;
 }
 
-@media (max-width: $break-mobile) {
+@media (max-width: $break-mobile-max) {
 	.menu {
 		width: calc(100% - 40px);
 		left: 20px;
@@ -211,7 +211,7 @@ nav {
 	}
 }
 
-@media (min-width: $break-mobile) {
+@media (min-width: $break-mobile-min) {
 	.menu {
 		right: 0;
 		width: 188px;
