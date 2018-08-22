@@ -263,7 +263,6 @@ nav {
 }
 
 .window-first {
-	min-height: 525px;
 	position: relative;
 	background: $bbn4 url($texture-geometry);
 	.wrapper-1200 {
@@ -282,6 +281,7 @@ nav {
 	position: absolute;
 	z-index: 1;
 	top: 0;
+	bottom: 70px;
 	right: 0;
 	background: $blue-grey2 center;
 	background-size: cover;
@@ -319,7 +319,7 @@ nav {
 	}
 	.window-first {
 		.wrapper-1200 {
-			padding-bottom: 50px;
+			padding-bottom: 70px;
 		}
 	}
 	.first-hero-image {
@@ -403,7 +403,6 @@ nav {
 	@include layered-button;
 	width: 200px;
 	margin-top: 22px;
-	margin-bottom: 22px;
 	text-decoration: none;
 	padding-left: 12px;
 	padding-right: 12px;

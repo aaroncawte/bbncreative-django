@@ -114,6 +114,9 @@ class Feed(models.Model):
         default="new-feed",
         allow_unicode=True
     )
+    date_updated = models.DateField(
+        auto_now=True
+    )
     menu_icon_name = models.CharField(
         max_length=50,
         blank=True

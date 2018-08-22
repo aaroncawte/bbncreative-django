@@ -22,7 +22,6 @@ function heroWindowHeight() {
 }
 
 function sizeFirstWindows() {
-    $(".window-first").css("min-height", stringifyPixel(firstWindowHeight));
     $(".window-hero").css("min-height", stringifyPixel(heroWindowHeight()));
 }
 
@@ -42,10 +41,8 @@ function sizeHeroImage() {
     if (windowWidth >= mobileBreakpoint) {
         let boxWidth = (windowWidth - wrapper) / 2 + (wrapper - logoSpace);
         $heroImage.css("width", stringifyPixel(boxWidth));
-        $heroImage.css("height", "calc(100% - 70px)");
     } else {
         $heroImage.css("width", "100%");
-        $heroImage.css("height", "100%");
     }
 }
 
