@@ -1,17 +1,29 @@
 {% block asset_summary %}
-    <div class="window" data-asset-type="embedded" data-asset-importance="{{ asset.importance }}">
+    <div class="window" data-asset-type="embedded" data-side-panel data-asset-importance="{{ asset.importance }}">
         <div class="wrapper-1200">
             <div class="content ar-{{ asset.aspect_ratio }}">
                 {% autoescape off %}
                     {{ asset.embed_code }}
                 {% endautoescape %}
             </div>
-            <div class="panel-left">
+            <div class="panel-right">
+                <div class="mobile-corners">
+                    <div class="bottom-left-corner"></div>
+                    <div class="bottom-right-corner"></div>
+                </div>
+                <div class="l-corners">
+                    <div class="top-left-corner"></div>
+                    <div class="bottom-left-corner"></div>
+                </div>
+                <div class="r-corners">
+                    <div class="top-right-corner"></div>
+                    <div class="bottom-right-corner"></div>
+                </div>
                 <h2>{{ asset.title }}</h2>
                 {% autoescape off %}
                     <p>{{ asset.body }}</p>
                 {% endautoescape %}
-                <p class="meta-text">Created (server time): {{ asset.created_at }}.</p>
+                <p class="meta-text">Created: {{ asset.created_at }}</p>
             </div>
         </div>
     </div>

@@ -11,6 +11,10 @@
 	}
 }
 
+.panel-left, .panel-right {
+	background-color: rgba($card-background, 0.5);
+}
+
 .content {
 	overflow: hidden;
 	display: flex;
@@ -37,13 +41,6 @@
 
 .window[data-asset-type=image] {
 	flex-direction: row;
-}
-
-.window[data-asset-type=embedded] {
-	.panel-left, .panel-right {
-		background-color: $blue-grey1;
-		color: #fff;
-	}
 }
 
 @media(max-width: $break-window-width) {
@@ -199,8 +196,15 @@
 		}
 		.ar-IG {
 			width: 540px;
-			height: 620px;
+			height: 746px;
+			background-color: transparent;
+			iframe {
+				margin: 0 !important;
+			}
 		}
+	}
+	.panel-left {
+		order: -1;
 	}
 }
 

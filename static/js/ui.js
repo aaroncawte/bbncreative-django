@@ -124,7 +124,7 @@ $(function () {
     });
 
     /* Auto-hide elements on scroll
-======================================================================= */
+    ======================================================================= */
     function scrollMultiplier(hideValue) {
         let scroll = $(window).scrollTop();
         return Math.max(0, (hideValue - scroll) / hideValue);
@@ -146,4 +146,8 @@ $(function () {
             $backToButton.css({'opacity': multiplier});
         }
     });
+
+    /* Even/Odd Assets
+   ======================================================================== */
+    $('.window[data-side-panel]').filter(":odd").children(".wrapper-1200").children(".panel-right").addClass("panel-left").removeClass("panel-right");
 });
