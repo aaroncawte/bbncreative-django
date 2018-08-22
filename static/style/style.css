@@ -142,10 +142,11 @@ a.no-text-decoration:link, a.no-text-decoration:hover, a.no-text-decoration:acti
 
 /* Element selection
 	 ======================================================================== */
-html::-moz-selection, body::-moz-selection, p::-moz-selection, i::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, li::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
+html::-moz-selection, body::-moz-selection, p::-moz-selection, b::-moz-selection, i::-moz-selection, strong::-moz-selection, em::-moz-selection, span::-moz-selection, li::-moz-selection, br::-moz-selection, a::-moz-selection, img::-moz-selection, div::-moz-selection, button::-moz-selection, input::-moz-selection, label::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection {
   background-color: #cc2369;
   color: #fff; }
-html::selection, body::selection, p::selection, i::selection, strong::selection, em::selection, span::selection, li::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
+
+html::selection, body::selection, p::selection, b::selection, i::selection, strong::selection, em::selection, span::selection, li::selection, br::selection, a::selection, img::selection, div::selection, button::selection, input::selection, label::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection {
   background-color: #cc2369;
   color: #fff; }
 
@@ -606,7 +607,6 @@ input[type=reset], button.secondary {
 	width: 100%;
  }
 }
-
 @media (min-width: 460px) {
  .card, .project-card, .feed-card {
 	height: 420px;
@@ -1263,7 +1263,8 @@ nav {
     padding: 20px; }
 
   .window[data-asset-type=image] .wrapper-1200, .window[data-asset-type=embedded] .wrapper-1200 {
-    flex-direction: row; }
+	 flex-direction: column;
+	}
 
   .window[data-asset-type=image] .ar-SQ {
     height: 700px; }
@@ -1294,7 +1295,7 @@ nav {
     display: none; }
 
   .panel-full {
-    width: 1000px;
+	 width: 800px;
     max-width: 100%;
     margin: 20px auto;
     padding: 40px; }

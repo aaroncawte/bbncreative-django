@@ -2,11 +2,15 @@
     <div class="window" data-asset-type="embedded" data-asset-importance="{{ asset.importance }}">
         <div class="wrapper-1200">
             <div class="content ar-{{ asset.aspect_ratio }}">
-                {{ asset.embed_code }}
+                {% autoescape off %}
+                    {{ asset.embed_code }}
+                {% endautoescape %}
             </div>
             <div class="panel-left">
                 <h2>{{ asset.title }}</h2>
-                <p>{{ asset.body }}</p>
+                {% autoescape off %}
+                    <p>{{ asset.body }}</p>
+                {% endautoescape %}
                 <p class="meta-text">Created (server time): {{ asset.created_at }}.</p>
             </div>
         </div>

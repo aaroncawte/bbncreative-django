@@ -58,9 +58,7 @@
             {% elif a.1 == "Image" %}
                 {% include "components/_imageAsset.html" %}
             {% else %}
-                {% autoescape off %}
-                    {% include "components/_embeddedAsset.html" %}
-                {% endautoescape %}
+                {% include "components/_embeddedAsset.html" %}
             {% endif %}
         {% endwith %}
     {% endfor %}
