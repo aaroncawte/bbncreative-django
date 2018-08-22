@@ -310,6 +310,10 @@ input[type=reset], button.secondary {
   position: relative;
   justify-content: center; }
 
+.window-hero .wrapper-1200 {
+ margin-bottom: 70px;
+}
+
 .first-hero-image {
   position: absolute;
   z-index: 1;
@@ -497,43 +501,6 @@ input[type=reset], button.secondary {
   .card p, .project-card p, .feed-card p {
     margin: 17px 0; }
 
-@media (max-width: 460px) {
-  .card, .project-card, .feed-card {
-    height: 470px; }
-
-  .feed-card .card-content {
-    height: 330px; }
-
-  .project-card .card-content {
-    height: 310px; }
-
-  .meta-stats {
-    height: 100px; }
-
-  .meta-stat {
-    width: 100%; } }
-@media (min-width: 460px) {
-  .card, .project-card, .feed-card {
-    height: 420px; }
-
-  .feed-card .card-content {
-    height: 270px; }
-  .feed-card .meta-stats {
-    height: 25px; }
-  .feed-card .card-bio {
-    height: 168px;
-    margin: 22px 0 18px; }
-
-  .project-card .card-content {
-    height: 250px; }
-  .project-card .card-bio {
-    height: 120px;
-    margin: 21px 0 17px; }
-  .project-card .meta-stats {
-    height: 50px; }
-
-  .meta-stat {
-    width: 50%; } }
 .card-logo, .card-icon {
   box-sizing: border-box;
   position: absolute;
@@ -592,6 +559,7 @@ input[type=reset], button.secondary {
   .card-content .card-bio {
     box-sizing: border-box;
     width: 100%;
+	 height: 120px;
     line-height: 24px;
     overflow: hidden;
     text-align: left;
@@ -603,6 +571,77 @@ input[type=reset], button.secondary {
     font-size: 16px;
     display: block; }
 
+@media (max-width: 460px) {
+ .card, .project-card, .feed-card {
+	height: 470px;
+ }
+
+ .feed-card .meta-stats {
+	height: 50px;
+ }
+
+ .feed-card .card-content {
+	height: 320px;
+ }
+
+ .feed-card .card-bio {
+	height: 193px;
+	margin: 22px 0 18px;
+ }
+
+ .project-card .meta-stats {
+	height: 100px;
+ }
+
+ .project-card .card-content {
+	height: 300px;
+ }
+
+ .project-card .card-bio {
+	height: 120px;
+	margin: 21px 0 17px;
+ }
+
+ .meta-stat {
+	width: 100%;
+ }
+}
+
+@media (min-width: 460px) {
+ .card, .project-card, .feed-card {
+	height: 420px;
+ }
+
+ .feed-card .card-content {
+	height: 270px;
+ }
+
+ .feed-card .meta-stats {
+	height: 25px;
+ }
+
+ .feed-card .card-bio {
+	height: 168px;
+	margin: 22px 0 18px;
+ }
+
+ .project-card .card-content {
+	height: 250px;
+ }
+
+ .project-card .card-bio {
+	height: 120px;
+	margin: 21px 0 17px;
+ }
+
+ .project-card .meta-stats {
+	height: 50px;
+ }
+
+ .meta-stat {
+	width: 50%;
+ }
+}
 .bio-shader {
  position: absolute;
  bottom: 0;
@@ -796,7 +835,6 @@ footer {
 
   .fl-tall {
     display: none; } }
-
 @media (max-width: 689px) {
   .footer-buttons {
 	 flex-direction: column;
