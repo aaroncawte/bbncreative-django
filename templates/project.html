@@ -66,13 +66,13 @@
         {% with asset=a.0 %}
             {% if a.1 == "Text" %}
                 {% autoescape off %}
-                    {% include "components/_textAssetSummary.html" %}
+                    {% include "components/_textAsset.html" %}
                 {% endautoescape %}
             {% elif a.1 == "Image" %}
-                {% include "components/_imageAssetSummary.html" %}
+                {% include "components/_imageAsset.html" %}
             {% else %}
                 {% autoescape off %}
-                    {% include "components/_embeddedAssetSummary.html" %}
+                    {% include "components/_embeddedAsset.html" %}
                 {% endautoescape %}
             {% endif %}
         {% endwith %}
