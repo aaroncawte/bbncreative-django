@@ -269,7 +269,8 @@ input[type=submit], input[type=reset], button {
 	}
 	&:active {
 		background-color: $bbn2;
-		margin: 9px 0 8px;
+		margin-top: 9px;
+		margin-bottom: 8px;
 	}
 	&:disabled {
 		background-color: $off-white;
@@ -282,7 +283,8 @@ input[type=submit], input[type=reset], button {
 
 input[type=submit] {
 	&:active {
-		margin: 10px 0 7px; // It's another pixel off for inputs
+		margin-top: 10px; // It's another pixel off for inputs
+		margin-bottom: 7px;
 	}
 }
 
