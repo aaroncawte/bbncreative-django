@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bbncreative_cms.apps.BbncreativeCmsConfig'
+    'bbncreative_cms.apps.BbncreativeCmsConfig',
+    'lockdown'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +52,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'lockdown.middleware.LockdownMiddleware',
 ]
+
+LOCKDOWN_ENABLED = True
 
 ROOT_URLCONF = 'bbncreative.urls'
 
