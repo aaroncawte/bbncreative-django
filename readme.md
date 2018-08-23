@@ -1,5 +1,5 @@
 # Django App for bbncreative
-A Django-powered server and custom CMS for the bbncreative website, built in summer 2018.
+A Django-powered server and custom CMS for the bbncreative website, a summer project by Aaron Cawte.
 
 [![CircleCI](https://circleci.com/gh/aaroncawte/bbncreative-django/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42)](https://circleci.com/gh/aaroncawte/bbncreative-django)
 
@@ -27,12 +27,14 @@ Primary tools and requirements used for this project.
 ### Python Packages
 This list of necessary python packages is available in [requirements.txt](requirements.txt). Check the latest versions below:
 
-[![PyPI version](https://badge.fury.io/py/Django.svg)](https://badge.fury.io/py/Django)
-[![PyPI version](https://badge.fury.io/py/pytz.svg)](https://badge.fury.io/py/pytz)
-[![PyPI version](https://badge.fury.io/py/Pillow.svg)](https://badge.fury.io/py/Pillow)
-[![PyPI version](https://badge.fury.io/py/psycopg2.svg)](https://badge.fury.io/py/psycopg2)
-[![PyPI version](https://badge.fury.io/py/nodeenv.svg)](https://badge.fury.io/py/nodeenv)
+- Django: [![PyPI version](https://badge.fury.io/py/Django.svg)](https://badge.fury.io/py/Django)
+- pytz: [![PyPI version](https://badge.fury.io/py/pytz.svg)](https://badge.fury.io/py/pytz)
+- Pillow: [![PyPI version](https://badge.fury.io/py/Pillow.svg)](https://badge.fury.io/py/Pillow)
+- psycopg2: [![PyPI version](https://badge.fury.io/py/psycopg2.svg)](https://badge.fury.io/py/psycopg2)
+- nodeenv: [![PyPI version](https://badge.fury.io/py/nodeenv.svg)](https://badge.fury.io/py/nodeenv)
+- twython: [![PyPI version](https://badge.fury.io/py/twython.svg)](https://badge.fury.io/py/twython)
 
+*Note that these packages have further dependencies not listed here.*
 
 ## Documentation
 
@@ -48,4 +50,4 @@ The initial setup of this system has been documented for future reference, debug
 Relevant information to the system has also been documented as follows:
 
 1. [Removing a file from git commit history](/docs/appendices/githistory.md)
-2. [Image Asset Aspect Ratios](/docs/appendices/appendices.md)
+2. [Image Asset Aspect Ratios](/docs/appendices/aspect_ratios.md)
