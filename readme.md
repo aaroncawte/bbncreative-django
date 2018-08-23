@@ -50,4 +50,4 @@ The initial setup of this system has been documented for future reference, debug
 Relevant information to the system has also been documented as follows:
 
 1. [Removing a file from git commit history](/docs/appendices/githistory.md)
-2. [Image Asset Aspect Ratios](/docs/appendices/aspect_ratios.md)
+2. [Content Aspect Ratios](/docs/appendices/aspect_ratios.md)

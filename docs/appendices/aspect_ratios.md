@@ -1,8 +1,10 @@
-# Image Asset Aspect Ratios
+# Content Aspect Ratios
 
-Images uploaded as ImageAssets to bbncreative will be displayed in a variety of layouts at a variety of sizes. This document specifies those layouts and recommends minimum image dimensions for each aspect ratio.
+Content uploaded as `ImageAssets` or `EmbeddedAssets` to bbncreative will be displayed in a variety of layouts at a variety of sizes. This document specifies those layouts and recommends minimum image dimensions for each aspect ratio.
 
 ## Aspect Ratios
+
+### ImageAsset
 | Code | Name | Ratio | Uses |
 |:--:|:--|:--|:--|
 | SQ | Square | 1:1 | Instagram photos, logos, assets
@@ -12,6 +14,13 @@ Images uploaded as ImageAssets to bbncreative will be displayed in a variety of 
 | T1 | Tall 1 | 3:4 | Portrait photos |
 | T2 | Tall 2 | 2:3 | Portrait photos |
 | T3 | Tall 3 | 9:16 | Mobile screenshots |
+
+### EmbeddedAsset
+| Code | Name | Ratio | Uses |
+|:--:|:--|:--|:--|
+| VL | Video Landscape | 16:9 | Landscape Video |
+| VP | Video Portrait | 9:16 | Portrait video (e.g. Instagram stories) |
+| IG | Instagram Embed | N/A | Embedded Instagram Post |
 
 ## Display Modes
 Two bases are used for asset display, either side of the width breakpoint `1280px`.
@@ -23,6 +32,8 @@ Two bases are used for asset display, either side of the width breakpoint `1280p
     - text is displayed below assets
 
 ## Resolutions
+
+### ImageAsset
 | Code | Desktop | Mobile | Recommended Upload |
 |:--:|:--|:--|:--|
 | SQ | 792 x 792 | 700 x 700 | 792 x 792 |
