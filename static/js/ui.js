@@ -2,7 +2,8 @@
    ======================================================================== */
 const wideBreakpoint = 1280;
 const mobileBreakpoint = 690;
-
+const firstWindowHeight = 400;
+const heroPeekOffset = 100 + 80;
 
 /* Operational Functions
    ======================================================================== */
@@ -13,9 +14,6 @@ function stringifyPixel(val) {
 
 /* Automatic first/hero window height
    ======================================================================== */
-const firstWindowHeight = 400;
-const heroPeekOffset = 100 + 80;
-
 function heroWindowHeight() {
     let windowHeight = window.innerHeight;
     return Math.max(windowHeight - heroPeekOffset, firstWindowHeight);
@@ -41,21 +39,18 @@ function sizeHeroImage() {
     if (windowWidth >= mobileBreakpoint) {
         let boxWidth = (windowWidth - wrapper) / 2 + (wrapper - logoSpace);
         $heroImage.css("width", stringifyPixel(boxWidth));
-    } else {
+    } else
         $heroImage.css("width", "100%");
-    }
 }
 
 /* UI Functions for window resize
    ======================================================================== */
-$(window).on('resize', function () {
+$(window).on("resize", function () {
     sizeFirstWindows();
     sizeHeroImage();
-
 });
 
 $(function () {
-
     const $windowHero = $(".window-hero");
     const $backToButton = $("#backTo");
     const $heroScrollTrigger = $("#heroScrollTrigger");
@@ -65,20 +60,21 @@ $(function () {
     sizeFirstWindows();
     sizeHeroImage();
 
-
     /* Menu Display Mechanics
    ======================================================================== */
+    const $windowEl = $(".window");
+
     const $menuGlobal = $("#menuGlobal");
     const $menuProjects = $("#menuProjects");
     const $menuFeeds = $("#menuFeeds");
-    const $allMenus = $("#menuGlobal, #menuProjects, #menuFeeds");
+    const $allMenus = $(".menu");
 
-    const $closeMenuButton = $('.menu-close');
+    const $closeMenuButton = $(".menu-close");
 
     const $mbGlobal = $("#menuGlobalButton");
     const $mbProjects = $("#menuProjectsButton");
     const $mbFeeds = $("#menuFeedsButton");
-    const $allButtons = $("#menuGlobalButton, #menuProjectsButton, #menuFeedsButton");
+    const $allButtons = $(".menu-button");
 
     const $mbProjectsGroup = $("#menuProjectsButton, #inMenuProjectsButton");
     const $mbFeedsGroup = $("#menuFeedsButton, #inMenuFeedsButton");
@@ -104,20 +100,19 @@ $(function () {
     $mbFeedsGroup.on("click", function () {
         showOrHide($menuFeeds, $mbFeeds);
     });
-
-    $closeMenuButton.on('click', function () {
+    $closeMenuButton.on("click", function () {
         $allMenus.addClass("menu-hidden");
         $allButtons.removeClass("active-button");
     });
 
-    $('.window').on('click', function () {
+    $windowEl.on("click", function () {
         $allMenus.addClass("menu-hidden");
         $allButtons.removeClass("active-button");
     });
 
     /* Scroll Down Button
    ======================================================================== */
-    $heroScrollTrigger.on('click', function () {
+    $heroScrollTrigger.on("click", function () {
         $("html, body").animate({
             scrollTop: stringifyPixel(heroWindowHeight())
         }, 200);
@@ -131,23 +126,23 @@ $(function () {
     }
 
     $(window).scroll(function () {
-
         // Scroll down hint
         if ($windowHero.length) {
             let heroHeight = $windowHero.height();
             let multiplier = scrollMultiplier(heroHeight);
-            $heroScrollTrigger.css({'opacity': multiplier});
+            $heroScrollTrigger.css({"opacity": multiplier});
         }
 
         // Back-to buttons
         if ($backToButton.length) {
             const hideValue = 60;
             let multiplier = scrollMultiplier(hideValue);
-            $backToButton.css({'opacity': multiplier});
+            $backToButton.css({"opacity": multiplier});
         }
     });
 
     /* Even/Odd Assets
    ======================================================================== */
-    $('.window[data-side-panel]').filter(":odd").children(".wrapper-1200").children(".panel-right").addClass("panel-left").removeClass("panel-right");
+    $(".window[data-side-panel]").filter(":odd").children(".wrapper-1200")
+        .children(".panel-right").addClass("panel-left").removeClass("panel-right");
 });
