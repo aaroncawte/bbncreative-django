@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+
+from bbncreative import secrets
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,7 +25,7 @@ NUM_TOP_FEEDS = 3
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = secrets.DJANGO_SECRET
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,11 +97,11 @@ WSGI_APPLICATION = 'bbncreative.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get("POSTGRES_NAME"),
-        'USER': os.environ.get("POSTGRES_USER"),
-        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
-        'HOST': os.environ.get("POSTGRES_HOST"),
-        'PORT': os.environ.get("POSTGRES_PORT"),
+        'NAME': secrets.POST_DB["NAME"],
+        'USER': secrets.POST_DB["USER"],
+        'PASSWORD': secrets.POST_DB["PASSWORD"],
+        'HOST': secrets.POST_DB["HOST"],
+        'PORT': secrets.POST_DB["PORT"],
     }
 }
 
@@ -142,7 +145,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Uploadeded Content (Images, etc.)
@@ -174,10 +177,10 @@ LOGGING = {
 
 # EMAIL SERVER
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
-SERVER_EMAIL = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST = secrets.EMAIL_HOST
+EMAIL_HOST_USER = secrets.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
+DEFAULT_FROM_EMAIL = secrets.EMAIL_HOST_USER
+SERVER_EMAIL = secrets.EMAIL_HOST_USER
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
