@@ -1,7 +1,7 @@
 import json
 from urllib import request as urlrequest, parse
 
-from twython import Twython, TwythonAuthError
+from twython import Twython, TwythonAuthError, TwythonError
 
 from bbncreative import secrets
 from bbncreative_cms.models import Credit
@@ -55,4 +55,6 @@ def get_twitter_pictures(users: list) -> dict:
                 user_dict[key] = val
     except TwythonAuthError:
         print("ERROR: Unable to connect to Twitter API - Authentication Error.")
+    except TwythonError:
+        print("ERROR: No Twitter users to find.")
     return user_dict
