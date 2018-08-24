@@ -1,5 +1,4 @@
 # For the contact form
-import os
 
 from django.contrib import messages
 from django.core.mail import EmailMessage
@@ -7,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import get_template
 
+from bbncreative import secrets
 from bbncreative_cms.forms import ContactForm
 from bbncreative_cms.views import view_functions
 
@@ -50,7 +50,7 @@ def contact(request):
             "page_title": "Get In Touch",
             "show_back_to_home": True,
             "form": form,
-            "recaptcha_site_key": os.environ.get("RECAPTCHA_SITE_KEY"),
+            "recaptcha_site_key": secrets.RECAPTCHA_SITE_KEY,
         }
     )
 
