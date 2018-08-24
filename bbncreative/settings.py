@@ -32,7 +32,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    '178.62.41.51'
+    '178.62.41.51',
+    'bbncreative.co'
 ]
 
 APPEND_SLASH = True
@@ -63,9 +64,7 @@ MIDDLEWARE = [
 
 LOCKDOWN_ENABLED = True
 
-LOCKDOWN_URL_EXCEPTIONS = (
-    '/admin/$'
-)
+LOCKDOWN_PASSWORDS = ('forgottoturnitoff', '')
 
 ROOT_URLCONF = 'bbncreative.urls'
 
@@ -143,6 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
