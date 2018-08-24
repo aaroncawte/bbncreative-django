@@ -1,9 +1,9 @@
 import json
-import os
 from urllib import request as urlrequest, parse
 
 from twython import Twython, TwythonAuthError
 
+from bbncreative import secrets
 from bbncreative_cms.models import Credit
 
 
@@ -11,7 +11,7 @@ def get_recaptcha(response_data: str) -> dict:
     print("IN: " + str(type(response_data)))
     url = 'https://www.google.com/recaptcha/api/siteverify'
     values = {
-        'secret': os.environ.get("RECAPTCHA_SECRET"),
+        'secret': secrets.RECAPTCHA_SECRET,
         'response': response_data
     }
     data = parse.urlencode(values).encode("utf-8")
@@ -40,8 +40,8 @@ def count_children_projects(projects: list) -> list:
 def get_twitter_pictures(users: list) -> dict:
     user_dict = {}
     try:
-        APP_KEY = os.environ.get("TWITTER_APP_KEY")
-        ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
+        APP_KEY = secrets.TWITTER_APP_KEY
+        ACCESS_TOKEN = secrets.TWITTER_ACCESS_TOKEN
         twitter = Twython(APP_KEY, access_token=ACCESS_TOKEN)
         users_data = twitter.lookup_user(screen_name=users)
         if len(users_data):
