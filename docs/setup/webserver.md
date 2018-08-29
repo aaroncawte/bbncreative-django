@@ -1,0 +1,26 @@
+# 5. Web Server Setup
+
+This complex process was based on [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04) from DigitalOcean.
+
+Following from that, TLS was implemented using [this guide](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04).
+
+Finally, HTTP2 was configured on nginx following [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-with-http-2-support-on-ubuntu-18-04#step-1-%E2%80%94-enabling-http2-support).
+
+Along the way I:
+- Added custom code to `/etc/nginx/sites-available/bbncreative` to get resources working on admin pages
+- Customised that same file to get `www.` to redirect properly (Certbot handles the `http://` -> `https://` bit)
+
+## Changing Something?
+- `/etc/nginx/sites-available/bbncreative` to configure nginx
+- See the tutorial for anything else
+
+## Changed Something?
+- `sudo systemctl restart gunicorn` for changed Django config
+- `sudo nginx -t` ensures nginx is configured correctly
+- `sudo systemctl restart nginx` for changed nginx config
+
+## Production Settings
+There are some differences between the dev and production codebases, as follows:
+- `DEBUG = False` in `settings.py`
+- `bbncreative/secrets.py` contains literal strings in production, where the development environment and CI use environment variables
+- The Postgres password is different in production
