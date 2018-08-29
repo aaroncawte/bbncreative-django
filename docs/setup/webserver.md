@@ -24,3 +24,12 @@ There are some differences between the dev and production codebases, as follows:
 - `DEBUG = False` in `settings.py`
 - `bbncreative/secrets.py` contains literal strings in production, where the development environment and CI use environment variables
 - The Postgres password is different in production
+
+## HTTP Headers
+The HTTP headers for the server are declared in the nginx server file `/etc/nginx/sites-enabled/bbncreative`. They were on lines 31-37 and started with `add_header` when last modified.
+When the headers are changed, the changes should be tested by first running:
+```
+sudo nginx -t
+sudo systemctl nginx restart
+```
+Then, secondly, by viewing the console on the live website to ensure no CSP failures or other errors are reported.
