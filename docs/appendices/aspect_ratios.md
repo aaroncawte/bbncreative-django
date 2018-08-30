@@ -1,10 +1,25 @@
-# Content Aspect Ratios
+# Media Aspect Ratios
 
-Content uploaded as `ImageAssets` or `EmbeddedAssets` to bbncreative will be displayed in a variety of layouts at a variety of sizes. This document specifies those layouts and recommends minimum image dimensions for each aspect ratio.
+Content uploaded as `ImageAssets` or `EmbeddedAssets`, as well as project attributes such as _hero images_ , on bbncreative will be displayed in a variety of layouts at a variety of sizes. This document specifies those layouts and recommends minimum image dimensions for each aspect ratio.
 
-## Aspect Ratios
+## Attribute Dimensions
+#### Hero Image
+Project hero images are displayed as follows:
+- 100% width and height of the hero frame on mobile viewports
+- 70 px short of the hero frame height, and to the right of the bbncreative logo on desktop viewports
 
-### ImageAsset
+On desktop, that window is typically `565px` tall, so the hero image is `495px` tall. The width is half the space outside of the wrapper (i.e. the right hand margin) plus the wrapper, minus the logo space. This is effectively `1000px + the right hand margin`.
+
+Even with a UHD viewport width (`2560x1440`), the hero image is ~1660px wide, so a full HD width should always be enough.
+
+**Recommended dimensions:** `1920px x 565px`
+
+#### Logo Image
+
+
+## Content Aspect Ratios
+
+#### ImageAsset
 | Code | Name | Ratio | Uses |
 |:--:|:--|:--|:--|
 | SQ | Square | 1:1 | Instagram photos, logos, assets
@@ -15,14 +30,14 @@ Content uploaded as `ImageAssets` or `EmbeddedAssets` to bbncreative will be dis
 | T2 | Tall 2 | 2:3 | Portrait photos |
 | T3 | Tall 3 | 9:16 | Mobile screenshots |
 
-### EmbeddedAsset
+#### EmbeddedAsset
 | Code | Name | Ratio | Uses |
 |:--:|:--|:--|:--|
 | VL | Video Landscape | 16:9 | Landscape Video |
 | VP | Video Portrait | 9:16 | Portrait video (e.g. Instagram stories) |
 | IG | Instagram Embed | N/A | Embedded Instagram Post |
 
-## Display Modes
+### Display Modes
 Two bases are used for asset display, either side of the width breakpoint `1280px`.
 - At widths below the breakpoint:
     - content is `700px` wide
@@ -31,9 +46,9 @@ Two bases are used for asset display, either side of the width breakpoint `1280p
     - content is `1200px` wide
     - text is displayed below assets
 
-## Resolutions
+### Resolutions
 
-### ImageAsset
+#### ImageAsset
 | Code | Desktop | Mobile | Recommended Upload |
 |:--:|:--|:--|:--|
 | SQ | 792 x 792 | 700 x 700 | 792 x 792 |
@@ -52,6 +67,6 @@ Two bases are used for asset display, either side of the width breakpoint `1280p
 - Landscape images at least 792px wide
 
 
-## Desktop Asset Board
+### Desktop Asset Board
 ![Desktop Asset Board](Desktop_Asset_Board.png)
 
