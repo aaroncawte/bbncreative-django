@@ -62,9 +62,8 @@ MIDDLEWARE = [
     'lockdown.middleware.LockdownMiddleware',
 ]
 
-LOCKDOWN_ENABLED = True
-
-LOCKDOWN_PASSWORDS = ('forgottoturnitoff', '')
+LOCKDOWN_ENABLED = False
+LOCKDOWN_PASSWORDS = (secrets.LOCKDOWN_PASSWORD, '')
 
 ROOT_URLCONF = 'bbncreative.urls'
 
@@ -131,9 +130,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
