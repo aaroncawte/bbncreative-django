@@ -20,7 +20,7 @@
             <div class="meta-stats">
                 <div class="meta-stat">
                     {% if project.is_complete %}
-                        <i class="fas fa-flag-checkered"></i>{{ project.date_complete }}
+                        <i class="fas fa-flag-checkered"></i>{{ project.date_complete|date:'jS M Y' }}
                     {% else %}
                         <i class="fas fa-clock"></i>Ongoing project
                     {% endif %}
