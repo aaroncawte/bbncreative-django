@@ -45,6 +45,7 @@ The initial setup of this system has been documented for future reference, debug
 2. [Switching to PostgreSQL](/docs/setup/postgresql.md)
 3. [Environment Variables](/docs/setup/envvars.md)
 4. [JavaScript Package Management](/docs/setup/jspackages.md)
+5. [Web Server Setup](/docs/setup/webserver.md)
 
 ### Appendices
 Relevant information to the system has also been documented as follows:
