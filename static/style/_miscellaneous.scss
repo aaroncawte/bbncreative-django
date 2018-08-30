@@ -146,6 +146,12 @@
 		font: bold 14px/16px $font_sans;
 		padding: 0 3px;
 		color: $blue-grey2;
+		height: 16px;
+		width: 100%;
+		box-sizing: border-box;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 		.fas, .far, .fab {
 			width: 18px;
 			padding-right: 5px;

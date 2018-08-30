@@ -27,7 +27,7 @@
     <div class="details-box">
         <p class="heading"><i class="fas fa-project-diagram"></i>Project Details</p>
         {% if project.is_complete %}
-            <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete }}</p>
+            <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete|date:'jS M Y' }}</p>
         {% else %}
             <p><i class="fas fa-clock"></i>Ongoing project</p>
         {% endif %}

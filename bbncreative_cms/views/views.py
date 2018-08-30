@@ -16,7 +16,7 @@ class AssetTypes:
 def index(request):
     top_projects = view_functions.count_children_projects(
         Project.objects.order_by('-date_complete')[:settings.NUM_TOP_PROJECTS])
-    top_feeds = Feed.objects.filter(protected=False)[:settings.NUM_TOP_FEEDS]
+    top_feeds = Feed.objects.filter(protected=False, permanent=False)[:settings.NUM_TOP_FEEDS]
 
     for f in top_feeds:
         feed = Feed.objects.filter(url_name=f.url_name).prefetch_related("embeddedasset_set", "imageasset_set",
