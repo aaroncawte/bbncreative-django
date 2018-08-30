@@ -47,7 +47,7 @@ def projects(request):
 
 
 def feeds(request):
-    all_feeds = Feed.objects.filter(protected=False)
+    all_feeds = Feed.objects.filter(protected=False, permanent=False)
 
     for f in all_feeds:
         feed = Feed.objects.filter(url_name=f.url_name).prefetch_related("embeddedasset_set", "imageasset_set",

@@ -114,7 +114,7 @@ class Feed(models.Model):
         default="new-feed",
         allow_unicode=True
     )
-    date_updated = models.DateField(
+    date_time_updated = models.DateTimeField(
         auto_now=True
     )
     menu_icon_name = models.CharField(
@@ -141,6 +141,9 @@ class Feed(models.Model):
         default="ff1a36",  # bbn colour 5
         blank=True
     )
+
+    class Meta:
+        ordering = ['-date_time_updated']
 
     def __str__(self):
         if self.protected:
