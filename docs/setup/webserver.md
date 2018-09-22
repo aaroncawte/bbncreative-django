@@ -21,15 +21,21 @@ Along the way I:
 
 ## Production Settings
 There are some differences between the dev and production codebases, as follows:
-- `DEBUG = False` in `settings.py`
+- In `settings.py`:
+  - `DEBUG = False`
+  - `MEDIA_ROOT` = `/home/aaron/website/bbncreative/media/`
+  - `MEDIA_URL` = `https://bbncreative.co/media/`
+- Add `location /media/ { root /home/aaron/website/bbncreative/; }` to etc/nginx/sites-available/bbncreative`
 - `bbncreative/secrets.py` contains literal strings in production, where the development environment and CI use environment variables
 - The Postgres password is different in production
 
 ## HTTP Headers
-The HTTP headers for the server are declared in the nginx server file `/etc/nginx/sites-enabled/bbncreative`. They were on lines 31-37 and started with `add_header` when last modified.
+The HTTP headers for the server are declared in the nginx server file `/etc/nginx/sites-available/bbncreative`. They were on lines 31-37 and started with `add_header` when last modified.
 When the headers are changed, the changes should be tested by first running:
 ```
 sudo nginx -t
 sudo systemctl nginx restart
 ```
 Then, secondly, by viewing the console on the live website to ensure no CSP failures or other errors are reported.
+
+**Note that references to the `sites-available/bbncreative` file should never be made to the `sites-enabled` symlink of the same file. Check [this StackOverflow answer](https://stackoverflow.com/questions/21812360/what-is-the-difference-between-sites-enabled-and-sites-available-directory) for more.
