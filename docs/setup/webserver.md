@@ -25,7 +25,7 @@ There are some differences between the dev and production codebases, as follows:
   - `DEBUG = False`
   - `MEDIA_ROOT` = `/home/aaron/website/bbncreative/media/`
   - `MEDIA_URL` = `https://bbncreative.co/media/`
-- Add `location /media/ { root /home/aaron/website/bbncreative/; }` to etc/nginx/sites-available/bbncreative`
+- Add `location /media/ { root /home/aaron/website/bbncreative/; }` to `etc/nginx/sites-available/bbncreative`
 - `bbncreative/secrets.py` contains literal strings in production, where the development environment and CI use environment variables
 - The Postgres password is different in production
 
@@ -38,4 +38,4 @@ sudo systemctl nginx restart
 ```
 Then, secondly, by viewing the console on the live website to ensure no CSP failures or other errors are reported.
 
-**Note that references to the `sites-available/bbncreative` file should never be made to the `sites-enabled` symlink of the same file. Check [this StackOverflow answer](https://stackoverflow.com/questions/21812360/what-is-the-difference-between-sites-enabled-and-sites-available-directory) for more.
+**Note that references to the `sites-available/bbncreative` file should never be made to the `sites-enabled` symlink of the same file. Check [this StackOverflow answer](https://stackoverflow.com/questions/21812360/what-is-the-difference-between-sites-enabled-and-sites-available-directory) for more.**

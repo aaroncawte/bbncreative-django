@@ -1,5 +1,8 @@
 import os
 
+# For security and portability, the secrets file uses environment variables to obscure sensitive information in
+# development and on GitHub
+
 DJANGO_SECRET = os.environ.get("SECRET_KEY")
 
 POST_DB = {
