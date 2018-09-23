@@ -62,15 +62,19 @@
             </div>
         </div>
     {% endif %}
-    {% for a in assets %}
-        {% with asset=a.0 %}
-            {% if a.1 == "Text" %}
-                {% include "components/_textAsset.html" %}
-            {% elif a.1 == "Image" %}
-                {% include "components/_imageAsset.html" %}
-            {% else %}
-                {% include "components/_embeddedAsset.html" %}
-            {% endif %}
-        {% endwith %}
-    {% endfor %}
+    {% if assets|length == 0 %}
+        <p class="no-content-line"><i class="far fa-frown"></i>Uh oh! There's no content here right now.</p>
+    {% else %}
+        {% for a in assets %}
+            {% with asset=a.0 %}
+                {% if a.1 == "Text" %}
+                    {% include "components/_textAsset.html" %}
+                {% elif a.1 == "Image" %}
+                    {% include "components/_imageAsset.html" %}
+                {% else %}
+                    {% include "components/_embeddedAsset.html" %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}
