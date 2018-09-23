@@ -44,23 +44,27 @@
     <div class="wrapper-1200">
         <div class="centre-bio">
             {% if feed.protected %}
-                <p class="protected-warning"><strong>This feed is protected and only visible to visitors with its
-                    URL.</strong></p>
+                <p class="protected-warning"><i class="fas fa-exclamation-circle"></i>This feed is protected and only
+                    visible to visitors with its
+                    URL.</p>
             {% endif %}
             <h3>{{ feed.name }}</h3>
             <p>{{ feed.bio }}</p>
         </div>
     </div>
-    {% for a in assets %}
-        {% with asset=a.0 %}
-            {% if a.1 == "Text" %}
-                {% include "components/_textAsset.html" %}
-            {% elif a.1 == "Image" %}
-                {% include "components/_imageAsset.html" %}
-            {% else %}
-                {% include "components/_embeddedAsset.html" %}
-            {% endif %}
-        {% endwith %}
-    {% endfor %}
-
+    {% if assets|length == 0 %}
+        <p class="no-content-line"><i class="far fa-frown"></i>Uh oh! There's no content here right now.</p>
+    {% else %}
+        {% for a in assets %}
+            {% with asset=a.0 %}
+                {% if a.1 == "Text" %}
+                    {% include "components/_textAsset.html" %}
+                {% elif a.1 == "Image" %}
+                    {% include "components/_imageAsset.html" %}
+                {% else %}
+                    {% include "components/_embeddedAsset.html" %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

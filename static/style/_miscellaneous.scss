@@ -524,8 +524,17 @@
 }
 
 .protected-warning {
-	color: #f00;
-	font-family: $font_sans;
+	color: $bbn4;
+	font-weight: bold !important;
+	margin: 20px auto 40px;
+}
+
+.no-content-line {
+	margin: 40px auto;
+	text-align: center;
+	color: $footer-text;
+	font-weight: bold;
+
 }
 
 /* Contact Page
