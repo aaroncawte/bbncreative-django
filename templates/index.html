@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load static %}
 {% block head-content %}
     <meta property="og:url" content="https://bbncreative.co/"/>
     <meta property="og:title" content="bbncreative"/>
@@ -7,6 +8,9 @@
 
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:site" content="bbncreative"/>
+    <meta name="twitter:title" content="{{ title }}"/>
+    <meta name="twitter:description" content="{{ description }}"/>
+    <meta name="twitter:image" content="{% static "img/logo-144x144.png" %}"/>
 {% endblock %}
 {% block body-content %}
     <div id="videoLayerBox">
@@ -36,36 +40,36 @@
     <div class="window window-cards">
         <div class="wrapper-1200">
             <h2>What I Do</h2>
-            <div class="contain-cards">
-                {% if front_page_feeds|length == 0 %}
-                    <p class="no-content-line"><i class="far fa-frown"></i>Uh oh! There's no content here right now.</p>
-                {% else %}
+            {% if front_page_feeds|length == 0 %}
+                <p class="no-content-line"><i class="far fa-frown"></i>Uh oh! There's no content here right now.</p>
+            {% else %}
+                <div class="contain-cards">
                     {% for feed in front_page_feeds %}
                         {% include "components/_feedSummary.html" %}
                     {% endfor %}
-                    <a href="/feeds" class="no-text-decoration">
-                        <button class="see-all">All Feeds</button>
-                    </a>
-                {% endif %}
-            </div>
+                </div>
+                <a href="/feeds" class="no-text-decoration">
+                    <button class="see-all">All Feeds</button>
+                </a>
+            {% endif %}
         </div>
     </div>
 
     <div class="window window-cards">
         <div class="wrapper-1200">
             <h2>What I'm Working On</h2>
-            <div class="contain-cards">
-                {% if front_page_projects|length == 0 %}
-                    <p class="no-content-line"><i class="far fa-frown"></i>Uh oh! There's no content here right now.</p>
-                {% else %}
-                    {% for project in front_page_projects %}
-                        {% include "components/_projectSummary.html" %}
-                    {% endfor %}
-                    <a href="/projects" class="no-text-decoration">
-                        <button class="see-all">All Projects</button>
-                    </a>
-                {% endif %}
-            </div>
+            {% if front_page_projects|length == 0 %}
+                <p class="no-content-line"><i class="far fa-frown"></i>Uh oh! There's no content here right now.</p>
+            {% else %}
+                <div class="contain-cards">
+                {% for project in front_page_projects %}
+                    {% include "components/_projectSummary.html" %}
+                {% endfor %}
+                </div>
+                <a href="/projects" class="no-text-decoration">
+                    <button class="see-all">All Projects</button>
+                </a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

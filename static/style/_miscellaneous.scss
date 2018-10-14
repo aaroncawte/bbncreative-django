@@ -424,7 +424,7 @@
 .collaborator-card {
 	position: relative;
 	width: 380px;
-	max-width: 100%;
+	max-width: calc(100% - 40px);
 	min-height: 120px;
 	display: flex;
 	flex-direction: row;
