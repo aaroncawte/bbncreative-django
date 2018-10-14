@@ -1,6 +1,5 @@
 {% extends "_base.html" %}
 {% load static %}
-
 {% block head-content %}
     <meta property="og:url" content="https://bbncreative.co/projects/{{ project.url_name }}"/>
     <meta property="og:title" content="{{ project.name }}"/>
@@ -9,6 +8,9 @@
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="bbncreative"/>
+    <meta name="twitter:title" content="{{ title }}"/>
+    <meta name="twitter:description" content="{{ description }}"/>
+    <meta name="twitter:image" content="{% get_media_prefix %}{{ project.hero }}"/>
 {% endblock %}
 
 {% block body-content %}

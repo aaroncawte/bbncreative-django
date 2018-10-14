@@ -8,6 +8,9 @@
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="bbncreative"/>
+    <meta name="twitter:title" content="{{ title }}"/>
+    <meta name="twitter:description" content="{{ description }}"/>
+    <meta name="twitter:image" content="{% get_media_prefix %}{{ feed.hero }}"/>
 {% endblock %}
 {% block body-content %}
     {% if feed.brand_color_2|length > 0 %}

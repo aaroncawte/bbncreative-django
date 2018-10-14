@@ -3,8 +3,8 @@
 Content uploaded as `ImageAssets` or `EmbeddedAssets`, as well as project attributes such as _hero images_ , on bbncreative will be displayed in a variety of layouts at a variety of sizes. This document specifies those layouts and recommends minimum image dimensions for each aspect ratio.
 
 ## Attribute Dimensions
-#### Hero Image
-Project hero images are displayed as follows:
+### Hero Image
+Project/feed hero images are displayed as follows:
 - 100% width and height of the hero frame on mobile viewports
 - 70 px short of the hero frame height, and to the right of the bbncreative logo on desktop viewports
 
@@ -14,12 +14,17 @@ Even with a UHD viewport width (`2560x1440`), the hero image is ~1660px wide, so
 
 **Recommended dimensions:** `1920px x 565px`
 
-#### Logo Image
+### Logo Image
 
+Project logos are displayed as follows:
+- `110px x 110px` with rounded corners on project cards
+- `18px x 18px` icon in the Projects menu
+
+**Recommended dimensions:** `110px x 110px`
 
 ## Content Aspect Ratios
 
-#### ImageAsset
+### ImageAsset
 | Code | Name | Ratio | Uses |
 |:--:|:--|:--|:--|
 | SQ | Square | 1:1 | Instagram photos, logos, assets
@@ -30,7 +35,7 @@ Even with a UHD viewport width (`2560x1440`), the hero image is ~1660px wide, so
 | T2 | Tall 2 | 2:3 | Portrait photos |
 | T3 | Tall 3 | 9:16 | Mobile screenshots |
 
-#### EmbeddedAsset
+### EmbeddedAsset
 | Code | Name | Ratio | Uses |
 |:--:|:--|:--|:--|
 | VL | Video Landscape | 16:9 | Landscape Video |
@@ -67,6 +72,6 @@ Two bases are used for asset display, either side of the width breakpoint `1280p
 - Landscape images at least 792px wide
 
 
-### Desktop Asset Board
+## Desktop Asset Board
 ![Desktop Asset Board](Desktop_Asset_Board.png)
 
