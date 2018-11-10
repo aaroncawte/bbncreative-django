@@ -172,13 +172,14 @@
 .hero-cta {
 	@include layered-button;
 	width: 200px;
-	margin-top: 22px;
+	margin-top: 21px;
+	margin-bottom: 1px;
 	text-decoration: none;
 	padding-left: 12px;
 	padding-right: 12px;
 	&:active {
 		margin-top: 23px;
-		margin-bottom: 21px;
+		margin-bottom: 0px;
 
 	}
 }
@@ -408,74 +409,67 @@
 
 /* Collbaorator Cards
 	 ======================================================================== */
-#collaboratorWrapper {
-	padding: $vertical-space 0;
-	margin-bottom: 10px;
-	border-bottom: 2px solid $off-white;
-}
-
 .collaborator-tray {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	margin-top: 15px;
 }
 
 .collaborator-card {
 	position: relative;
-	width: 380px;
+	width: 324px;
 	max-width: calc(100% - 40px);
-	min-height: 120px;
+	min-height: 100px;
 	display: flex;
 	flex-direction: row;
-	margin: 10px;
+	margin: 10px auto;
 	border-radius: $form-el-radius;
-	background-color: $blue-grey1;
 	@include drop-shadow;
 }
 
 .collaborator-wallpaper {
-	width: 120px;
-	height: 120px;
+	width: 100px;
+	height: 100px;
 	border-top-left-radius: $form-el-radius;
 	border-bottom-left-radius: $form-el-radius;
 	background-size: auto 120px;
 	background-position: center;
-	opacity: 0.7;
+	opacity: 0.2;
 }
 
 .collaborator-image {
 	position: absolute;
-	top: 20px;
-	left: 20px;
+	top: 15px;
+	left: 15px;
 	width: 70px;
 	height: 70px;
-	border: 5px solid white;
 	border-radius: 50%;
 	z-index: 2;
 	@include drop-shadow;
 }
 
 .collaborator-text {
-	width: 240px;
-	padding: 0 10px;
-	background-color: $card-background;
+	width: 200px;
+	padding: 5px 12px;
+	text-align: left;
 	.name {
 		width: 100%;
-		height: 40px;
-		line-height: 36px;
+		height: 32px;
+		line-height: 32px;
 		display: block;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		font-size: 22px;
 		font-weight: bold;
-		padding-top: 9px;
+		padding: 0;
 	}
 	.credits {
-		height: 40px;
-		line-height: 20px;
-		font-size: 14px;
+		height: 36px;
+		line-height: 18px;
+		font-size: 12px;
 		color: $off-black;
 	}
 	.links {
@@ -484,7 +478,7 @@
 		font-size: 12px;
 		color: $footer-text;
 		font-weight: bold;
-		margin: 5px 0 0;
+		margin: 0;
 		i {
 			margin-right: 2px;
 		}
@@ -503,8 +497,8 @@
 	 ======================================================================== */
 .centre-bio {
 	box-sizing: border-box;
-	width: calc(100% - 100px);
-	max-width: 800px;
+	//width: calc(100% - 100px);
+	//max-width: 800px;
 	margin: 10px auto;
 	padding: 20px 5px;
 	color: $blue-grey2;
@@ -522,7 +516,19 @@
 		}
 	}
 }
+@media(max-width: $break-window-width-max) {
+	.centre-bio {
+		width: calc(100% - 40px);
+		max-width: 700px;
+	}
+}
 
+@media(min-width: $break-window-width-min) {
+	.centre-bio {
+		width: 800px;
+		max-width: calc(100% - 40px);
+	}
+}
 .protected-warning {
 	color: $bbn4;
 	font-weight: bold !important;
@@ -540,7 +546,7 @@
 /* Contact Page
 	 ======================================================================== */
 #contactForm {
-	width: 800px;
+	width: 700px;
 	max-width: 100%;
 	margin: 0 auto;
 	input, textarea {

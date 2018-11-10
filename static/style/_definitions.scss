@@ -81,10 +81,10 @@ $projects-menu-offset: $nav-margin-edge-gap + $gl-button-width + $gap-between + 
 
 @mixin drop-shadow($clickable: false) {
 	$shadow: rgba($colour-drop-shadow, $opacity-drop-shadow);
-	box-shadow: 0 2px 1px $shadow;
+	box-shadow: 0 1px 3px $shadow;
 	@if $clickable {
 		&:active {
-			box-shadow: 0 0 1px $shadow;
+			box-shadow: 0 0 0 $shadow;
 		}
 	}
 }
