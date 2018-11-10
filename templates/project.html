@@ -50,12 +50,19 @@
 </div>
     {% if collaborator_count > 0 %}
         <div class="window">
-            <div class="wrapper-800" id="collaboratorWrapper">
-                {% if collaborator_count > 1 %}
-                    <h2 class="align-center">Collaborative work for {{ project.client_name }}</h2>
-                {% else %}
-                    <h2 class="align-center">Individual Work for {{ project.client_name }}</h2>
+            <div class="centre-bio">
+                {% if feed.protected %}
+                    <p class="protected-warning"><i class="fas fa-exclamation-circle"></i>This feed is protected and
+                        only
+                        visible to visitors with its
+                        URL.</p>
                 {% endif %}
+                {% if collaborator_count > 1 %}
+                    <h3 class="align-center">Collaborative work for {{ project.client_name }}</h3>
+                {% else %}
+                    <h3 class="align-center">Individual Work for {{ project.client_name }}</h3>
+                {% endif %}
+                <p>{{ project.bio }}</p>
                 <div class="collaborator-tray">
                     {% for c in credits %}
                         {% include "components/_collaboratorSummary.html" %}
