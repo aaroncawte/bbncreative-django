@@ -239,10 +239,10 @@
 .card-logo, .card-icon {
 	box-sizing: border-box;
 	position: absolute;
-	left: calc(50% - 60px);
+	left: calc(50% - 55px);
 	z-index: 2;
-	width: 120px;
-	height: 120px;
+	width: 110px;
+	height: 110px;
 }
 
 .project-card {
@@ -251,10 +251,10 @@
 		padding: 40px 20px 10px;
 	}
 	.card-logo {
-		top: 40px;
-		border: 5px solid #fff;
+		top: 45px;
 		border-radius: 50%;
 		background-size: cover;
+		@include drop-shadow;
 	}
 }
 
@@ -281,7 +281,7 @@
 	width: 100%;
 	height: 120px;
 	background-size: cover;
-	opacity: 0.65;
+	opacity: 0.45;
 }
 
 .card-content {
