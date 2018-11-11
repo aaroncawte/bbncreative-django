@@ -282,7 +282,7 @@ EMBEDDED_ASPECT_RATIOS = (
 class EmbeddedAsset(Asset):
     # HTML embed code - will accept any HTML up to 5,000 characters. Be cautious of embed content.
     embed_code = models.TextField(
-        max_length=5000
+        max_length=10000
     )
 
     aspect_ratio = models.CharField(

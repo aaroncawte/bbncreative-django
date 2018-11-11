@@ -13,7 +13,7 @@ jobs:
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/postgres:10.4
+      - image: circleci/postgres:10.5
 
     working_directory: ~/repo
 
@@ -33,7 +33,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            nodeenv -p --node=8.11.3
+            nodeenv -p --node=8.11.4
             npx create-ava --next
 
       - save_cache:
