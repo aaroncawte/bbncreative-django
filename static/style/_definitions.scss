@@ -25,6 +25,7 @@ $logo-colour: white;
 :root {
 	--logo-custom: rgba($logo-background, 0.6);
 	--logo-custom-hover: rgba($logo-background, 1);
+	--selection-color: $bbn2;
 }
 
 /* Font References
@@ -173,11 +174,11 @@ a.no-text-decoration {
 	 ======================================================================== */
 html, body, p, b, i, strong, em, span, li, br, a, img, div, button, input, label, h1, h2, h3, h4, h5, h6 {
 	&::-moz-selection {
-		background-color: $bbn2;
+		background-color: var(--selection-color);
 		color: #fff;
 	}
 	&::selection {
-		background-color: $bbn2;
+		background-color: var(--selection-color);
 		color: #fff;
 	}
 }

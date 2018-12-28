@@ -16,7 +16,10 @@
         {% endif %}
         <div class="card-content">
             <a href="/projects/{{ project.url_name }}" class="no-text-decoration"><h2>{{ project.name }}</h2></a>
-            <p class="card-bio">{{ project.bio }}</p>
+            <div class="card-bio">
+                <div class="bio-shader"></div>
+                {{ project.bio }}
+            </div>
             <div class="meta-stats">
                 <div class="meta-stat">
                     {% if project.is_complete %}

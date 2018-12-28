@@ -41,7 +41,11 @@
         <!--Page Title-->
         <title>{{ title }}</title>
     </head>
-    <body>
+        {% if logo_custom_color %}
+            <body style="--selection-color: rgba{{ logo_custom_color }}">
+        {% else %}
+            <body>
+        {% endif %}
     {% include "components/_nav.html" %}
     {% block body-content %}{% endblock %}
     {% include "components/_footer.html" %}
