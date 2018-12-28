@@ -43,11 +43,31 @@ function sizeHeroImage() {
         $heroImage.css("width", "100%");
 }
 
+/* Automatic embedded asset portrait dimension on mobile
+   ======================================================================== */
+function sizeEmbeddedAssets() {
+    const classList = ['.ar-VL', '.ar-VP'];
+    const ratios = [9/16, 16/9];
+    classList.forEach((className, index) => {
+        const firstElement = document.querySelector(className);
+        const allElements = document.querySelectorAll(className);
+        const multiplier = ratios[index];
+
+        if(firstElement !== null) {
+            const width = firstElement.clientWidth;
+            allElements.forEach(element => {
+                element.style.cssText += `height: ${width*multiplier}px;`;
+            });
+        }
+    })
+}
+
 /* UI Functions for window resize
    ======================================================================== */
 $(window).on("resize", function () {
     sizeFirstWindows();
     sizeHeroImage();
+    sizeEmbeddedAssets();
 });
 
 $(function () {
@@ -59,6 +79,7 @@ $(function () {
    ======================================================================== */
     sizeFirstWindows();
     sizeHeroImage();
+    sizeEmbeddedAssets();
 
     /* Menu Display Mechanics
    ======================================================================== */
