@@ -1,8 +1,15 @@
-{% extends "_base.html" %}
+{% extends "_static.html" %}
 {% load static %}
-{% block body-content %}
-    <h1>{{ image.title }}</h1>
-    <p>Body: {{ image.body }}</p>
-    <p>Image URL: {{ image.img }}</p>
-    <img src="{% get_media_prefix %}{{ image.img }}" alt="{{ image.alt }}"/>
+{% block window-content %}
+    <div class="window">
+        <div class="wrapper-800">
+            <div class="centre-bio">
+                <h3>Image Description</h3>
+                <p>{{ image.body }}</p>
+                <p><em>Image URL: {{ image.img }}</em></p>
+            </div>
+
+            <img style="width: 100%" src="{% get_media_prefix %}{{ image.img }}" alt="{{ image.alt }}"/>
+        </div>
+    </div>
 {% endblock %}

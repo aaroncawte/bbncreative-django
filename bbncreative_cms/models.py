@@ -197,6 +197,8 @@ class Asset(models.Model):
     # An asset belongs to one project
     parent = models.ForeignKey(
         Project,
+        blank=True,
+        null=True,
         on_delete=models.CASCADE
     )
     # Add assets to feeds (e.g. web design)
@@ -264,7 +266,10 @@ class ImageAsset(Asset):
 
     # Overridden so the child class isn't empty
     def __str__(self):
-        return "Image: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
+        if self.parent:
+            return "Image: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
+        else:
+            return "Image: \"" + self.title + "\" without a parent project (" + self.aspect_ratio + ")"
 
     def has_media(self):
         if self.img:

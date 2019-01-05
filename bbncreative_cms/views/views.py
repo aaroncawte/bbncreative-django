@@ -177,6 +177,8 @@ def image_asset(request, url_uuid, file_name):
         request,
         "asset.html",
         {
-            'image': image
+            'image': image,
+            'page_title': image.title,
+            'show_back_to_home': True
         }
     )
