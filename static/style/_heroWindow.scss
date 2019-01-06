@@ -64,6 +64,9 @@
 	font-size: 18px;
 	@include text-shadow(0.4);
 	border-top: 1px solid rgba(#fff, 0.4);
+	a {
+		color: white;
+	}
 }
 
 @keyframes scrollIndicator {
