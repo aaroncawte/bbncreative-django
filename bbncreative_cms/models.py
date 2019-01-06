@@ -233,7 +233,10 @@ class Asset(models.Model):
 class TextAsset(Asset):
     # Overridden so the child class isn't empty
     def __str__(self):
-        return "Text: \"" + self.title + "\" from " + self.parent.name
+        if self.parent:
+            return "Text: \"" + self.title + "\" from " + self.parent.name
+        else:
+            return "Text: \"" + self.title + "\" without a parent project"
 
 
 IMAGE_ASPECT_RATIOS = (
@@ -264,7 +267,6 @@ class ImageAsset(Asset):
         default="W1"
     )
 
-    # Overridden so the child class isn't empty
     def __str__(self):
         if self.parent:
             return "Image: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
@@ -297,7 +299,10 @@ class EmbeddedAsset(Asset):
     )
 
     def __str__(self):
-        return "Embedded: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
+        if self.parent:
+            return "Embedded: \"" + self.title + "\" from " + self.parent.name + " (" + self.aspect_ratio + ")"
+        else:
+            return "Embedded: \"" + self.title + "\" without a parent project (" + self.aspect_ratio + ")"
 
     def has_media(self):
         if len(self.embed_code) > 0:
