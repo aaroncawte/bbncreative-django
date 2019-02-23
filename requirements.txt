@@ -1,6 +1,6 @@
 certifi==2018.8.13
 chardet==3.0.4
-Django==2.1.5
+Django==2.1.7
 django-lockdown==1.5.0
 idna==2.7
 nodeenv==1.3.2
