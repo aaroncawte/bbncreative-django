@@ -23,7 +23,7 @@ $logo-background: $bbn4;
 $logo-colour: white;
 
 :root {
-	--logo-custom: rgba($logo-background, 0.6);
+	--logo-custom: rgba($logo-background, 1);
 	--logo-custom-hover: rgba($logo-background, 1);
 	--selection-color: $bbn2;
 }
@@ -103,6 +103,30 @@ $projects-menu-offset: $nav-margin-edge-gap + $gl-button-width + $gap-between + 
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+}
+
+@mixin space-outline-device($device-color: white) {
+	position: relative;
+	&::after {
+		content: "";
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		width: 100%;
+		height: 100%;
+		border-width: 0 4px 4px 0;
+		border-style: solid;
+		border-color: $device-color;
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+	}
+	&:active {
+		top: 3px;
+		left: 3px;
+		&:after {
+			top: 0;
+			left: 0;
+		}
+	}
 }
 
 /* Resets and basic elements

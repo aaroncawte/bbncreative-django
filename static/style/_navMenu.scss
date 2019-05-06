@@ -38,19 +38,13 @@ nav {
 	margin: 10px 20px 10px 0;
 	background-color: var(--logo-custom);
 	color: $logo-colour;
-	border-radius: $form-el-radius;
 	font: normal 28px/60px $font_header;
 	text-align: center;
-	@include text-shadow(0.4, false);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 	@include cross-user-select(none);
-	@include cross-transition(0.25s background-color);
-	@include cross-backdrop-filter(blur(5px));
-
+	@include space-outline-device($bbn2);
 	&:hover {
 		background-color: var(--logo-custom-hover);
-	}
-	&:active {
-		transform: scale(0.95);
 	}
 }
 

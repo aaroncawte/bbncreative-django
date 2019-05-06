@@ -23,7 +23,7 @@ def get_recaptcha(response_data: str) -> dict:
 
 
 def generate_logo_rgba(color: str, hover: bool) -> tuple:
-    alpha_value = 0.9
+    alpha_value = 1
     if hover:
         alpha_value = 1
     return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
