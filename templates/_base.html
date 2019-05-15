@@ -42,7 +42,7 @@
         <title>{{ title }}</title>
     </head>
         {% if logo_custom_color %}
-            <body style="--selection-color: rgba{{ logo_custom_color }}">
+            <body style="--selection-color: rgba{{ logo_custom_color }}; --selection-color-outline: rgba{{ color_outline_in_rgba }}">
         {% else %}
             <body>
         {% endif %}

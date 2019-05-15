@@ -21,7 +21,11 @@
 		@include text-shadow(0.6);
 	}
 	button.secondary {
+		@include space-outline-device($off-white);
+		@include space-outline-clickable;
+		background-color: rgba(255, 255, 255, 0.5);
 		color: #fff;
+
 	}
 }
 
@@ -171,17 +175,14 @@
 
 .hero-cta {
 	@include layered-button;
+	@include space-outline-device;
+	@include space-outline-clickable;
 	width: 200px;
 	margin-top: 21px;
 	margin-bottom: 1px;
 	text-decoration: none;
 	padding-left: 12px;
 	padding-right: 12px;
-	&:active {
-		margin-top: 23px;
-		margin-bottom: 0px;
-
-	}
 }
 
 /* Card Styles

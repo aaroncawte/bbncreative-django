@@ -33,6 +33,7 @@ nav {
 }
 
 #bbncreative-logo {
+	position: relative;
 	width: 200px;
 	height: 60px;
 	margin: 10px 20px 10px 0;
@@ -43,8 +44,12 @@ nav {
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 	@include cross-user-select(none);
 	@include space-outline-device($bbn2);
+	@include space-outline-clickable;
 	&:hover {
 		background-color: var(--logo-custom-hover);
+	}
+	&::after {
+		border-color: var(--logo-custom-outline);
 	}
 }
 
@@ -52,10 +57,9 @@ nav {
    ======================================================================== */
 .menu-button {
 	@include layered-button;
-	margin: 22px 0 22px 10px;
-	&:active {
-		margin: 23px 0 21px 10px;
-	}
+	@include space-outline-device($off-white);
+	@include space-outline-clickable;
+	margin: 22px 0 22px 15px;
 }
 
 @media (min-width: $break-mobile-min) {
@@ -66,8 +70,9 @@ nav {
 }
 
 .active-button {
-	padding: 6px 12px;
-	border: 2px solid #fff;
+	@include space-outline-device(white);
+	@include space-outline-depressed;
+	padding: 8px 14px;
 	background-color: $blue-grey2;
 	color: #fff;
 	&:hover {
@@ -192,7 +197,6 @@ nav {
 		min-width: 36px;
 		width: 36px;
 		padding: 8px 2px;
-		overflow: hidden;
 		.fas, .far, .fab {
 			padding-right: 0;
 		}

@@ -25,7 +25,9 @@ $logo-colour: white;
 :root {
 	--logo-custom: rgba($logo-background, 1);
 	--logo-custom-hover: rgba($logo-background, 1);
+	--logo-custom-outline: rgba($off-white, 1);
 	--selection-color: $bbn2;
+	--selection-color-outline: $blue-grey1;
 }
 
 /* Font References
@@ -119,14 +121,37 @@ $projects-menu-offset: $nav-margin-edge-gap + $gl-button-width + $gap-between + 
 		border-color: $device-color;
 		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 	}
+}
+
+@mixin space-outline-clickable {
+	top: 0;
+	left: 0;
+	@include cross-transition(0.2s background-color);
+	@include cross-transition(0.2s color);
+	&:after {
+		@include cross-transition(0.2s border-color);
+	}
 	&:active {
 		top: 3px;
 		left: 3px;
 		&:after {
+			@include cross-transition(0.2s border-color);
 			top: 0;
 			left: 0;
 		}
 	}
+}
+
+@mixin space-outline-depressed {
+	@include cross-transition(0.2s background-color);
+	@include cross-transition(0.2s color);
+	top: 3px;
+		left: 3px;
+		&:after {
+			top: 0;
+			left: 0;
+			@include cross-transition(0.2s border-color);
+		}
 }
 
 /* Resets and basic elements
@@ -227,8 +252,8 @@ img {
 	border: 0;
 	outline: none;
 	background-color: #fff;
-	border-radius: $form-el-radius;
 	font-family: $font-sans;
+	@include cross-transition(0.2s background-color);
 	@include cross-user-select(none);
 }
 
@@ -242,7 +267,6 @@ img {
 @mixin layered-button {
 	@include menu-input-base;
 	@include wide-text;
-	@include drop-shadow($clickable: true);
 	text-align: center;
 	cursor: pointer;
 	color: $bbn1;
@@ -286,16 +310,15 @@ input[type=submit], input[type=reset], button {
 	background-color: $bbn1;
 	color: #fff;
 	@include wide-text;
-	@include drop-shadow($clickable: true);
 	@include cross-transition(0.1s);
+	@include space-outline-device($blue-grey1);
+	@include space-outline-clickable;
 	cursor: pointer;
 	&:hover {
 		background-color: $bbn3;
 	}
 	&:active {
 		background-color: $bbn2;
-		margin-top: 9px;
-		margin-bottom: 8px;
 	}
 	&:disabled {
 		background-color: $off-white;

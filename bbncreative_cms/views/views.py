@@ -94,6 +94,8 @@ def project_from_name(request, url_name):
     color_in_rgba = view_functions.generate_logo_rgba(this_project.brand_color_1, False)
     hover_in_rgba = view_functions.generate_logo_rgba(this_project.brand_color_1, True)
 
+    color_outline_in_rgba = view_functions.generate_logo_rgba(this_project.brand_color_2, False)
+
     collaborator_twitters = []
 
     for c in credits:
@@ -117,7 +119,8 @@ def project_from_name(request, url_name):
             'collaborator_count': this_project.count_collaborators(),
             'asset_count': this_project.count_assets(),
             'logo_custom_color': color_in_rgba,
-            'logo_hover_color': hover_in_rgba
+            'logo_hover_color': hover_in_rgba,
+            'color_outline_in_rgba': color_outline_in_rgba
         }
     )
 
