@@ -15,12 +15,7 @@
                 {{ feed.bio }}
             </div>
             <div class="meta-stats">
-                <div class="meta-stat"><i class="fas fa-clock"></i>{{ feed.date_time_updated|date:'jS M Y' }}</div>
-                {% if feeds.asset_count == 1 %}
-                    <div class="meta-stat"><i class="far fa-images"></i>{{ feed.asset_count }} Asset</div>
-                {% else %}
-                    <div class="meta-stat"><i class="far fa-images"></i>{{ feed.asset_count }} Assets</div>
-                {% endif %}
+                <div class="meta-stat"><i class="fas fa-clock"></i>{{ feed.date_time_updated|date:'M Y' }}</div>
             </div>
         </div>
     </div>
