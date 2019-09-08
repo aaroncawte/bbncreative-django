@@ -55,3 +55,25 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+
+  deployment:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a3:e2:e1:16:45:1a:dd:fd:81:5d:31:18:a1:ff:cc:1c"
+    dev:
+      branch: Auto_Deploy_Test
+      commands:
+        - scp -r bbncreative-django $SSH_USER@$SSH_HOST:/home/aaron/Auto_Deploy_Test/website/"
+        - sudo systemctl restart gunicorn
+        - sudo nginx -t
+        - sudo systemctl restart nginx
+
+workflows:
+  version: 2
+  build-and-deploy-test:
+    jobs:
+      - build
+      - deployment:
+          requires:
+            - build
