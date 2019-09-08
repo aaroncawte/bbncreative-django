@@ -53,7 +53,7 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
-
+      
       # other common Python testing frameworks include pytest and nose
       # https://pytest.org
       # https://nose.readthedocs.io
@@ -66,22 +66,19 @@ jobs:
             npm test
 
       - store_artifacts:
+        path: ~/bbncreative-django
+
+      - store_artifacts:
           path: test-reports
           destination: test-reports
 
   deployment:
-    working_directory: ~/repo
-    machine:
-      enabled: true
     steps:
       - add_ssh_keys:
           fingerprints:
             - "a3:e2:e1:16:45:1a:dd:fd:81:5d:31:18:a1:ff:cc:1c"
-      - dev:
-        name: Auto_Deploy_Test
-        commands:
-          - scp -r bbncreative-django $SSH_USER@$SSH_HOST:/home/aaron/Auto_Deploy_Test/website/"
-          - sudo systemctl restart gunicorn
-          - sudo nginx -t
-          - sudo systemctl restart nginx
+      - run:
+          name: Auto_Deploy_Test
+          command: |
+            scp -r bbncreative-django $SSH_USER@$SSH_HOST:/home/aaron/Auto_Deploy_Test/website/" && sudo systemctl restart gunicorn && sudo nginx -t && sudo systemctl restart nginx
 
