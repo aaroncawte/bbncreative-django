@@ -19,13 +19,8 @@ workflows:
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
+      # https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/python:3.7.0
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:10.5
 
     working_directory: ~/repo
@@ -44,6 +39,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      # Activate virtual environment and install project
       - run:
           name: install dependencies
           command: |
@@ -59,15 +55,13 @@ jobs:
           paths:
             - templates/
 
+      # Cache dependencies using checksum of requirements.txt
       - save_cache:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
-      
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
 
+      # Run application tests
       - run:
           name: run tests
           command: |
@@ -75,23 +69,30 @@ jobs:
             python manage.py test
             npm test
 
+      # Store test reports
       - store_artifacts:
           path: test-reports
           destination: test-reports
 
   deployment:
+
     machine:
       enabled: true
+
     steps:
+
+      # Server SSH key
       - add_ssh_keys:
           fingerprints:
             - "a3:e2:e1:16:45:1a:dd:fd:81:5d:31:18:a1:ff:cc:1c"
+
+      # Refer to workspace defined in install step
       - attach_workspace:
           at: ~/test-deploy-workflow
+
+      # Deployment test
       - run:
           name: Auto_Deploy_Test
           command: |
             cd ~/test-deploy-workflow && ls -a
             # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
-
-
