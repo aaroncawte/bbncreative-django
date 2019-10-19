@@ -102,6 +102,7 @@ jobs:
       - run:
           name: Tests - Node
           command: |
+            . bbn-env/bin/activate
             nodeenv -p --node=8.11.4
             npm install ava
             npm test
