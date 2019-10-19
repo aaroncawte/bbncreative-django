@@ -4,6 +4,15 @@
 
 version: 2.0
 
+executors:
+  django-executor:
+    docker:
+      # https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/python:3.7.0
+      - image: circleci/postgres:10.5
+    environment:
+      CI_NODE_VERSION: 8.11.4
+
 workflows:
   version: 2
   build-and-deploy-test:
@@ -31,10 +40,7 @@ workflows:
 
 jobs:
   install:
-    docker:
-      # https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5
+    executor: django-executor
 
     working_directory: ~/repo
 
@@ -59,7 +65,7 @@ jobs:
             python3 -m venv bbn-env
             . bbn-env/bin/activate
             pip install -r requirements.txt
-            nodeenv -p --node=8.11.4
+            nodeenv -p --node=$CI_NODE_ENV
 
       # Save everything to the workspace for deployment test
       - persist_to_workspace:
@@ -74,10 +80,7 @@ jobs:
           key: v2-dependencies-{{ checksum "requirements.txt" }}
 
   test:
-    docker:
-      # https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5
+    executor: django-executor
 
     working_directory: ~/repo
     
@@ -102,6 +105,7 @@ jobs:
       - run:
           name: Tests - Node
           command: |
+            nodeenv -p --node=$CI_NODE_ENV
             npm install ava
             npm test
 
