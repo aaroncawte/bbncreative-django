@@ -66,19 +66,22 @@ jobs:
             npm test
 
       - store_artifacts:
-        path: ~/bbncreative-django
-
-      - store_artifacts:
           path: test-reports
           destination: test-reports
 
   deployment:
+    machine:
+      enabled: true
     steps:
       - add_ssh_keys:
           fingerprints:
             - "a3:e2:e1:16:45:1a:dd:fd:81:5d:31:18:a1:ff:cc:1c"
+      - attach_workspace:
+          at: ~/test-deploy-workflow
       - run:
           name: Auto_Deploy_Test
           command: |
-            scp -r bbncreative-django $SSH_USER@$SSH_HOST:/home/aaron/Auto_Deploy_Test/website/" && sudo systemctl restart gunicorn && sudo nginx -t && sudo systemctl restart nginx
+            ls -a
+            # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
+
 
