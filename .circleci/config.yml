@@ -74,6 +74,33 @@ jobs:
           path: test-reports
           destination: test-reports
 
+
+  build-deployment:
+    
+    machine:
+      enabled: true
+
+    steps:
+
+      # Refer to workspace defined in install step
+      - attach_workspace:
+        at: ~/test-deploy-workflow
+
+      - run:
+          name: build deployment
+          command: |
+            cd ~/test-deploy-workflow
+            touch build_deploy_put_this_here.txt
+            echo "This is where I will build my build deployment."
+            echo "This is just to show multi-line is working"
+
+      # Save build deployment to workspace
+      - persist_to_workspace:
+          root: .
+          paths:
+            - website/
+      
+
   deployment:
 
     machine:
