@@ -31,6 +31,10 @@ jobs:
     working_directory: ~/repo
 
     steps:
+
+      - attach_workspace:
+          at: ~/circleci-demo-workflows
+      
       - checkout
 
       # Download and cache dependencies
@@ -48,6 +52,12 @@ jobs:
             pip install -r requirements.txt
             nodeenv -p --node=8.11.4
             npm install ava
+
+      # Save everything to the workspace for deployment test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - templates/
 
       - save_cache:
           paths:
@@ -81,7 +91,7 @@ jobs:
       - run:
           name: Auto_Deploy_Test
           command: |
-            ls -a
+            cd ~/test-deploy-workflow && ls -a
             # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
 
 
