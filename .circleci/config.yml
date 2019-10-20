@@ -168,7 +168,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - test-build/
+            - ~/test-build/
       
 
   deploy:
