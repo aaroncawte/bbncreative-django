@@ -68,7 +68,7 @@ jobs:
 
       # Save everything to the workspace for deployment test
       - persist_to_workspace:
-          root: .
+          root: .build-${CIRCLE_BUILD_NUM}
           paths:
             - templates/
 
@@ -158,6 +158,7 @@ jobs:
           command: |
             cd ~/test-deploy-workflow
             touch build_deploy_put_this_here.txt
+            ls -a
             echo "This is where I will build my build deployment."
             echo "This is just to show multi-line is working"
 
