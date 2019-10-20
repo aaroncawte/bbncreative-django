@@ -68,7 +68,7 @@ jobs:
 
       # Save everything to the workspace for deployment test
       - persist_to_workspace:
-          root: .build-${CIRCLE_BUILD_NUM}
+          root: .
           paths:
             - templates/
 
@@ -160,13 +160,15 @@ jobs:
             touch build_deploy_put_this_here.txt
             ls -a
             echo "This is where I will build my build deployment."
-            echo "This is just to show multi-line is working"
+            cd ~
+            mkdir test-build
+            cp ~/test-deploy-workflow/build_deploy_put_this_here.txt ~/test-build/build_deploy_put_this_here.txt
 
       # Save build deployment to workspace
       - persist_to_workspace:
           root: .
           paths:
-            - website/
+            - test-build/
       
 
   deploy:
@@ -183,11 +185,11 @@ jobs:
 
       # Refer to workspace defined in install step
       - attach_workspace:
-          at: ~/test-deploy-workflow
+          at: ~/test-build
 
       # Deployment test
       - run:
           name: Automatic Deployment Test
           command: |
-            cd ~/test-deploy-workflow && ls -a
+            cd ~/test-build && ls -a
             # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
