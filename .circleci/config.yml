@@ -162,13 +162,13 @@ jobs:
             echo "This is where I will build my build deployment."
             cd ~
             mkdir test-build
-            cp ~/test-deploy-workflow/build_deploy_put_this_here.txt ~/test-build/build_deploy_put_this_here.txt
+            cp test-deploy-workflow/build_deploy_put_this_here.txt test-build/build_deploy_put_this_here.txt
 
       # Save build deployment to workspace
       - persist_to_workspace:
           root: .
           paths:
-            - ~/test-build/
+            - test-build
       
 
   deploy:
