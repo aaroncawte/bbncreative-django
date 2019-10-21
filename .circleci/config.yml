@@ -46,7 +46,7 @@ jobs:
     steps:
 
       - attach_workspace:
-          at: ~/circleci-demo-workflows
+          at: ~/install-workspace
       
       - checkout
 
@@ -151,14 +151,14 @@ jobs:
 
       # Refer to workspace defined in install step
       - attach_workspace:
-          at: ~/test-deploy-workflow
+          at: ~/test-build-deployment-workspace
 
       - run:
           name: Build Deployment
           command: |
             echo "This is where I will build my build deployment."
             mkdir test-build
-            cp -a ~/test-deploy-workflow test-build
+            cp -a ~/test-build-deployment-workspace/. test-build
 
       # Save build deployment to workspace
       - persist_to_workspace:
@@ -172,6 +172,8 @@ jobs:
     machine:
       enabled: true
 
+    working_directory: ~/test-build-workspace
+
     steps:
 
       # Server SSH key
@@ -181,12 +183,12 @@ jobs:
 
       # Refer to workspace defined in install step
       - attach_workspace:
-          at: ~/test-build
+          at: ~/test-build-workspace
 
       # Deployment test
       - run:
           name: Automatic Deployment Test
           command: |
-            cd ~/test-build && ls -a
-            cd test-build && ls -a
+            cd ~/test-build-workspace/test-build
+            ls -a
             # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
