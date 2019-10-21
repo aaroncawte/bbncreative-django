@@ -156,7 +156,8 @@ jobs:
       - run:
           name: Build Deployment
           command: |
-            echo "This is where I will build my build deployment."
+            echo "Contents of test-build-deployment-workspace:"
+            ls ~/test-build-deployment-workspace
             mkdir test-build
             cp -a ~/test-build-deployment-workspace/templates/. test-build/templates
             cp ~/test-build-deployment-workspace/favicon.ico test-build/
