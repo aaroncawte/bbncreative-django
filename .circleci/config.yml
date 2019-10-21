@@ -70,7 +70,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - templates/
+            - .
 
       # Cache dependencies using checksum of requirements.txt
       - save_cache:
@@ -158,7 +158,8 @@ jobs:
           command: |
             echo "This is where I will build my build deployment."
             mkdir test-build
-            cp -a ~/test-build-deployment-workspace/. test-build
+            cp -a ~/test-build-deployment-workspace/templates/. test-build/templates
+            cp -a ~/test-build-deployment-workspace/static/vid/. test-build/static/vid
 
       # Save build deployment to workspace
       - persist_to_workspace:
@@ -183,12 +184,14 @@ jobs:
 
       # Refer to workspace defined in install step
       - attach_workspace:
-          at: ~/test-build-workspace
+          at: ~/test-deploy-workspace
 
       # Deployment test
       - run:
           name: Automatic Deployment Test
           command: |
-            cd ~/test-build-workspace/test-build
+            cd ~/test-deploy-workspace/test-build
+            ls -a
+            cd templates
             ls -a
             # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
