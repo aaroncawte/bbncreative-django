@@ -158,40 +158,30 @@ jobs:
           command: |
             echo "Contents of test-build-deployment-workspace:"
             ls ~/test-build-deployment-workspace
-            mkdir test-build
+            # Setup directory structure
+            mkdir test-build test-build/bbncreative test-build/bbncreative_cms test-build/bbncreative_cms/migrations test-build/bbncreative_cms/views test-build/static test-build/static/style
             # /
             cp ~/test-build-deployment-workspace/requirements.txt test-build/requirements_server.txt # Requirements file with server-specific name
             cp ~/test-build-deployment-workspace/manage.py test-build/
             # /bbncreative
-            mkdir -p test-build/bbncreative
             # TODO: secrets.py - hardcode env vars
             # TODO: settings.py - set Debug to False
-            cp ~/test-build-deployment-workspace/bbncreative/urls.py test-build/bbncreative
-            cp ~/test-build-deployment-workspace/bbncreative/wsgi.py test-build/bbncreative
+            cp ~/test-build-deployment-workspace/bbncreative/{urls.py, wsgi.py} test-build/bbncreative
             # /bbncreative_cms
-            mkdir -p test-build/bbncreative_cms
-            mkdir -p test-build/bbncreative_cms/migrations
-            mkdir -p test-build/bbncreative_cms/views
             cp -a ~/test-build-deployment-workspace/bbncreative_cms/migrations/. test-build/bbncreative_cms/migrations
             cp -a ~/test-build-deployment-workspace/bbncreative_cms/views/. test-build/bbncreative_cms/views
-            cp ~/test-build-deployment-workspace/bbncreative_cms/admin.py test-build/bbncreative_cms/admin.py
-            cp ~/test-build-deployment-workspace/bbncreative_cms/apps.py test-build/bbncreative_cms/apps.py
-            cp ~/test-build-deployment-workspace/bbncreative_cms/context_processors.py test-build/bbncreative_cms/context_processors.py
-            cp ~/test-build-deployment-workspace/bbncreative_cms/forms.py test-build/bbncreative_cms/forms.py
-            cp ~/test-build-deployment-workspace/bbncreative_cms/models.py test-build/bbncreative_cms/models.py
-            cp ~/test-build-deployment-workspace/bbncreative_cms/urls.py test-build/bbncreative_cms/urls.py
+
+            cp ~/test-build-deployment-workspace/bbncreative_cms/{admin.py,apps.py,context_processors.py,forms.py,models.py,urls.py} test-build/bbncreative_cms
             # /static
-            mkdir -p test-build/static
-            mkdir -p test-build/static/style
-            cp -a ~/test-build-deployment-workspace/static/fonts/. test-build/static
-            cp -a ~/test-build-deployment-workspace/static/img/. test-build/static
-            cp -a ~/test-build-deployment-workspace/static/js/. test-build/static
-            cp -a ~/test-build-deployment-workspace/static/vid/. test-build/static
-            cp ~/test-build-deployment-workspace/static/style/style.min.css test-build/static/style/style.min.css
-            cp ~/test-build-deployment-workspace/static/manifest.json test-build/static/manifest.json
+            cp -a ~/test-build-deployment-workspace/static/{fonts,img,js,vid}/. test-build/static
+            cp ~/test-build-deployment-workspace/static/style/style.min.css test-build/static/style
+            cp ~/test-build-deployment-workspace/static/manifest.json test-build/static
             # /templates
             cp -a ~/test-build-deployment-workspace/templates/. test-build/templates
-
+      
+      - store_artifacts:
+          path: test-build
+          destination: test-build
             
 
       # Save build deployment to workspace
