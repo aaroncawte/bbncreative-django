@@ -188,4 +188,5 @@ jobs:
           name: Automatic Deployment Test
           command: |
             cd ~/test-build && ls -a
+            cd test-build && ls -a
             # ssh $SSH_USER@$SSH_HOST "mkdir Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
