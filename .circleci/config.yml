@@ -159,7 +159,7 @@ jobs:
             echo "This is where I will build my build deployment."
             mkdir test-build
             cp -a ~/test-build-deployment-workspace/templates/. test-build/templates
-            cp -a ~/test-build-deployment-workspace/static/vid/. test-build/static/vid
+            cp ~/test-build-deployment-workspace/favicon.ico test-build/
 
       # Save build deployment to workspace
       - persist_to_workspace:
