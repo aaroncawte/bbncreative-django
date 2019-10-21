@@ -166,7 +166,7 @@ jobs:
             # /bbncreative
             # TODO: secrets.py - hardcode env vars
             # TODO: settings.py - set Debug to False
-            cp ~/test-build-deployment-workspace/bbncreative/{urls.py, wsgi.py} test-build/bbncreative
+            cp ~/test-build-deployment-workspace/bbncreative/{urls.py,wsgi.py} test-build/bbncreative
             # /bbncreative_cms
             cp -a ~/test-build-deployment-workspace/bbncreative_cms/migrations/. test-build/bbncreative_cms/migrations
             cp -a ~/test-build-deployment-workspace/bbncreative_cms/views/. test-build/bbncreative_cms/views
@@ -178,9 +178,14 @@ jobs:
             cp ~/test-build-deployment-workspace/static/manifest.json test-build/static
             # /templates
             cp -a ~/test-build-deployment-workspace/templates/. test-build/templates
+
+      - run:
+          name: Create ZIP Archive Of Build
+          command: |
+            zip -r test-build test-build/.
       
       - store_artifacts:
-          path: test-build
+          path: test-build.zip
           destination: test-build
             
 
