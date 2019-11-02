@@ -6,7 +6,7 @@ version: 2.0
 
 workflows:
   version: 2
-  build-and-deploy-test:
+  build-and-deploy:
     jobs:
       - install
 
@@ -66,7 +66,7 @@ jobs:
             pip install -r requirements.txt
             nodeenv -p --node=8.11.4
 
-      # Save everything to the workspace for deployment test
+      # Save everything to the workspace for deployment
       - persist_to_workspace:
           root: /home/circleci/repo
           paths:
@@ -149,57 +149,55 @@ jobs:
 
       # Refer to workspace defined in install step
       - attach_workspace:
-          at: ~/test-build-deployment-workspace
+          at: ~/build-deployment-workspace
 
       - run:
           name: Build Deployment
           command: |
-            echo "Contents of test-build-deployment-workspace:"
-            ls ~/test-build-deployment-workspace
+            echo "Contents of build-deployment-workspace:"
+            ls ~/build-deployment-workspace
             # Setup directory structure
-            mkdir test-build test-build/bbncreative test-build/bbncreative_cms test-build/bbncreative_cms/migrations test-build/bbncreative_cms/views test-build/static test-build/static/style
+            mkdir build build/bbncreative build/bbncreative_cms build/bbncreative_cms/migrations build/bbncreative_cms/views build/static build/static/style
             # /
-            cp ~/test-build-deployment-workspace/requirements.txt test-build/requirements_server.txt # Requirements file with server-specific name
-            cp ~/test-build-deployment-workspace/manage.py test-build/
+            cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
+            cp ~/build-deployment-workspace/manage.py build/
             # /bbncreative
             # TODO: secrets.py - hardcode env vars
             # TODO: settings.py - set Debug to False
-            cp ~/test-build-deployment-workspace/bbncreative/{urls.py,wsgi.py} test-build/bbncreative
+            cp ~/build-deployment-workspace/bbncreative/{urls.py,wsgi.py} build/bbncreative
             # /bbncreative_cms
-            cp -a ~/test-build-deployment-workspace/bbncreative_cms/migrations/. test-build/bbncreative_cms/migrations
-            cp -a ~/test-build-deployment-workspace/bbncreative_cms/views/. test-build/bbncreative_cms/views
+            cp -a ~/build-deployment-workspace/bbncreative_cms/migrations/. build/bbncreative_cms/migrations
+            cp -a ~/build-deployment-workspace/bbncreative_cms/views/. build/bbncreative_cms/views
 
-            cp ~/test-build-deployment-workspace/bbncreative_cms/{admin.py,apps.py,context_processors.py,forms.py,models.py,urls.py} test-build/bbncreative_cms
+            cp ~/build-deployment-workspace/bbncreative_cms/{admin.py,apps.py,context_processors.py,forms.py,models.py,urls.py} build/bbncreative_cms
             # /static
-            cp -a ~/test-build-deployment-workspace/static/{fonts,img,js,vid}/. test-build/static
-            cp ~/test-build-deployment-workspace/static/style/style.min.css test-build/static/style
-            cp ~/test-build-deployment-workspace/static/manifest.json test-build/static
+            cp -a ~/build-deployment-workspace/static/{fonts,img,js,vid}/. build/static
+            cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
+            cp ~/build-deployment-workspace/static/manifest.json build/static
             # /templates
-            cp -a ~/test-build-deployment-workspace/templates/. test-build/templates
+            cp -a ~/build-deployment-workspace/templates/. build/templates
 
       - run:
           name: Create ZIP Archive Of Build
           command: |
-            zip -r test-build test-build/.
+            zip -r build build/.
       
       - store_artifacts:
-          path: test-build.zip
-          destination: test-build
+          path: build.zip
+          destination: build
             
 
       # Save build deployment to workspace
       - persist_to_workspace:
           root: .
           paths:
-            - test-build
+            - build
       
 
   deploy:
 
     docker:
       - image: circleci/python:3.7.0
-
-    working_directory: ~/test-build-workspace
 
     steps:
 
@@ -210,13 +208,13 @@ jobs:
 
       # Refer to workspace defined in install step
       - attach_workspace:
-          at: ~/test-deploy-workspace
+          at: ~/deploy-workspace
 
-      # Deployment test
+      # Deployment
       - run:
-          name: Automatic Deployment Test
+          name: Automatic Deployment Placeholder
           command: |
-            cd ~/test-deploy-workspace/test-build
+            cd ~/deploy-workspace/build
             ls -a
             cd templates
             ls -a
