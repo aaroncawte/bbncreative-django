@@ -144,8 +144,8 @@ jobs:
 
   build-deployment:
     
-    machine:
-      enabled: true
+    docker:
+      - image: ubuntu:18.04
 
     steps:
 
@@ -198,8 +198,8 @@ jobs:
 
   deploy:
 
-    machine:
-      enabled: true
+    docker:
+      - image: ubuntu:18.04
 
     working_directory: ~/test-build-workspace
 
