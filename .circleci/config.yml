@@ -157,7 +157,7 @@ jobs:
             echo "Contents of build-deployment-workspace:"
             ls ~/build-deployment-workspace
             # Setup directory structure
-            mkdir build build/bbncreative build/bbncreative_cms build/bbncreative_cms/migrations build/bbncreative_cms/views build/static build/static/style
+            mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style}
             # /
             cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
@@ -171,9 +171,8 @@ jobs:
 
             cp ~/build-deployment-workspace/bbncreative_cms/{admin.py,apps.py,context_processors.py,forms.py,models.py,urls.py} build/bbncreative_cms
             # /static
-            cp -a ~/build-deployment-workspace/static/{fonts,img,js,vid}/. build/static
+            cp -a ~/build-deployment-workspace/static/{fonts/.,img/.,js/.,vid/.,manifest.json} build/static
             cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
-            cp ~/build-deployment-workspace/static/manifest.json build/static
             # /templates
             cp -a ~/build-deployment-workspace/templates/. build/templates
 
