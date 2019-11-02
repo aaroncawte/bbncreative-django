@@ -80,9 +80,8 @@ jobs:
 
   test-django:
     docker:
-      # https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5
+      - image: circleci/postgres:10.5 # service image - secondary to python
 
     working_directory: ~/repo
     
@@ -111,7 +110,6 @@ jobs:
 
   test-node:
     docker:
-      # https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/python:3.7.0
 
     working_directory: ~/repo
@@ -145,7 +143,7 @@ jobs:
   build-deployment:
     
     docker:
-      - image: ubuntu:18.04
+      - image: circleci/python:3.7.0
 
     steps:
 
@@ -199,7 +197,7 @@ jobs:
   deploy:
 
     docker:
-      - image: ubuntu:18.04
+      - image: circleci/python:3.7.0
 
     working_directory: ~/test-build-workspace
 
