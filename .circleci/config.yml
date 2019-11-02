@@ -113,13 +113,13 @@ jobs:
     
     steps:
 
+      - checkout
+
       - restore_cache:
           keys:
           - v2-front-end-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v2-front-end-dependencies-
-
-      - checkout
 
       - run:
           name: Front-End Tests
