@@ -179,18 +179,18 @@ jobs:
       - run:
           name: Create ZIP Archive Of Build
           command: |
-            zip -r build-$CIRCLE_SHA1-$CIRCLE_WORKFLOW_ID build/.
+            zip -r build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID} build/.
       
       - store_artifacts:
-          path: build-$CIRCLE_SHA1-$CIRCLE_WORKFLOW_ID.zip
-          destination: build-$CIRCLE_SHA1-$CIRCLE_WORKFLOW_ID
+          path: build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}.zip
+          destination: build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}
             
 
       # Save build deployment to workspace
       - persist_to_workspace:
           root: .
           paths:
-            - build-$CIRCLE_SHA1-$CIRCLE_WORKFLOW_ID
+            - build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}
       
 
   deploy:
@@ -215,11 +215,11 @@ jobs:
           environment:
             SSH_DEPLOY_PATH: ~/Auto_Deploy_Test
           command: |
-            cd ~/deploy-workspace/build-$CIRCLE_SHA1-$CIRCLE_WORKFLOW_ID
+            cd ~/deploy-workspace/build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}
             ls -a
             cd templates
             ls -a
             # Workaround while SSH fingerprints aren't working properly
             echo 'bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q=' >> ~/.ssh/known_hosts
             ssh $SSH_USER@$SSH_HOST "mkdir -p Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'Hello world' >> test.txt"
-            scp -r ~/deploy-workspace/build-$CIRCLE_SHA1-$CIRCLE_WORKFLOW_ID "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
+            scp -r ~/deploy-workspace/build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID} "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
