@@ -216,9 +216,10 @@ jobs:
           environment:
             SSH_DEPLOY_PATH: ~/Deployments
             SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
-            BUILD_ARCHIVE_NAME: "build-'${CIRCLE_SHA1}'-'${CIRCLE_WORKFLOW_ID}'"
-            BUILD_LOG_STRING: "$(date +'%D %T') ': BUILD ${CIRCLE_SHA1} ON WORKFLOW ${CIRCLE_WORKFLOW_ID}"
           command: |
+            # Define build strings
+            BUILD_ARCHIVE_NAME="build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}"
+            BUILD_LOG_STRING="$(date +'%D %T'): BUILD ${CIRCLE_SHA1} ON WORKFLOW ${CIRCLE_WORKFLOW_ID}"
             # Workaround for SSH fingerprints
             echo "${SSH_KNOWN_HOST}" >> ~/.ssh/known_hosts
             # Ensure deployment folder exists, log upload to deployment_log.txt
