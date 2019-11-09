@@ -216,11 +216,10 @@ jobs:
           environment:
             SSH_DEPLOY_PATH: ~/Auto_Deploy_Test
           command: |
-            # cd ~/deploy-workspace/build
-            # ls -a
-            # cd templates
-            # ls -a
             # Workaround while SSH fingerprints aren't working properly
             echo 'bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q=' >> ~/.ssh/known_hosts
-            ssh $SSH_USER@$SSH_HOST "mkdir -p Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'SHA1 ${CIRCLE_SHA1}\nWORKFLOW ID ${CIRCLE_WORKFLOW_ID}\n' >> test.txt"
-            scp -r ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH"
+            # Write SHA1 and WORKFLOW_ID to test.txt
+            ssh $SSH_USER@$SSH_HOST "mkdir -p Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'SHA1 ${CIRCLE_SHA1} WORKFLOW ID ${CIRCLE_WORKFLOW_ID}' >> test.txt"
+            # Copy build.zip
+            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/build-'${CIRCLE_SHA1}'-'${CIRCLE_WORKFLOW_ID}'.zip"
+
