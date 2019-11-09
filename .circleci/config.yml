@@ -212,14 +212,17 @@ jobs:
 
       # Deployment
       - run:
-          name: Automatic Deployment Placeholder
+          name: Upload Deployment Archive
           environment:
-            SSH_DEPLOY_PATH: ~/Auto_Deploy_Test
+            SSH_DEPLOY_PATH: ~/Deployments
+            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
+            BUILD_ARCHIVE_NAME: "build-'${CIRCLE_SHA1}'-'${CIRCLE_WORKFLOW_ID}'"
+            BUILD_LOG_STRING: "$(date +'%D %T') ': BUILD ${CIRCLE_SHA1} ON WORKFLOW ${CIRCLE_WORKFLOW_ID}"
           command: |
-            # Workaround while SSH fingerprints aren't working properly
-            echo 'bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q=' >> ~/.ssh/known_hosts
-            # Write SHA1 and WORKFLOW_ID to test.txt
-            ssh $SSH_USER@$SSH_HOST "mkdir -p Auto_Deploy_Test && cd Auto_Deploy_Test && echo 'SHA1 ${CIRCLE_SHA1} WORKFLOW ID ${CIRCLE_WORKFLOW_ID}' >> test.txt"
-            # Copy build.zip
-            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/build-'${CIRCLE_SHA1}'-'${CIRCLE_WORKFLOW_ID}'.zip"
+            # Workaround for SSH fingerprints
+            echo "${SSH_KNOWN_HOST}" >> ~/.ssh/known_hosts
+            # Ensure deployment folder exists, log upload to deployment_log.txt
+            ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
+            # Copy archive using unique name
+            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/$BUILD_ARCHIVE_NAME.zip"
 
