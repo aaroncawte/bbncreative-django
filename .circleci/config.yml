@@ -237,12 +237,21 @@ jobs:
             SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
             # Define build strings
-            BUILD_ARCHIVE_NAME="build-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}"
-            BUILD_LOG_STRING="$(date +'%D %T'): BUILD ${CIRCLE_SHA1} ON WORKFLOW ${CIRCLE_WORKFLOW_ID}"
+            BUILD_ARCHIVE_NAME="build-$(date +'%D%T')-${CIRCLE_BUILD_NUM}"
+            BUILD_LOG_STRING="$(date +'%D %T'): BUILD BRANCH ${CIRCLE_BRANCH} ON BUILD ${CIRCLE_BUILD_NUM} (${CIRCLE_SHA1})"
             # Workaround for SSH fingerprints
             echo "${SSH_KNOWN_HOST}" >> ~/.ssh/known_hosts
             # Ensure deployment folder exists, log upload to deployment_log.txt
             ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
             # Copy archive using unique name
             scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/$BUILD_ARCHIVE_NAME.zip"
+
+      - run:
+          name: Refresh Web Server
+          environment:
+            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
+          command: |
+            sudo systemctl restart gunicorn
+            sudo nginx -t
+            sudo systemctl restart nginx         
 
