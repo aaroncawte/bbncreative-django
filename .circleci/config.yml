@@ -164,7 +164,7 @@ jobs:
             # /bbncreative
             # TODO: secrets.py - hardcode env vars
             # TODO: settings.py - set Debug to False
-            cp ~/build-deployment-workspace/bbncreative/{urls.py,wsgi.py} build/bbncreative
+            cp ~/build-deployment-workspace/bbncreative/{settings.py,urls.py,wsgi.py} build/bbncreative
             # /bbncreative_cms
             cp -a ~/build-deployment-workspace/bbncreative_cms/migrations/. build/bbncreative_cms/migrations
             cp -a ~/build-deployment-workspace/bbncreative_cms/views/. build/bbncreative_cms/views
