@@ -177,15 +177,21 @@ jobs:
             TWITTER_APP_KEY="${TWITTER_APP_KEY}"
             EOT
 
-            cp ~/build-deployment-workspace/bbncreative/{settings.py,urls.py,wsgi.py} build/bbncreative
+            cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
+
             # /bbncreative_cms
             cp -a ~/build-deployment-workspace/bbncreative_cms/migrations/. build/bbncreative_cms/migrations
             cp -a ~/build-deployment-workspace/bbncreative_cms/views/. build/bbncreative_cms/views
-
-            cp ~/build-deployment-workspace/bbncreative_cms/{admin.py,apps.py,context_processors.py,forms.py,models.py,urls.py} build/bbncreative_cms
+            cp ~/build-deployment-workspace/bbncreative_cms/{__init__,admin,apps,context_processors,forms,models,urls}.py build/bbncreative_cms
+           
             # /static
-            cp -a ~/build-deployment-workspace/static/{fonts/.,img/.,js/.,vid/.,manifest.json} build/static
+            cp ~/build-deployment-workspace/static/manifest.json build/static
             cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
+            cp -a ~/build-deployment-workspace/static/fonts/. build/static/fonts
+            cp -a ~/build-deployment-workspace/static/img/. build/static/img
+            cp -a ~/build-deployment-workspace/static/js/. build/static/js
+            cp -a ~/build-deployment-workspace/static/vid/. build/static/vid
+            
             # /templates
             cp -a ~/build-deployment-workspace/templates/. build/templates
 
