@@ -163,7 +163,20 @@ jobs:
             cp ~/build-deployment-workspace/manage.py build/
             # /bbncreative
             # TODO: secrets.py - hardcode env vars
-            # TODO: settings.py - set Debug to False
+            cat <<EOT >> build/bbncreative/secrets.py
+            DJANGO_SECRET="${SECRET_KEY}"
+            POST_DB={ "NAME": "${POSTGRES_NAME}", "USER": "${POSTGRES_USER}", "PASSWORD": "${POSTGRES_PASSWORD}", "HOST": "${POSTGRES_HOST}", "PORT": "${POSTGRES_PORT}"}
+            DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}"
+            EMAIL_HOST="${EMAIL_HOST}"
+            EMAIL_HOST_PASSWORD="${EMAIL_HOST_PASSWORD}"
+            EMAIL_HOST_USER="${EMAIL_HOST_USER}"
+            LOCKDOWN_PASSWORD="${LOCKDOWN_PASSWORD}"
+            RECAPTCHA_SECRET="${RECAPTCHA_SECRET}"
+            RECAPTCHA_SITE_KEY="${RECAPTCHA_SITE_KEY}"
+            TWITTER_ACCESS_TOKEN="${TWITTER_ACCESS_TOKEN}"
+            TWITTER_APP_KEY="${TWITTER_APP_KEY}"
+            EOT
+            
             cp ~/build-deployment-workspace/bbncreative/{settings.py,urls.py,wsgi.py} build/bbncreative
             # /bbncreative_cms
             cp -a ~/build-deployment-workspace/bbncreative_cms/migrations/. build/bbncreative_cms/migrations
