@@ -239,7 +239,6 @@ jobs:
           name: Backup Current Instance
           environment:
             SSH_PROD_PATH: ~/website
-            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
             ssh $SSH_USER@$SSH_HOST "zip -r ${SSH_PROD_PATH}/last_build.zip ${SSH_PROD_PATH}/bbncreative"
 
@@ -248,13 +247,10 @@ jobs:
           environment:
             SSH_DEPLOY_PATH: ~/Deployments
             SSH_PROD_PATH: ~/website
-            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
             ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative && mkdir ${SSH_PROD_PATH}/bbncreative && cp -a ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
 
       - run:
           name: Refresh Web Server
-          environment:
-            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
             ssh $SSH_USER@$SSH_HOST "sudo systemctl restart gunicorn.service && sudo systemctl restart nginx.service"
