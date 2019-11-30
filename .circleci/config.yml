@@ -156,13 +156,15 @@ jobs:
           command: |
             echo "Contents of build-deployment-workspace:"
             ls ~/build-deployment-workspace
+            
             # Setup directory structure
-            mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style}
+            mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
+            
             # /
             cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
+            
             # /bbncreative
-            # TODO: secrets.py - hardcode env vars
             cat <<EOT >> build/bbncreative/secrets.py
             DJANGO_SECRET="${SECRET_KEY}"
             POST_DB={ "NAME": "${POSTGRES_NAME}", "USER": "${POSTGRES_USER}", "PASSWORD": "${POSTGRES_PROD_PASSWORD}", "HOST": "${POSTGRES_HOST}", "PORT": "${POSTGRES_PORT}"}
@@ -187,11 +189,11 @@ jobs:
             # /static
             cp ~/build-deployment-workspace/static/manifest.json build/static
             cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
-            cp -a ~/build-deployment-workspace/static/fonts/. build/static/fonts
-            cp -a ~/build-deployment-workspace/static/img/. build/static/img
-            cp -a ~/build-deployment-workspace/static/js/. build/static/js
-            cp -a ~/build-deployment-workspace/static/vid/. build/static/vid
-            
+            cp -a ~/build-deployment-workspace/static/fonts build/static/fonts
+            cp -a ~/build-deployment-workspace/static/img build/static/img
+            cp -a ~/build-deployment-workspace/static/js build/static/js
+            cp -a ~/build-deployment-workspace/static/vid build/static/vid
+
             # /templates
             cp -a ~/build-deployment-workspace/templates/. build/templates
 
@@ -252,7 +254,7 @@ jobs:
             SSH_PROD_PATH: ~/website
             SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
-            ssh $SSH_USER@$SSH_HOST "zip -r last_build.zip bbncreative"
+            ssh $SSH_USER@$SSH_HOST "zip -r ${SSH_PROD_PATH}/last_build.zip ${SSH_PROD_PATH}/bbncreative"
 
       - run: 
           name: Copy New Build Into Production
@@ -261,7 +263,7 @@ jobs:
             SSH_PROD_PATH: ~/website
             SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
-            ssh $SSH_USER@$SSH_HOST "rm -rf ~/website/bbncreative/{bbncreative,bbncreative_cms,static,templates}/ && rm -rf ~/website/bbncreative/{manage.py,requirements_server.txt} && cp -r ~/Deployments/build ~/website/bbncreative"
+            ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative/{bbncreative,bbncreative_cms,static,templates}/ && rm -rf ${SSH_PROD_PATH}/bbncreative/{manage.py,requirements_server.txt} && cp -r ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
 
       - run:
           name: Refresh Web Server

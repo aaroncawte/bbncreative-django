@@ -150,7 +150,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-MEDIA_ROOT
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '/home/aaron/website/bbncreative/media/')
-MEDIA_URL = "https://bbncreative.co/media/"F
+MEDIA_URL = "https://bbncreative.co/media/"
 
 # LOGGING SETTINGS
 
