@@ -175,17 +175,13 @@ jobs:
             cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
 
             # /bbncreative_cms
-            cp -a ~/build-deployment-workspace/bbncreative_cms/migrations/. build/bbncreative_cms/migrations
-            cp -a ~/build-deployment-workspace/bbncreative_cms/views/. build/bbncreative_cms/views
+            cp -a ~/build-deployment-workspace/bbncreative_cms/{migrations,views} build/bbncreative_cms
             cp ~/build-deployment-workspace/bbncreative_cms/{__init__,admin,apps,context_processors,forms,models,urls}.py build/bbncreative_cms
-           
+
             # /static
+            cp -a ~/build-deployment-workspace/static/{fonts,img,js,vid} build/static
             cp ~/build-deployment-workspace/static/manifest.json build/static
             cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
-            cp -a ~/build-deployment-workspace/static/fonts build/static/fonts
-            cp -a ~/build-deployment-workspace/static/img build/static/img
-            cp -a ~/build-deployment-workspace/static/js build/static/js
-            cp -a ~/build-deployment-workspace/static/vid build/static/vid
 
             # /templates
             cp -a ~/build-deployment-workspace/templates/. build/templates
@@ -236,6 +232,8 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
             # Copy archive using unique name
             scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/$BUILD_ARCHIVE_NAME.zip"
+            # Unzip archive into /build directory
+            ssh $SSH_USER@$SSH_HOST "cd ${SSH_DEPLOY_PATH} && unzip -o ${BUILD_ARCHIVE_NAME}.zip"
 
       - run:
           name: Backup Current Instance
@@ -252,7 +250,7 @@ jobs:
             SSH_PROD_PATH: ~/website
             SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
-            ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative/{bbncreative,bbncreative_cms,static,templates}/ && rm -rf ${SSH_PROD_PATH}/bbncreative/{manage.py,requirements_server.txt} && cp -r ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
+            ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative && mkdir ${SSH_PROD_PATH}/bbncreative && cp -a ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
 
       - run:
           name: Refresh Web Server
