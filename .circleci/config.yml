@@ -19,9 +19,6 @@ workflows:
             - install
 
       - build-deployment:
-          filters:
-            branches:
-              only: Auto_Deploy_Test
           requires:
             - install
             - test-django
@@ -30,7 +27,7 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: Auto_Deploy_Test
+              only: master
           requires:
             - build-deployment
 
