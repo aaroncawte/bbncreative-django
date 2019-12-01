@@ -251,3 +251,11 @@ jobs:
           name: Refresh Web Server
           command: |
             ssh $SSH_USER@$SSH_HOST "sudo systemctl restart gunicorn.service && sudo systemctl restart nginx.service"
+
+      - run:
+          name: Clean up old deployment archives
+          environment:
+            SSH_DEPLOY_PATH: ~/Deployments
+            DAYS_TO_KEEP_ARCHIVES_FOR: "30"
+          command: |
+            ssh $SSH_USER@SSH_HOST "find ${SSH_DEPLOY_PATH} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
