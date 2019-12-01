@@ -2,56 +2,252 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.7.0
+version: 2.0
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - install
+
+      - test-django:
+          requires:
+            - install
+
+      - test-node:
+          requires:
+            - install
+
+      - build-deployment:
+          requires:
+            - install
+            - test-django
+            - test-node
+
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build-deployment
+
+jobs:
+  install:
+    docker:
+      # https://circleci.com/docs/2.0/circleci-images/
+      - image: circleci/python:3.7.0
       - image: circleci/postgres:10.5
+
+    working_directory: ~/repo
+
+    steps:
+      - attach_workspace:
+          at: ~/install-workspace
+
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-dependencies-
+
+      # Activate virtual environment and install project
+      - run:
+          name: Install Dependencies
+          command: |
+            python3 -m venv bbn-env
+            . bbn-env/bin/activate
+            pip install -r requirements.txt
+            nodeenv -p --node=8.11.4
+
+      # Save everything to the workspace for deployment
+      - persist_to_workspace:
+          root: /home/circleci/repo
+          paths:
+            - .
+
+      # Cache dependencies using checksum of requirements.txt
+      - save_cache:
+          paths:
+            - ./bbn-env
+          key: v2-dependencies-{{ checksum "requirements.txt" }}
+
+  test-django:
+    docker:
+      - image: circleci/python:3.7.0
+      - image: circleci/postgres:10.5 # service image - secondary to python
 
     working_directory: ~/repo
 
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v2-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-dependencies-
 
       - run:
-          name: install dependencies
+          name: Back-End Tests
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            nodeenv -p --node=8.11.4
-            npm install ava
-
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
-
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
-
-      - run:
-          name: run tests
-          command: |
-            . venv/bin/activate
+            . bbn-env/bin/activate
             python manage.py test
-            npm test
 
       - store_artifacts:
-          path: test-reports
-          destination: test-reports
+          path: back-end-test-reports
+          destination: back-end-test-reports
+
+  test-node:
+    docker:
+      - image: circleci/node:8.11.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v2-front-end-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-front-end-dependencies-
+
+      - run:
+          name: Front-End Tests
+          command: |
+            npm install
+            npm test
+
+      # Cache node dependencies using checksum of package.json
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v2-front-end-dependencies-{{ checksum "package.json" }}
+
+      # Store test reports
+      - store_artifacts:
+          path: front-end-test-reports
+          destination: front-end-test-reports
+
+  build-deployment:
+    docker:
+      - image: circleci/python:3.7.0
+
+    steps:
+      # Refer to workspace defined in install step
+      - attach_workspace:
+          at: ~/build-deployment-workspace
+
+      - run:
+          name: Build Deployment
+          command: |
+            echo "Contents of build-deployment-workspace:"
+            ls ~/build-deployment-workspace
+
+            # Setup directory structure
+            mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
+
+            # /
+            cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
+            cp ~/build-deployment-workspace/manage.py build/
+
+            # /bbncreative
+            cat <<EOT >> build/bbncreative/secrets.py
+            DJANGO_SECRET="${SECRET_KEY}"
+            POST_DB={ "NAME": "${POSTGRES_NAME}", "USER": "${POSTGRES_USER}", "PASSWORD": "${POSTGRES_PROD_PASSWORD}", "HOST": "${POSTGRES_HOST}", "PORT": "${POSTGRES_PORT}"}
+            DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}"
+            EMAIL_HOST="${EMAIL_HOST}"
+            EMAIL_HOST_PASSWORD="${EMAIL_HOST_PASSWORD}"
+            EMAIL_HOST_USER="${EMAIL_HOST_USER}"
+            LOCKDOWN_PASSWORD="${LOCKDOWN_PASSWORD}"
+            RECAPTCHA_SECRET="${RECAPTCHA_SECRET}"
+            RECAPTCHA_SITE_KEY="${RECAPTCHA_SITE_KEY}"
+            TWITTER_ACCESS_TOKEN="${TWITTER_ACCESS_TOKEN}"
+            TWITTER_APP_KEY="${TWITTER_APP_KEY}"
+            EOT
+
+            cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
+
+            # /bbncreative_cms
+            cp -a ~/build-deployment-workspace/bbncreative_cms/{migrations,views} build/bbncreative_cms
+            cp ~/build-deployment-workspace/bbncreative_cms/{__init__,admin,apps,context_processors,forms,models,urls}.py build/bbncreative_cms
+
+            # /static
+            cp -a ~/build-deployment-workspace/static/{fonts,img,js,vid} build/static
+            cp ~/build-deployment-workspace/static/manifest.json build/static
+            cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
+
+            # /templates
+            cp -a ~/build-deployment-workspace/templates/. build/templates
+
+      - run:
+          name: Create ZIP Archive Of Build
+          command: |
+            zip -r build build/.
+
+      - store_artifacts:
+          path: build.zip
+          destination: build
+
+      # Save build deployment to workspace
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build
+            - build.zip
+
+  deploy:
+    docker:
+      - image: circleci/python:3.7.0
+
+    steps:
+      # Server SSH key
+      - add_ssh_keys:
+          fingerprints:
+            - "a3:e2:e1:16:45:1a:dd:fd:81:5d:31:18:a1:ff:cc:1c"
+
+      # Refer to workspace defined in install step
+      - attach_workspace:
+          at: ~/deploy-workspace
+
+      # Deployment
+      - run:
+          name: Upload Deployment Archive
+          environment:
+            SSH_DEPLOY_PATH: ~/Deployments
+            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
+          command: |
+            # Define build strings
+            BUILD_ARCHIVE_NAME="build-$(date +'%s')-${CIRCLE_BUILD_NUM}"
+            BUILD_LOG_STRING="$(date +'%s') ($(date +'%D %T')): BUILD BRANCH ${CIRCLE_BRANCH} ON BUILD ${CIRCLE_BUILD_NUM} (${CIRCLE_SHA1})"
+            # Workaround for SSH fingerprints
+            echo "${SSH_KNOWN_HOST}" >> ~/.ssh/known_hosts
+            # Ensure deployment folder exists, log upload to deployment_log.txt
+            ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
+            # Copy archive using unique name
+            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/$BUILD_ARCHIVE_NAME.zip"
+            # Unzip archive into /build directory
+            ssh $SSH_USER@$SSH_HOST "cd ${SSH_DEPLOY_PATH} && unzip -o ${BUILD_ARCHIVE_NAME}.zip"
+
+      - run:
+          name: Backup Current Instance
+          environment:
+            SSH_PROD_PATH: ~/website
+          command: |
+            ssh $SSH_USER@$SSH_HOST "zip -r ${SSH_PROD_PATH}/last_build.zip ${SSH_PROD_PATH}/bbncreative"
+
+      - run:
+          name: Copy New Build Into Production
+          environment:
+            SSH_DEPLOY_PATH: ~/Deployments
+            SSH_PROD_PATH: ~/website
+          command: |
+            ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative && mkdir ${SSH_PROD_PATH}/bbncreative && cp -a ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
+
+      - run:
+          name: Refresh Web Server
+          command: |
+            ssh $SSH_USER@$SSH_HOST "sudo systemctl restart gunicorn.service && sudo systemctl restart nginx.service"

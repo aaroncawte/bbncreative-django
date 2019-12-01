@@ -24,17 +24,9 @@ NUM_TOP_FEEDS = 3
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets.DJANGO_SECRET
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '178.62.41.51',
-    'bbncreative.co'
-]
 
 APPEND_SLASH = True
 
@@ -150,8 +142,9 @@ STATICFILES_DIRS = [
 # Uploadeded Content (Images, etc.)
 # https://docs.djangoproject.com/en/2.0/ref/settings/#std:setting-MEDIA_ROOT
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '/media/') # "/home/aaron/website/bbncreative/media/" in production
-MEDIA_URL = "/media/" # "https://bbncreative.co/media/" in production
+# "/home/aaron/website/media/" in production
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+MEDIA_URL = "/media/"  # "https://bbncreative.co/media/" in production
 
 # LOGGING SETTINGS
 
