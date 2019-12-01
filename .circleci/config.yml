@@ -258,4 +258,4 @@ jobs:
             SSH_DEPLOY_PATH: ~/Deployments
             DAYS_TO_KEEP_ARCHIVES_FOR: "30"
           command: |
-            ssh $SSH_USER@SSH_HOST "find ${SSH_DEPLOY_PATH} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
+            ssh $SSH_USER@$SSH_HOST "find ${SSH_DEPLOY_PATH} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
