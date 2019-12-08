@@ -226,7 +226,7 @@ jobs:
       - run:
           name: Web Server Health Check
           environment:
-            VENV_PATH: website/bbn-env/bin/activate
+            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
           command: |
             ssh $SSH_USER@$SSH_HOST source $VENV_PATH && pip check --disable-pip-version-check && deactivate && sudo nginx -t > health_check.log
 
