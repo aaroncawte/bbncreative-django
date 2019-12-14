@@ -228,8 +228,13 @@ jobs:
           environment:
             VENV_PATH: /home/aaron/website/bbn-env/bin/activate
           command: |
-            ssh $SSH_USER@$SSH_HOST source $VENV_PATH && pip check --disable-pip-version-check && deactivate && sudo nginx -t > health_check.log
+            ssh $SSH_USER@$SSH_HOST "sudo nginx -t" > health_check_nginx.log
+            ssh $SSH_USER@$SSH_HOST "pip check --disable-pip-version-check" > health_check_pip_check.log
 
       - store_artifacts:
-          path: health_check.log
-          destination: health_check.log
+          path: health_check_nginx.log
+          destination: health_check_nginx.log
+
+      - store_artifacts:
+          path: health_check_pip_check.log
+          destination: health_check_pip_check.log
