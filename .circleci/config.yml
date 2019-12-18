@@ -242,3 +242,16 @@ jobs:
       - store_artifacts:
           path: health_check_pip_check.log
           destination: health_check_pip_check.log
+
+      - run:
+          name: Health check - migrations
+          environment:
+            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
+            SSH_PROD_PATH: ~/website
+
+          command: |
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${SSH_PROD_PATH}/bbncreative/manage.py makemigrations --check" > health_check_migrations.log
+
+      - store_artifacts:
+          path: health_check_migrations.log
+          destination: health_check_migrations.log
