@@ -21,7 +21,9 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - health-check-ci-step
           requires:
             - build-deployment
 
@@ -220,3 +222,36 @@ jobs:
             DAYS_TO_KEEP_ARCHIVES_FOR: "30"
           command: |
             ssh $SSH_USER@$SSH_HOST "find ${SSH_DEPLOY_PATH} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
+
+      - run:
+          name: Health check - nginx
+          command: |
+            ssh $SSH_USER@$SSH_HOST "sudo /usr/sbin/nginx -t" 2> health_check_nginx.log
+
+      - store_artifacts:
+          path: health_check_nginx.log
+          destination: health_check_nginx.log
+
+      - run:
+          name: Health check - pip
+          environment:
+            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
+          command: |
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; pip check --disable-pip-version-check" > health_check_pip_check.log
+
+      - store_artifacts:
+          path: health_check_pip_check.log
+          destination: health_check_pip_check.log
+
+      - run:
+          name: Health check - migrations
+          environment:
+            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
+            SSH_PROD_PATH: ~/website
+
+          command: |
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${SSH_PROD_PATH}/bbncreative/manage.py makemigrations --check" > health_check_migrations.log
+
+      - store_artifacts:
+          path: health_check_migrations.log
+          destination: health_check_migrations.log

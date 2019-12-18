@@ -10,6 +10,7 @@ Along the way I:
 
 - Added custom code to `/etc/nginx/sites-available/bbncreative` to get resources working on admin pages
 - Customised that same file to get `www.` to redirect properly (Certbot handles the `http://` -> `https://` bit)
+- Added server-side configuration to enable full CircleCI operability through SSH
 
 ## Changing Something?
 
