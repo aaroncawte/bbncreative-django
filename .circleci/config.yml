@@ -226,7 +226,7 @@ jobs:
       - run:
           name: Health check - nginx
           command: |
-            ssh $SSH_USER@$SSH_HOST "sudo /usr/sbin/nginx -t" > health_check_nginx.log
+            ssh $SSH_USER@$SSH_HOST "sudo /usr/sbin/nginx -t" 2> health_check_nginx.log
 
       - store_artifacts:
           path: health_check_nginx.log
