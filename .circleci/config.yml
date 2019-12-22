@@ -184,35 +184,36 @@ jobs:
       - run:
           name: Upload Deployment Archive
           environment:
-            SSH_DEPLOY_PATH: ~/Deployments
-            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
+            DEPLOYMENT_DIR: ~/Deployments
+            KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
           command: |
             # Define build strings
             BUILD_ARCHIVE_NAME="build-$(date +'%s')-${CIRCLE_BUILD_NUM}"
             BUILD_LOG_STRING="$(date +'%s') ($(date +'%D %T')): BUILD BRANCH ${CIRCLE_BRANCH} ON BUILD ${CIRCLE_BUILD_NUM} (${CIRCLE_SHA1})"
             # Workaround for SSH fingerprints
-            echo "${SSH_KNOWN_HOST}" >> ~/.ssh/known_hosts
+            echo "${KNOWN_HOST}" >> ~/.ssh/known_hosts
             # Ensure deployment folder exists, log upload to deployment_log.txt
             ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
             # Copy archive using unique name
-            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/$BUILD_ARCHIVE_NAME.zip"
+            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$DEPLOYMENT_DIR/$BUILD_ARCHIVE_NAME.zip"
             # Unzip archive into /build directory
-            ssh $SSH_USER@$SSH_HOST "cd ${SSH_DEPLOY_PATH} && unzip -o ${BUILD_ARCHIVE_NAME}.zip"
+            ssh $SSH_USER@$SSH_HOST "cd ${DEPLOYMENT_DIR} && unzip -o ${BUILD_ARCHIVE_NAME}.zip"
 
       - run:
           name: Backup Current Instance
           environment:
-            SSH_PROD_PATH: ~/website
+            BACKUP_PATH: ~/website/last_build.zip
+            PROD_BUILD_PATH: ~/website/bbncreative
           command: |
-            ssh $SSH_USER@$SSH_HOST "zip -r ${SSH_PROD_PATH}/last_build.zip ${SSH_PROD_PATH}/bbncreative"
+            ssh $SSH_USER@$SSH_HOST "zip -r ${BACKUP_PATH} ${PROD_BUILD_PATH}"
 
       - run:
           name: Copy New Build Into Production
           environment:
-            SSH_DEPLOY_PATH: ~/Deployments
-            SSH_PROD_PATH: ~/website
+            DEPLOY_BUILD_PATH: ~/Deployments/build
+            PROD_BUILD_PATH: ~/website/bbncreative
           command: |
-            ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative && mkdir ${SSH_PROD_PATH}/bbncreative && cp -a ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
+            ssh $SSH_USER@$SSH_HOST "rm -rf ${PROD_BUILD_PATH} && mkdir ${PROD_BUILD_PATH} && cp -a ${DEPLOY_BUILD_PATH}/. ${PROD_BUILD_PATH}"
 
       - run:
           name: Refresh Web Server
@@ -222,15 +223,17 @@ jobs:
       - run:
           name: Clean up old deployment archives
           environment:
-            SSH_DEPLOY_PATH: ~/Deployments
+            DEPLOYMENT_DIR: ~/Deployments
             DAYS_TO_KEEP_ARCHIVES_FOR: "30"
           command: |
-            ssh $SSH_USER@$SSH_HOST "find ${SSH_DEPLOY_PATH} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
+            ssh $SSH_USER@$SSH_HOST "find ${DEPLOYMENT_DIR} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
 
       - run:
           name: Health check - nginx
+          environment:
+            NGINX_PATH: /usr/sbin/nginx
           command: |
-            ssh $SSH_USER@$SSH_HOST "sudo /usr/sbin/nginx -t" 2> health_check_nginx.log
+            ssh $SSH_USER@$SSH_HOST "sudo ${NGINX_PATH} -t" 2> health_check_nginx.log
 
       - store_artifacts:
           path: health_check_nginx.log
@@ -251,10 +254,10 @@ jobs:
           name: Health check - migrations
           environment:
             VENV_PATH: /home/aaron/website/bbn-env/bin/activate
-            SSH_PROD_PATH: ~/website
+            MANAGE_PY_PATH: ~/website/bbncreative/manage.py
 
           command: |
-            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${SSH_PROD_PATH}/bbncreative/manage.py makemigrations --check" > health_check_migrations.log
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${MANAGE_PY_PATH} makemigrations --check" > health_check_migrations.log
 
       - store_artifacts:
           path: health_check_migrations.log
