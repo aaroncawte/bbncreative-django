@@ -9,6 +9,27 @@ commands:
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
 
+  build-secrets-file:
+    parameters:
+      filepath:
+        description: destination filepath
+        type: string
+    steps:
+      - run:
+          name: Build secrets file
+          command: |
+            echo DJANGO_SECRET=\"${SECRET_KEY}\" > << parameters.filepath >>
+            echo POST_DB={\"NAME\": \"${POSTGRES_NAME}\", \"USER\": \"${POSTGRES_USER}\", \"PASSWORD\": \"${POSTGRES_PROD_PASSWORD}\", \"HOST\": \"${POSTGRES_HOST}\", \"PORT\": \"${POSTGRES_PORT}\"} >> << parameters.filepath >>
+            echo DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}" >> << parameters.filepath >>
+            echo EMAIL_HOST=\"${EMAIL_HOST}\" >> << parameters.filepath >>
+            echo EMAIL_HOST_PASSWORD=\"${EMAIL_HOST_PASSWORD}\" >> << parameters.filepath >>
+            echo EMAIL_HOST_USER=\"${EMAIL_HOST_USER}\" >> << parameters.filepath >>
+            echo LOCKDOWN_PASSWORD=\"${LOCKDOWN_PASSWORD}\" >> << parameters.filepath >>
+            echo RECAPTCHA_SECRET=\"${RECAPTCHA_SECRET}\" >> << parameters.filepath >>
+            echo RECAPTCHA_SITE_KEY=\"${RECAPTCHA_SITE_KEY}\" >> << parameters.filepath >>
+            echo TWITTER_ACCESS_TOKEN=\"${TWITTER_ACCESS_TOKEN}\" >> << parameters.filepath >>
+            echo TWITTER_APP_KEY=\"${TWITTER_APP_KEY}\" >> << parameters.filepath >>
+
 executors:
   bbncreative-runner:
     docker:
@@ -112,21 +133,6 @@ jobs:
             cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
 
-            # /bbncreative
-
-            echo DJANGO_SECRET=\"${SECRET_KEY}\" > build/bbncreative/secrets.py
-            echo POST_DB={ \"NAME\": \"${POSTGRES_NAME}\", \"USER\": \"${POSTGRES_USER}\", \"PASSWORD\": \"${POSTGRES_PROD_PASSWORD}\", \"HOST\": \"${POSTGRES_HOST}\", \"PORT\": \"${POSTGRES_PORT}\"} >> build/bbncreative/secrets.py
-            echo DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}" >> build/bbncreative/secrets.py
-            echo EMAIL_HOST=\"${EMAIL_HOST}\" >> build/bbncreative/secrets.py
-            echo EMAIL_HOST_PASSWORD=\"${EMAIL_HOST_PASSWORD}\" >> build/bbncreative/secrets.py
-            echo EMAIL_HOST_USER=\"${EMAIL_HOST_USER}\" >> build/bbncreative/secrets.py
-            echo LOCKDOWN_PASSWORD=\"${LOCKDOWN_PASSWORD}\" >> build/bbncreative/secrets.py
-            echo RECAPTCHA_SECRET=\"${RECAPTCHA_SECRET}\" >> build/bbncreative/secrets.py
-            echo RECAPTCHA_SITE_KEY=\"${RECAPTCHA_SITE_KEY}\" >> build/bbncreative/secrets.py
-            echo TWITTER_ACCESS_TOKEN=\"${TWITTER_ACCESS_TOKEN}\" >> build/bbncreative/secrets.py
-            echo TWITTER_APP_KEY=\"${TWITTER_APP_KEY}\" >> build/bbncreative/secrets.py
-
-
             cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
 
             # /bbncreative_cms
@@ -140,6 +146,10 @@ jobs:
 
             # /templates
             cp -a ~/build-deployment-workspace/templates/. build/templates
+
+      # /bbncreative
+      - build-secrets-file:
+          filepath: build/bbncreative/secrets.py
 
       - run:
           name: Create ZIP Archive Of Build
