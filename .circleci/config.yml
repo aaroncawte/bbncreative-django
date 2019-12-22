@@ -27,16 +27,18 @@ commands:
           name: Build secrets file
           command: |
             echo DJANGO_SECRET=\"${SECRET_KEY}\" > << parameters.filepath >>
-            echo POST_DB={\"NAME\": \"${POSTGRES_NAME}\", \"USER\": \"${POSTGRES_USER}\", \"PASSWORD\": \"${POSTGRES_PROD_PASSWORD}\", \"HOST\": \"${POSTGRES_HOST}\", \"PORT\": \"${POSTGRES_PORT}\"} >> << parameters.filepath >>
-            echo DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}" >> << parameters.filepath >>
-            echo EMAIL_HOST=\"${EMAIL_HOST}\" >> << parameters.filepath >>
-            echo EMAIL_HOST_PASSWORD=\"${EMAIL_HOST_PASSWORD}\" >> << parameters.filepath >>
-            echo EMAIL_HOST_USER=\"${EMAIL_HOST_USER}\" >> << parameters.filepath >>
-            echo LOCKDOWN_PASSWORD=\"${LOCKDOWN_PASSWORD}\" >> << parameters.filepath >>
-            echo RECAPTCHA_SECRET=\"${RECAPTCHA_SECRET}\" >> << parameters.filepath >>
-            echo RECAPTCHA_SITE_KEY=\"${RECAPTCHA_SITE_KEY}\" >> << parameters.filepath >>
-            echo TWITTER_ACCESS_TOKEN=\"${TWITTER_ACCESS_TOKEN}\" >> << parameters.filepath >>
-            echo TWITTER_APP_KEY=\"${TWITTER_APP_KEY}\" >> << parameters.filepath >>
+            (
+              echo POST_DB={\"NAME\": \"${POSTGRES_NAME}\", \"USER\": \"${POSTGRES_USER}\", \"PASSWORD\": \"${POSTGRES_PROD_PASSWORD}\", \"HOST\": \"${POSTGRES_HOST}\", \"PORT\": \"${POSTGRES_PORT}\"}  
+              echo DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}";
+              echo EMAIL_HOST=\"${EMAIL_HOST}\";
+              echo EMAIL_HOST_PASSWORD=\"${EMAIL_HOST_PASSWORD}\";
+              echo EMAIL_HOST_USER=\"${EMAIL_HOST_USER}\";
+              echo LOCKDOWN_PASSWORD=\"${LOCKDOWN_PASSWORD}\";
+              echo RECAPTCHA_SECRET=\"${RECAPTCHA_SECRET}\";
+              echo RECAPTCHA_SITE_KEY=\"${RECAPTCHA_SITE_KEY}\";
+              echo TWITTER_ACCESS_TOKEN=\"${TWITTER_ACCESS_TOKEN}\";
+              echo TWITTER_APP_KEY=\"${TWITTER_APP_KEY}\"
+            ) >> << parameters.filepath >>
 
 executors:
   bbncreative-runner:
@@ -201,7 +203,7 @@ jobs:
             BUILD_ARCHIVE_NAME="build-$(date +'%s')-${CIRCLE_BUILD_NUM}"
             BUILD_LOG_STRING="$(date +'%s') ($(date +'%D %T')): BUILD BRANCH ${CIRCLE_BRANCH} ON BUILD ${CIRCLE_BUILD_NUM} (${CIRCLE_SHA1})"
             # Ensure deployment folder exists, log upload to deployment_log.txt
-            ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
+            ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd $_ && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
             # Copy archive using unique name
             scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$DEPLOYMENT_DIR/$BUILD_ARCHIVE_NAME.zip"
             # Unzip archive into /build directory
