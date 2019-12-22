@@ -9,6 +9,15 @@ commands:
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
 
+executors:
+  bbncreative-runner:
+    docker:
+      - image: circleci/python:3.7.0
+      - image: circleci/postgres:10.5 # service image - secondary to python
+  bbncreative-ops:
+    docker:
+      - image: circleci/python:3.7.0
+
 workflows:
   version: 2
   build-and-deploy:
@@ -34,11 +43,7 @@ workflows:
 
 jobs:
   install:
-    docker:
-      # https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5
-
+    executor: bbncreative-runner
     working_directory: ~/repo
 
     steps:
@@ -69,10 +74,7 @@ jobs:
           key: v2-dependencies-{{ checksum "requirements.txt" }}
 
   test-django:
-    docker:
-      - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5 # service image - secondary to python
-
+    executor: bbncreative-runner
     working_directory: ~/repo
 
     steps:
@@ -90,8 +92,7 @@ jobs:
           destination: back-end-test-reports
 
   build-deployment:
-    docker:
-      - image: circleci/python:3.7.0
+    executor: bbncreative-ops
 
     steps:
       # Refer to workspace defined in install step
@@ -157,8 +158,7 @@ jobs:
             - build.zip
 
   deploy:
-    docker:
-      - image: circleci/python:3.7.0
+    executor: bbncreative-ops
 
     steps:
       # Server SSH key
