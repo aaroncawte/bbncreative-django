@@ -1,8 +1,53 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
+version: 2.1
 
-version: 2.0
+commands:
+  restore-deps:
+    steps:
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-dependencies-
+
+  add-known-host-workaround:
+    steps:
+      - run:
+          name: Add known host
+          environment:
+            KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
+          command: echo "${KNOWN_HOST}" >> ~/.ssh/known_hosts
+
+  build-secrets-file:
+    parameters:
+      filepath:
+        description: destination filepath
+        type: string
+    steps:
+      - run:
+          name: Build secrets file
+          command: |
+            echo DJANGO_SECRET=\"${SECRET_KEY}\" > << parameters.filepath >>
+            (
+              echo POST_DB={\"NAME\": \"${POSTGRES_NAME}\", \"USER\": \"${POSTGRES_USER}\", \"PASSWORD\": \"${POSTGRES_PROD_PASSWORD}\", \"HOST\": \"${POSTGRES_HOST}\", \"PORT\": \"${POSTGRES_PORT}\"}  
+              echo DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}";
+              echo EMAIL_HOST=\"${EMAIL_HOST}\";
+              echo EMAIL_HOST_PASSWORD=\"${EMAIL_HOST_PASSWORD}\";
+              echo EMAIL_HOST_USER=\"${EMAIL_HOST_USER}\";
+              echo LOCKDOWN_PASSWORD=\"${LOCKDOWN_PASSWORD}\";
+              echo RECAPTCHA_SECRET=\"${RECAPTCHA_SECRET}\";
+              echo RECAPTCHA_SITE_KEY=\"${RECAPTCHA_SITE_KEY}\";
+              echo TWITTER_ACCESS_TOKEN=\"${TWITTER_ACCESS_TOKEN}\";
+              echo TWITTER_APP_KEY=\"${TWITTER_APP_KEY}\"
+            ) >> << parameters.filepath >>
+
+executors:
+  bbncreative-runner:
+    docker:
+      - image: circleci/python:3.7.0
+      - image: circleci/postgres:10.5 # service image - secondary to python
+  bbncreative-ops:
+    docker:
+      - image: circleci/python:3.7.0
 
 workflows:
   version: 2
@@ -29,11 +74,7 @@ workflows:
 
 jobs:
   install:
-    docker:
-      # https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5
-
+    executor: bbncreative-runner
     working_directory: ~/repo
 
     steps:
@@ -41,13 +82,7 @@ jobs:
           at: ~/install-workspace
 
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v2-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+      - restore-deps
 
       # Activate virtual environment and install project
       - run:
@@ -70,20 +105,12 @@ jobs:
           key: v2-dependencies-{{ checksum "requirements.txt" }}
 
   test-django:
-    docker:
-      - image: circleci/python:3.7.0
-      - image: circleci/postgres:10.5 # service image - secondary to python
-
+    executor: bbncreative-runner
     working_directory: ~/repo
 
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - v2-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+      - restore-deps
 
       - run:
           name: Back-End Tests
@@ -96,8 +123,7 @@ jobs:
           destination: back-end-test-reports
 
   build-deployment:
-    docker:
-      - image: circleci/python:3.7.0
+    executor: bbncreative-ops
 
     steps:
       # Refer to workspace defined in install step
@@ -117,21 +143,6 @@ jobs:
             cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
 
-            # /bbncreative
-            cat <<EOT >> build/bbncreative/secrets.py
-            DJANGO_SECRET="${SECRET_KEY}"
-            POST_DB={ "NAME": "${POSTGRES_NAME}", "USER": "${POSTGRES_USER}", "PASSWORD": "${POSTGRES_PROD_PASSWORD}", "HOST": "${POSTGRES_HOST}", "PORT": "${POSTGRES_PORT}"}
-            DJANGO_DEBUG_MODE="${DJANGO_DEBUG_MODE}"
-            EMAIL_HOST="${EMAIL_HOST}"
-            EMAIL_HOST_PASSWORD="${EMAIL_HOST_PASSWORD}"
-            EMAIL_HOST_USER="${EMAIL_HOST_USER}"
-            LOCKDOWN_PASSWORD="${LOCKDOWN_PASSWORD}"
-            RECAPTCHA_SECRET="${RECAPTCHA_SECRET}"
-            RECAPTCHA_SITE_KEY="${RECAPTCHA_SITE_KEY}"
-            TWITTER_ACCESS_TOKEN="${TWITTER_ACCESS_TOKEN}"
-            TWITTER_APP_KEY="${TWITTER_APP_KEY}"
-            EOT
-
             cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
 
             # /bbncreative_cms
@@ -145,6 +156,10 @@ jobs:
 
             # /templates
             cp -a ~/build-deployment-workspace/templates/. build/templates
+
+      # /bbncreative
+      - build-secrets-file:
+          filepath: build/bbncreative/secrets.py
 
       - run:
           name: Create ZIP Archive Of Build
@@ -163,8 +178,7 @@ jobs:
             - build.zip
 
   deploy:
-    docker:
-      - image: circleci/python:3.7.0
+    executor: bbncreative-ops
 
     steps:
       # Server SSH key
@@ -176,39 +190,40 @@ jobs:
       - attach_workspace:
           at: ~/deploy-workspace
 
+      # Workaround for SSH fingerprints
+      - add-known-host-workaround
+
       # Deployment
       - run:
           name: Upload Deployment Archive
           environment:
-            SSH_DEPLOY_PATH: ~/Deployments
-            SSH_KNOWN_HOST: "bbncreative.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPqWuMDEB5FMoaHDC8mynq2sG1cBkiAmYrBAKI3+M8+oO7QbtRxTQFlgTyNtiiBrKhvqVkBNkFzPm/ccmBZFt7Q="
+            DEPLOYMENT_DIR: ~/Deployments
           command: |
             # Define build strings
             BUILD_ARCHIVE_NAME="build-$(date +'%s')-${CIRCLE_BUILD_NUM}"
             BUILD_LOG_STRING="$(date +'%s') ($(date +'%D %T')): BUILD BRANCH ${CIRCLE_BRANCH} ON BUILD ${CIRCLE_BUILD_NUM} (${CIRCLE_SHA1})"
-            # Workaround for SSH fingerprints
-            echo "${SSH_KNOWN_HOST}" >> ~/.ssh/known_hosts
             # Ensure deployment folder exists, log upload to deployment_log.txt
-            ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd Deployments && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
+            ssh $SSH_USER@$SSH_HOST "mkdir -p Deployments && cd $_ && echo '${BUILD_LOG_STRING}' >> deployment_log.txt"
             # Copy archive using unique name
-            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$SSH_DEPLOY_PATH/$BUILD_ARCHIVE_NAME.zip"
+            scp ~/deploy-workspace/build.zip "$SSH_USER@$SSH_HOST:$DEPLOYMENT_DIR/$BUILD_ARCHIVE_NAME.zip"
             # Unzip archive into /build directory
-            ssh $SSH_USER@$SSH_HOST "cd ${SSH_DEPLOY_PATH} && unzip -o ${BUILD_ARCHIVE_NAME}.zip"
+            ssh $SSH_USER@$SSH_HOST "cd ${DEPLOYMENT_DIR} && unzip -o ${BUILD_ARCHIVE_NAME}.zip"
 
       - run:
           name: Backup Current Instance
           environment:
-            SSH_PROD_PATH: ~/website
+            BACKUP_PATH: ~/website/last_build.zip
+            PROD_BUILD_PATH: ~/website/bbncreative
           command: |
-            ssh $SSH_USER@$SSH_HOST "zip -r ${SSH_PROD_PATH}/last_build.zip ${SSH_PROD_PATH}/bbncreative"
+            ssh $SSH_USER@$SSH_HOST "zip -r ${BACKUP_PATH} ${PROD_BUILD_PATH}"
 
       - run:
           name: Copy New Build Into Production
           environment:
-            SSH_DEPLOY_PATH: ~/Deployments
-            SSH_PROD_PATH: ~/website
+            DEPLOY_BUILD_PATH: ~/Deployments/build
+            PROD_BUILD_PATH: ~/website/bbncreative
           command: |
-            ssh $SSH_USER@$SSH_HOST "rm -rf ${SSH_PROD_PATH}/bbncreative && mkdir ${SSH_PROD_PATH}/bbncreative && cp -a ${SSH_DEPLOY_PATH}/build/. ${SSH_PROD_PATH}/bbncreative"
+            ssh $SSH_USER@$SSH_HOST "rm -rf ${PROD_BUILD_PATH} && mkdir ${PROD_BUILD_PATH} && cp -a ${DEPLOY_BUILD_PATH}/. ${PROD_BUILD_PATH}"
 
       - run:
           name: Refresh Web Server
@@ -218,15 +233,17 @@ jobs:
       - run:
           name: Clean up old deployment archives
           environment:
-            SSH_DEPLOY_PATH: ~/Deployments
+            DEPLOYMENT_DIR: ~/Deployments
             DAYS_TO_KEEP_ARCHIVES_FOR: "30"
           command: |
-            ssh $SSH_USER@$SSH_HOST "find ${SSH_DEPLOY_PATH} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
+            ssh $SSH_USER@$SSH_HOST "find ${DEPLOYMENT_DIR} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
 
       - run:
           name: Health check - nginx
+          environment:
+            NGINX_PATH: /usr/sbin/nginx
           command: |
-            ssh $SSH_USER@$SSH_HOST "sudo /usr/sbin/nginx -t" 2> health_check_nginx.log
+            ssh $SSH_USER@$SSH_HOST "sudo ${NGINX_PATH} -t" 2> health_check_nginx.log
 
       - store_artifacts:
           path: health_check_nginx.log
@@ -247,10 +264,10 @@ jobs:
           name: Health check - migrations
           environment:
             VENV_PATH: /home/aaron/website/bbn-env/bin/activate
-            SSH_PROD_PATH: ~/website
+            MANAGE_PY_PATH: ~/website/bbncreative/manage.py
 
           command: |
-            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${SSH_PROD_PATH}/bbncreative/manage.py makemigrations --check" > health_check_migrations.log
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${MANAGE_PY_PATH} makemigrations --check" > health_check_migrations.log
 
       - store_artifacts:
           path: health_check_migrations.log
