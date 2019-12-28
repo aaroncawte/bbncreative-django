@@ -2,7 +2,7 @@
 
 A Django-powered custom CMS for the bbncreative portfolio, a summer project by Aaron Cawte. The software runs Aaron's portfolio at [bbncreative.co](https://bbncreative.co).
 
-Continuous Integration Build: [![CircleCI](https://circleci.com/gh/aaroncawte/bbncreative-django/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42)](https://circleci.com/gh/aaroncawte/bbncreative-django)
+Continuous Integration Build: [![CircleCI](https://circleci.com/gh/aaroncawte/bbncreative-portfolio/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42)](https://circleci.com/gh/aaroncawte/bbncreative-portfolio)
 
 ### Why is this repository public?
 
@@ -24,7 +24,7 @@ Primary tools and requirements used for this project.
 | Function  | Tool       | Version | Updated    |
 | :-------- | :--------- | :------ | :--------- |
 | Language  | Python     | 3.7.0   | 06.08.2018 |
-| Framework | Django     | 2.1.7   | 23.02.2019 |
+| Framework |            | 2.1.11  | 28.12.2019 |
 | Database  | PostgreSQL | 10.5    | 23.08.2018 |
 
 ## Documentation
