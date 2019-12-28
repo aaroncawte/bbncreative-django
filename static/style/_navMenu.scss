@@ -57,7 +57,7 @@ nav {
    ======================================================================== */
 .menu-button {
 	@include layered-button;
-	@include space-outline-device($off-white);
+	@include space-outline-device($blue-grey1);
 	@include space-outline-clickable;
 	margin: 22px 0 22px 15px;
 }

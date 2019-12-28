@@ -11,7 +11,16 @@ $blue-grey2: #263238;
 $off-white: #e5e5e5;
 $off-black: #161616;
 
-$card-background: #fff;
+$accent-yellow: #ffeb3b;
+$accent-yellow-light: #ffff72;
+$accent-yellow-dark: #c8b900;
+
+$accent-blue: #00e5ff;
+$accent-blue-light: #6effff;
+$accent-blue-dark: #00b2cc;
+
+
+$card-background: $off-white;
 $footer-text: #666;
 
 $instagram-colour: #833ab4;
@@ -22,12 +31,14 @@ $github-colour: #333;
 $logo-background: $bbn4;
 $logo-colour: white;
 
+$asset-border-color: $bbn1;
+
 :root {
-	--logo-custom: rgba($logo-background, 1);
-	--logo-custom-hover: rgba($logo-background, 1);
-	--logo-custom-outline: rgba($off-white, 1);
-	--selection-color: $bbn2;
-	--selection-color-outline: $blue-grey1;
+	--logo-custom: #e8185f; // bbn4
+	--logo-custom-hover: #e8185f; // bbn4
+	--logo-custom-outline: white;
+	--selection-color: #cc2369; // bbn2
+	--selection-color-outline: #455a64; // blue-grey1
 }
 
 /* Font References
@@ -107,6 +118,28 @@ $projects-menu-offset: $nav-margin-edge-gap + $gl-button-width + $gap-between + 
 	letter-spacing: 1px;
 }
 
+@mixin slim-outline($device-color: white, $size: 80px) {
+	position: relative;
+	&::before, &::after {
+		content: "";
+		position: absolute;
+		width: $size;
+		height: $size;
+		border-style: solid;
+		border-color: $device-color;
+	}
+	&::before {
+		top: -1px;
+		left: -1px;
+		border-width: 2px 0 0 2px;
+	}
+	&::after {
+		bottom: -1px;
+		right: -1px;
+		border-width: 0 2px 2px 0;
+	}
+}
+
 @mixin space-outline-device($device-color: white) {
 	position: relative;
 	&::after {
@@ -120,6 +153,7 @@ $projects-menu-offset: $nav-margin-edge-gap + $gl-button-width + $gap-between + 
 		border-style: solid;
 		border-color: $device-color;
 		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+		opacity: 0.75;
 	}
 }
 
@@ -163,6 +197,10 @@ html, body {
 	font-size: 18px;
 }
 
+html {
+	background-color: $off-white;
+}
+
 h1 {
 	color: $bbn1;
 }
@@ -170,10 +208,17 @@ h1 {
 h1, h2 {
 	margin: 0.5em 0 0.25em;
 	font-family: $font_header;
+	font-weight: 400;
+
 }
 
 h3, h4 {
 	margin: 1em 0 0.75em;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 24px;
 }
 
 h5 {
