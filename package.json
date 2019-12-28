@@ -10,10 +10,6 @@
   },
   "author": "Aaron Cawte",
   "homepage": "https://bbncreative.co",
-  "scripts": {
-    "test": "ava ---next"
-  },
-  "devDependencies": {
-    "ava": "~1.0.0"
-  }
+  "scripts": {},
+  "devDependencies": {}
 }
