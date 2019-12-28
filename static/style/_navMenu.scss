@@ -1,228 +1,238 @@
 /* Navigation Bar
    ======================================================================== */
 nav {
-	position: fixed;
-	top: 0;
-	z-index: 10;
-	width: 100%;
-	height: $nav-height;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	.wrapper-1200 {
-		height: $nav-height;
-		display: flex;
-	}
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: $nav-height;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  .wrapper-1200 {
+    height: $nav-height;
+    display: flex;
+  }
 }
 
-.nav-left, .nav-right {
-	height: $nav-height;
-	display: flex;
+.nav-left,
+.nav-right {
+  height: $nav-height;
+  display: flex;
 }
 
 .nav-left {
-	width: 220px;
+  width: 220px;
 }
 
 .nav-right {
-	margin-left: auto;
-	justify-content: flex-end;
-	a {
-		text-decoration: none;
-	}
+  margin-left: auto;
+  justify-content: flex-end;
+  a {
+    text-decoration: none;
+  }
 }
 
 #bbncreative-logo {
-	width: 200px;
-	height: 60px;
-	margin: 10px 20px 10px 0;
-	background-color: var(--logo-custom);
-	color: $logo-colour;
-	border-radius: $form-el-radius;
-	font: normal 28px/60px $font_header;
-	text-align: center;
-	@include text-shadow(0.4, false);
-	@include cross-user-select(none);
-	@include cross-transition(0.25s background-color);
-	@include cross-backdrop-filter(blur(5px));
-
-	&:hover {
-		background-color: var(--logo-custom-hover);
-	}
-	&:active {
-		transform: scale(0.95);
-	}
+  position: relative;
+  width: 200px;
+  height: 60px;
+  margin: 10px 20px 10px 0;
+  background-color: var(--logo-custom);
+  color: $logo-colour;
+  border-radius: $form-el-radius;
+  font: normal 28px/60px $font_header;
+  text-align: center;
+  @include text-shadow(0.4, false);
+  @include cross-user-select(none);
+  @include space-outline-device($bbn2);
+  @include space-outline-clickable;
+  &:hover {
+    background-color: var(--logo-custom-hover);
+  }
+  &::after {
+    border-color: var(--logo-custom-outline);
+  }
 }
 
 /* Menu Buttons
    ======================================================================== */
 .menu-button {
 	@include layered-button;
-	margin: 22px 0 22px 10px;
-	&:active {
-		margin: 23px 0 21px 10px;
-	}
+	@include space-outline-device($blue-grey1);
+	@include space-outline-clickable;
+	margin: 22px 0 22px 15px;
 }
 
 @media (min-width: $break-mobile-min) {
-	#menuGlobalButton, #menuFeedsButton, #menuProjectsButton {
-		min-width: $gl-button-width;
-		width: auto;
-	}
+  #menuGlobalButton,
+  #menuFeedsButton,
+  #menuProjectsButton {
+    min-width: $gl-button-width;
+    width: auto;
+  }
 }
 
 .active-button {
-	padding: 6px 12px;
-	border: 2px solid #fff;
-	background-color: $blue-grey2;
-	color: #fff;
-	&:hover {
-		color: #fff;
-	}
+  @include space-outline-device(white);
+  @include space-outline-depressed;
+  padding: 8px 14px;
+  background-color: $blue-grey2;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
 }
 
 /* Menu Display Mechanics
    ======================================================================== */
 .menu-hidden {
-	max-height: 0;
-	opacity: 0;
+  max-height: 0;
+  opacity: 0;
 }
 
 /* Menu Design
    ======================================================================== */
 #menuHolder {
-	position: fixed;
-	top: 0;
-	z-index: 9;
-	width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  width: 100%;
 }
 
 .menu {
-	@include menu-input-base;
-	@include wide-text;
-	@include drop-shadow($clickable: false);
-	position: absolute;
-	top: 80px;
-	z-index: 10;
-	overflow: hidden;
-	height: auto;
-	padding: 0;
-	letter-spacing: 0;
+  @include menu-input-base;
+  @include wide-text;
+  @include drop-shadow($clickable: false);
+  position: absolute;
+  top: 80px;
+  z-index: 10;
+  overflow: hidden;
+  height: auto;
+  padding: 0;
+  letter-spacing: 0;
 }
 
-.menu-listing, .menu-close {
-	box-sizing: border-box;
-	overflow: hidden;
-	display: flex;
-	height: 36px;
-	line-height: 36px;
-	padding: 0 14px;
-	cursor: pointer;
-	&:hover {
-		.menu-icon, .menu-label {
-			color: $bbn1;
-		}
-	}
-	&:active {
-		.menu-icon, .menu-label {
-			color: $bbn5;
-		}
-	}
+.menu-listing,
+.menu-close {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 14px;
+  cursor: pointer;
+  &:hover {
+    .menu-icon,
+    .menu-label {
+      color: $bbn1;
+    }
+  }
+  &:active {
+    .menu-icon,
+    .menu-label {
+      color: $bbn5;
+    }
+  }
 }
 
 .menu-listing-offset {
-	border-top: 1px solid $off-white;
+  border-top: 1px solid $off-white;
 }
 
 .menu a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .menu-close {
-	color: $blue-grey1;
-	border-top: 1px solid $off-white;
-	&:hover, &:active {
-		.menu-icon, .menu-label {
-			color: $blue-grey2;
-		}
-	}
+  color: $blue-grey1;
+  border-top: 1px solid $off-white;
+  &:hover,
+  &:active {
+    .menu-icon,
+    .menu-label {
+      color: $blue-grey2;
+    }
+  }
 }
 
-.menu-icon, .menu-label {
-	display: block;
-	height: 36px;
+.menu-icon,
+.menu-label {
+  display: block;
+  height: 36px;
 }
 
 .menu-icon {
-	width: 18px;
-	height: 18px;
-	padding: 9px 14px 9px 0;
-	display: flex;
-	i {
-		width: 18px;
-		height: 18px;
-		line-height: 18px;
-	}
-	img {
-		width: 18px;
-		height: 18px;
-	}
+  width: 18px;
+  height: 18px;
+  padding: 9px 14px 9px 0;
+  display: flex;
+  i {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+  }
+  img {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .menu-label {
-	overflow: hidden;
-	width: calc(100% - 36px);
-	white-space: nowrap;
-	-ms-text-overflow: ellipsis;
-	text-overflow: ellipsis;
+  overflow: hidden;
+  width: calc(100% - 36px);
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
 #menuGlobal {
-	right: $nav-margin-edge-gap;
+  right: $nav-margin-edge-gap;
 }
 
 #menuFeeds {
-	right: $feeds-menu-offset;
+  right: $feeds-menu-offset;
 }
 
 #menuProjects {
-	right: $projects-menu-offset;
+  right: $projects-menu-offset;
 }
 
 @media (max-width: $break-mobile-max) {
-	.menu {
-		width: calc(100% - 40px);
-		left: 20px;
-	}
-	.menu-button {
-		min-width: 36px;
-		width: 36px;
-		padding: 8px 2px;
-		overflow: hidden;
-		.fas, .far, .fab {
-			padding-right: 0;
-		}
-		span {
-			display: none;
-		}
-	}
-	#desktopMenuButtons {
-		display: none;
-	}
+  .menu {
+    width: calc(100% - 40px);
+    left: 20px;
+  }
+  .menu-button {
+    min-width: 36px;
+    width: 36px;
+    padding: 8px 2px;
+    .fas,
+    .far,
+    .fab {
+      padding-right: 0;
+    }
+    span {
+      display: none;
+    }
+  }
+  #desktopMenuButtons {
+    display: none;
+  }
 }
 
 @media (min-width: $break-mobile-min) {
-	.menu {
-		right: 0;
-		width: 188px;
-	}
-	#desktopMenuButtons {
-		display: flex;
-	}
-	#mobileMenuButtons {
-		display: none;
-	}
-	.menu-close {
-		display: none;
-	}
+  .menu {
+    right: 0;
+    width: 188px;
+  }
+  #desktopMenuButtons {
+    display: flex;
+  }
+  #mobileMenuButtons {
+    display: none;
+  }
+  .menu-close {
+    display: none;
+  }
 }

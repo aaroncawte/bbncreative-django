@@ -21,8 +21,13 @@ Organised Styles
 | - Windows     | - Homepage   | - Nav bar    | - Asset types |
 | - Wrappers    | - Press Play | - Menus      | - Decoration  |
 | - Card Styles | - Video loop | - Menu mech. | - L/R Config  |
-| - Contact     |              |              |               |
-| - Footer      |              |              |               |
+
+Component Styles
+================
+| Component | Description |
+|===========|=============|
+| Contact | Styling specific to the contact form |
+| Footer | Styling for the footer elements on every page |
 
 
 - Definitions may be dependent on Resources
@@ -37,3 +42,6 @@ Organised Styles
 @import 'heroWindow';
 @import 'navMenu';
 @import 'assets';
+// Component Styles
+@import 'contactForm';
+@import 'footer';

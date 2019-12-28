@@ -4,7 +4,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: #fff;
+	background-color: $off-white;
 }
 
 .window-title, .window-first, .window-hero {
@@ -21,7 +21,11 @@
 		@include text-shadow(0.6);
 	}
 	button.secondary {
+		@include space-outline-device($off-white);
+		@include space-outline-clickable;
+		background-color: rgba(255, 255, 255, 0.5);
 		color: #fff;
+
 	}
 }
 
@@ -134,12 +138,12 @@
 /* Header Content Styles
 	 ======================================================================== */
 .details-box {
+	@include slim-outline($bbn1);
 	box-sizing: border-box;
 	width: 200px;
 	min-height: 80px;
 	padding: 15px;
 	background-color: rgba(white, 0.9);
-	border-radius: $form-el-radius;
 	@include drop-shadow();
 	p {
 		margin: 0.5em 0;
@@ -171,17 +175,14 @@
 
 .hero-cta {
 	@include layered-button;
+	@include space-outline-device;
+	@include space-outline-clickable;
 	width: 200px;
 	margin-top: 21px;
 	margin-bottom: 1px;
 	text-decoration: none;
 	padding-left: 12px;
 	padding-right: 12px;
-	&:active {
-		margin-top: 23px;
-		margin-bottom: 0px;
-
-	}
 }
 
 /* Card Styles
@@ -205,7 +206,7 @@
 
 .card {
 	@include menu-input-base;
-	@include drop-shadow;
+	@include space-outline-device($blue-grey1);
 	position: relative;
 	overflow: hidden;
 	width: 360px;
@@ -213,24 +214,12 @@
 	margin: 20px;
 	padding: 0;
 	font-weight: normal;
-	@include drop-shadow;
 	@include cross-user-select(unset);
+	background-color: transparent;
 	a, a:hover {
 		h2 {
 			color: #000;
 		}
-	}
-	h2 {
-		width: fit-content;
-		max-width: 100%;
-		margin: 0 auto;
-		height: 38px;
-		line-height: 38px;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-		display: block;
-		font-size: 25px;
 	}
 	p {
 		margin: 17px 0;
@@ -240,37 +229,36 @@
 .card-logo, .card-icon {
 	box-sizing: border-box;
 	position: absolute;
-	left: calc(50% - 55px);
+	top: 38px;
+	left: 35px;
 	z-index: 2;
-	width: 110px;
-	height: 110px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 }
 
 .project-card {
 	@extend .card;
 	.card-content {
-		padding: 40px 20px 10px;
+		padding: 30px 20px 10px;
 	}
 	.card-logo {
-		top: 45px;
-		border-radius: 50%;
 		background-size: cover;
-		@include drop-shadow;
 	}
 }
 
 .feed-card {
 	@extend .card;
 	.card-content {
-		padding: 20px 20px 10px;
+		padding: 30px 20px 10px;
 	}
 	.card-icon {
-		top: 0;
 		text-align: center;
-		line-height: 120px;
-		font-size: 72px;
+		line-height: 100px;
+		font-size: 48px;
 		color: white;
-		@include text-shadow(0.6);
+		background-color: $bbn1;
+		@include text-shadow(0.2);
 	}
 }
 
@@ -279,34 +267,62 @@
 }
 
 .card-hero-image {
-	width: 100%;
-	height: 120px;
-	background-size: cover;
-	opacity: 0.45;
+	width: calc(100% - 132px);
+	height: 125px;
+	margin: 60px 66px 0;
+	.image-container {
+		width: 100%;
+		height: 125px;
+		background-size: cover;
+		opacity: 0.45;
+	}
+}
+
+.card-heading {
+	@include space-outline-device($bbn1);
+	position: absolute;
+	top: 157px;
+	left: 30px;
+	width: calc(100% - 60px);
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: white;
+	color: black;
+	z-index: 2;
+	h2 {
+		display: inline;
+		margin: 0;
+		padding: 0;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		font-size: 25px;
+	}
 }
 
 .card-content {
 	display: flex;
 	flex-direction: column;
-	background-color: $card-background;
-	h2 {
-		margin-top: 0;
-		text-align: center;
-	}
 	.meta-stats {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 	}
 	.meta-stat {
+		box-sizing: border-box;
+		margin: 0 10px;
+		border: 1px solid $accent-blue;
 		height: 25px;
-		line-height: 25px;
-		font-size: 14px;
-		color: $blue-grey1;
+		line-height: 23px;
+		font-size: 11px;
 		overflow: hidden;
+		text-align: center;
+		text-transform: uppercase;
+		background-color: $accent-blue;
+		color: white;
 		.far, .fas, .fab {
-			width: 30px;
-			text-align: center;
+			margin-right: 5px;
 		}
 	}
 	.card-bio {
@@ -316,7 +332,7 @@
 		line-height: 24px;
 		overflow: hidden;
 		text-align: left;
-		padding: 0 8px;
+		padding: 0 15px;
 		position: relative;
 	}
 	.card-bio, p {
@@ -331,10 +347,10 @@
 	}
 	.feed-card {
 		.meta-stats {
-			height: 50px;
+			height: 25px;
 		}
 		.card-content {
-			height: 320px;
+			height: 230px;
 		}
 		.card-bio {
 			height: 193px;
@@ -344,10 +360,10 @@
 	}
 	.project-card {
 		.meta-stats {
-			height: 100px;
+			height: 50px;
 		}
 		.card-content {
-			height: 300px;
+			height: 210px;
 		}
 		.card-bio {
 			height: 120px;
@@ -355,7 +371,8 @@
 		}
 	}
 	.meta-stat {
-		width: 100%;
+		width: calc(100% - 20px);
+		margin-top: 5px !important;
 	}
 }
 
@@ -365,7 +382,7 @@
 	}
 	.feed-card {
 		.card-content {
-			height: 270px;
+			height: 230px;
 		}
 		.meta-stats {
 			height: 25px;
@@ -377,7 +394,7 @@
 	}
 	.project-card {
 		.card-content {
-			height: 250px;
+			height: 210px;
 		}
 		.card-bio {
 			height: 120px;
@@ -388,7 +405,7 @@
 		}
 	}
 	.meta-stat {
-		width: 50%;
+		width: calc(50% - 20px);
 	}
 }
 
@@ -419,40 +436,42 @@
 }
 
 .collaborator-card {
+	@include slim-outline($bbn1, 50px);
+	background-color: white;
 	position: relative;
-	width: 324px;
+	width: 304px;
 	max-width: calc(100% - 40px);
 	min-height: 100px;
 	display: flex;
 	flex-direction: row;
 	margin: 10px auto;
-	border-radius: $form-el-radius;
-	@include drop-shadow;
+	padding: 10px;
 }
 
 .collaborator-wallpaper {
 	width: 100px;
 	height: 100px;
-	border-top-left-radius: $form-el-radius;
-	border-bottom-left-radius: $form-el-radius;
 	background-size: auto 120px;
 	background-position: center;
 	opacity: 0.2;
+	border-radius: 25%;
 }
 
 .collaborator-image {
 	position: absolute;
-	top: 15px;
-	left: 15px;
+	top: 25px;
+	left: 25px;
 	width: 70px;
 	height: 70px;
 	border-radius: 50%;
 	z-index: 2;
+	overflow: hidden;
+	font-size: 10px;
 	@include drop-shadow;
 }
 
 .collaborator-text {
-	width: 200px;
+	width: 180px;
 	padding: 5px 12px;
 	text-align: left;
 	.name {
@@ -463,8 +482,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		font-size: 22px;
-		font-weight: bold;
+		font-size: 24px;
 		padding: 0;
 	}
 	.credits {
@@ -476,15 +494,16 @@
 	.links {
 		height: 20px;
 		line-height: 20px;
-		font-size: 12px;
+		font-size: 10px;
 		color: $footer-text;
-		font-weight: bold;
+		text-transform: uppercase;
 		margin: 0;
 		i {
-			margin-right: 2px;
+			margin: 0 3px 0 0;
 		}
 		a {
-			margin-right: 8px;
+			font-weight: 400;
+			margin-right: 12px;
 			color: $footer-text;
 			text-decoration: none;
 			&:hover {
@@ -506,7 +525,7 @@
 	text-align: center;
 	border-bottom: 2px solid $off-white;
 	p {
-		font: 18px/30px $font_sans;
+		font: 16px/30px $font_sans;
 		a {
 			display: inline-block;
 			word-break: keep-all;
@@ -542,124 +561,4 @@
 	color: $footer-text;
 	font-weight: bold;
 
-}
-
-/* Contact Page
-	 ======================================================================== */
-#contactForm {
-	width: 700px;
-	max-width: 100%;
-	margin: 0 auto;
-	input, textarea {
-		width: 100%;
-		margin-bottom: 30px;
-	}
-	.g-recaptcha {
-		width: 304px;
-		margin: 10px 0 10px auto;
-	}
-	input[type="submit"] {
-		width: 304px;
-		margin-left: auto;
-	}
-}
-
-/* Footer and components
-	 ======================================================================== */
-footer {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding: 25px 0 15px;
-	background-color: white;
-	text-align: center;
-}
-
-.footer-description, .footer-description a, .footer-buttons {
-	font-size: small;
-	color: $footer-text;
-	line-height: 18px;
-}
-
-.footer-description {
-	box-sizing: border-box;
-	width: 100%;
-	margin: 8px 0;
-	padding: 10px 20px;
-}
-
-.footer-buttons {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	a {
-		color: $footer-text;
-		&:hover, &:active {
-			color: $bbn1;
-		}
-	}
-	.button {
-		height: 18px;
-		line-height: 18px;
-		font-size: small;
-		.fab, .fas, .far {
-			padding-right: 6px;
-		}
-	}
-}
-
-.footer-logo {
-	height: 33px;
-	font: 14px/33px $font_header;
-	text-align: center;
-	padding-top: 1px;
-}
-
-@media (min-width: $break-mobile-min) {
-	.footer-buttons {
-		height: 34px;
-		.button {
-			width: 100px;
-			padding: 8px;
-		}
-	}
-	.footer-logo {
-		width: 100px;
-	}
-	.fl-tall {
-		display: none;
-	}
-}
-
-@media (max-width: $break-mobile-max) {
-	.footer-buttons {
-		flex-direction: column;
-		height: auto;
-		.button {
-			width: 100%;
-			padding: 8px 0;
-		}
-	}
-	.footer-logo {
-		width: 100%;
-	}
-	.fl-wide {
-		display: none;
-	}
-}
-
-.twitterLink:hover {
-	color: $twitter-colour;
-}
-
-.instagramLink:hover {
-	color: $instagram-colour;
-}
-
-.linkedinLink:hover {
-	color: $linkedin-colour;
-}
-
-.githubLink:hover {
-	color: $github-colour;
 }

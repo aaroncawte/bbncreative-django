@@ -11,7 +11,16 @@ $blue-grey2: #263238;
 $off-white: #e5e5e5;
 $off-black: #161616;
 
-$card-background: #fff;
+$accent-yellow: #ffeb3b;
+$accent-yellow-light: #ffff72;
+$accent-yellow-dark: #c8b900;
+
+$accent-blue: #00e5ff;
+$accent-blue-light: #6effff;
+$accent-blue-dark: #00b2cc;
+
+
+$card-background: $off-white;
 $footer-text: #666;
 
 $instagram-colour: #833ab4;
@@ -22,10 +31,14 @@ $github-colour: #333;
 $logo-background: $bbn4;
 $logo-colour: white;
 
+$asset-border-color: $bbn1;
+
 :root {
-	--logo-custom: rgba($logo-background, 0.6);
-	--logo-custom-hover: rgba($logo-background, 1);
-	--selection-color: $bbn2;
+	--logo-custom: #e8185f; // bbn4
+	--logo-custom-hover: #e8185f; // bbn4
+	--logo-custom-outline: white;
+	--selection-color: #cc2369; // bbn2
+	--selection-color-outline: #455a64; // blue-grey1
 }
 
 /* Font References
@@ -36,7 +49,7 @@ $font_serif: "Noto Serif", serif;
 
 /* UI Component Definitions
 	========================================================================= */
-$form-el-radius: 5px;
+$form-el-radius: 0;
 $nav-height: 80px;
 
 $colour-drop-shadow: $off-black;
@@ -105,6 +118,76 @@ $projects-menu-offset: $nav-margin-edge-gap + $gl-button-width + $gap-between + 
 	letter-spacing: 1px;
 }
 
+@mixin slim-outline($device-color: white, $size: 80px) {
+	position: relative;
+	&::before, &::after {
+		content: "";
+		position: absolute;
+		width: $size;
+		height: $size;
+		border-style: solid;
+		border-color: $device-color;
+	}
+	&::before {
+		top: -1px;
+		left: -1px;
+		border-width: 2px 0 0 2px;
+	}
+	&::after {
+		bottom: -1px;
+		right: -1px;
+		border-width: 0 2px 2px 0;
+	}
+}
+
+@mixin space-outline-device($device-color: white) {
+	position: relative;
+	&::after {
+		content: "";
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		width: 100%;
+		height: 100%;
+		border-width: 0 4px 4px 0;
+		border-style: solid;
+		border-color: $device-color;
+		box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+		opacity: 0.75;
+	}
+}
+
+@mixin space-outline-clickable {
+	top: 0;
+	left: 0;
+	@include cross-transition(0.2s background-color);
+	@include cross-transition(0.2s color);
+	&:after {
+		@include cross-transition(0.2s border-color);
+	}
+	&:active {
+		top: 3px;
+		left: 3px;
+		&:after {
+			@include cross-transition(0.2s border-color);
+			top: 0;
+			left: 0;
+		}
+	}
+}
+
+@mixin space-outline-depressed {
+	@include cross-transition(0.2s background-color);
+	@include cross-transition(0.2s color);
+	top: 3px;
+		left: 3px;
+		&:after {
+			top: 0;
+			left: 0;
+			@include cross-transition(0.2s border-color);
+		}
+}
+
 /* Resets and basic elements
 	 ======================================================================== */
 html, body {
@@ -114,6 +197,10 @@ html, body {
 	font-size: 18px;
 }
 
+html {
+	background-color: $off-white;
+}
+
 h1 {
 	color: $bbn1;
 }
@@ -121,10 +208,17 @@ h1 {
 h1, h2 {
 	margin: 0.5em 0 0.25em;
 	font-family: $font_header;
+	font-weight: 400;
+
 }
 
 h3, h4 {
 	margin: 1em 0 0.75em;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 24px;
 }
 
 h5 {
@@ -203,8 +297,8 @@ img {
 	border: 0;
 	outline: none;
 	background-color: #fff;
-	border-radius: $form-el-radius;
 	font-family: $font-sans;
+	@include cross-transition(0.2s background-color);
 	@include cross-user-select(none);
 }
 
@@ -218,7 +312,6 @@ img {
 @mixin layered-button {
 	@include menu-input-base;
 	@include wide-text;
-	@include drop-shadow($clickable: true);
 	text-align: center;
 	cursor: pointer;
 	color: $bbn1;
@@ -262,16 +355,15 @@ input[type=submit], input[type=reset], button {
 	background-color: $bbn1;
 	color: #fff;
 	@include wide-text;
-	@include drop-shadow($clickable: true);
 	@include cross-transition(0.1s);
+	@include space-outline-device($blue-grey1);
+	@include space-outline-clickable;
 	cursor: pointer;
 	&:hover {
 		background-color: $bbn3;
 	}
 	&:active {
 		background-color: $bbn2;
-		margin-top: 9px;
-		margin-bottom: 8px;
 	}
 	&:disabled {
 		background-color: $off-white;

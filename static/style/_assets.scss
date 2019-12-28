@@ -5,8 +5,10 @@
 	flex-direction: column;
 	box-sizing: border-box;
 	position: relative;
+	background-color: white;
 	h2 {
-		font: bold initial $font-sans;
+		font-weight: 400;
+		font-family: $font-sans;
 		margin-top: 0;
 	}
 }
@@ -21,6 +23,7 @@
 	justify-content: center;
 	align-items: center;
 	background-color: $blue-grey2;
+	@include drop-shadow($clickable: false);
 	img, iframe {
 		border: 0;
 		outline: none;
@@ -127,23 +130,26 @@
 	}
 	.panel-full {
 		width: 800px;
-		max-width: 100%;
+		max-width: calc(100% - 40px);
 		margin: $vertical-space auto;
 		padding: 40px;
 	}
 	.panel-left, .panel-right {
 		width: 25%;
 		padding: 40px;
-		margin: 0;
 		flex-grow: 1;
 		overflow-wrap: break-word;
 	}
 	.panel-left {
+		margin: 20px 0 20px 20px;
+		width: calc(25% - 20px);
 		.r-corners {
 			display: none;
 		}
 	}
 	.panel-right {
+		margin: 20px 20px 20px 0;
+		width: calc(25% - 20px);
 		.l-corners {
 			display: none;
 		}
@@ -240,31 +246,31 @@
 }
 
 .top-left-corner {
-	top: -2px;
-	left: -2px;
-	border-top: 2px solid $off-white;
-	border-left: 2px solid $off-white;
+	top: -1px;
+	left: -1px;
+	border-top: 2px solid $asset-border-color;
+	border-left: 2px solid $asset-border-color;
 }
 
 .top-right-corner {
-	top: -2px;
-	right: -2px;
-	border-top: 2px solid $off-white;
-	border-right: 2px solid $off-white;
+	top: -1px;
+	right: -1px;
+	border-top: 2px solid $asset-border-color;
+	border-right: 2px solid $asset-border-color;
 }
 
 .bottom-left-corner {
-	bottom: -2px;
-	left: -2px;
-	border-bottom: 2px solid $off-white;
-	border-left: 2px solid $off-white;
+	bottom: -1px;
+	left: -1px;
+	border-bottom: 2px solid $asset-border-color;
+	border-left: 2px solid $asset-border-color;
 }
 
 .bottom-right-corner {
-	bottom: -2px;
-	right: -2px;
-	border-bottom: 2px solid $off-white;
-	border-right: 2px solid $off-white;
+	bottom: -1px;
+	right: -1px;
+	border-bottom: 2px solid $asset-border-color;
+	border-right: 2px solid $asset-border-color;
 }
 
 .meta-text {
