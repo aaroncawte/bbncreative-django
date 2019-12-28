@@ -1,8 +1,8 @@
 {
   "name": "bbncreative_cms",
-  "description": "",
-  "license": "(CC BY-NC-ND 3.0)",
-  "version": "1.0.6",
+  "description": "A Django-powered custom CMS for the bbncreative portfolio website.",
+  "license": "CC BY-NC-ND 3.0",
+  "version": "1.1.0-beta1",
   "main": "index.js",
   "repository": {
     "type": "git",
