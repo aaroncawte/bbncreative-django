@@ -1,0 +1,100 @@
+/* Footer and components
+	 ======================================================================== */
+footer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 25px 0 15px;
+	background-color: white;
+	text-align: center;
+}
+
+.footer-description, .footer-description a, .footer-buttons {
+	font-size: small;
+	color: $footer-text;
+	line-height: 20px;
+}
+
+.footer-description {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 8px 0;
+	padding: 10px 20px;
+}
+
+.footer-buttons {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	a {
+		color: $footer-text;
+		&:hover, &:active {
+			color: $bbn1;
+		}
+	}
+	.button {
+		height: 18px;
+		line-height: 18px;
+		font-size: small;
+		font-weight: 400;
+		.fab, .fas, .far {
+			padding-right: 6px;
+		}
+	}
+}
+
+.footer-logo {
+	height: 33px;
+	font: 14px/33px $font_header;
+	text-align: center;
+	padding-top: 1px;
+}
+
+@media (min-width: $break-mobile-min) {
+	.footer-buttons {
+		height: 34px;
+		.button {
+			width: 100px;
+			padding: 8px;
+		}
+	}
+	.footer-logo {
+		width: 100px;
+	}
+	.fl-tall {
+		display: none;
+	}
+}
+
+@media (max-width: $break-mobile-max) {
+	.footer-buttons {
+		flex-direction: column;
+		height: auto;
+		.button {
+			width: 100%;
+			padding: 8px 0;
+		}
+	}
+	.footer-logo {
+		width: 100%;
+	}
+	.fl-wide {
+		display: none;
+	}
+}
+
+.twitterLink:hover {
+	color: $twitter-colour;
+}
+
+.instagramLink:hover {
+	color: $instagram-colour;
+}
+
+.linkedinLink:hover {
+	color: $linkedin-colour;
+}
+
+.githubLink:hover {
+	color: $github-colour;
+}
