@@ -29,17 +29,9 @@
     <h1>{{ feed.name }}</h1>
     <div class="details-box">
         <p class="heading"><i class="fas fa-newspaper"></i>Feed Details</p>
-        <p><i class="fas fa-edit"></i>{{ feed.date_time_updated|date:'jS M Y' }}</p>
-        {% if assets|length == 1 %}
-            <p><i class="far fa-images"></i>{{ assets|length }} Asset</p>
-        {% else %}
-            <p><i class="far fa-images"></i>{{ assets|length }} Assets</p>
-        {% endif %}
-
+        <p><i class="fas fa-edit"></i>{{ feed.date_time_updated|date:'M Y' }}</p>
         {% if feed.protected %}
             <p><i class="fas fa-lock"></i>Protected Feed</p>
-        {% elif feed.permanent %}
-            <p><i class="fas fa-sticky-note"></i>Permanent Feed</p>
         {% endif %}
     </div>
 </div>
