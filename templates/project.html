@@ -29,17 +29,11 @@
     <div class="details-box">
         <p class="heading"><i class="fas fa-project-diagram"></i>Project Details</p>
         {% if project.is_complete %}
-            <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete|date:'jS M Y' }}</p>
+            <p><i class="fas fa-flag-checkered"></i>{{ project.date_complete|date:'M Y' }}</p>
         {% else %}
             <p><i class="fas fa-clock"></i>Ongoing project</p>
         {% endif %}
         <p><i class="fas fa-user-tie"></i>{{ project.client_name }}</p>
-
-        {% if asset_count == 1 %}
-            <p><i class="far fa-images"></i>{{ asset_count }} Asset</p>
-        {% else %}
-            <p><i class="far fa-images"></i>{{ asset_count }} Assets</p>
-        {% endif %}
     </div>
     <a href="{{ project.cta_url }}" class="no-text-decoration" target="_blank" rel="noopener noreferrer">
         <div class="hero-cta" style="background-color: #{{ project.brand_color_1 }}; color: #fff;"><i
