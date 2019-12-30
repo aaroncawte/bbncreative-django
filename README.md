@@ -45,4 +45,4 @@ The initial setup of this system has been documented for future reference, debug
 
 Relevant information to the system has also been documented as follows:
 
-1. [Content Aspect Ratios](/docs/appendices/aspect_ratios.md)
+1. [Content Aspect Ratios](/docs/reference/aspect_ratios.md)
