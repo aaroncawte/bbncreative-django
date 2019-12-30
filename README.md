@@ -21,7 +21,7 @@ Contact Aaron via [email](mailto:aaron@bbncreative.co) or on [Twitter](https://t
 
 ### License
 
-This software is made available for review, not for re-use. Accordingly, it is licensed under **Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0)**. View the license [here](/license.md), or view a summary on [creativecommons.org](https://creativecommons.org/licenses/by-nc-nd/3.0/). If you are unsure, please contact Aaron.
+This software is made available for review, not for re-use. Accordingly, it is licensed under **Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0)**. View the license [here](/LICENSE.md), or view a summary on [creativecommons.org](https://creativecommons.org/licenses/by-nc-nd/3.0/). If you are unsure, please contact Aaron.
 
 ### Stack
 
