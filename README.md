@@ -37,7 +37,7 @@ Primary tools and requirements used for this project.
 The initial setup of this system has been documented for future reference, debugging and testing.
 
 1. [Python virtual environment & Django installation](/docs/setup/virtualenv.md)
-2. [Switching to PostgreSQL](/docs/setup/postgresql.md)
+2. [Using PostgreSQL](/docs/setup/postgresql.md)
 3. [Environment Variables](/docs/setup/envvars.md)
 4. [Web Server Setup](/docs/setup/webserver.md)
 

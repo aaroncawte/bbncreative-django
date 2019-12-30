@@ -1,10 +1,10 @@
 # 4. Web Server Setup
 
-This complex process was based on [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04) from DigitalOcean.
+The bbncreative-portfolio web server was set up using:
 
-Following from that, TLS was implemented using [this guide](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04).
-
-Finally, HTTP2 was configured on nginx following [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-with-http-2-support-on-ubuntu-18-04#step-1-%E2%80%94-enabling-http2-support).
+- [this LNPD stack tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04) from DigitalOcean
+- [this TLS with LetsEncrypt implementation guide](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04) (also DigitalOcean)
+- [this HTTP2 with nginx guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-with-http-2-support-on-ubuntu-18-04#step-1-%E2%80%94-enabling-http2-support) (you have one guess)
 
 Along the way I:
 
@@ -12,12 +12,14 @@ Along the way I:
 - Customised that same file to get `www.` to redirect properly (Certbot handles the `http://` -> `https://` bit)
 - Added server-side configuration to enable full CircleCI operability through SSH
 
-## Changing Something?
+## Change checklist
+
+To configure:
 
 - `/etc/nginx/sites-available/bbncreative` to configure nginx
 - See the tutorial for anything else
 
-## Changed Something?
+To refresh the server:
 
 - `sudo systemctl restart gunicorn` for changed Django config
 - `sudo nginx -t` ensures nginx is configured correctly
@@ -25,19 +27,12 @@ Along the way I:
 
 ## Production Settings
 
-There are some differences between the dev and production codebases, as follows:
-
-- In `settings.py`:
-  - `DEBUG = False`
-  - `MEDIA_ROOT` = `/home/aaron/website/media/`
-  - `MEDIA_URL` = `https://bbncreative.co/media/`
-- Add `location /media/ { root /home/aaron/website/; }` to `etc/nginx/sites-available/bbncreative`
-- `bbncreative/secrets.py` contains literal strings in production, where the development environment and CI use environment variables
-- The Postgres password is different in production
+There are some differences between the development and production configurations - seen in the `settings_dev.py` and `settings_prod.py` files. Both refer to the `secrets.py` file, which acts as a tunnel to local environment variables. These are configured using a script in development, while the CI job builds a hardcoded file for production.
 
 ## HTTP Headers
 
-The HTTP headers for the server are declared in the nginx server file `/etc/nginx/sites-available/bbncreative`. They were on lines 31-37 and started with `add_header` when last modified.
+The HTTP headers for the server are declared in the nginx server file `/etc/nginx/sites-available/bbncreative`. They were on lines 31-37 and started with `add_header` at the time of writing.
+
 When the headers are changed, the changes should be tested by first running:
 
 ```bash
