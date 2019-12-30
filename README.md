@@ -2,35 +2,32 @@
   <img src="bbncreative.svg" alt="bbncreative logotype" />
 </p>
 
-# Django App for bbncreative
+<br />
 
-A Django-powered custom CMS for the bbncreative portfolio, a summer project by Aaron Cawte. The software runs Aaron's portfolio at [bbncreative.co](https://bbncreative.co).
+<p align="center">
+    <a href="https://circleci.com/gh/aaroncawte/bbncreative-portfolio" target="blank" rel="noopener noreferrer">
+        <img src="https://circleci.com/gh/aaroncawte/bbncreative-portfolio/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42" alt="CircleCI" />
+    </a>
+</p>
 
-Continuous Integration Build: [![CircleCI](https://circleci.com/gh/aaroncawte/bbncreative-portfolio/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42)](https://circleci.com/gh/aaroncawte/bbncreative-portfolio)
+# bbncreative-portfolio
 
-## The basics
+A custom CMS for the bbncreative portfolio website, built with Django. The site runs at [bbncreative.co](https://bbncreative.co).
 
-### Why this repository is public
+This project, like the portfolio itself, is the work of Aaron Cawte. Contact Aaron via [email](mailto:aaron@bbncreative.co) or on [Twitter](https://twitter.com/aaroncawte).
 
-I have made the source code and associated documentation available as a reference for my development skills, as well as to practice developing software visible to anyone.
+## License
 
-### Author
+This software is made available for review, not for re-use. Accordingly, it is licensed under **Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0)**. View the license [here](/LICENSE.md), or view a summary on [creativecommons.org](https://creativecommons.org/licenses/by-nc-nd/3.0/).
 
-All content in this project is produced by Aaron Cawte.
-Contact Aaron via [email](mailto:aaron@bbncreative.co) or on [Twitter](https://twitter.com/aaroncawte).
-
-### License
-
-This software is made available for review, not for re-use. Accordingly, it is licensed under **Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0)**. View the license [here](/LICENSE.md), or view a summary on [creativecommons.org](https://creativecommons.org/licenses/by-nc-nd/3.0/). If you are unsure, please contact Aaron.
-
-### Stack
+## Stack
 
 Primary tools and requirements used for this project.
 
 | Function  | Tool       | Version | Updated    |
 | :-------- | :--------- | :------ | :--------- |
 | Language  | Python     | 3.7.0   | 06.08.2018 |
-| Framework |            | 2.1.11  | 28.12.2019 |
+| Framework | Django     | 2.1.11  | 28.12.2019 |
 | Database  | PostgreSQL | 10.5    | 23.08.2018 |
 
 ## Documentation
