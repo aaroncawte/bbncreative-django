@@ -1,0 +1,7 @@
+line-length: false
+
+no-inline-html:
+  allowed_elements:
+    - "img" # logo rendering in README.md
+    - "p" # logo rendering in README.md
+    - "sup" # superscript numbers in appendices/aspect_ratios.md

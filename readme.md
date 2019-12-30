@@ -4,7 +4,9 @@ A Django-powered custom CMS for the bbncreative portfolio, a summer project by A
 
 Continuous Integration Build: [![CircleCI](https://circleci.com/gh/aaroncawte/bbncreative-portfolio/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42)](https://circleci.com/gh/aaroncawte/bbncreative-portfolio)
 
-### Why is this repository public?
+## The basics
+
+### Why this repository is public
 
 I have made the source code and associated documentation available as a reference for my development skills, as well as to practice developing software visible to anyone.
 

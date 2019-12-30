@@ -40,7 +40,7 @@ There are some differences between the dev and production codebases, as follows:
 The HTTP headers for the server are declared in the nginx server file `/etc/nginx/sites-available/bbncreative`. They were on lines 31-37 and started with `add_header` when last modified.
 When the headers are changed, the changes should be tested by first running:
 
-```
+```bash
 sudo nginx -t
 sudo systemctl nginx restart
 ```
