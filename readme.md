@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="bbncreative.svg" alt="bbncreative logotype" />
+</p>
+
 # Django App for bbncreative
 
 A Django-powered custom CMS for the bbncreative portfolio, a summer project by Aaron Cawte. The software runs Aaron's portfolio at [bbncreative.co](https://bbncreative.co).
