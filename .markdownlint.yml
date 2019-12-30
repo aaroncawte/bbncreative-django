@@ -1,0 +1,9 @@
+line-length: false
+
+no-inline-html:
+  allowed_elements:
+    - "img" # logo rendering in README.md
+    - "p" # logo rendering in README.md
+    - "a" # CircleCI badge in README.md
+    - "br" # Spacing between other HTML elements in README.md
+    - "sup" # superscript numbers in reference/aspect_ratios.md
