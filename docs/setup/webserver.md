@@ -1,4 +1,4 @@
-# 5. Web Server Setup
+# 4. Web Server Setup
 
 This complex process was based on [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04) from DigitalOcean.
 

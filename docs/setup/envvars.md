@@ -1,10 +1,4 @@
-# 3 Environment Variables
-
-**Series:** Setup
-
-**Last Edited:** 09/06/2018
-
----
+# 3. Environment Variables
 
 For security, various protected credentials for the project are not stored in any version controlled files. These are instead stores as _environment variables_, the setup of which depends on environment.
 

@@ -1,10 +1,5 @@
 # 1. Python Virtual Environment & Django Installation
 
-**Series:** Setup
-
-**Last Edited:** 09/06/2018
-
----
 Virtual environments let you install Python software and its dependencies in a _virtual environment_, rather than globally on the system. The benefits include:
 
 - Using different versions of the same software in different virtual environments without conflict
