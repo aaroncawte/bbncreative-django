@@ -1,7 +1,7 @@
 certifi==2019.11.28
 chardet==3.0.4
 Django==2.2.9
-django-lockdown==1.5.0
+django-lockdown==3.0.0
 idna==2.7
 oauthlib==2.1.0
 Pillow==6.2.0
