@@ -1,34 +1,13 @@
-"""
-Django settings for bbncreative project.
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/2.2/ref/settings/
-"""
-
 import os
-
 from bbncreative import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# bbncreative specific settings
-NUM_TOP_PROJECTS = 3
-NUM_TOP_FEEDS = 3
-
-
 SECRET_KEY = secrets.DJANGO_SECRET
 
-DEBUG = False
-
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '178.62.41.51',
-    'bbncreative.co',
-    'www.bbncreative.co'
-]
-
 APPEND_SLASH = True
+
 
 # Application definition
 
@@ -53,9 +32,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'lockdown.middleware.LockdownMiddleware',
 ]
-
-LOCKDOWN_ENABLED = False
-LOCKDOWN_PASSWORDS = (secrets.LOCKDOWN_PASSWORD, '')
 
 ROOT_URLCONF = 'bbncreative.urls'
 
@@ -125,21 +101,6 @@ USE_L10N = False
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-
-STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# Uploadeded Content (Images, etc.)
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '/home/aaron/website/media/')
-MEDIA_URL = "https://bbncreative.co/media/"
-
 # Logging
 
 LOGGING = {
@@ -160,6 +121,7 @@ LOGGING = {
         },
     },
 }
+
 
 # Email server
 

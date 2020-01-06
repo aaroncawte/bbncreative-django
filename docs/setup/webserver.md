@@ -27,7 +27,7 @@ To refresh the server:
 
 ## Production Settings
 
-There are some differences between the development and production configurations - seen in the `settings_dev.py` and `settings_prod.py` files. Both refer to the `secrets.py` file, which acts as a tunnel to local environment variables. These are configured using a script in development, while the CI job builds a hardcoded file for production.
+There are some differences between the development and production configurations - seen in the `settings/dev.py` and `settings/prod.py` files. Both refer to a common settings file and the `secrets.py` file, which acts as a tunnel to local environment variables. These are configured using a script in development, while the CI job builds a hardcoded file for production.
 
 ## HTTP Headers
 
