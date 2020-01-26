@@ -137,14 +137,13 @@ jobs:
             ls ~/build-deployment-workspace
 
             # Setup directory structure
-            mkdir build build/{bbncreative,bbncreative/settings,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
+            mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
 
             # /
             cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
 
-            cp ~/build-deployment-workspace/bbncreative/{__init__,urls,wsgi}.py build/bbncreative
-            cp ~/build-deployment-workspace/bbncreative/settings/{base,prod}.py build/bbncreative/settings
+            cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
 
             # /bbncreative_cms
             cp -a ~/build-deployment-workspace/bbncreative_cms/{migrations,views} build/bbncreative_cms
