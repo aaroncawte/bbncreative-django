@@ -43,11 +43,11 @@ commands:
 executors:
   bbncreative-runner:
     docker:
-      - image: circleci/python:3.7.0
+      - image: circleci/python:3.8.1
       - image: circleci/postgres:10.5 # service image - secondary to python
   bbncreative-ops:
     docker:
-      - image: circleci/python:3.7.0
+      - image: circleci/python:3.8.1
 
 workflows:
   version: 2
@@ -88,8 +88,8 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            python3 -m venv bbn-env
-            . bbn-env/bin/activate
+            python3 -m venv bbn-env-ci-381
+            . bbn-env-ci-381/bin/activate
             pip install -r requirements.txt
 
       # Save everything to the workspace for deployment
@@ -101,7 +101,7 @@ jobs:
       # Cache dependencies using checksum of requirements.txt
       - save_cache:
           paths:
-            - ./bbn-env
+            - ./bbn-env-ci-381
           key: v2-dependencies-{{ checksum "requirements.txt" }}
 
   test-django:
@@ -115,7 +115,7 @@ jobs:
       - run:
           name: Back-End Tests
           command: |
-            . bbn-env/bin/activate
+            . bbn-env-ci-381/bin/activate
             python manage.py test
 
       - store_artifacts:
@@ -140,7 +140,7 @@ jobs:
             mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
 
             # /
-            cp ~/build-deployment-workspace/requirements.txt build/requirements_server.txt # Requirements file with server-specific name
+            cp ~/build-deployment-workspace/requirements_server.txt build/requirements_server.txt # Reuirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
 
             cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
@@ -252,7 +252,7 @@ jobs:
       - run:
           name: Health check - pip
           environment:
-            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
+            VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
           command: |
             ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; pip check --disable-pip-version-check" > health_check_pip_check.log
 
@@ -263,7 +263,7 @@ jobs:
       - run:
           name: Health check - migrations
           environment:
-            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
+            VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
             MANAGE_PY_PATH: ~/website/bbncreative/manage.py
 
           command: |

@@ -26,8 +26,8 @@ Primary tools and requirements used for this project.
 
 | Function  | Tool       | Version | Updated    |
 | :-------- | :--------- | :------ | :--------- |
-| Language  | Python     | 3.7.0   | 06.08.2018 |
-| Framework | Django     | 2.1.11  | 28.12.2019 |
+| Language  | Python     | 3.8.1   | 26.01.2020 |
+| Framework | Django     | 2.2.9   | 31.12.2019 |
 | Database  | PostgreSQL | 10.5    | 23.08.2018 |
 
 ## Documentation
