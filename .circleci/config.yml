@@ -140,7 +140,7 @@ jobs:
             mkdir build build/{bbncreative,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
 
             # /
-            cp ~/build-deployment-workspace/requirements_server.txt build/requirements_server.txt # Reuirements file with server-specific name
+            cp ~/build-deployment-workspace/requirements_server.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/manage.py build/
 
             cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
@@ -276,7 +276,7 @@ jobs:
       - run:
           name: Health check - deploy check
           environment:
-            VENV_PATH: /home/aaron/website/bbn-env/bin/activate
+            VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
             MANAGE_PY_PATH: ~/website/bbncreative/manage.py
 
           command: |
