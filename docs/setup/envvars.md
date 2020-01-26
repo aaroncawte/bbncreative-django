@@ -5,7 +5,7 @@ For security, various protected credentials for the project are not stored in an
 | Variable Name | Example Value | Purpose |
 |:-------|:-------|:--------|
 | `DJANGO_DEBUG_MODE` | True | Boolean value for Django debug mode |
-| `DJANGO_SETTINGS_MODULE` | bbncreative.settings.dev | Location of settings file |
+| `DJANGO_SETTINGS_MODULE` | bbncreative.settings_dev | Location of settings file |
 | `EMAIL_HOST` | | Email host URL |
 | `EMAIL_HOST_PASSWORD` | | Email host platform password |
 | `EMAIL_HOST_USER` | | Email host platform username |
