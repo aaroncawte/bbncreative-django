@@ -18,7 +18,7 @@ This project, like the portfolio itself, is the work of Aaron Cawte. Contact Aar
 
 ## License
 
-This software is made available for review, not for re-use. Accordingly, it is licensed under **Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0)**. View the license [here](/LICENSE.md), or view a summary on [creativecommons.org](https://creativecommons.org/licenses/by-nc-nd/3.0/).
+This software is made available for review. Accordingly, it is licensed under **Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0)**. View the license [here](/LICENSE.md), or view a summary on [creativecommons.org](https://creativecommons.org/licenses/by-nc-nd/3.0/).
 
 ## Stack
 
@@ -27,7 +27,7 @@ Primary tools and requirements used for this project.
 | Function  | Tool       | Version | Updated    |
 | :-------- | :--------- | :------ | :--------- |
 | Language  | Python     | 3.8.1   | 26.01.2020 |
-| Framework | Django     | 2.2.9   | 31.12.2019 |
+| Framework | Django     | 3.0.2   | 01.02.2020 |
 | Database  | PostgreSQL | 10.5    | 23.08.2018 |
 
 ## Documentation
