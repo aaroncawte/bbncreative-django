@@ -5,7 +5,7 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "requirements.txt" }}
+            - v2-dependencies-{{ checksum "requirements_ci.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
 
@@ -68,7 +68,6 @@ workflows:
             branches:
               only:
                 - master
-                - health-check-ci-step
           requires:
             - build-deployment
 
@@ -90,7 +89,7 @@ jobs:
           command: |
             python3 -m venv bbn-env-ci-381
             . bbn-env-ci-381/bin/activate
-            pip install -r requirements.txt
+            pip install -r requirements_ci.txt
 
       # Save everything to the workspace for deployment
       - persist_to_workspace:
@@ -98,11 +97,11 @@ jobs:
           paths:
             - .
 
-      # Cache dependencies using checksum of requirements.txt
+      # Cache dependencies using checksum of requirements_ci.txt
       - save_cache:
           paths:
             - ./bbn-env-ci-381
-          key: v2-dependencies-{{ checksum "requirements.txt" }}
+          key: v2-dependencies-{{ checksum "requirements_ci.txt" }}
 
   test-django:
     executor: bbncreative-runner
@@ -116,11 +115,10 @@ jobs:
           name: Back-End Tests
           command: |
             . bbn-env-ci-381/bin/activate
-            python manage.py test
+            python manage.py test --settings="bbncreative.settings_ci"
 
-      - store_artifacts:
-          path: back-end-test-reports
-          destination: back-end-test-reports
+      - store_test_results:
+          path: test_results
 
   build-deployment:
     executor: bbncreative-ops
@@ -239,49 +237,19 @@ jobs:
             ssh $SSH_USER@$SSH_HOST "find ${DEPLOYMENT_DIR} -name "build-*.zip" -type f -mtime +${DAYS_TO_KEEP_ARCHIVES_FOR} -exec rm -f {} \;"
 
       - run:
-          name: Health check - nginx
+          name: Run health checks
           environment:
+            MANAGE_PY_PATH: ~/website/bbncreative/manage.py
             NGINX_PATH: /usr/sbin/nginx
-          command: |
-            ssh $SSH_USER@$SSH_HOST "sudo ${NGINX_PATH} -t" 2> health_check_nginx.log
-
-      - store_artifacts:
-          path: health_check_nginx.log
-          destination: health_check_nginx.log
-
-      - run:
-          name: Health check - pip
-          environment:
             VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
           command: |
-            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; pip check --disable-pip-version-check" > health_check_pip_check.log
+            cd ~
+            mkdir health_checks
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; pip check --disable-pip-version-check" > ~/health_checks/pip_check.log
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${MANAGE_PY_PATH} check --deploy" 2> ~/health_checks/deploy.log
+            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${MANAGE_PY_PATH} makemigrations --check" > ~/health_checks/migrations.log
+            ssh $SSH_USER@$SSH_HOST "sudo ${NGINX_PATH} -t" 2> ~/health_checks/nginx.log
 
       - store_artifacts:
-          path: health_check_pip_check.log
-          destination: health_check_pip_check.log
-
-      - run:
-          name: Health check - migrations
-          environment:
-            VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
-            MANAGE_PY_PATH: ~/website/bbncreative/manage.py
-
-          command: |
-            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${MANAGE_PY_PATH} makemigrations --check" > health_check_migrations.log
-
-      - store_artifacts:
-          path: health_check_migrations.log
-          destination: health_check_migrations.log
-
-      - run:
-          name: Health check - deploy check
-          environment:
-            VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
-            MANAGE_PY_PATH: ~/website/bbncreative/manage.py
-
-          command: |
-            ssh $SSH_USER@$SSH_HOST "source ${VENV_PATH} ; python ${MANAGE_PY_PATH} check --deploy" > health_check_deploy.log
-
-      - store_artifacts:
-          path: health_check_deploy.log
-          destination: health_check_deploy.log
+          path: ~/health_checks
+          destination: health_checks

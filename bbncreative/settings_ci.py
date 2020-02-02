@@ -19,7 +19,14 @@ NUM_TOP_FEEDS = 3
 
 SECRET_KEY = secrets.DJANGO_SECRET
 
-DEBUG = True
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '178.62.41.51',
+    'bbncreative.co',
+    'www.bbncreative.co'
+]
 
 APPEND_SLASH = True
 
@@ -47,10 +54,24 @@ MIDDLEWARE = [
     'lockdown.middleware.LockdownMiddleware',
 ]
 
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_BROWSER_XSS_FILTER = True
+
+SECURE_SSL_REDIRECT = True
+
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
+
 LOCKDOWN_ENABLED = False
 LOCKDOWN_PASSWORDS = (secrets.LOCKDOWN_PASSWORD, '')
 
 ROOT_URLCONF = 'bbncreative.urls'
+
+TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
+
+TEST_OUTPUT_DIR = 'test_results/django'
 
 TEMPLATES = [
     {
