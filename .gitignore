@@ -19,5 +19,5 @@ media/
 # Development scripts
 scripts/
 
-# Test reports
-test_reports/
+# Test result reports
+test_results/
