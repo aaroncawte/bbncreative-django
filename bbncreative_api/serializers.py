@@ -87,21 +87,64 @@ class CreditSerializer(serializers.ModelSerializer):
 
 
 class TextAssetSerializer(serializers.ModelSerializer):
+    # Re-orders attributes to match other assets
+    def to_representation(self, instance):
+        original = super().to_representation(instance)
+
+        return ({
+            'id': original['id'],
+            'parent': original['parent'],
+            'created_at': original['created_at'],
+            'title': original['title'],
+            'body': original['body'],
+            'importance': original['importance'],
+        })
 
     class Meta:
         model = TextAsset
-        fields = '__all__'
+        exclude = ['feeds']
 
 
 class ImageAssetSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        original = super().to_representation(instance)
+
+        return ({
+            'id': original['id'],
+            'parent': original['parent'],
+            'created_at': original['created_at'],
+            'title': original['title'],
+            'body': original['body'],
+            'importance': original['importance'],
+            'content': {
+                'src': original['img'],
+                'alt': original['alt'],
+                'ratio': original['aspect_ratio'],
+            },
+        })
 
     class Meta:
         model = ImageAsset
-        fields = '__all__'
+        exclude = ['feeds']
 
 
 class EmbeddedAssetSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        original = super().to_representation(instance)
+
+        return ({
+            'id': original['id'],
+            'parent': original['parent'],
+            'created_at': original['created_at'],
+            'title': original['title'],
+            'body': original['body'],
+            'importance': original['importance'],
+            'content': {
+                'code': original['embed_code'],
+                'ratio': original['aspect_ratio'],
+            },
+        })
 
     class Meta:
         model = EmbeddedAsset
-        fields = '__all__'
+        exclude = ['feeds']
