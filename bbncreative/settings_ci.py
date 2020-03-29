@@ -6,6 +6,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_filters.rest_framework
 
 from bbncreative import secrets
 
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bbncreative_cms.apps.BbncreativeCmsConfig',
+    'bbncreative_api.apps.BbncreativeApiConfig',
+    'rest_framework',
+    'django_filters',
     'lockdown'
 ]
 
@@ -53,6 +57,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'lockdown.middleware.LockdownMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    
+}
 
 CSRF_COOKIE_SECURE = True
 
