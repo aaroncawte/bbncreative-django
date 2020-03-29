@@ -12,7 +12,7 @@
 
 # bbncreative-portfolio
 
-A custom CMS for the bbncreative portfolio website, built with Django. The site runs at [bbncreative.co](https://bbncreative.co).
+A custom CMS and API for the bbncreative portfolio website, built with Django. The site runs at [bbncreative.co](https://bbncreative.co), and the API at `/api`.
 
 This project, like the portfolio itself, is the work of Aaron Cawte. Contact Aaron via [email](mailto:aaron@bbncreative.co) or on [Twitter](https://twitter.com/aaroncawte).
 
@@ -27,7 +27,7 @@ Primary tools and requirements used for this project.
 | Function  | Tool       | Version | Updated    |
 | :-------- | :--------- | :------ | :--------- |
 | Language  | Python     | 3.8.1   | 26.01.2020 |
-| Framework | Django     | 3.0.2   | 01.02.2020 |
+| Framework | Django     | 3.0.3   | 11.02.2020 |
 | Database  | PostgreSQL | 10.5    | 23.08.2018 |
 
 ## Documentation
@@ -46,3 +46,17 @@ The initial setup of this system has been documented for future reference, debug
 Relevant information to the system has also been documented as follows:
 
 1. [Content Aspect Ratios](/docs/reference/aspect_ratios.md)
+
+### API
+
+Each API endpoint is documented with expected outputs following [this guidance](https://github.com/jamescooke/restapidocs).
+
+* [Show Projects](/docs/api/projects.md) : `GET /api/projects/`
+  * [Show Credits for Project](/docs/api/project/credits.md) : `GET /api/project/{project}/credits`
+  * [Show Text Assets for Project](/docs/api/project/assets/text.md) : `GET /api/project/{project}/assets/text`
+  * [Show Image Assets for Project](/docs/api/project/assets/image.md) : `GET /api/project/{project}/assets/image`
+  * [Show Embedded Assets for Project](/docs/api/project/assets/embedded.md) : `GET /api/project/{project}/assets/embedded`
+* [Show Feeds](/docs/api/feeds.md) : `GET /api/feeds/`
+  * [Show Text Assets for Feed](/docs/api/feed/assets/text.md) : `GET /api/feed/{feed}/assets/text`
+  * [Show Image Assets for Feed](/docs/api/feed/assets/image.md) : `GET /api/feed/{feed}/assets/image`
+  * [Show Embedded Assets for Feed](/docs/api/feed/assets/embedded.md) : `GET /api/feed/{feed}/assets/embedded`

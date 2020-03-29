@@ -83,14 +83,17 @@ class Project(models.Model):
 
     def count_assets(self):
         return ImageAsset.objects.filter(parent=self).count() + EmbeddedAsset.objects.filter(parent=self).count() + \
-               TextAsset.objects.filter(parent=self).count()
+            TextAsset.objects.filter(parent=self).count()
 
     def count_collaborators(self):
+        return len(self.get_collaborators())
+
+    def get_collaborators(self):
         credits_list = Credit.objects.filter(project=self)
         found_collaborators = set()
         for c in credits_list:
             found_collaborators.add(c.collaborator)
-        return len(found_collaborators)
+        return found_collaborators
 
     def __str__(self):
         return self.menu_name + " (" + self.name + ") is a project for " + self.client_name + " at /" + self.url_name
@@ -224,7 +227,8 @@ class Asset(models.Model):
 
     class Meta:
         abstract = True,  # TextAsset, ImageAsset and EmbeddedAsset implement this abstraction
-        ordering = ['importance', '-created_at']  # See importance comment above
+        # See importance comment above
+        ordering = ['importance', '-created_at']
 
     def __str__(self):
         return self.title + " from project: " + self.parent.name
@@ -308,4 +312,3 @@ class EmbeddedAsset(Asset):
         if len(self.embed_code) > 0:
             return True
         return False
-
