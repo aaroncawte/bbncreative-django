@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from bbncreative_cms.models import Collaborator, Credit, Feed, Project
+from bbncreative_cms.models import Collaborator, Credit, Feed, Project, TextAsset, ImageAsset, EmbeddedAsset
 
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
@@ -84,3 +84,24 @@ class CreditSerializer(serializers.ModelSerializer):
     class Meta:
         model = Credit
         fields = ['action', 'collaborator']
+
+
+class TextAssetSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TextAsset
+        fields = '__all__'
+
+
+class ImageAssetSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ImageAsset
+        fields = '__all__'
+
+
+class EmbeddedAssetSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = EmbeddedAsset
+        fields = '__all__'
