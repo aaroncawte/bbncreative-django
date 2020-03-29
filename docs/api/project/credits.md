@@ -43,7 +43,7 @@ Shows a list of credits for the given project.
         "collaborator": {
             "name": "Human Name",
             "url": "https://bbncreative.co",
-            "twitter": "@bbncreative"
+            "twitter": "bbncreative"
         }
     }
 ]
