@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class BbncreativeCmsConfig(AppConfig):
-    name = 'bbncreative_cms'
+    name = "bbncreative_cms"

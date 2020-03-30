@@ -15,11 +15,11 @@ from rest_framework import routers, serializers, viewsets
 
 urlpatterns = [
     # Django admin
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Public website
-    path('', include('bbncreative_cms.urls')),
+    path("", include("bbncreative_cms.urls")),
     # API URLs
-    path('api/', include('bbncreative_api.urls')),
+    path("api/", include("bbncreative_api.urls")),
 ]
 
 if settings.DEBUG is True:

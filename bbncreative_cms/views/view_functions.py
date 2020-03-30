@@ -9,11 +9,8 @@ from bbncreative_cms.models import Credit
 
 def get_recaptcha(response_data: str) -> dict:
     print("IN: " + str(type(response_data)))
-    url = 'https://www.google.com/recaptcha/api/siteverify'
-    values = {
-        'secret': secrets.RECAPTCHA_SECRET,
-        'response': response_data
-    }
+    url = "https://www.google.com/recaptcha/api/siteverify"
+    values = {"secret": secrets.RECAPTCHA_SECRET, "response": response_data}
     data = parse.urlencode(values).encode("utf-8")
     req = urlrequest.Request(url)
     response = urlrequest.urlopen(req, data)
@@ -26,7 +23,7 @@ def generate_logo_rgba(color: str, hover: bool) -> tuple:
     alpha_value = 0.9
     if hover:
         alpha_value = 1
-    return tuple(int(color[i:i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
+    return tuple(int(color[i : i + 2], 16) for i in (0, 2, 4)) + (alpha_value,)
 
 
 def count_children_projects(projects: list) -> list:
@@ -48,8 +45,10 @@ def get_twitter_pictures(users: list) -> dict:
             for user in users_data:
                 key = str(user.get("screen_name")).lower()
                 images = {
-                    "profile": str(user.get("profile_image_url_https")).replace("_normal", ""),
-                    "cover": str(user.get("profile_banner_url"))
+                    "profile": str(user.get("profile_image_url_https")).replace(
+                        "_normal", ""
+                    ),
+                    "cover": str(user.get("profile_banner_url")),
                 }
                 val = images
                 user_dict[key] = val
