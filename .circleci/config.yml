@@ -3,11 +3,16 @@ version: 2.1
 commands:
   restore-deps:
     steps:
+      - run:
+          name: Change directory
+          command: |
+            cd ..
+
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "requirements_ci.txt" }}
+            - v3-dependencies-{{ checksum "requirements_ci.txt" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+            - v3-dependencies-
 
   add-known-host-workaround:
     steps:
@@ -55,6 +60,10 @@ workflows:
     jobs:
       - install
 
+      - lint-python:
+          requires:
+            - install
+
       - test-django:
           requires:
             - install
@@ -62,6 +71,7 @@ workflows:
       - build-deployment:
           requires:
             - test-django
+            - lint-python
 
       - deploy:
           filters:
@@ -87,21 +97,38 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
+            cd ..
             python3 -m venv bbn-env-ci-381
             . bbn-env-ci-381/bin/activate
+            cd repo
             pip install -r requirements_ci.txt
 
       # Save everything to the workspace for deployment
       - persist_to_workspace:
-          root: /home/circleci/repo
+          root: /home/circleci/
           paths:
             - .
 
       # Cache dependencies using checksum of requirements_ci.txt
       - save_cache:
           paths:
-            - ./bbn-env-ci-381
-          key: v2-dependencies-{{ checksum "requirements_ci.txt" }}
+            - ../bbn-env-ci-381
+          key: v3-dependencies-{{ checksum "requirements_ci.txt" }}
+
+  lint-python:
+    executor: bbncreative-runner
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore-deps
+
+      - run:
+          name: Black linter
+          command: |
+            . ../bbn-env-ci-381/bin/activate
+            black . --check --exclude /migrations/
 
   test-django:
     executor: bbncreative-runner
@@ -114,7 +141,7 @@ jobs:
       - run:
           name: Back-End Tests
           command: |
-            . bbn-env-ci-381/bin/activate
+            . ../bbn-env-ci-381/bin/activate
             python manage.py test --settings="bbncreative.settings_ci"
 
       - store_test_results:
@@ -131,32 +158,30 @@ jobs:
       - run:
           name: Build Deployment
           command: |
-            echo "Contents of build-deployment-workspace:"
-            ls ~/build-deployment-workspace
 
             # Setup directory structure
             mkdir build build/{bbncreative,bbncreative_api,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
 
             # /
-            cp ~/build-deployment-workspace/requirements_server.txt build/requirements_server.txt # Requirements file with server-specific name
-            cp ~/build-deployment-workspace/manage.py build/
+            cp ~/build-deployment-workspace/repo/requirements_server.txt build/requirements_server.txt # Requirements file with server-specific name
+            cp ~/build-deployment-workspace/repo/manage.py build/
 
-            cp ~/build-deployment-workspace/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
+            cp ~/build-deployment-workspace/repo/bbncreative/{__init__,settings_prod,urls,wsgi}.py build/bbncreative
 
             # /bbncreative_api
-            cp ~/build-deployment-workspace/bbncreative_api/{__init__,apps,serializers,urls,view_sets,wsgi}.py build/bbncreative_api
+            cp ~/build-deployment-workspace/repo/bbncreative_api/{__init__,apps,serializers,urls,view_sets,wsgi}.py build/bbncreative_api
 
             # /bbncreative_cms
-            cp -a ~/build-deployment-workspace/bbncreative_cms/{migrations,views} build/bbncreative_cms
-            cp ~/build-deployment-workspace/bbncreative_cms/{__init__,admin,apps,context_processors,forms,models,urls}.py build/bbncreative_cms
+            cp -a ~/build-deployment-workspace/repo/bbncreative_cms/{migrations,views} build/bbncreative_cms
+            cp ~/build-deployment-workspace/repo/bbncreative_cms/{__init__,admin,apps,context_processors,forms,models,urls}.py build/bbncreative_cms
 
             # /static
-            cp -a ~/build-deployment-workspace/static/{fonts,img,js,vid} build/static
-            cp ~/build-deployment-workspace/static/manifest.json build/static
-            cp ~/build-deployment-workspace/static/style/style.min.css build/static/style
+            cp -a ~/build-deployment-workspace/repo/static/{fonts,img,js,vid} build/static
+            cp ~/build-deployment-workspace/repo/static/manifest.json build/static
+            cp ~/build-deployment-workspace/repo/static/style/style.min.css build/static/style
 
             # /templates
-            cp -a ~/build-deployment-workspace/templates/. build/templates
+            cp -a ~/build-deployment-workspace/repo/templates/. build/templates
 
       # /bbncreative
       - build-secrets-file:

@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from .models import Project, Collaborator, Credit, Feed, TextAsset, ImageAsset, EmbeddedAsset
+from .models import (
+    Project,
+    Collaborator,
+    Credit,
+    Feed,
+    TextAsset,
+    ImageAsset,
+    EmbeddedAsset,
+)
 
 admin.site.site_header = "bbncreative"
 admin.site.site_title = "bbncreative CMS"
@@ -52,4 +60,3 @@ admin.site.register(Feed, FeedAdmin)
 admin.site.register(TextAsset)
 admin.site.register(ImageAsset)
 admin.site.register(EmbeddedAsset)
-
