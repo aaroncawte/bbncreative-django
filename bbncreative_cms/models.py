@@ -110,8 +110,8 @@ class Collaborator(models.Model):
     # Collaborator's name e.g. "Aaron Cawte"
     name = models.CharField(default="Collaborator Name", max_length=255)
     # Optional collaborator URLs
-    url = models.URLField(max_length=255)
-    twitter = models.CharField(default="", max_length=15)
+    url = models.URLField(blank=True, max_length=255)
+    twitter = models.CharField(blank=True, max_length=15)
 
     def __str__(self):
         return self.name
