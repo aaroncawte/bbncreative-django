@@ -119,8 +119,10 @@ class Collaborator(models.Model):
 
 class Credit(models.Model):
     # A credit credits a collaborator for something
+    # Protected, so collaborators can't be deleted while they are credited for things
     collaborator = models.ForeignKey(Collaborator, on_delete=models.PROTECT)
     # A credit is specific to a project
+    # Cascades, so credits are deleted with the projects they are on
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     # A credit credits a collaborator for some action
     action = models.CharField(default="", max_length=255)
