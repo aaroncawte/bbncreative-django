@@ -16,7 +16,7 @@ class Project(models.Model):
     bio = models.TextField(max_length=200, default="[Project Bio]")
     # Internal URL slug (e.g. /project/slug-field)
     url_name = models.SlugField(
-        max_length=255, default="new-project", allow_unicode=True
+        max_length=255, default="new-project", allow_unicode=True, unique=True,
     )
     date_complete = models.DateField(
         auto_now=False, auto_now_add=False, default=datetime.date.today
@@ -76,7 +76,9 @@ class Feed(models.Model):
     name = models.CharField(default="New Feed", max_length=255)
     menu_name = models.CharField(default="New Feed", max_length=15)
     bio = models.TextField(max_length=5000, default="Feed Bio")
-    url_name = models.SlugField(max_length=255, default="new-feed", allow_unicode=True)
+    url_name = models.SlugField(
+        max_length=255, default="new-feed", allow_unicode=True, unique=True
+    )
     date_time_updated = models.DateTimeField(auto_now=True)
     menu_icon_name = models.CharField(max_length=50, blank=True)
     protected = models.BooleanField(default=True)

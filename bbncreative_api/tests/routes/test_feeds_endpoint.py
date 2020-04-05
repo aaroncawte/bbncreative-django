@@ -28,9 +28,9 @@ class FeedEndpointTests(APITestCase):
         feed.delete()
 
     def test_feeds_endpoint_with_three_blank_feeds(self):
-        feed1 = Feed.objects.create(name="Test 1")
-        feed2 = Feed.objects.create(name="Test 2")
-        feed3 = Feed.objects.create(name="Test 3")
+        feed1 = Feed.objects.create(name="Test 1", url_name="feed-1")
+        feed2 = Feed.objects.create(name="Test 2", url_name="feed-2")
+        feed3 = Feed.objects.create(name="Test 3", url_name="feed-3")
 
         response = self.client.get(FEEDS_ENDPOINT, secure=True)
         data = response.data

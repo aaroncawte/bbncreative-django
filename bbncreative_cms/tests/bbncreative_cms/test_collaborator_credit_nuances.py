@@ -7,8 +7,8 @@ class CollaboratorCreditNuanceTests(TestCase):
 
     # Two projects that share a collaborator and each have an independent second
     def test_shared_and_independent_collaborators(self):
-        proj1 = models.Project.objects.create(name="Test Project")
-        proj2 = models.Project.objects.create(name="Test Project")
+        proj1 = models.Project.objects.create(name="Test Project", url_name="proj-1")
+        proj2 = models.Project.objects.create(name="Test Project", url_name="proj-2")
 
         collab_shared = models.Collaborator.objects.create(
             name="Alice", url="https://bbncreative.co/alice", twitter="bbn_alice"
