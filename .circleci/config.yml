@@ -162,12 +162,6 @@ jobs:
             # Setup directory structure
             mkdir build build/{bbncreative,bbncreative_api,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
 
-            # ls build static
-            cd ~/build-deployment-workspace/repo/build
-            ls
-            cd static
-            ls
-
             # /
             cp ~/build-deployment-workspace/repo/requirements_server.txt build/requirements_server.txt # Requirements file with server-specific name
             cp ~/build-deployment-workspace/repo/src/manage.py build/
@@ -188,6 +182,9 @@ jobs:
 
             # /templates
             cp -a ~/build-deployment-workspace/repo/src/templates/. build/templates
+
+            # static apps (from collected static, not repository)
+            cp -a ~/build-deployment-workspace/repo/build/static/{admin,rest_framework} build/static
 
       # /bbncreative
       - build-secrets-file:
