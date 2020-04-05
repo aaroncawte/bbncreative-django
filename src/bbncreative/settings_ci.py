@@ -20,7 +20,9 @@ NUM_TOP_FEEDS = 3
 
 SECRET_KEY = secrets.DJANGO_SECRET
 
-DEBUG = True
+DEBUG = False
+
+ALLOWED_HOSTS = ["127.0.0.1", "178.62.41.51", "bbncreative.co", "www.bbncreative.co"]
 
 APPEND_SLASH = True
 
@@ -60,10 +62,24 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_BROWSER_XSS_FILTER = True
+
+SECURE_SSL_REDIRECT = True
+
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
+
 LOCKDOWN_ENABLED = False
 LOCKDOWN_PASSWORDS = (secrets.LOCKDOWN_PASSWORD, "")
 
 ROOT_URLCONF = "bbncreative.urls"
+
+TEST_RUNNER = "xmlrunner.extra.djangotestrunner.XMLTestRunner"
+
+TEST_OUTPUT_DIR = "test_results/django"
 
 TEMPLATES = [
     {
@@ -128,14 +144,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-STATIC_ROOT = os.path.join(BASE_DIR, "build/static")
+STATIC_ROOT = os.path.join(BASE_DIR, "../build/static")
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Uploadeded Content (Images, etc.)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "../media")
 MEDIA_URL = "/media/"
 
 # Logging
