@@ -16,7 +16,7 @@ class Project(models.Model):
     bio = models.TextField(max_length=200, default="[Project Bio]")
     # Internal URL slug (e.g. /project/slug-field)
     url_name = models.SlugField(
-        max_length=255, default="new-project", allow_unicode=True
+        max_length=255, default="new-project", allow_unicode=True, unique=True,
     )
     date_complete = models.DateField(
         auto_now=False, auto_now_add=False, default=datetime.date.today
@@ -76,7 +76,9 @@ class Feed(models.Model):
     name = models.CharField(default="New Feed", max_length=255)
     menu_name = models.CharField(default="New Feed", max_length=15)
     bio = models.TextField(max_length=5000, default="Feed Bio")
-    url_name = models.SlugField(max_length=255, default="new-feed", allow_unicode=True)
+    url_name = models.SlugField(
+        max_length=255, default="new-feed", allow_unicode=True, unique=True
+    )
     date_time_updated = models.DateTimeField(auto_now=True)
     menu_icon_name = models.CharField(max_length=50, blank=True)
     protected = models.BooleanField(default=True)
@@ -110,8 +112,8 @@ class Collaborator(models.Model):
     # Collaborator's name e.g. "Aaron Cawte"
     name = models.CharField(default="Collaborator Name", max_length=255)
     # Optional collaborator URLs
-    url = models.URLField(max_length=255)
-    twitter = models.CharField(default="", max_length=15)
+    url = models.URLField(blank=True, max_length=255)
+    twitter = models.CharField(blank=True, max_length=15)
 
     def __str__(self):
         return self.name
@@ -119,8 +121,10 @@ class Collaborator(models.Model):
 
 class Credit(models.Model):
     # A credit credits a collaborator for something
+    # Protected, so collaborators can't be deleted while they are credited for things
     collaborator = models.ForeignKey(Collaborator, on_delete=models.PROTECT)
     # A credit is specific to a project
+    # Cascades, so credits are deleted with the projects they are on
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     # A credit credits a collaborator for some action
     action = models.CharField(default="", max_length=255)

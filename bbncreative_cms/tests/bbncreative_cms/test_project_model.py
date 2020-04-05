@@ -1,6 +1,7 @@
 from django.test import TestCase
-
+from django.db.utils import IntegrityError
 from bbncreative_cms import models
+from django.db import transaction
 
 
 class ProjectModelTests(TestCase):
@@ -101,13 +102,13 @@ class ProjectModelTests(TestCase):
 
     def test_project_count_collaborators(self):
         project_with_no_collaborators = models.Project.objects.create(
-            name="Project with 0 collaborators"
+            name="Project with 0 collaborators", url_name="zero-collaborators"
         )
         project_with_one_collaborator = models.Project.objects.create(
-            name="Project with 1 collaborator"
+            name="Project with 1 collaborator", url_name="one-collaborator"
         )
         project_with_two_collaborators = models.Project.objects.create(
-            name="Project with 2 collaborators"
+            name="Project with 2 collaborators", url_name="two-collaborators"
         )
 
         collab1 = models.Collaborator.objects.create(
@@ -130,3 +131,16 @@ class ProjectModelTests(TestCase):
         self.assertIs(project_with_no_collaborators.count_collaborators(), 0)
         self.assertIs(project_with_one_collaborator.count_collaborators(), 1)
         self.assertIs(project_with_two_collaborators.count_collaborators(), 2)
+
+    def test_project_url_name_is_unique(self):
+        project_1 = models.Project.objects.create(
+            name="Existing project", url_name="same-thing"
+        )
+
+        with self.assertRaises(IntegrityError):
+            with transaction.atomic():
+                models.Project.objects.create(
+                    name="Invading project", url_name="same-thing"
+                )
+
+        project_1.delete()

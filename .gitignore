@@ -13,6 +13,9 @@ django_debug.log
 # bbncreative_cms secrets
 db_setup.py
 
+# build folder
+build/
+
 # bbncreative media folder
 media/
 
