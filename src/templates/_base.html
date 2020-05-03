@@ -46,9 +46,12 @@
         {% else %}
             <body>
         {% endif %}
-    {% include "components/_nav.html" %}
-    {% block body-content %}{% endblock %}
-    {% include "components/_footer.html" %}
+        <a href="#content" id="skipToContent">Skip to content</a>
+        {% include "components/_nav.html" %}
+        <main id="content">
+            {% block body-content %}{% endblock %}
+        </main>
+        {% include "components/_footer.html" %}
     </body>
     </html>
 {% endwith %}
