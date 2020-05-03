@@ -1,3 +1,26 @@
+/* Skip to content
+   ======================================================================== */
+#skipToContent {
+  @include wide-text;
+  position: fixed;
+  z-index: -1;
+  top: -999px;
+  left: -999px;
+  background-color: $blue-grey1;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+
+  &:active,
+  &:focus {
+    z-index: 999;
+    top: 20px;
+    left: 20px;
+  }
+}
+
 /* Navigation Bar
    ======================================================================== */
 nav {
