@@ -22,10 +22,12 @@ $github-colour: #333;
 $logo-background: $bbn4;
 $logo-colour: white;
 
+// Mo' Sass, mo' problems
+// https://medium.com/@xzyfer/why-node-sass-broke-your-code-and-semver-1b3e409c57b9
 :root {
-	--logo-custom: rgba($logo-background, 0.6);
-	--logo-custom-hover: rgba($logo-background, 1);
-	--selection-color: $bbn2;
+  --logo-custom: rgba(232, 24, 95, 0.6);
+  --logo-custom-hover: #e8185f;
+  --selection-color: #cc2369;
 }
 
 /* Font References
