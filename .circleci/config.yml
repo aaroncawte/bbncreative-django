@@ -48,11 +48,11 @@ commands:
 executors:
   bbncreative-runner:
     docker:
-      - image: circleci/python:3.8.1
+      - image: circleci/python:3.8.2
       - image: circleci/postgres:10.5 # service image - secondary to python
   bbncreative-ops:
     docker:
-      - image: circleci/python:3.8.1
+      - image: circleci/python:3.8.2
 
 workflows:
   version: 2
@@ -98,8 +98,8 @@ jobs:
           name: Install Dependencies
           command: |
             cd ..
-            python3 -m venv bbn-env-ci-381
-            . bbn-env-ci-381/bin/activate
+            python3 -m venv bbn-env-ci-382
+            . bbn-env-ci-382/bin/activate
             pip install -r repo/requirements_ci.txt
             python repo/src/manage.py collectstatic --settings="bbncreative.settings_ci"
 
@@ -112,7 +112,7 @@ jobs:
       # Cache dependencies using checksum of requirements_ci.txt
       - save_cache:
           paths:
-            - ../bbn-env-ci-381
+            - ../bbn-env-ci-382
           key: v3-dependencies-{{ checksum "requirements_ci.txt" }}
 
   lint-python:
@@ -127,7 +127,7 @@ jobs:
       - run:
           name: Black linter
           command: |
-            . ../bbn-env-ci-381/bin/activate
+            . ../bbn-env-ci-382/bin/activate
             black ./src --check --exclude /migrations/
 
   test-django:
@@ -141,7 +141,7 @@ jobs:
       - run:
           name: Back-End Tests
           command: |
-            . ../bbn-env-ci-381/bin/activate
+            . ../bbn-env-ci-382/bin/activate
             python src/manage.py test --settings="bbncreative.settings_ci"
 
       - store_test_results:
@@ -272,7 +272,7 @@ jobs:
           environment:
             MANAGE_PY_PATH: ~/website/bbncreative/manage.py
             NGINX_PATH: /usr/sbin/nginx
-            VENV_PATH: /home/aaron/envs/bbn-env-381/bin/activate
+            VENV_PATH: /home/aaron/envs/bbn-env-382/bin/activate
           command: |
             cd ~
             mkdir health_checks
