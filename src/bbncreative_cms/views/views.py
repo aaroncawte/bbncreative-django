@@ -20,6 +20,10 @@ class AssetTypes:
     TEXT = "Text"
 
 
+def beta(request):
+    return render(request, "build/index.html")
+
+
 def index(request):
     top_projects = view_functions.count_children_projects(
         Project.objects.order_by("-date_complete")[: settings.NUM_TOP_PROJECTS]

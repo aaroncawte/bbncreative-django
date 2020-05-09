@@ -33,11 +33,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "bbncreative_cms.apps.BbncreativeCmsConfig",
-    "bbncreative_api.apps.BbncreativeApiConfig",
     "rest_framework",
     "django_filters",
     "lockdown",
+    "corsheaders",
+    "bbncreative_api.apps.BbncreativeApiConfig",
+    "bbncreative_cms.apps.BbncreativeCmsConfig",
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "lockdown.middleware.LockdownMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 REST_FRAMEWORK = {
@@ -68,7 +70,10 @@ ROOT_URLCONF = "bbncreative.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "bbncreative-frontend"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -86,6 +91,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "bbncreative.wsgi.application"
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Database
 
@@ -131,7 +137,10 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "../build/static")
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "bbncreative-frontend", "build", "static"),
+]
 
 # Uploadeded Content (Images, etc.)
 

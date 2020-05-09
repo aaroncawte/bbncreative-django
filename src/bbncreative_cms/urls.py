@@ -3,6 +3,9 @@ from django.urls import path
 from bbncreative_cms.views import views, views_static, views_contact
 
 urlpatterns = [
+    # React app is hosted at /beta
+    path("beta", views.beta, name="beta/"),
+    # Regular URLs
     path("", views.index, name="index"),
     path("projects/", views.projects, name="projects"),
     path("feeds/", views.feeds, name="feeds"),
