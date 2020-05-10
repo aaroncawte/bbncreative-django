@@ -90,6 +90,10 @@ workflows:
           requires:
             - install
 
+      - build-js:
+          requires:
+            - install-js
+
       - build-deployment:
           requires:
             - test-django
@@ -203,6 +207,21 @@ jobs:
 
       - store_test_results:
           path: test_results
+
+  build-js:
+    executor: node-executor
+
+    steps:
+      # Refer to workspace defined in install step
+      - attach_workspace:
+          at: ~/build-deployment-workspace
+
+      - run:
+          name: Build front-end bundle
+          command: |
+
+            cd ~/build-deployment-workspace
+            ls
 
   build-deployment:
     executor: django-no-db
