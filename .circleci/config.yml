@@ -86,19 +86,24 @@ workflows:
           requires:
             - install-js
 
+      - test-js:
+          requires:
+            - install-js
+
       - test-django:
           requires:
             - install
 
       - build-js:
           requires:
-            - install-js
+            - lint-js
+            - test-js
 
       - build-deployment:
           requires:
             - test-django
             - lint-python
-            - lint-js
+            - build-js
 
       - deploy:
           filters:
@@ -132,7 +137,7 @@ jobs:
 
       # Save everything to the workspace for deployment
       - persist_to_workspace:
-          root: /home/circleci/
+          root: /home/circleci
           paths:
             - .
 
@@ -186,10 +191,24 @@ jobs:
       - restore-node-deps
 
       - run:
-          name: ESLint
+          name: Lint Front-End
           command: |
             cd ./src/bbncreative-frontend
             yarn eslint
+
+  test-js:
+    executor: node-executor
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore-node-deps
+
+      - run:
+          name: Test Front-End
+          command: |
+            cd ./src/bbncreative-frontend
+            yarn test
 
   test-django:
     executor: django-executor
@@ -210,18 +229,29 @@ jobs:
 
   build-js:
     executor: node-executor
+    working_directory: ~/repo
 
     steps:
       # Refer to workspace defined in install step
       - attach_workspace:
           at: ~/build-deployment-workspace
 
+      - checkout
+      - restore-node-deps
+
       - run:
           name: Build front-end bundle
           command: |
-
-            cd ~/build-deployment-workspace
+            cd ./src/bbncreative-frontend
+            yarn build
+            cd build
             ls
+
+      # Save everything to the workspace for deployment
+      - persist_to_workspace:
+          root: /home/circleci/repo/src/bbncreative-frontend
+          paths:
+            - build
 
   build-deployment:
     executor: django-no-db
@@ -234,6 +264,9 @@ jobs:
       - run:
           name: Build Deployment
           command: |
+
+            echo "hoo boy"
+            ls ~/build-deployment-workspace
 
             # Setup directory structure
             mkdir build build/{bbncreative,bbncreative_api,bbncreative_cms,bbncreative_cms/migrations,bbncreative_cms/views,static,static/style,static/fonts,static/img,static/js,static/vid}
