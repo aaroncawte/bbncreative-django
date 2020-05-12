@@ -59,11 +59,11 @@ commands:
             ) >> << parameters.filepath >>
 
 executors:
-  django-executor:
+  python-executor:
     docker:
       - image: circleci/python:3.8.2
       - image: circleci/postgres:10.5 # service image - secondary to python
-  django-no-db:
+  python-no-db:
     docker:
       - image: circleci/python:3.8.2
   node-executor:
@@ -115,7 +115,7 @@ workflows:
 
 jobs:
   install:
-    executor: django-executor
+    executor: python-executor
     working_directory: ~/repo
 
     steps:
@@ -169,7 +169,7 @@ jobs:
           key: v1-node-modules-{{ checksum "src/bbncreative-frontend/yarn.lock" }}
 
   lint-python:
-    executor: django-executor
+    executor: python-executor
     working_directory: ~/repo
 
     steps:
@@ -211,7 +211,7 @@ jobs:
             yarn test
 
   test-django:
-    executor: django-executor
+    executor: python-executor
     working_directory: ~/repo
 
     steps:
@@ -254,7 +254,7 @@ jobs:
             - build
 
   build-deployment:
-    executor: django-no-db
+    executor: python-no-db
 
     steps:
       # Refer to workspace defined in install step
@@ -316,7 +316,7 @@ jobs:
             - build.zip
 
   deploy:
-    executor: django-no-db
+    executor: python-no-db
 
     steps:
       # Server SSH key
