@@ -6,7 +6,7 @@
 
 <p align="center">
     <a href="https://circleci.com/gh/aaroncawte/bbncreative-portfolio" target="blank" rel="noopener noreferrer">
-        <img src="https://circleci.com/gh/aaroncawte/bbncreative-portfolio/tree/master.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42" alt="CircleCI" />
+        <img src="https://circleci.com/gh/aaroncawte/bbncreative-portfolio/tree/main.svg?style=svg&circle-token=dbf29770a59f46187030dc984ae4c03e1f988f42" alt="CircleCI" />
     </a>
 </p>
 
